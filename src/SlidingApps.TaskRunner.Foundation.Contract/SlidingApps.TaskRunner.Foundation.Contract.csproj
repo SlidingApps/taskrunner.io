@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E13532DE-5159-4031-95F3-BFDA5053342B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SlidingApps.TaskRunner.Foundation.Contract</RootNamespace>
+    <AssemblyName>SlidingApps.TaskRunner.Foundation.Contract</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentValidation, Version=5.6.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.5.6.2.0\lib\Net45\FluentValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HalJsonNet, Version=0.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HalJsonNet.0.1.2\lib\net45\HalJsonNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MediatR, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MediatR.2.0.2\lib\net45\MediatR.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=1.0.30.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Immutable.1.0.30\lib\portable-net45+win8+wp8\System.Collections.Immutable.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\AssemblySharedInfo.cs">
+      <Link>Properties\AssemblySharedInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\AssemblyVersionInfo.cs">
+      <Link>Properties\AssemblyVersionInfo.cs</Link>
+    </Compile>
+    <Compile Include="Cqrs\ICommand.cs" />
+    <Compile Include="Cqrs\ICommandHandler.cs" />
+    <Compile Include="Cqrs\ICommandMessage.cs" />
+    <Compile Include="Cqrs\ICommandResult.cs" />
+    <Compile Include="Cqrs\IDomainEvent.cs" />
+    <Compile Include="Cqrs\IDomainEventMessage.cs" />
+    <Compile Include="Cqrs\IDomainEventMessagePublisher.cs" />
+    <Compile Include="Cqrs\IEventHandler.cs" />
+    <Compile Include="Cqrs\IGenericCommandHandler.cs" />
+    <Compile Include="Cqrs\IQuery.cs" />
+    <Compile Include="Cqrs\IQueryHandler.cs" />
+    <Compile Include="Cqrs\IWithCorrelationIdentifier.cs" />
+    <Compile Include="Cqrs\IWithFilterExpression.cs" />
+    <Compile Include="Cqrs\IWithIdentifier.cs" />
+    <Compile Include="MessageBus\IBusConnector.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadModel\ICollectionRepresentation.cs" />
+    <Compile Include="ReadModel\IDataRepresentation.cs" />
+    <Compile Include="ReadModel\IFormatValues.cs" />
+    <Compile Include="ReadModel\ILinkTemplate.cs" />
+    <Compile Include="ReadModel\IRepresentation.cs" />
+    <Compile Include="WriteModel\AuditableDataEntity.cs" />
+    <Compile Include="WriteModel\DataEntity.cs" />
+    <Compile Include="WriteModel\DataEntityNotFoundException.cs" />
+    <Compile Include="WriteModel\DomainEntity.cs" />
+    <Compile Include="WriteModel\DomainEntityExtension.cs" />
+    <Compile Include="WriteModel\DomainEntityValidatorProvider.cs" />
+    <Compile Include="WriteModel\EntityExtension.cs" />
+    <Compile Include="WriteModel\IAuditableDataEntity.cs" />
+    <Compile Include="WriteModel\IDataEntity.cs" />
+    <Compile Include="WriteModel\IDomainEntity.cs" />
+    <Compile Include="WriteModel\IDomainEntityValidatorProvider.cs" />
+    <Compile Include="WriteModel\IIdentifiable.cs" />
+    <Compile Include="WriteModel\IWithDomainEvents.cs" />
+    <Compile Include="WriteModel\IWithValidator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
