@@ -57,9 +57,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.Api.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.Api.CommandBus.Host", "SlidingApps.TaskRunner.Api.CommandBus.Host\SlidingApps.TaskRunner.Api.CommandBus.Host.csproj", "{D69AD592-DFCC-499F-AA1D-439A55A51702}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "40.Web", "40.Web", "{61ACF176-9F89-424E-B65F-5C1D3D355C45}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "50.Tools", "50.Tools", "{283426EB-B821-4AF2-908E-EC30DFCD1351}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "40.Tools", "40.Tools", "{283426EB-B821-4AF2-908E-EC30DFCD1351}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiProxy.CommandLine", "WebApiProxy.CommandLine\WebApiProxy.CommandLine.csproj", "{D218198B-AFA0-44C1-8931-0B9DA80C7C49}"
 EndProject
