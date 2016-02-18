@@ -1,0 +1,1 @@
+import './vendor/application/style/application.css';
