@@ -1,0 +1,162 @@
+
+// TYPOGRAPHY
+.rte {
+	p, ul, ol, table, blockquote {
+		&:last-of-type {
+			margin: 0;
+		}
+	}
+
+	p {
+		margin: 0 0 30px 0;
+		line-height: 21px;
+	}
+
+	a {
+		color: @maincolor;
+		&.text-light-gray {
+			color: @light-gray;
+			&:hover {
+				color: @maincolor;
+			}
+		}
+		&.text-gray {
+			color: @gray;
+			&:hover {
+				color: @maincolor;
+			}
+		}
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		font-weight: bold;
+		margin: 40px 0 30px 0;
+	}
+
+	h1 {
+		.fs(3.2);
+	}
+	h2 {
+		.fs(2.8);
+	}
+	h3 {
+		.fs(2.4);
+	}
+	h4 {
+		.fs(2);
+	}
+	h5 {
+		.fs(1.6);
+	}
+	h6 {
+		.fs(1.4);
+	}
+
+	ul, ol {
+		margin: 0 0 30px 0;
+		padding: 0;
+		li {
+			margin: 3px 0;
+		}
+	}
+
+	ul {
+		li {
+			list-style-type: none;
+			.relative;
+			padding: 0 0 0 18px;
+			&:before {
+				content: '';
+				width: 7px;
+				height: 7px;
+				.br(50%);
+				background: @maincolor;
+				display: block;
+				.absolute;
+				top: 7px;
+				left: 0;
+			}
+			ul {
+				padding: 0 0 0 20px;
+				li {
+					&:before {
+						background: #cdcfd0;
+					}
+				}
+			}
+		}
+	}
+
+	ol {
+		list-style-type: none;
+		counter-reset: item;
+		margin: 0;
+		& > li {
+			counter-increment: item;
+			&:before {
+				content: counters(item, '.') '. ';
+				padding-right: 3px;
+			}
+			ol {
+				li {
+					&:before {
+						content: counters(item, '.') ' ';
+					}
+				}
+			}
+		}
+		ol {
+			padding: 0 0 0 40px;
+			font-style: italic;
+		}
+	}
+
+	blockquote {
+		border-left: 5px solid @maincolor;
+		padding: 35px;
+		p {
+			.fs(1.8);
+			line-height: 26px;
+			font-style: italic;
+		}
+		cite {
+			.fs(1.4);
+			.uppercase;
+			.bold;
+			font-style: normal;
+			margin: 20px 0 0 0;
+			display: block;
+			&:before, &:after {
+				content: '-';
+			}
+			&:before {
+				margin: 0 5px 0 0;
+			}
+			&:after {
+				margin: 0 0 0 5px;
+			}
+		}
+		&.blockquote-align-right {
+			text-align: right;
+			border-left: 0;
+			border-right: 5px solid @maincolor;
+		}
+	}
+
+	.boxHeadline {
+		.fs(1.8);
+		font-weight: normal;
+		margin: 0 0 25px 0;
+		& + .boxHeadlineSub {
+			margin: -18px 0 30px 0;
+		}
+	}
+
+	.boxHeadlineSub {
+		.fs(1.4);
+		font-weight: normal;
+		font-style: italic;
+		color: @light-gray;
+		margin: 0 0 25px 0;
+	}
+}

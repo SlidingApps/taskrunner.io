@@ -5,22 +5,22 @@ import * as angular from 'angular';
 import { Component, Inject } from 'ng-forward';
 
 // TEMPLATE
-import template from './sign-in.html';
+import template from './get-started.html';
 
 // ANGULAR MODULES
 import 'angular-ui-router';
 
 
 @Component({
-    selector: 'signin',
+    selector: 'get-started',
     template,
     providers: ['ui.router'],
 })
 @Inject('$scope', '$state', '$timeout')
-export class SignInController {
+export class GetStartedController {
     
     constructor(private $scope: ng.IRootScopeService, private $state: angular.ui.IStateService, private $timeout: ng.ITimeoutService) { 
-        console.log('signin', this);
+        console.log('get-started', this);
     }
     
     private ngOnInit(): void {

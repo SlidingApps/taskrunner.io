@@ -17,7 +17,15 @@ export class Navigation {
     
     constructor(private $scope: ng.IRootScopeService, private $state: angular.ui.IStateService) { }
     
-    private ngOnInit(): void {
+    public onGetStarted(): void {
+        this.$state.go('account.getStarted');
+    }
+
+    public onSignIn(): void {
+        this.$state.go('account.signin');
+    }
+    
+    private ngOnInit(): void { 
         
     }
     

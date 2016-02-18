@@ -23,6 +23,9 @@ System.config({
     "*.css": {
       "loader": "css"
     },
+    "*.less": {
+      "loader": "less"
+    },
     "*.html": {
       "loader": "text"
     }
@@ -38,12 +41,16 @@ System.config({
     "core-js": "npm:core-js@1.2.6",
     "css": "github:systemjs/plugin-css@0.1.20",
     "jquery": "npm:jquery@2.2.0",
+    "less": "github:aaike/jspm-less-plugin@0.0.5",
     "ng-forward": "npm:ng-forward@0.0.1-alpha.12",
     "reflect-metadata": "npm:reflect-metadata@0.1.3",
     "rxjs": "npm:rxjs@5.0.0-beta.2",
     "text": "github:systemjs/plugin-text@0.0.4",
     "ts": "github:frankwallis/plugin-typescript@2.6.0",
     "typescript": "npm:typescript@1.8.0",
+    "github:aaike/jspm-less-plugin@0.0.5": {
+      "less.js": "github:distros/less@2.4.0"
+    },
     "github:angular-ui/ui-router@0.2.18": {
       "angular": "github:angular/bower-angular@1.5.0"
     },
