@@ -24,7 +24,7 @@ export class GetStartedController {
     }
     
     private ngOnInit(): void {
-        this.$timeout(() => angular.element('#email').focus(), 300);
+        this.$timeout(() => angular.element('#organization').focus(), 300);
     }
     
 }
