@@ -10,6 +10,8 @@ import template from './account.html';
 // COMPONENTS
 import { GetStartedController } from './get-started.controller';
 import { SignInController } from './sign-in.controller';
+import { ForgotPasswordController } from './forgot-password.controller';
+import { ResetPasswordController } from './reset-password.controller';
 
 // ANGULAR MODULES
 import 'angular-ui-router';
@@ -26,12 +28,21 @@ import 'angular-ui-router';
         url: '/signin', 
         component: SignInController, 
         template: '<signin />'
-    },
-    { 
+    }, { 
         name: 'account.getStarted', 
         url: '/getstarted', 
         component: GetStartedController, 
         template: '<get-started />'
+    }, { 
+        name: 'account.forgotPassword', 
+        url: '/forgotpassword', 
+        component: ForgotPasswordController, 
+        template: '<forgot-password />'
+    }, { 
+        name: 'account.resetPassword', 
+        url: '/resetpassword', 
+        component: ResetPasswordController, 
+        template: '<reset-password />'
     }
 ])
 @Inject('$scope', '$state')
