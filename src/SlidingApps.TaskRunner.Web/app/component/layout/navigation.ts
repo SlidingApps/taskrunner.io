@@ -2,7 +2,7 @@
 
 // COMMON
 import * as angular from 'angular';
-import { Component, Inject, Input, Output, EventEmitter } from 'ng-forward';
+import { Component, Inject } from 'ng-forward';
 
 // TEMPLATE
 import template from './navigation.html';
@@ -10,23 +10,19 @@ import template from './navigation.html';
 
 @Component({ 
   selector: 'public-navigation', 
-  template,
+  template: template
 })
 @Inject('$scope', '$state', '$stateParams')
 export class Navigation {
     
-    constructor(private $scope: ng.IRootScopeService, private $state: angular.ui.IStateService) { }
+    constructor(private $scope: angular.IScope, private $state: angular.ui.IStateService) { }
     
-    public onGetStarted(): void {
+    public onGotoGetStarted(): void {
         this.$state.go('account.getStarted');
     }
 
-    public onSignIn(): void {
+    public onGotoSignIn(): void {
         this.$state.go('account.signin');
-    }
-    
-    private ngOnInit(): void { 
-        
     }
     
 }

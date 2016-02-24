@@ -13,16 +13,17 @@ import 'angular-ui-router';
 
 @Component({
     selector: 'signin',
-    template,
-    providers: ['ui.router'],
+    template: template,
+    providers: ['ui.router']
 })
 @Inject('$scope', '$state', '$timeout')
 export class SignInController {
     
-    constructor(private $scope: ng.IRootScopeService, private $state: angular.ui.IStateService, private $timeout: ng.ITimeoutService) { 
-        console.log('signin', this);
+    constructor(private $scope: angular.IScope, private $state: angular.ui.IStateService, private $timeout: angular.ITimeoutService) { 
+        // console.log('signin', this);
     }
     
+    /* tslint:disable:no-unused-variable */
     private ngOnInit(): void {
         this.$timeout(() => angular.element('#email').focus(), 300);
     }

@@ -15,15 +15,14 @@ import template from './application.html';
 
 // VIEWS
 import { HomeController } from './view/public/home.controller';
-import { ButtonBarController } from './view/public/button-bar.controller';
 import { AccountController } from './view/account/account.controller';
 
 
 @Component({ 
     selector: 'application',
     providers: ['ui.router'],
-    directives:[ Navigation, Content],
-    template 
+    directives: [ Navigation, Content],
+    template: template
 })
 @StateConfig([
     { name: 'home', url: '/', component: HomeController },
@@ -32,7 +31,7 @@ import { AccountController } from './view/account/account.controller';
 @Inject('$scope', '$state')
 export class Application { 
     
-    constructor(private $scope, private $state: angular.ui.IStateService) { 
-        console.log('application', this);
+    constructor(private $scope: angular.IScope, private $state: angular.ui.IStateService) { 
+        // console.log('application', this);
     }
 }

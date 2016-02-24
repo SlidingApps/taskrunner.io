@@ -17,8 +17,8 @@ import 'angular-ui-router';
 
 @Component({
     selector: 'account',
-    template,
-    providers: ['ui.router'],
+    template: template,
+    providers: ['ui.router']
 })
 @StateConfig([
     { 
@@ -37,8 +37,8 @@ import 'angular-ui-router';
 @Inject('$scope', '$state')
 export class AccountController {
     
-    constructor(private $scope: ng.IRootScopeService, private $state: angular.ui.IStateService) { 
-        console.log('account', this);
+    constructor(private $scope: angular.IScope, private $state: angular.ui.IStateService) { 
+        // console.log('account', this);
     }
     
 }

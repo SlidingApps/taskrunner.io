@@ -16,18 +16,18 @@ import ConstantModule from './constant';
 // STYLING
 import './vendor/bootstrap/style/bootstrap.min.css';
 import './vendor/application/less/application.less';
-import './vendor/sharpen/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css'
+import './vendor/sharpen/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css';
 
 
-let ApplicationConfig = angular.module('application.config', [ConstantModule.name])
-    .config(['$locationProvider', '$urlRouterProvider', ($locationProvider, $urlRouterProvider) => {
+const APPLICATION_CONFIG: any = angular.module('application.config', [ConstantModule.name])
+    .config(['$locationProvider', '$urlRouterProvider', ($locationProvider: angular.ILocationProvider, $urlRouterProvider: angular.ui.IUrlRouterProvider) => {
         $locationProvider.html5Mode(false).hashPrefix();
         $urlRouterProvider.otherwise('/');
     }])
-    .config(['cfpLoadingBarProvider', (cfpLoadingBarProvider) => {
-        cfpLoadingBarProvider.includeSpinner = false;
+    .config(['cfpLoadingBarProvider', (loadingBarProvider: angular.loadingBar.ILoadingBarProvider) => {
+        loadingBarProvider.includeSpinner = false;
     }])
     ;
     
 // BOOTSTRAP APPLICATION
-bootstrap(Application, ['ui.router', 'angular-loading-bar', ConstantModule.name, ApplicationConfig.name]);
+bootstrap(Application, ['ui.router', 'angular-loading-bar', ConstantModule.name, APPLICATION_CONFIG.name]);

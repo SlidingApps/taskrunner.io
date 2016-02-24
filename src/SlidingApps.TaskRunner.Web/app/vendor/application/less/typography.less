@@ -66,7 +66,7 @@
 			.relative;
 			padding: 0 0 0 18px;
 			&:before {
-				content: '';
+				content: "";
 				width: 7px;
 				height: 7px;
 				.br(50%);
@@ -94,13 +94,13 @@
 		& > li {
 			counter-increment: item;
 			&:before {
-				content: counters(item, '.') '. ';
+				content: counters(item, ".") ". ";
 				padding-right: 3px;
 			}
 			ol {
 				li {
 					&:before {
-						content: counters(item, '.') ' ';
+						content: counters(item, ".") " ";
 					}
 				}
 			}
@@ -127,7 +127,7 @@
 			margin: 20px 0 0 0;
 			display: block;
 			&:before, &:after {
-				content: '-';
+				content: "-";
 			}
 			&:before {
 				margin: 0 5px 0 0;

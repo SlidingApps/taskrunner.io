@@ -13,14 +13,14 @@ import 'angular-ui-router';
 
 @Component({
     selector: 'home',
-    template,
-    providers: ['ui.router'],
+    template: template,
+    providers: ['ui.router']
 })
 @Inject('$scope', '$state')
 export class HomeController {
     
-    constructor(private $scope: ng.IRootScopeService, private $state: angular.ui.IStateService) { 
-        console.log('home', this);
+    constructor(private $scope: angular.IScope, private $state: angular.ui.IStateService) {
+        // console.log('home', this);
     }
     
 }

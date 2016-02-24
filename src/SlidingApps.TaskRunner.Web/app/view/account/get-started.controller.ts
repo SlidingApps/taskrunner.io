@@ -13,16 +13,17 @@ import 'angular-ui-router';
 
 @Component({
     selector: 'get-started',
-    template,
-    providers: ['ui.router'],
+    template: template,
+    providers: ['ui.router']
 })
 @Inject('$scope', '$state', '$timeout')
 export class GetStartedController {
     
-    constructor(private $scope: ng.IRootScopeService, private $state: angular.ui.IStateService, private $timeout: ng.ITimeoutService) { 
-        console.log('get-started', this);
+    constructor(private $scope: angular.IScope, private $state: angular.ui.IStateService, private $timeout: angular.ITimeoutService) { 
+        // console.log('get-started', this);
     }
     
+    /* tslint:disable:no-unused-variable */
     private ngOnInit(): void {
         this.$timeout(() => angular.element('#organization').focus(), 300);
     }
