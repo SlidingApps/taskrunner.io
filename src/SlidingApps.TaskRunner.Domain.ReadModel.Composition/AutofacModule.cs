@@ -11,7 +11,7 @@ using FluentValidation;
 using MediatR;
 using System.Linq;
 
-namespace SlidingApps.TaskRunner.Domain.ReadModel
+namespace SlidingApps.TaskRunner.Domain.ReadModel.Composition
 {
     public class AutofacModule : Module
     {

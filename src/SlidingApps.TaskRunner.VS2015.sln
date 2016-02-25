@@ -69,6 +69,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "90.Script", "90.Script", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.Script", "SlidingApps.TaskRunner.Script\SlidingApps.TaskRunner.Script.csproj", "{5CAA2C1D-1C4B-4B6A-B82E-4C0DC0044B73}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.Domain.ReadModel.Composition", "SlidingApps.TaskRunner.Domain.ReadModel.Composition\SlidingApps.TaskRunner.Domain.ReadModel.Composition.csproj", "{EEF3A39E-7CAE-4D3A-9551-3277E0A003BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -171,6 +173,10 @@ Global
 		{5CAA2C1D-1C4B-4B6A-B82E-4C0DC0044B73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CAA2C1D-1C4B-4B6A-B82E-4C0DC0044B73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CAA2C1D-1C4B-4B6A-B82E-4C0DC0044B73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEF3A39E-7CAE-4D3A-9551-3277E0A003BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEF3A39E-7CAE-4D3A-9551-3277E0A003BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEF3A39E-7CAE-4D3A-9551-3277E0A003BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEF3A39E-7CAE-4D3A-9551-3277E0A003BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -200,5 +206,6 @@ Global
 		{CE2EE3A6-73D7-46DA-9716-8D4115FB66D7} = {283426EB-B821-4AF2-908E-EC30DFCD1351}
 		{6CCDD3C7-9161-4E74-BB4E-D72FEE60CBC3} = {283426EB-B821-4AF2-908E-EC30DFCD1351}
 		{5CAA2C1D-1C4B-4B6A-B82E-4C0DC0044B73} = {F58CB8EE-4E8F-4DFA-B4C2-5A557799C1F5}
+		{EEF3A39E-7CAE-4D3A-9551-3277E0A003BE} = {66C75565-40B6-4FFC-9DD4-C13B16BAC826}
 	EndGlobalSection
 EndGlobal

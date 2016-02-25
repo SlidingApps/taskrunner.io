@@ -10,7 +10,7 @@ namespace SlidingApps.TaskRunner.Api.ReadModel.Host
 			ContainerBuilder builder = new ContainerBuilder();
 
 			builder.RegisterModule<AutofacModule>();
-			builder.RegisterAssemblyModules(typeof(Domain.ReadModel.AutofacModule).Assembly);
+			builder.RegisterAssemblyModules(typeof(Domain.ReadModel.Composition.AutofacModule).Assembly);
 
 			return builder.Build();
 		}

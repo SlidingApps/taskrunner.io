@@ -170,6 +170,10 @@
       <Project>{8d3be0e4-9a88-4c23-86a5-774fa9192e35}</Project>
       <Name>SlidingApps.TaskRunner.Api.ReadModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SlidingApps.TaskRunner.Domain.ReadModel.Composition\SlidingApps.TaskRunner.Domain.ReadModel.Composition.csproj">
+      <Project>{eef3a39e-7cae-4d3a-9551-3277e0a003be}</Project>
+      <Name>SlidingApps.TaskRunner.Domain.ReadModel.Composition</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SlidingApps.TaskRunner.Domain.ReadModel\SlidingApps.TaskRunner.Domain.ReadModel.csproj">
       <Project>{1b28e0f6-af3b-431e-9427-5ef9f0124e8b}</Project>
       <Name>SlidingApps.TaskRunner.Domain.ReadModel</Name>

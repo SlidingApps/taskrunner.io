@@ -25,7 +25,7 @@ export class ForgotPasswordController {
     
     /* tslint:disable:no-unused-variable */
     private ngOnInit(): void {
-        this.$timeout(() => angular.element('#organization').focus(), 300);
+        this.$timeout(() => angular.element('#email').focus(), 300);
     }
     
 }

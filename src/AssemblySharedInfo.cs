@@ -11,6 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyProduct("TaskRunner")]
 [assembly: AssemblyCopyright("Copyright © 2016 Sliding Apps")]
 [assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
 
 // Make it easy to distinguish Debug and Release (i.e. Retail) builds;
 // for example, through the file properties window.
