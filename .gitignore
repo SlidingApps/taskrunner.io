@@ -233,6 +233,7 @@ FakesAssemblies/
 **/*.DesktopClient/ModelManifest.xml
 **/*.Server/GeneratedArtifacts
 **/*.Server/ModelManifest.xml
+build/
 _Pvt_Extensions
 
 # Paket dependency manager
