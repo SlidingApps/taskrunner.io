@@ -2,7 +2,6 @@
 using Autofac;
 using SlidingApps.TaskRunner.Domain.ReadModel.Platform.Organizations.Representations;
 using SlidingApps.TaskRunner.Domain.ReadModel.Platform.Persons.Representations;
-using SlidingApps.TaskRunner.Foundation.Configuration;
 using SlidingApps.TaskRunner.Foundation.Dapper;
 
 namespace SlidingApps.TaskRunner.Domain.ReadModel.Platform
@@ -10,8 +9,8 @@ namespace SlidingApps.TaskRunner.Domain.ReadModel.Platform
     public class PlatformMappingProvider
         : MappingProvider
     {
-        public PlatformMappingProvider(IComponentContext context, IApplicationConfigurationStore configuration)
-            : base(context, configuration)
+        public PlatformMappingProvider(IComponentContext context)
+            : base(context)
         {
             this.Schema("SlidingApps.TaskRunner");
 

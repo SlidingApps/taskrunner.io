@@ -47,7 +47,6 @@ namespace SlidingApps.TaskRunner.Domain.ReadModel.Composition
                 return new QueryProvider(c, m, d);
             }).InstancePerLifetimeScope();
 
-            builder.RegisterType<ApplicationConfigurationStore>().As<IApplicationConfigurationStore>().SingleInstance();
             builder.RegisterType<SchemaMapping>().InstancePerLifetimeScope();
 
             builder.RegisterType<PlatformMappingProvider>().As<IMappingProvider>().SingleInstance();

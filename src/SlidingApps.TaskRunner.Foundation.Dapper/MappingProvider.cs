@@ -1,6 +1,5 @@
 ﻿
 using Autofac;
-using SlidingApps.TaskRunner.Foundation.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,12 +17,9 @@ namespace SlidingApps.TaskRunner.Foundation.Dapper
 
         private readonly IComponentContext context;
 
-        private readonly IApplicationConfigurationStore configuration;
-
-        public MappingProvider(IComponentContext context, IApplicationConfigurationStore configuration)
+        public MappingProvider(IComponentContext context)
         {
             this.context = context;
-            this.configuration = configuration;
         }
 
         protected void Schema(string schemaName)

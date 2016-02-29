@@ -14,23 +14,21 @@ namespace SlidingApps.TaskRunner.Api.WriteModel
         {
             builder.RegisterType<MassTransitConnector>().As<IBusConnector>();
 
-            builder.RegisterType<ApplicationConfigurationStore>().As<IApplicationConfigurationStore>();
             builder.RegisterType<RabbitMQConfigration>().As<RabbitMQConfigration>();
 
             builder.Register(context => Bus.Factory.CreateUsingRabbitMq(config =>
             {
-                IApplicationConfigurationStore applicationConfiguration = context.Resolve<IApplicationConfigurationStore>();
                 RabbitMQConfigration rabbitMQSettings = context.Resolve<RabbitMQConfigration>();
 
                 config.UseLog4Net();
                 config.UseJsonSerializer();
 
-                var durable = applicationConfiguration[AppSetting.RABBITMQ_DURABLE_QUEUE];
+                var durable = ApplicationConfiguration.Store[AppSetting.RABBITMQ_DURABLE_QUEUE];
                 config.Durable = bool.Parse(durable);
                 config.Host(rabbitMQSettings.VirtualHostUri, host =>
                 {
-                    host.Username(applicationConfiguration[AppSetting.RABBITMQ_USER]);
-                    host.Password(applicationConfiguration[AppSetting.RABBITMQ_PASSWORD]);
+                    host.Username(ApplicationConfiguration.Store[AppSetting.RABBITMQ_USER]);
+                    host.Password(ApplicationConfiguration.Store[AppSetting.RABBITMQ_PASSWORD]);
                 });
             }))
                 .SingleInstance()

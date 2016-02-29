@@ -6,6 +6,6 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform
 {
     public static class Metadata
     {
-        public static string SCHEMA_NAME = ConfigurationManager.AppSettings[AppSetting.NHIBERNATE_SCHEMA] ?? string.Empty;
+        public static string SCHEMA_NAME = ApplicationConfiguration.Store[AppSetting.NHIBERNATE_SCHEMA] ?? string.Empty;
     }
 }

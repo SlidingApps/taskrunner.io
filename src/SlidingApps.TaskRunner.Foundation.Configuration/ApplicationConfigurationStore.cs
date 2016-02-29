@@ -6,8 +6,8 @@ namespace SlidingApps.TaskRunner.Foundation.Configuration
     /// <summary>
     /// App.config configuration reader.
     /// </summary>
-    public class ApplicationConfigurationStore
-        : IApplicationConfigurationStore
+    public class ApplicationConfigurationStore_ORIG
+        : IApplicationConfigurationStore_ORIG
     {
         /// <summary>
         /// Gets the app setting from the APP.CONFIG.

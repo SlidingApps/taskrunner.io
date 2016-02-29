@@ -24,18 +24,17 @@ namespace SlidingApps.TaskRunner.Api.CommandBus.Host
 
             builder.Register(context => Bus.Factory.CreateUsingRabbitMq(config =>
             {
-                IApplicationConfigurationStore applicationConfiguration = context.Resolve<IApplicationConfigurationStore>();
                 RabbitMQConfigration rabbitMQSettings = context.Resolve<RabbitMQConfigration>();
 
                 var host = config.Host(rabbitMQSettings.VirtualHostUri, h =>
                 {
-                    h.Username(applicationConfiguration[Foundation.Configuration.AppSetting.RABBITMQ_USER]);
-                    h.Password(applicationConfiguration[Foundation.Configuration.AppSetting.RABBITMQ_PASSWORD]);
+                    h.Username(ApplicationConfiguration.Store[Foundation.Configuration.AppSetting.RABBITMQ_USER]);
+                    h.Password(ApplicationConfiguration.Store[Foundation.Configuration.AppSetting.RABBITMQ_PASSWORD]);
                 });
 
-                var durable = applicationConfiguration[Foundation.Configuration.AppSetting.RABBITMQ_DURABLE_QUEUE];
+                var durable = ApplicationConfiguration.Store[Foundation.Configuration.AppSetting.RABBITMQ_DURABLE_QUEUE];
                 config.Durable = bool.Parse(durable);
-                config.ReceiveEndpoint(host, applicationConfiguration[Foundation.Configuration.AppSetting.RABBITMQ_QUEUE_COMMAND], 
+                config.ReceiveEndpoint(host, ApplicationConfiguration.Store[Foundation.Configuration.AppSetting.RABBITMQ_QUEUE_COMMAND], 
                     epc => {
                         epc.Durable = bool.Parse(durable);
                         epc.LoadFrom(context);

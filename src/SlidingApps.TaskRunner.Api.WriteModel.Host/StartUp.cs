@@ -1,22 +1,22 @@
 ﻿
 using Autofac;
 using Autofac.Integration.WebApi;
-using SlidingApps.TaskRunner.Foundation.Infrastructure;
-using SlidingApps.TaskRunner.Foundation.Infrastructure.Logging;
-using SlidingApps.TaskRunner.Foundation.Web;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Owin;
-using WebApiProxy.Server;
+using SlidingApps.TaskRunner.Foundation.Configuration;
+using SlidingApps.TaskRunner.Foundation.Infrastructure;
+using SlidingApps.TaskRunner.Foundation.Infrastructure.Logging;
+using SlidingApps.TaskRunner.Foundation.Web;
 using System;
-using System.Configuration;
 using System.Linq;
 using System.Net.Http.Formatting;
 using System.Web.Http;
+using WebApiProxy.Server;
 
 namespace SlidingApps.TaskRunner.Api.WriteModel.Host
 {
-	internal sealed class Startup
+    internal sealed class Startup
 	{
 	    internal readonly Type[] SERVICES = {
             typeof(HealthController),
@@ -46,7 +46,7 @@ namespace SlidingApps.TaskRunner.Api.WriteModel.Host
 
 	    private HttpConfiguration ConfigureHttp()
 		{
-			var urlBase = ConfigurationManager.AppSettings["hal.urlBase"];
+			var urlBase = ApplicationConfiguration.Store["hal.urlBase"];
 			if(string.IsNullOrEmpty(urlBase)) throw new Exception ("HAL JSON URL base not configured");
 
 			HttpConfiguration config = new HttpConfiguration();

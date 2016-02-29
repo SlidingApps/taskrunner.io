@@ -11,8 +11,8 @@ namespace SlidingApps.TaskRunner.Foundation.Configuration
         {
             get
             {
-                string address = ConfigurationManager.AppSettings[AppSetting.HOST_ADDRESS];
-                string port = ConfigurationManager.AppSettings[AppSetting.HOST_PORT];
+                string address = ApplicationConfiguration.Store[AppSetting.HOST_ADDRESS];
+                string port = ApplicationConfiguration.Store[AppSetting.HOST_PORT];
                 int _port = !string.IsNullOrEmpty(port) ? int.Parse(port) : 8000;
 
                 return string.Format(WebApiConfiguration.DEFAULT_HOST_URI_FORMAT, address, _port);

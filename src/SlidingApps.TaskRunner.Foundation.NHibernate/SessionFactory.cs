@@ -4,7 +4,6 @@ using FluentNHibernate.Cfg.Db;
 using SlidingApps.TaskRunner.Foundation.Configuration;
 using NHibernate;
 using System;
-using System.Configuration;
 using System.Reflection;
 using NHibernate_Configuration = NHibernate.Cfg.Configuration;
 
@@ -15,13 +14,6 @@ namespace SlidingApps.TaskRunner.Foundation.NHibernate
         private static ISessionFactory FACTORY;
 
         private static object LOCK = new object();
-
-        private readonly IApplicationConfigurationStore configuration;
-
-        public SessionFactory(IApplicationConfigurationStore configuration)
-        {
-            this.configuration = configuration;
-        }
 
         public ISession OpenSession()
         {
@@ -48,25 +40,25 @@ namespace SlidingApps.TaskRunner.Foundation.NHibernate
         {
             IPersistenceConfigurer persistence = null;
 
-            switch (this.configuration[AppSetting.NHIBERNATE_DIALECT])
+            switch (ApplicationConfiguration.Store[AppSetting.NHIBERNATE_DIALECT])
             {
                 case "MsSql2005":
                 {
-                    string connectionString = this.configuration[AppSetting.NHIBERNATE_CONNECTIONSTRING];
+                    string connectionString = ApplicationConfiguration.Store[AppSetting.NHIBERNATE_CONNECTIONSTRING];
                     persistence = MsSqlConfiguration.MsSql2005.ConnectionString(connectionString);
                 }
                     break;
 
                 case "MsSql2008":
                 {
-                    string connectionString = this.configuration[AppSetting.NHIBERNATE_CONNECTIONSTRING];
+                    string connectionString = ApplicationConfiguration.Store[AppSetting.NHIBERNATE_CONNECTIONSTRING];
                     persistence = MsSqlConfiguration.MsSql2008.ConnectionString(connectionString);
                 }
                     break;
 
                 case "MySql":
                     {
-                        string connectionString = this.configuration[AppSetting.NHIBERNATE_CONNECTIONSTRING];
+                        string connectionString = ApplicationConfiguration.Store[AppSetting.NHIBERNATE_CONNECTIONSTRING];
                         persistence = MySQLConfiguration.Standard.ConnectionString(connectionString);
                     }
                     break;
@@ -79,7 +71,7 @@ namespace SlidingApps.TaskRunner.Foundation.NHibernate
             //configuration.SetInterceptor(new NhibernateSqlInterceptor(this.mediator));
             configuration.SetInterceptor(new NhibernateSqlInterceptor());
 
-            string mappingAssembly = this.configuration[AppSetting.NHIBERNATE_MAPPING_ASSEMBLY];
+            string mappingAssembly = ApplicationConfiguration.Store[AppSetting.NHIBERNATE_MAPPING_ASSEMBLY];
 
             FluentConfiguration fluentConfiguration =
                 Fluently.Configure(configuration)

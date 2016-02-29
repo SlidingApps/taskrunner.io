@@ -9,7 +9,7 @@ import template from './navigation.html';
 
 
 @Component({ 
-  selector: 'public-navigation', 
+  selector: 'navigation', 
   template: template
 })
 @Inject('$scope', '$state', '$stateParams')
