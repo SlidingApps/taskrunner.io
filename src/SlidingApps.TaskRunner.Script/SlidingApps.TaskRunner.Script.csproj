@@ -38,6 +38,17 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Docker\02.Maintenance\docker-cleanup.sh" />
+    <None Include="Docker\02.Maintenance\docker-remove-all.sh" />
+    <None Include="Docker\02.Maintenance\docker-start-all.sh" />
+    <None Include="Docker\02.Maintenance\docker-stop-all.sh" />
+    <None Include="Docker\01.Setup\00001.create docker folders.sh" />
+    <None Include="Docker\01.Setup\00002.create docker containers.sh" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DataDefinition\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

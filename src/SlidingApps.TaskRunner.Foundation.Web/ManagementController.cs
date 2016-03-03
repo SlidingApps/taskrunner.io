@@ -3,8 +3,8 @@ using System.Web.Http;
 
 namespace SlidingApps.TaskRunner.Foundation.Web
 {
-    [RoutePrefix("$health")]
-    public class HealthController
+    [RoutePrefix("$management")]
+    public class ManagementController
         : ApiController
     {
         [HttpGet, Route("")]

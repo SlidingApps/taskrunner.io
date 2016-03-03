@@ -80,7 +80,7 @@
     <Compile Include="ApiResponse.cs" />
     <Compile Include="CommandResponse.cs" />
     <Compile Include="CorsMessageHandler.cs" />
-    <Compile Include="HealthController.cs" />
+    <Compile Include="ManagementController.cs" />
     <Compile Include="JsonContentNegotiator.cs" />
     <Compile Include="LoggingMessageHandler.cs" />
     <Compile Include="NotFoundException.cs" />

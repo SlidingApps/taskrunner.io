@@ -20,7 +20,7 @@ namespace SlidingApps.TaskRunner.Api.ReadModel.Host
     internal sealed class Startup
 	{
 	    internal readonly Type[] SERVICES = {
-            typeof(HealthController),
+            typeof(ManagementController),
 			typeof(Platform.OrganizationController),
             typeof(Platform.PersonController)
 		};
