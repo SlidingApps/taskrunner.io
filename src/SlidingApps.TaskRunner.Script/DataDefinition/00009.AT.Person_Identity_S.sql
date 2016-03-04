@@ -1,0 +1,20 @@
+﻿DELIMITER $$
+
+CREATE DEFINER=`root`@`%` TRIGGER `TRBI_Person_Identity_S` BEFORE INSERT ON `Person_Identity_S` FOR EACH ROW
+BEGIN
+	IF (NEW.ID IS NULL OR NEW.ID= '') THEN
+		SET NEW.ID = UUID();
+    END IF;
+END
+$$
+DELIMITER ;
+
+DELIMITER $$
+
+CREATE DEFINER=`root`@`%` TRIGGER `TRAI_Person_Identity_S` AFTER INSERT ON `Person_Identity_S` FOR EACH ROW
+BEGIN
+    UPDATE `Person_Identity_S` 
+    SET DISPLAYNAME = CONCAT(NAME, ' ', FIRSTNAME)
+    WHERE Id = NEW.Id;
+END$$
+DELIMITER ;
