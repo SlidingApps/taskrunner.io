@@ -58,7 +58,7 @@
     <Content Include="DataDefinition\00008.CT.Person_Identity_S.sql" />
     <Content Include="DataDefinition\00009.AT.Person_Identity_S.sql" />
     <Content Include="DataDefinition\00010.CV.Person_V.sql" />
-    <Content Include="DataDefinition\00011.CV.Organization_Summary_V.sql" />
+    <Content Include="DataDefinition\00011.CV.Tenant_Summary_V.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
