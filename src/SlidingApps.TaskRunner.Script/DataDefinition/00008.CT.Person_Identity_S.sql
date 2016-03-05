@@ -1,4 +1,5 @@
-﻿CREATE TABLE `Person_Identity_S` (
+
+CREATE TABLE `Person_Identity_S` (
   `ID` CHAR(36) NOT NULL COMMENT '',
   `PersonID` CHAR(36) NOT NULL COMMENT '',
   `Name` VARCHAR(100) NOT NULL DEFAULT '' COMMENT '',

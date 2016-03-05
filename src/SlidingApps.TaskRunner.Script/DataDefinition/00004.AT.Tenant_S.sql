@@ -1,4 +1,4 @@
-﻿
+
 DELIMITER $$
 
 CREATE DEFINER=`root`@`%` TRIGGER `TRBI_Tenant_S` BEFORE INSERT ON `Tenant_S` FOR EACH ROW

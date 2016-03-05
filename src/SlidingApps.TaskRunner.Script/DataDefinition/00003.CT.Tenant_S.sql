@@ -1,4 +1,5 @@
-﻿CREATE TABLE `Tenant_S` (
+
+CREATE TABLE `Tenant_S` (
   `ID` CHAR(36) NOT NULL COMMENT '',
   `TenantID` CHAR(36) NOT NULL COMMENT '',
   `Name` VARCHAR(50) NOT NULL COMMENT '',

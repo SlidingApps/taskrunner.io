@@ -1,4 +1,4 @@
-﻿
+
 CREATE TABLE `Tenant_H` (
   `ID` CHAR(36) NOT NULL COMMENT '',
   `Code` VARCHAR(50) NOT NULL COMMENT '',
