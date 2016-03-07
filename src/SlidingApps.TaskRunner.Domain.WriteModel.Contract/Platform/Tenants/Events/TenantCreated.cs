@@ -1,14 +1,14 @@
 ﻿
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Organizations.Commands;
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Commands;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using System;
 
-namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Organizations.Events
+namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Events
 {
-    public class OrganizationCreated
+    public class TenantCreated
          : DomainEvent
     {
-        public OrganizationCreated(CreateOrganization command)
+        public TenantCreated(CreateTenant command)
             : base(command.Id)
         {
             this.OrganizationId = Guid.NewGuid();

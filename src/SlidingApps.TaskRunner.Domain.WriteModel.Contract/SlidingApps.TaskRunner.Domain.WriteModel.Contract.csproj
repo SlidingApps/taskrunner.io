@@ -52,8 +52,8 @@
       <Link>Properties\AssemblyVersionInfo.cs</Link>
     </Compile>
     <Compile Include="Constant.cs" />
-    <Compile Include="Platform\Organizations\Commands\CreateOrganization.cs" />
-    <Compile Include="Platform\Organizations\Events\OrganizationCreated.cs" />
+    <Compile Include="Platform\Tenants\Commands\CreateTenant.cs" />
+    <Compile Include="Platform\Tenants\Events\TenantCreated.cs" />
     <Compile Include="Platform\Persons\Commands\ChangePersonName.cs" />
     <Compile Include="Platform\Persons\Commands\ChangePersonPeriod.cs" />
     <Compile Include="Platform\Persons\Commands\CreatePerson.cs" />

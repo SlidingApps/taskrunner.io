@@ -2,16 +2,16 @@
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using System;
 
-namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Organizations.Commands
+namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Commands
 {
-    public class CreateOrganization 
+    public class CreateTenant
         : Command
     {
-        public CreateOrganization()
+        public CreateTenant()
             : base()
         { }
 
-        public CreateOrganization(string code, string name, string description, DateTime? validFrom, DateTime? validUntil)
+        public CreateTenant(string code, string name, string description, DateTime? validFrom, DateTime? validUntil)
             : this()
         {
             this.Code = code;

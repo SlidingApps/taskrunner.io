@@ -20,7 +20,7 @@ namespace SlidingApps.TaskRunner.Api.WriteModel.Host
 	{
 	    internal readonly Type[] SERVICES = {
             typeof(ManagementController),
-			typeof (Platform.OrganizationController),
+			typeof (Platform.TenantController),
             typeof (Platform.PersonController)
         };
 

@@ -2,12 +2,12 @@
 using SlidingApps.TaskRunner.Foundation.NHibernate;
 using System;
 
-namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Organizations.Maps
+namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Maps
 {
     public class OrganizationInfoMap
-        : AuditableDataEntityMap<Entities.OrganizationInfo, Guid>
+        : AuditableDataEntityMap<Entities.TenantInfo, Guid>
     {
-        private const string TABLE_NAME = "Organization_S";
+        private const string TABLE_NAME = "Tenant_S";
 
         public OrganizationInfoMap()
             : base(Metadata.SCHEMA_NAME, OrganizationInfoMap.TABLE_NAME)
@@ -17,7 +17,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Organizations.Maps
             this.Map(x => x.ValidFrom);
             this.Map(x => x.ValidUntil);
 
-            this.References(x => x.Organization).Unique().Column("OrganizationId");
+            this.References(x => x.Tenant).Unique().Column("TenantId");
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Organizations.Commands;
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Organizations.Events;
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Commands;
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Events;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
@@ -8,14 +8,14 @@ using FluentValidation;
 using FluentValidation.Results;
 using System;
 
-namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Organizations
+namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
 {
-    public class Organization
-        : DomainEntity<Guid, Entities.Organization>, IWithValidator<Organization>
+    public class Tenant
+        : DomainEntity<Guid, Entities.Tenant>, IWithValidator<Tenant>
     {
-        private readonly IValidator<Organization> validator;
+        private readonly IValidator<Tenant> validator;
 
-        public Organization(IValidator<Organization> validator)
+        public Tenant(IValidator<Tenant> validator)
             : base() 
 		{
             Argument.InstanceIsRequired(validator, "validator");
@@ -23,7 +23,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Organizations
             this.validator = validator;
         }
 
-        public Organization(Entities.Organization entity, IValidator<Organization> validator)
+        public Tenant(Entities.Tenant entity, IValidator<Tenant> validator)
             : this(validator)
         {
             Argument.InstanceIsRequired(entity, "entity");
@@ -31,8 +31,8 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Organizations
             this.entity = entity;
             if (this.entity.Info == null)
             {
-                this.entity.Info = new Entities.OrganizationInfo(Guid.NewGuid());
-                this.entity.Info.Organization = this.entity;
+                this.entity.Info = new Entities.TenantInfo(Guid.NewGuid());
+                this.entity.Info.Tenant = this.entity;
             };
         }
 
@@ -66,15 +66,15 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Organizations
             private set { this.entity.Info.ValidUntil = value; }
         }
 
-        public IDomainEvent Apply(CreateOrganization command)
+        public IDomainEvent Apply(CreateTenant command)
         {
-            OrganizationCreated domainEvent = new OrganizationCreated(command);
+            TenantCreated domainEvent = new TenantCreated(command);
             this.When(domainEvent);
 
             return domainEvent;
         }
 
-        public void When(OrganizationCreated domainEvent)
+        public void When(TenantCreated domainEvent)
         {
             this.Id = domainEvent.OrganizationId;
             this.Code = domainEvent.Code;

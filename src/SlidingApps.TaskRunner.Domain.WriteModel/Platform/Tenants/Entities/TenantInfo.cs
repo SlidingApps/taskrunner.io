@@ -2,15 +2,15 @@
 using SlidingApps.TaskRunner.Foundation.WriteModel;
 using System;
 
-namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Organizations.Entities
+namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Entities
 {
-    public class OrganizationInfo
+    public class TenantInfo
         : AuditableDataEntity<Guid>
     {
-        public OrganizationInfo()
+        public TenantInfo()
         : base() { }
 
-        public OrganizationInfo(Guid id)
+        public TenantInfo(Guid id)
         : base(id) { }
 
         public virtual string Name { get; set; }
@@ -21,6 +21,6 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Organizations.Entiti
 
         public virtual DateTime ValidUntil { get; set; }
 
-        public virtual Organization Organization { get; set; }
+        public virtual Tenant Tenant { get; set; }
     }
 }

@@ -1,14 +1,14 @@
 ﻿
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Organizations.Commands;
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Commands;
 using FluentValidation;
 using System;
 
-namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Organizations.Validations
+namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Validations
 {
-    class CreateOrganizationValidator
-        : AbstractValidator<CreateOrganization>
+    class CreateTenantValidator
+        : AbstractValidator<CreateTenant>
     {
-        public CreateOrganizationValidator()
+        public CreateTenantValidator()
         {
             this.RuleFor(c => c.Id).NotEmpty().WithMessage("COMMAND ID equals Guid.Empty");
 

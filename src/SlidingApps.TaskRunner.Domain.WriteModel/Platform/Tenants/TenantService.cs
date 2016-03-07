@@ -1,5 +1,5 @@
 ﻿
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Organizations.Commands;
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Commands;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Extension;
 using SlidingApps.TaskRunner.Foundation.NHibernate;
@@ -7,10 +7,10 @@ using SlidingApps.TaskRunner.Foundation.WriteModel;
 using MediatR;
 using NHibernate;
 
-namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Organizations
+namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
 {
     public class OrganizationService :
-        ICommandHandler<CreateOrganization>
+        ICommandHandler<CreateTenant>
     {
         private readonly IMediator mediator;
 
@@ -25,9 +25,9 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Organizations
             this.validator = validator;
         }
 
-        public ICommandResult Handle(CreateOrganization command)
+        public ICommandResult Handle(CreateTenant command)
         {
-            Organization entity = new Organization(new Entities.Organization(), this.validator.CreateFor<Organization>());
+            Tenant entity = new Tenant(new Entities.Tenant(), this.validator.CreateFor<Tenant>());
             var result = entity.Apply(command);
 
             entity

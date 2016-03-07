@@ -1,9 +1,9 @@
 ﻿
 using System;
 
-namespace SlidingApps.TaskRunner.Api.WriteModel.V1.Platform.Organizations
+namespace SlidingApps.TaskRunner.Api.WriteModel.V1.Platform.Tenants
 {
-    public class CreateOrganization
+    public class CreateTenant
     {
         public string Code { get; set; }
 

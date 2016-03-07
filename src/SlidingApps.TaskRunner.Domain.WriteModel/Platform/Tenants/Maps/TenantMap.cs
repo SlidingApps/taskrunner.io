@@ -3,15 +3,15 @@ using SlidingApps.TaskRunner.Foundation.NHibernate;
 using FluentNHibernate.Mapping;
 using System;
 
-namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Organizations.Maps
+namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Maps
 {
     public class OrganizationMap
-        : AuditableDataEntityMap<Entities.Organization, Guid>
+        : AuditableDataEntityMap<Entities.Tenant, Guid>
     {
         /// <summary>
         /// The <see cref="Organization"/> database table name.
         /// </summary>
-        public const string TABLE_NAME = "Organization_H";
+        public const string TABLE_NAME = "Tenant_H";
 
         /// <summary>
         /// Default constructor.
@@ -21,7 +21,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Organizations.Maps
         {
             this.Map(x => x.Code);
 
-            this.HasOne(x => x.Info) .Cascade.All().PropertyRef(x => x.Organization).LazyLoad(Laziness.Proxy);
+            this.HasOne(x => x.Info) .Cascade.All().PropertyRef(x => x.Tenant).LazyLoad(Laziness.Proxy);
         }
     }
 }
