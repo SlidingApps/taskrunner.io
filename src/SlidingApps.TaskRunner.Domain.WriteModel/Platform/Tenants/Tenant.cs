@@ -76,7 +76,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
 
         public void When(TenantCreated domainEvent)
         {
-            this.Id = domainEvent.OrganizationId;
+            this.Id = domainEvent.TenantId;
             this.Code = domainEvent.Code;
             this.Name = domainEvent.Name;
             this.Description = domainEvent.Description;

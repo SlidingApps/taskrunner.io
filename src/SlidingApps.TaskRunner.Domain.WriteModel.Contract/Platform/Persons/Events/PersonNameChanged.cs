@@ -12,14 +12,14 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Events
             : base(command.Id)
         {
             this.PersonId = command.PersonId;
-            this.OrganizationId = command.OrganizationId;
+            this.TenantId = command.TenantId;
             this.Name = command.Name;
             this.FirstName = command.FirstName;
         }
 
         public Guid PersonId { get; set; }
 
-        public Guid OrganizationId { get; set; }
+        public Guid TenantId { get; set; }
 
         public string Name { get; set; }
 

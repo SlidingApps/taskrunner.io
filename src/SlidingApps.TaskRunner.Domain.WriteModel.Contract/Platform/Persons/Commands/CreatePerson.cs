@@ -12,10 +12,10 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Commands
             : base()
         { }
 
-        public CreatePerson(Guid organizationId, string name, string firstName, string info, DateTime startDate, DateTime endDate)
+        public CreatePerson(Guid tenantId, string name, string firstName, string info, DateTime startDate, DateTime endDate)
             : this()
         {
-            this.OrganizationId = organizationId;
+            this.TenantId = tenantId;
             this.Name = name;
             this.Info = info;
             this.FirstName = firstName;
@@ -23,7 +23,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Commands
             this.EndDate = endDate;
         }
 
-        public Guid OrganizationId { get; set; }
+        public Guid TenantId { get; set; }
 
         public string Name { get; set; }
 

@@ -43,7 +43,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons
 
         public ICommandResult Handle(ChangePersonName command)
         {
-            var existing = this.queryProvider.CreateQuery<Entities.Person>().Where(x => x.OrganizationId == command.OrganizationId && x.Id == command.PersonId).Single();
+            var existing = this.queryProvider.CreateQuery<Entities.Person>().Where(x => x.TenantId == command.TenantId && x.Id == command.PersonId).Single();
             Person entity = new Person(existing, this.validator.CreateFor<Person>());
             var result = entity.Apply(command);
 
@@ -56,7 +56,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons
 
         public ICommandResult Handle(ChangePersonPeriod command)
         {
-            var existing = this.queryProvider.CreateQuery<Entities.Person>().Where(x => x.OrganizationId == command.OrganizationId && x.Id == command.PersonId).Single();
+            var existing = this.queryProvider.CreateQuery<Entities.Person>().Where(x => x.TenantId == command.TenantId && x.Id == command.PersonId).Single();
             Person entity = new Person(existing, this.validator.CreateFor<Person>());
             var result = entity.Apply(command);
 

@@ -5,19 +5,19 @@ using System;
 
 namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Maps
 {
-    public class OrganizationMap
+    public class TenantMap
         : AuditableDataEntityMap<Entities.Tenant, Guid>
     {
         /// <summary>
-        /// The <see cref="Organization"/> database table name.
+        /// The <see cref="Tenant"/> database table name.
         /// </summary>
         public const string TABLE_NAME = "Tenant_H";
 
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public OrganizationMap()
-            : base(Metadata.SCHEMA_NAME, OrganizationMap.TABLE_NAME)
+        public TenantMap()
+            : base(Metadata.SCHEMA_NAME, TenantMap.TABLE_NAME)
         {
             this.Map(x => x.Code);
 

@@ -12,7 +12,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Events
             : base(command.Id)
         {
             this.PersonId = Guid.NewGuid();
-            this.OrganizationId = command.OrganizationId;
+            this.TenantId = command.TenantId;
             this.Name = command.Name;
             this.FirstName = command.FirstName;
             this.Info = command.Info;
@@ -22,7 +22,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Events
 
         public Guid PersonId { get; set; }
 
-        public Guid OrganizationId { get; set; }
+        public Guid TenantId { get; set; }
 
         public string Name { get; set; }
 

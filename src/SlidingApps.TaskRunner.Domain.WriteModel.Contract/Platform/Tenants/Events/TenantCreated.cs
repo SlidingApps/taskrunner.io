@@ -11,7 +11,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Events
         public TenantCreated(CreateTenant command)
             : base(command.Id)
         {
-            this.OrganizationId = Guid.NewGuid();
+            this.TenantId = Guid.NewGuid();
             this.Code = command.Code;
             this.Name = command.Name;
             this.Description = command.Description;
@@ -19,7 +19,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Events
             this.ValidUntil = command.ValidUntil.HasValue ? command.ValidUntil.Value : Constant.OPEN_END_DATE_VALUE;
         }
 
-        public Guid OrganizationId { get; set; }
+        public Guid TenantId { get; set; }
 
         public string Code { get; set; }
 

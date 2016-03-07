@@ -11,16 +11,16 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Commands
             : base()
         { }
 
-        public ChangePersonPeriod(Guid organizationId, Guid personId, DateTime startDate, DateTime endDate)
+        public ChangePersonPeriod(Guid tenantId, Guid personId, DateTime startDate, DateTime endDate)
             : this()
         {
-            this.OrganizationId = organizationId;
+            this.TenantId = tenantId;
             this.PersonId = personId;
             this.StartDate = startDate;
             this.EndDate = endDate;
         }
 
-        public Guid OrganizationId { get; set; }
+        public Guid TenantId { get; set; }
 
         public Guid PersonId { get; set; }
 

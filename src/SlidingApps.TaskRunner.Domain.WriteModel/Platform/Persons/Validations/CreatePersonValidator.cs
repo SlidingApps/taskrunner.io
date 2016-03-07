@@ -10,7 +10,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Validations
     {
         public CreatePersonValidator()
         {
-            this.RuleFor(x => x.OrganizationId).NotEmpty().WithMessage("OrganizationId cannot be empty");
+            this.RuleFor(x => x.TenantId).NotEmpty().WithMessage("TenantId cannot be empty");
             this.RuleFor(x => x.StartDate).NotEqual(DateTime.MinValue);
             this.RuleFor(x => x.EndDate).NotEqual(DateTime.MinValue);
             this.RuleFor(x => x.StartDate).LessThanOrEqualTo(x=>x.EndDate);

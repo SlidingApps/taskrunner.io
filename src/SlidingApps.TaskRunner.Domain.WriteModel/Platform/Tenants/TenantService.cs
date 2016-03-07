@@ -9,7 +9,7 @@ using NHibernate;
 
 namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
 {
-    public class OrganizationService :
+    public class TenantService :
         ICommandHandler<CreateTenant>
     {
         private readonly IMediator mediator;
@@ -18,7 +18,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
 
         private readonly IDomainEntityValidatorProvider validator;
 
-        public OrganizationService(IMediator mediator, IQueryProvider<ISession> queryProvider, IDomainEntityValidatorProvider validator)
+        public TenantService(IMediator mediator, IQueryProvider<ISession> queryProvider, IDomainEntityValidatorProvider validator)
         {
             this.mediator = mediator;
             this.queryProvider = queryProvider;

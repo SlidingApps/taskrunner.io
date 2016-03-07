@@ -11,16 +11,16 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Commands
             : base()
         { }
 
-        public ChangePersonName(Guid organizationId, Guid personId, string name, string firstName)
+        public ChangePersonName(Guid tenantId, Guid personId, string name, string firstName)
             : this()
         {
-            this.OrganizationId = organizationId;
+            this.TenantId = tenantId;
             this.PersonId = personId;
             this.Name = name;
             this.FirstName = firstName;
         }
 
-        public Guid OrganizationId { get; set; }
+        public Guid TenantId { get; set; }
 
         public Guid PersonId { get; set; }
 

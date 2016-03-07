@@ -26,10 +26,10 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons
             };
         }
 
-        public Guid OrganizationId
+        public Guid TenantId
         {
-            get { return this.entity.OrganizationId; }
-            private set { this.entity.OrganizationId = value; }
+            get { return this.entity.TenantId; }
+            private set { this.entity.TenantId = value; }
         }
 
         public string Name
@@ -73,7 +73,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons
         public void When(PersonCreated domainEvent)
         {
             this.Id = domainEvent.PersonId;
-            this.OrganizationId = domainEvent.OrganizationId;
+            this.TenantId = domainEvent.TenantId;
             this.Name = domainEvent.Name;
             this.Info = domainEvent.Info;
             this.FirstName = domainEvent.FirstName;

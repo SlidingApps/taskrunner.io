@@ -7,7 +7,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Entities
     public class Person
         : AuditableDataEntity<Guid>
     {
-        public virtual Guid OrganizationId { get; set; }
+        public virtual Guid TenantId { get; set; }
 
         public virtual DateTime StartDate { get; set; }
 

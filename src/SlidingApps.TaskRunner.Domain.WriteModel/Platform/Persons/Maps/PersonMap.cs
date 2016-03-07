@@ -12,7 +12,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Maps
         public PersonMap()
             : base(Metadata.SCHEMA_NAME, PersonMap.TABLE_NAME)
         {
-            this.Map(x => x.OrganizationId);
+            this.Map(x => x.TenantId);
             this.Map(x => x.StartDate);
             this.Map(x => x.EndDate);
 
