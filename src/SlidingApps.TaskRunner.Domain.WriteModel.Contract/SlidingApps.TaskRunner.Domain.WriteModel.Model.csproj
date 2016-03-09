@@ -7,8 +7,8 @@
     <ProjectGuid>{516014D4-9B06-47BD-9A2B-49BD34F0A637}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SlidingApps.TaskRunner.Domain.WriteModel.Contract</RootNamespace>
-    <AssemblyName>SlidingApps.TaskRunner.Domain.WriteModel.Contract</AssemblyName>
+    <RootNamespace>SlidingApps.TaskRunner.Domain.WriteModel</RootNamespace>
+    <AssemblyName>SlidingApps.TaskRunner.Domain.WriteModel.Model</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -52,7 +52,13 @@
       <Link>Properties\AssemblyVersionInfo.cs</Link>
     </Compile>
     <Compile Include="Constant.cs" />
+    <Compile Include="Platform\Persons\Commands\PersonCommand.cs" />
+    <Compile Include="Platform\Persons\Events\PersonEvent.cs" />
+    <Compile Include="Platform\Persons\Intents\ChangePersonName.cs" />
+    <Compile Include="Platform\Persons\Intents\ChangePersonPeriod.cs" />
+    <Compile Include="Platform\Persons\Intents\CreatePerson.cs" />
     <Compile Include="Platform\Tenants\Commands\CreateTenant.cs" />
+    <Compile Include="Platform\Tenants\Commands\TenantCommand.cs" />
     <Compile Include="Platform\Tenants\Events\TenantCreated.cs" />
     <Compile Include="Platform\Persons\Commands\ChangePersonName.cs" />
     <Compile Include="Platform\Persons\Commands\ChangePersonPeriod.cs" />
@@ -60,6 +66,8 @@
     <Compile Include="Platform\Persons\Events\PersonCreated.cs" />
     <Compile Include="Platform\Persons\Events\PersonNameChanged.cs" />
     <Compile Include="Platform\Persons\Events\PersonPeriodChanged.cs" />
+    <Compile Include="Platform\Tenants\Events\TenantEvent.cs" />
+    <Compile Include="Platform\Tenants\Intents\CreateTenant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

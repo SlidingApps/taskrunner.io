@@ -11,9 +11,9 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Validations
         public CreatePersonValidator()
         {
             this.RuleFor(x => x.TenantId).NotEmpty().WithMessage("TenantId cannot be empty");
-            this.RuleFor(x => x.StartDate).NotEqual(DateTime.MinValue);
-            this.RuleFor(x => x.EndDate).NotEqual(DateTime.MinValue);
-            this.RuleFor(x => x.StartDate).LessThanOrEqualTo(x=>x.EndDate);
+            this.RuleFor(x => x.Intent.StartDate).NotEqual(DateTime.MinValue);
+            this.RuleFor(x => x.Intent.EndDate).NotEqual(DateTime.MinValue);
+            this.RuleFor(x => x.Intent.StartDate).LessThanOrEqualTo(x=>x.EndDate);
         }
     }
 }

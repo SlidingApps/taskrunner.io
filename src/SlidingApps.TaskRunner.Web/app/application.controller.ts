@@ -32,6 +32,6 @@ import { AccountController } from './view/account/account.controller';
 export class Application { 
     
     constructor(private $scope: angular.IScope, private $state: angular.ui.IStateService) { 
-        // console.log('application', this);
+        console.log('application', this);
     }
 }

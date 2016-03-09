@@ -1,5 +1,4 @@
 ﻿
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Commands;
 using SlidingApps.TaskRunner.Foundation.MessageBus;
 using SlidingApps.TaskRunner.Foundation.Web;
 using System.Net.Http;
@@ -21,9 +20,9 @@ namespace SlidingApps.TaskRunner.Api.WriteModel.Platform
         }
 
         [HttpPost, Route("")]
-        public async Task<HttpResponseMessage> PostCreateTenant([FromBody] V1.Platform.Tenants.CreateTenant intent)
+        public async Task<HttpResponseMessage> PostCreateTenant([FromBody] Domain.WriteModel.Platform.Tenants.Intents.CreateTenant intent)
         {
-            CreateTenant command = new CreateTenant(intent.Code, intent.Name, intent.Description, intent.ValidFrom, intent.ValidUntil);
+            var command = new Domain.WriteModel.Platform.Tenants.Commands.CreateTenant(intent);
             await this.connector.SendCommand(command);
 
             return ApiResponse.CommandResponse(command);

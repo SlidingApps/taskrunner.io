@@ -1,34 +1,17 @@
 ﻿
-using SlidingApps.TaskRunner.Foundation.Cqrs;
-using System;
 
 namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Commands
 {
     public class CreateTenant
-        : Command
+        : TenantCommand<Intents.CreateTenant>
     {
         public CreateTenant()
-            : base()
-        { }
+            : base() { }
 
-        public CreateTenant(string code, string name, string description, DateTime? validFrom, DateTime? validUntil)
+        public CreateTenant(Intents.CreateTenant intent)
             : this()
         {
-            this.Code = code;
-            this.Name = name;
-            this.Description = description;
-            this.ValidFrom = validFrom;
-            this.ValidUntil = validUntil;
+            this.Intent = intent;
         }
-
-        public string Code { get; set; }
-
-        public string Name { get; set; }
-
-        public string Description { get; set; }
-
-        public DateTime? ValidFrom { get; set; }
-
-        public DateTime? ValidUntil { get; set; }
     }
 }

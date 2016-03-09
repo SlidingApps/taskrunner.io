@@ -59,15 +59,15 @@
     <Compile Include="..\AssemblyVersionInfo.cs">
       <Link>Properties\AssemblyVersionInfo.cs</Link>
     </Compile>
-    <Compile Include="Platform\Tenants\CreateTenant.cs" />
-    <Compile Include="Platform\Persons\ChangePersonName.cs" />
-    <Compile Include="Platform\Persons\ChangePersonPeriod.cs" />
-    <Compile Include="Platform\Persons\CreatePerson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Platform\Persons\" />
+    <Folder Include="Platform\Tenants\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

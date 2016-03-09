@@ -1,9 +1,11 @@
 ﻿
+using SlidingApps.TaskRunner.Foundation.WriteModel;
 using System;
 
-namespace SlidingApps.TaskRunner.Api.WriteModel.V1.Platform.Persons
+namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Intents
 {
     public class ChangePersonPeriod
+        : IIntent
     {
         public DateTime StartDate { get; set; }
 

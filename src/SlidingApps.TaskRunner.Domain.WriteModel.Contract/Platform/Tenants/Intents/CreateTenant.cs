@@ -1,9 +1,11 @@
 ﻿
+using SlidingApps.TaskRunner.Foundation.WriteModel;
 using System;
 
-namespace SlidingApps.TaskRunner.Api.WriteModel.V1.Platform.Tenants
+namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Intents
 {
     public class CreateTenant
+        : IIntent
     {
         public string Code { get; set; }
 

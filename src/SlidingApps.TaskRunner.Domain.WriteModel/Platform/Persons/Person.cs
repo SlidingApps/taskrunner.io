@@ -74,11 +74,11 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons
         {
             this.Id = domainEvent.PersonId;
             this.TenantId = domainEvent.TenantId;
-            this.Name = domainEvent.Name;
-            this.Info = domainEvent.Info;
-            this.FirstName = domainEvent.FirstName;
-            this.StartDate = domainEvent.StartDate;
-            this.EndDate = domainEvent.EndDate;
+            this.Name = domainEvent.Props.Name;
+            this.Info = domainEvent.Props.Info;
+            this.FirstName = domainEvent.Props.FirstName;
+            this.StartDate = domainEvent.Props.StartDate;
+            this.EndDate = domainEvent.Props.EndDate;
 
             this.DomainEvents.Add(domainEvent);
         }
@@ -93,8 +93,8 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons
 
         public void When(PersonNameChanged domainEvent)
         {
-            this.Name = domainEvent.Name;
-            this.FirstName = domainEvent.FirstName;
+            this.Name = domainEvent.Props.Name;
+            this.FirstName = domainEvent.Props.FirstName;
 
             this.DomainEvents.Add(domainEvent);
         }
@@ -109,8 +109,8 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons
 
         public void When(PersonPeriodChanged domainEvent)
         {
-            this.StartDate = domainEvent.StartDate;
-            this.EndDate = domainEvent.EndDate;
+            this.StartDate = domainEvent.Props.StartDate;
+            this.EndDate = domainEvent.Props.EndDate;
 
             this.DomainEvents.Add(domainEvent);
         }

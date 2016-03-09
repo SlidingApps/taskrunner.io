@@ -12,8 +12,8 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Validations
         {
             this.RuleFor(c => c.Id).NotEmpty().WithMessage("COMMAND ID equals Guid.Empty");
 
-            this.RuleFor(c => c.Code).NotEmpty().WithMessage("Code cannot be empty");
-            this.RuleFor(c => c.Description).NotEmpty().WithMessage("Description cannot be empty");
+            this.RuleFor(c => c.Intent.Code).NotEmpty().WithMessage("Code cannot be empty");
+            this.RuleFor(c => c.Intent.Description).NotEmpty().WithMessage("Description cannot be empty");
         }
 
         private bool BeAuthorized(Guid taskId)

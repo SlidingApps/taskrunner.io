@@ -77,11 +77,11 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
         public void When(TenantCreated domainEvent)
         {
             this.Id = domainEvent.TenantId;
-            this.Code = domainEvent.Code;
-            this.Name = domainEvent.Name;
-            this.Description = domainEvent.Description;
-            this.ValidFrom = domainEvent.ValidFrom;
-            this.ValidUntil = domainEvent.ValidUntil;
+            this.Code = domainEvent.Props.Code;
+            this.Name = domainEvent.Props.Name;
+            this.Description = domainEvent.Props.Description;
+            this.ValidFrom = domainEvent.Props.ValidFrom.Value;
+            this.ValidUntil = domainEvent.Props.ValidUntil.Value;
 
             this.DomainEvents.Add(domainEvent);
         }

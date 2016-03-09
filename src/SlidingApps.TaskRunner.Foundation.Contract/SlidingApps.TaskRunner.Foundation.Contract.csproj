@@ -7,7 +7,7 @@
     <ProjectGuid>{E13532DE-5159-4031-95F3-BFDA5053342B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SlidingApps.TaskRunner.Foundation.Contract</RootNamespace>
+    <RootNamespace>SlidingApps.TaskRunner.Foundation</RootNamespace>
     <AssemblyName>SlidingApps.TaskRunner.Foundation.Contract</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -104,6 +104,7 @@
     <Compile Include="WriteModel\IDomainEntity.cs" />
     <Compile Include="WriteModel\IDomainEntityValidatorProvider.cs" />
     <Compile Include="WriteModel\IIdentifiable.cs" />
+    <Compile Include="WriteModel\IIntent.cs" />
     <Compile Include="WriteModel\IWithDomainEvents.cs" />
     <Compile Include="WriteModel\IWithValidator.cs" />
   </ItemGroup>
