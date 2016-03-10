@@ -13,7 +13,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Validations
             this.RuleFor(x => x.TenantId).NotEmpty().WithMessage("TenantId cannot be empty");
             this.RuleFor(x => x.Intent.StartDate).NotEqual(DateTime.MinValue);
             this.RuleFor(x => x.Intent.EndDate).NotEqual(DateTime.MinValue);
-            this.RuleFor(x => x.Intent.StartDate).LessThanOrEqualTo(x=>x.EndDate);
+            this.RuleFor(x => x.Intent.StartDate).LessThanOrEqualTo(x=>x.Intent.EndDate);
         }
     }
 }

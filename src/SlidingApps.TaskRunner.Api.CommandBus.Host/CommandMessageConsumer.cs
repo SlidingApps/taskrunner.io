@@ -1,5 +1,5 @@
 ﻿
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Organizations.Commands;
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Commands;
 using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Commands;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Infrastructure;
@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace SlidingApps.TaskRunner.Api.CommandBus.Host
 {
     public class CommandMessageConsumer :
-        IConsumer<CommandMessage<CreateOrganization>>,
+        IConsumer<CommandMessage<CreateTenant>>,
         IConsumer<CommandMessage<CreatePerson>>,
         IConsumer<CommandMessage<ChangePersonName>>,
         IConsumer<CommandMessage<ChangePersonPeriod>>
@@ -27,7 +27,7 @@ namespace SlidingApps.TaskRunner.Api.CommandBus.Host
             this.mediator = mediator;
         }
 
-        public Task Consume(ConsumeContext<CommandMessage<CreateOrganization>> context)
+        public Task Consume(ConsumeContext<CommandMessage<CreateTenant>> context)
         {
             return this.ConsumeCommand(context);
         }
