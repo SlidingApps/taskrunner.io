@@ -1,20 +1,20 @@
 ﻿
-using System;
+using MediatR;
+using NHibernate;
 using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Commands;
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Intents;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Extension;
 using SlidingApps.TaskRunner.Foundation.NHibernate;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
-using MediatR;
-using NHibernate;
 using System.Linq;
 
 namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons
 {
     public class PersonService :
-        ICommandHandler<CreatePerson>,
-        ICommandHandler<ChangePersonName>,
-        ICommandHandler<ChangePersonPeriod>
+        ICommandHandler<PersonCommand<CreatePerson>>,
+        ICommandHandler<PersonCommand<ChangePersonName>>,
+        ICommandHandler<PersonCommand<ChangePersonPeriod>>
     {
         private readonly IMediator mediator;
 
@@ -29,7 +29,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons
             this.validator = validator;
         }
 
-        public ICommandResult Handle(CreatePerson command)
+        public ICommandResult Handle(PersonCommand<CreatePerson> command)
         {
             Person entity = new Person(new Entities.Person(), this.validator.CreateFor<Person>());
             var result = entity.Apply(command);
@@ -41,7 +41,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons
             return new CommandResult(command.Id, result);
         }
 
-        public ICommandResult Handle(ChangePersonName command)
+        public ICommandResult Handle(PersonCommand<ChangePersonName> command)
         {
             var existing = this.queryProvider.CreateQuery<Entities.Person>().Where(x => x.TenantId == command.TenantId && x.Id == command.PersonId).Single();
             Person entity = new Person(existing, this.validator.CreateFor<Person>());
@@ -54,7 +54,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons
             return new CommandResult(command.Id, result);
         }
 
-        public ICommandResult Handle(ChangePersonPeriod command)
+        public ICommandResult Handle(PersonCommand<ChangePersonPeriod> command)
         {
             var existing = this.queryProvider.CreateQuery<Entities.Person>().Where(x => x.TenantId == command.TenantId && x.Id == command.PersonId).Single();
             Person entity = new Person(existing, this.validator.CreateFor<Person>());

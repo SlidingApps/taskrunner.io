@@ -1,11 +1,12 @@
 ﻿
+using FluentValidation;
+using FluentValidation.Results;
 using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Commands;
 using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Events;
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Intents;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
-using FluentValidation;
-using FluentValidation.Results;
 using System;
 
 namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
@@ -66,22 +67,22 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
             private set { this.entity.Info.ValidUntil = value; }
         }
 
-        public IDomainEvent Apply(CreateTenant command)
+        public IDomainEvent Apply(TenantCommand<CreateTenant> command)
         {
-            TenantCreated domainEvent = new TenantCreated(command);
+            TenantEvent<CreateTenant> domainEvent = new TenantEvent<CreateTenant>(command);
             this.When(domainEvent);
 
             return domainEvent;
         }
 
-        public void When(TenantCreated domainEvent)
+        public void When(TenantEvent<CreateTenant> domainEvent)
         {
-            this.Id = domainEvent.TenantId;
-            this.Code = domainEvent.Props.Code;
-            this.Name = domainEvent.Props.Name;
-            this.Description = domainEvent.Props.Description;
-            this.ValidFrom = domainEvent.Props.ValidFrom.Value;
-            this.ValidUntil = domainEvent.Props.ValidUntil.Value;
+            this.Id = domainEvent.TenantId = Guid.NewGuid();
+            this.Code = domainEvent.Arguments.Code;
+            this.Name = domainEvent.Arguments.Name;
+            this.Description = domainEvent.Arguments.Description;
+            this.ValidFrom = domainEvent.Arguments.ValidFrom.Value;
+            this.ValidUntil = domainEvent.Arguments.ValidUntil.Value;
 
             this.DomainEvents.Add(domainEvent);
         }

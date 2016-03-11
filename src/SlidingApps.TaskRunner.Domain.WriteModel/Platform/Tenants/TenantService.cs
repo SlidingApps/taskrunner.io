@@ -1,16 +1,17 @@
 ﻿
+using MediatR;
+using NHibernate;
 using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Commands;
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Intents;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Extension;
 using SlidingApps.TaskRunner.Foundation.NHibernate;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
-using MediatR;
-using NHibernate;
 
 namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
 {
     public class TenantService :
-        ICommandHandler<CreateTenant>
+        ICommandHandler<TenantCommand<CreateTenant>>
     {
         private readonly IMediator mediator;
 
@@ -25,7 +26,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
             this.validator = validator;
         }
 
-        public ICommandResult Handle(CreateTenant command)
+        public ICommandResult Handle(TenantCommand<CreateTenant> command)
         {
             Tenant entity = new Tenant(new Entities.Tenant(), this.validator.CreateFor<Tenant>());
             var result = entity.Apply(command);

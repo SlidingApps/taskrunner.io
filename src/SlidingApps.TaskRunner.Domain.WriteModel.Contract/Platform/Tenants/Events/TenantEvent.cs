@@ -5,24 +5,18 @@ using System;
 
 namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Events
 {
-    public abstract class TenantEvent<TProps>
-        : DomainEvent where TProps : IIntent
+    public sealed class TenantEvent<TIntent>
+        : DomainEvent<TIntent> where TIntent : IIntent
     {
         public TenantEvent()
             : base() { }
 
-        protected TenantEvent(Guid correlationId)
-            : base(correlationId) { }
-
-        public TenantEvent(Commands.TenantCommand<TProps> command)
-            : this(command.Id)
+        public TenantEvent(Commands.TenantCommand<TIntent> command)
+            : base(command)
         {
             this.TenantId = command.TenantId;
-            this.Props = command.Intent;
         }
 
         public Guid TenantId { get; set; }
-
-        public TProps Props { get; set; }
     }
 }

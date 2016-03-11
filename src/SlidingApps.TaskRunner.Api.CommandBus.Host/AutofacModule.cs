@@ -22,6 +22,8 @@ namespace SlidingApps.TaskRunner.Api.CommandBus.Host
             builder.RegisterAssemblyTypes(typeof (IMediator).Assembly).AsImplementedInterfaces();
             builder.RegisterConsumers(Assembly.GetExecutingAssembly());
 
+            builder.RegisterType<RabbitMQConfigration>().As<RabbitMQConfigration>();
+
             builder.Register(context => Bus.Factory.CreateUsingRabbitMq(config =>
             {
                 RabbitMQConfigration rabbitMQSettings = context.Resolve<RabbitMQConfigration>();

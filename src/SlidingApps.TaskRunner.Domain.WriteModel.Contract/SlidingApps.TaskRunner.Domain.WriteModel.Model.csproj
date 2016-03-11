@@ -57,15 +57,7 @@
     <Compile Include="Platform\Persons\Intents\ChangePersonName.cs" />
     <Compile Include="Platform\Persons\Intents\ChangePersonPeriod.cs" />
     <Compile Include="Platform\Persons\Intents\CreatePerson.cs" />
-    <Compile Include="Platform\Tenants\Commands\CreateTenant.cs" />
     <Compile Include="Platform\Tenants\Commands\TenantCommand.cs" />
-    <Compile Include="Platform\Tenants\Events\TenantCreated.cs" />
-    <Compile Include="Platform\Persons\Commands\ChangePersonName.cs" />
-    <Compile Include="Platform\Persons\Commands\ChangePersonPeriod.cs" />
-    <Compile Include="Platform\Persons\Commands\CreatePerson.cs" />
-    <Compile Include="Platform\Persons\Events\PersonCreated.cs" />
-    <Compile Include="Platform\Persons\Events\PersonNameChanged.cs" />
-    <Compile Include="Platform\Persons\Events\PersonPeriodChanged.cs" />
     <Compile Include="Platform\Tenants\Events\TenantEvent.cs" />
     <Compile Include="Platform\Tenants\Intents\CreateTenant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

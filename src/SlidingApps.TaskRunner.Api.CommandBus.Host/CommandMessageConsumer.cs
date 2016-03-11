@@ -1,21 +1,23 @@
 ﻿
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Commands;
+using MassTransit;
+using MediatR;
 using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Commands;
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Intents;
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Commands;
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Intents;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Infrastructure;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Logging;
-using MassTransit;
-using MediatR;
 using System.Threading.Tasks;
 
 namespace SlidingApps.TaskRunner.Api.CommandBus.Host
 {
     public class CommandMessageConsumer :
-        IConsumer<CommandMessage<CreateTenant>>,
-        IConsumer<CommandMessage<CreatePerson>>,
-        IConsumer<CommandMessage<ChangePersonName>>,
-        IConsumer<CommandMessage<ChangePersonPeriod>>
+        IConsumer<CommandMessage<TenantCommand<CreateTenant>>>,
+        IConsumer<CommandMessage<PersonCommand<CreatePerson>>>,
+        IConsumer<CommandMessage<PersonCommand<ChangePersonName>>>,
+        IConsumer<CommandMessage<PersonCommand<ChangePersonPeriod>>>
     {
         private readonly IMediator mediator;
 
@@ -27,22 +29,22 @@ namespace SlidingApps.TaskRunner.Api.CommandBus.Host
             this.mediator = mediator;
         }
 
-        public Task Consume(ConsumeContext<CommandMessage<CreateTenant>> context)
+        public Task Consume(ConsumeContext<CommandMessage<TenantCommand<CreateTenant>>> context)
         {
             return this.ConsumeCommand(context);
         }
 
-        public Task Consume(ConsumeContext<CommandMessage<CreatePerson>> context)
+        public Task Consume(ConsumeContext<CommandMessage<PersonCommand<CreatePerson>>> context)
         {
             return this.ConsumeCommand(context);
         }
 
-        public Task Consume(ConsumeContext<CommandMessage<ChangePersonName>> context)
+        public Task Consume(ConsumeContext<CommandMessage<PersonCommand<ChangePersonName>>> context)
         {
             return this.ConsumeCommand(context);
         }
 
-        public Task Consume(ConsumeContext<CommandMessage<ChangePersonPeriod>> context)
+        public Task Consume(ConsumeContext<CommandMessage<PersonCommand<ChangePersonPeriod>>> context)
         {
             return this.ConsumeCommand(context);
         }

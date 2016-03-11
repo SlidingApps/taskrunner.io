@@ -1,12 +1,13 @@
 ﻿
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Commands;
 using FluentValidation;
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Commands;
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Intents;
 using System;
 
 namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Validations
 {
     public class CreatePersonValidator
-        : AbstractValidator<CreatePerson>
+        : AbstractValidator<PersonCommand<CreatePerson>>
     {
         public CreatePersonValidator()
         {

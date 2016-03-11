@@ -5,10 +5,11 @@ using System;
 
 namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Commands
 {
-    public abstract class TenantCommand<TIntent>
-        : Command where TIntent : IIntent
+    public sealed class TenantCommand<TIntent>
+        : Command<TIntent> where TIntent : IIntent
     {
-        public TenantCommand() { }
+        public TenantCommand()
+            :base() { }
 
         public TenantCommand(TIntent intent)
             : this()
@@ -17,7 +18,5 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Commands
         }
 
         public Guid TenantId { get; set; }
-
-        public TIntent Intent { get; set; }
     }
 }

@@ -1,12 +1,13 @@
 ﻿
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Commands;
 using FluentValidation;
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Commands;
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Intents;
 using System;
 
 namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Validations
 {
     class CreateTenantValidator
-        : AbstractValidator<CreateTenant>
+        : AbstractValidator<TenantCommand<CreateTenant>>
     {
         public CreateTenantValidator()
         {

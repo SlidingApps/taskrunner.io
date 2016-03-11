@@ -1,10 +1,11 @@
 ﻿
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Commands;
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Events;
-using SlidingApps.TaskRunner.Foundation.Cqrs;
-using SlidingApps.TaskRunner.Foundation.WriteModel;
 using FluentValidation;
 using FluentValidation.Results;
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Commands;
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Events;
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Intents;
+using SlidingApps.TaskRunner.Foundation.Cqrs;
+using SlidingApps.TaskRunner.Foundation.WriteModel;
 using System;
 
 namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons
@@ -62,55 +63,55 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons
             private set { this.entity.EndDate = value; }
         }
 
-        public IDomainEvent Apply(CreatePerson command)
+        public IDomainEvent Apply(PersonCommand<CreatePerson> command)
         {
-            PersonCreated domainEvent = new PersonCreated(command);
+            PersonEvent<CreatePerson> domainEvent = new PersonEvent<CreatePerson>(command);
             this.When(domainEvent);
 
             return domainEvent;
         }
 
-        public void When(PersonCreated domainEvent)
+        public void When(PersonEvent<CreatePerson> domainEvent)
         {
             this.Id = domainEvent.PersonId;
             this.TenantId = domainEvent.TenantId;
-            this.Name = domainEvent.Props.Name;
-            this.Info = domainEvent.Props.Info;
-            this.FirstName = domainEvent.Props.FirstName;
-            this.StartDate = domainEvent.Props.StartDate;
-            this.EndDate = domainEvent.Props.EndDate;
+            this.Name = domainEvent.Arguments.Name;
+            this.Info = domainEvent.Arguments.Info;
+            this.FirstName = domainEvent.Arguments.FirstName;
+            this.StartDate = domainEvent.Arguments.StartDate;
+            this.EndDate = domainEvent.Arguments.EndDate;
 
             this.DomainEvents.Add(domainEvent);
         }
 
-        public IDomainEvent Apply(ChangePersonName command)
+        public IDomainEvent Apply(PersonCommand<ChangePersonName> command)
         {
-            PersonNameChanged domainEvent = new PersonNameChanged(command);
+            PersonEvent<ChangePersonName> domainEvent = new PersonEvent<ChangePersonName>(command);
             this.When(domainEvent);
 
             return domainEvent;
         }
 
-        public void When(PersonNameChanged domainEvent)
+        public void When(PersonEvent<ChangePersonName> domainEvent)
         {
-            this.Name = domainEvent.Props.Name;
-            this.FirstName = domainEvent.Props.FirstName;
+            this.Name = domainEvent.Arguments.Name;
+            this.FirstName = domainEvent.Arguments.FirstName;
 
             this.DomainEvents.Add(domainEvent);
         }
 
-        public IDomainEvent Apply(ChangePersonPeriod command)
+        public IDomainEvent Apply(PersonCommand<ChangePersonPeriod> command)
         {
-            PersonPeriodChanged domainEvent = new PersonPeriodChanged(command);
+            PersonEvent<ChangePersonPeriod> domainEvent = new PersonEvent<ChangePersonPeriod>(command);
             this.When(domainEvent);
 
             return domainEvent;
         }
 
-        public void When(PersonPeriodChanged domainEvent)
+        public void When(PersonEvent<ChangePersonPeriod> domainEvent)
         {
-            this.StartDate = domainEvent.Props.StartDate;
-            this.EndDate = domainEvent.Props.EndDate;
+            this.StartDate = domainEvent.Arguments.StartDate;
+            this.EndDate = domainEvent.Arguments.EndDate;
 
             this.DomainEvents.Add(domainEvent);
         }
