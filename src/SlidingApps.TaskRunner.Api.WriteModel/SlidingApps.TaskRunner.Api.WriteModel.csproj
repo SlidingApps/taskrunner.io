@@ -113,7 +113,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SlidingApps.TaskRunner.Domain.WriteModel.Contract\SlidingApps.TaskRunner.Domain.WriteModel.Model.csproj">
+    <ProjectReference Include="..\SlidingApps.TaskRunner.Domain.WriteModel.Model\SlidingApps.TaskRunner.Domain.WriteModel.Model.csproj">
       <Project>{516014d4-9b06-47bd-9a2b-49bd34f0a637}</Project>
       <Name>SlidingApps.TaskRunner.Domain.WriteModel.Model</Name>
     </ProjectReference>
