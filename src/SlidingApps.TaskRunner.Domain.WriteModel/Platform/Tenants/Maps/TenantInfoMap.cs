@@ -7,7 +7,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Maps
     public class TenantInfoMap
         : AuditableDataEntityMap<Entities.TenantInfo, Guid>
     {
-        private const string TABLE_NAME = "Tenant_S";
+        private const string TABLE_NAME = "Tenant_Info_S";
 
         public TenantInfoMap()
             : base(Metadata.SCHEMA_NAME, TenantInfoMap.TABLE_NAME)

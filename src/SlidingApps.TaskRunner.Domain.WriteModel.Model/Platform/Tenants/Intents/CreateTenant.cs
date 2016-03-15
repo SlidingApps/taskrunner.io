@@ -17,8 +17,8 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Intents
 
         public DateTime? ValidUntil { get; set; }
 
-        public string AdminUserName { get; set; }
+        public string UserName { get; set; }
 
-        public string AdminUserPassword { get; set; }
+        public string UserPassword { get; set; }
     }
 }

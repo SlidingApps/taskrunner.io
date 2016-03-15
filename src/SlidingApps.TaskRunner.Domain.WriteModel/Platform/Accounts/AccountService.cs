@@ -9,7 +9,7 @@ using SlidingApps.TaskRunner.Foundation.NHibernate;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
 using System.Linq;
 
-namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons
+namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
 {
     public class AccountService :
         ICommandHandler<AccountCommand<CreateAccount>>,

@@ -7,7 +7,7 @@ using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
 using System;
 
-namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons
+namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
 {
     public class Account
         : DomainEntity<Guid, Entities.Account>, IWithValidator<Account>
@@ -48,18 +48,6 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons
         {
             get { return this.entity.Profile.Info; }
             private set { this.entity.Profile.Info = value; }
-        }
-
-        public DateTime StartDate
-        {
-            get { return this.entity.StartDate; }
-            private set { this.entity.StartDate = value; }
-        }
-
-        public DateTime EndDate
-        {
-            get { return this.entity.EndDate; }
-            private set { this.entity.EndDate = value; }
         }
 
         public IDomainEvent Apply(AccountCommand<CreateAccount> command)
@@ -107,9 +95,6 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons
 
         public void When(AccountEvent<ChangeAccountUserPeriod> domainEvent)
         {
-            this.StartDate = domainEvent.Arguments.StartDate;
-            this.EndDate = domainEvent.Arguments.EndDate;
-
             this.DomainEvents.Add(domainEvent);
         }
 

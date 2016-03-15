@@ -4,7 +4,7 @@ using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts;
 using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts.Intents;
 using System;
 
-namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Validations
+namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts.Validations
 {
     public class CreateAccountValidator
         : AbstractValidator<AccountCommand<CreateAccount>>
