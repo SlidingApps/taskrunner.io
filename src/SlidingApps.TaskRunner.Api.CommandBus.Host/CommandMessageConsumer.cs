@@ -1,9 +1,9 @@
 ﻿
 using MassTransit;
 using MediatR;
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Commands;
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons;
 using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Intents;
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Commands;
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants;
 using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Intents;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Infrastructure;

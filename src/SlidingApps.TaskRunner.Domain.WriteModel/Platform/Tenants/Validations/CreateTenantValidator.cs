@@ -1,6 +1,5 @@
 ﻿
 using FluentValidation;
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Commands;
 using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Intents;
 using System;
 
@@ -11,10 +10,11 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Validations
     {
         public CreateTenantValidator()
         {
-            this.RuleFor(c => c.Id).NotEmpty().WithMessage("COMMAND ID equals Guid.Empty");
+            this.RuleFor(x => x.Id).NotEmpty().WithMessage("COMMAND ID equals Guid.Empty");
 
-            this.RuleFor(c => c.Intent.Code).NotEmpty().WithMessage("Code cannot be empty");
-            this.RuleFor(c => c.Intent.Description).NotEmpty().WithMessage("Description cannot be empty");
+            this.RuleFor(x => x.Intent.Code).NotEmpty();
+            this.RuleFor(x => x.Intent.AdminUserName).NotEmpty();
+            this.RuleFor(x => x.Intent.AdminUserPassword).NotEmpty();
         }
 
         private bool BeAuthorized(Guid taskId)

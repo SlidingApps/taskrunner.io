@@ -1,7 +1,6 @@
 ﻿
 using MediatR;
 using NHibernate;
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Commands;
 using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Intents;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Extension;

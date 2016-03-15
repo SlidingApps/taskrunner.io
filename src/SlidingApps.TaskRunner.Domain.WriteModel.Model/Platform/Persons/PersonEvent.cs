@@ -3,7 +3,7 @@ using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
 using System;
 
-namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Events
+namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons
 {
     public sealed class PersonEvent<TProps>
         : DomainEvent<TProps> where TProps : IIntent
@@ -11,7 +11,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Events
         public PersonEvent()
             : base() { }
 
-        public PersonEvent(Commands.PersonCommand<TProps> command)
+        public PersonEvent(PersonCommand<TProps> command)
             : base(command)
         {
             this.TenantId = command.TenantId;

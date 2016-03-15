@@ -5,10 +5,10 @@
 			"name": "Start",
 			"type": "node",
 			"request": "launch",
-			"program": "node_modules/lite-server/lib/lite-server.js",
+			"program": "${workspaceRoot}/node_modules/lite-server/lib/lite-server.js",
 			"stopOnEntry": false,
 			"args": [],
-			"cwd": ".",
+			"cwd": "${workspaceRoot}",
 			"runtimeExecutable": null,
 			"runtimeArgs": [
 				"--nolazy"

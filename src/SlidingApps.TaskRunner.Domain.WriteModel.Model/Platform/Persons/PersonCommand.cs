@@ -1,30 +1,27 @@
 ﻿
-using SlidingApps.TaskRunner.Foundation.Cqrs;
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
 using System;
 
-namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Commands
+namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons
 {
-    public sealed class PersonCommand<TIntent>
-        : Command<TIntent> where TIntent : IIntent
+    public class PersonCommand<TIntent>
+        : TenantCommand<TIntent> where TIntent : IIntent
     {
         public PersonCommand()
             :base() { }
 
         public PersonCommand(Guid tenantId, TIntent intent)
-            : base(intent)
+            : base(tenantId, intent)
         {
             this.TenantId = tenantId;
         }
 
         public PersonCommand(Guid tenantId, Guid personId, TIntent intent)
-            : base(intent)
+            : this(tenantId, intent)
         {
-            this.TenantId = tenantId;
             this.PersonId = personId;
         }
-
-        public Guid TenantId { get; set; }
 
         public Guid PersonId { get; set; }
     }

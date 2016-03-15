@@ -52,13 +52,13 @@
       <Link>Properties\AssemblyVersionInfo.cs</Link>
     </Compile>
     <Compile Include="Constant.cs" />
-    <Compile Include="Platform\Persons\Commands\PersonCommand.cs" />
-    <Compile Include="Platform\Persons\Events\PersonEvent.cs" />
+    <Compile Include="Platform\Persons\PersonCommand.cs" />
+    <Compile Include="Platform\Persons\PersonEvent.cs" />
     <Compile Include="Platform\Persons\Intents\ChangePersonName.cs" />
     <Compile Include="Platform\Persons\Intents\ChangePersonPeriod.cs" />
     <Compile Include="Platform\Persons\Intents\CreatePerson.cs" />
-    <Compile Include="Platform\Tenants\Commands\TenantCommand.cs" />
-    <Compile Include="Platform\Tenants\Events\TenantEvent.cs" />
+    <Compile Include="Platform\Tenants\TenantCommand.cs" />
+    <Compile Include="Platform\Tenants\TenantEvent.cs" />
     <Compile Include="Platform\Tenants\Intents\CreateTenant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -75,6 +75,9 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Platform\Authorizations\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

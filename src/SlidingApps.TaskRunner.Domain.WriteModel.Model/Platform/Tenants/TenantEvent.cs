@@ -3,7 +3,7 @@ using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
 using System;
 
-namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Events
+namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
 {
     public sealed class TenantEvent<TIntent>
         : DomainEvent<TIntent> where TIntent : IIntent
@@ -11,7 +11,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Events
         public TenantEvent()
             : base() { }
 
-        public TenantEvent(Commands.TenantCommand<TIntent> command)
+        public TenantEvent(TenantCommand<TIntent> command)
             : base(command)
         {
             this.TenantId = command.TenantId;

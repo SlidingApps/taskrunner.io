@@ -1,8 +1,6 @@
 ﻿
 using FluentValidation;
 using FluentValidation.Results;
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Commands;
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Events;
 using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Intents;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
@@ -36,6 +34,9 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
                 this.entity.Info.Tenant = this.entity;
             };
         }
+
+        private readonly static DateTime DEFAULT_VALIDFROM_DATE = new DateTime(1900, 01, 01);
+        private readonly static DateTime DEFAULT_VALIDUNTIL_DATE = new DateTime(9999, 01, 01);
 
         public string Code
         {
@@ -81,8 +82,8 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
             this.Code = domainEvent.Arguments.Code;
             this.Name = domainEvent.Arguments.Name;
             this.Description = domainEvent.Arguments.Description;
-            this.ValidFrom = domainEvent.Arguments.ValidFrom.Value;
-            this.ValidUntil = domainEvent.Arguments.ValidUntil.Value;
+            this.ValidFrom = domainEvent.Arguments.ValidFrom.HasValue ? domainEvent.Arguments.ValidFrom.Value : Tenant.DEFAULT_VALIDFROM_DATE;
+            this.ValidUntil = domainEvent.Arguments.ValidUntil.HasValue ? domainEvent.Arguments.ValidUntil.Value : Tenant.DEFAULT_VALIDUNTIL_DATE;
 
             this.DomainEvents.Add(domainEvent);
         }

@@ -1,6 +1,5 @@
 ﻿
 using FluentValidation;
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Commands;
 using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Intents;
 using System;
 
