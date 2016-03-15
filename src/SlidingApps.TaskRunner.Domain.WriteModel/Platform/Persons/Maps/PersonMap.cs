@@ -5,7 +5,7 @@ using System;
 namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Maps
 {
     public class PersonMap
-        : AuditableDataEntityMap<Entities.Person, Guid>
+        : AuditableDataEntityMap<Entities.Account, Guid>
     {
         private const string TABLE_NAME = "Person_H";
 
@@ -16,7 +16,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Maps
             this.Map(x => x.StartDate);
             this.Map(x => x.EndDate);
 
-            this.HasOne(x => x.Identity).Cascade.All().PropertyRef(x => x.Person).LazyLoad(Laziness.Proxy);
+            this.HasOne(x => x.Profile).Cascade.All().PropertyRef(x => x.Account).LazyLoad(Laziness.Proxy);
         }
     }
 }

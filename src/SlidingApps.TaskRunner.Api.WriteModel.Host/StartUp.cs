@@ -21,7 +21,7 @@ namespace SlidingApps.TaskRunner.Api.WriteModel.Host
 	    internal readonly Type[] SERVICES = {
             typeof(ManagementController),
 			typeof (Platform.TenantController),
-            typeof (Platform.PersonController)
+            typeof (Platform.AccountController)
         };
 
 	    public void Configuration(IAppBuilder app)

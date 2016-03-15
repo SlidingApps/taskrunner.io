@@ -5,7 +5,7 @@ using System;
 namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Maps
 {
     public class PersonIdentityMap
-        : AuditableDataEntityMap<Entities.PersonIdentity, Guid>
+        : AuditableDataEntityMap<Entities.AccountProfile, Guid>
     {
         private const string TABLE_NAME = "Person_Identity_S";
 
@@ -16,7 +16,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Maps
             this.Map(x => x.FirstName);
             this.Map(x => x.Info);
 
-            this.References(x => x.Person).Unique().Column("PersonId");
+            this.References(x => x.Account).Unique().Column("AccountId");
         }
     }
 }

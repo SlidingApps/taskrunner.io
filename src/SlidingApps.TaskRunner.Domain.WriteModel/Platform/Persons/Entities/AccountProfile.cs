@@ -4,13 +4,13 @@ using System;
 
 namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Entities
 {
-    public class PersonIdentity
+    public class AccountProfile
         : AuditableDataEntity<Guid>
     {
-        public PersonIdentity()
-        : base() { }
+        public AccountProfile()
+            : base() { }
 
-        public PersonIdentity(Guid id)
+        public AccountProfile(Guid id)
 
         : base(id) { }
         public virtual string Name { get; set; }
@@ -19,6 +19,6 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Entities
 
         public virtual string FirstName { get; set; }
 
-        public virtual Person Person { get; set; }
+        public virtual Account Account { get; set; }
     }
 }

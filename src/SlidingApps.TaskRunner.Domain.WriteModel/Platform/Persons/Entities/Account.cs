@@ -4,7 +4,7 @@ using System;
 
 namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Entities
 {
-    public class Person
+    public class Account
         : AuditableDataEntity<Guid>
     {
         public virtual Guid TenantId { get; set; }
@@ -13,6 +13,6 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Entities
 
         public virtual DateTime EndDate { get; set; }
 
-        public virtual PersonIdentity Identity { get; set; }
+        public virtual AccountProfile Profile { get; set; }
     }
 }

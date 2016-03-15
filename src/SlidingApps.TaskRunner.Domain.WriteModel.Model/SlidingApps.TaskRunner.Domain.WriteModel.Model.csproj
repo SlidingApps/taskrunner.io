@@ -52,11 +52,11 @@
       <Link>Properties\AssemblyVersionInfo.cs</Link>
     </Compile>
     <Compile Include="Constant.cs" />
-    <Compile Include="Platform\Persons\PersonCommand.cs" />
-    <Compile Include="Platform\Persons\PersonEvent.cs" />
-    <Compile Include="Platform\Persons\Intents\ChangePersonName.cs" />
-    <Compile Include="Platform\Persons\Intents\ChangePersonPeriod.cs" />
-    <Compile Include="Platform\Persons\Intents\CreatePerson.cs" />
+    <Compile Include="Platform\Accounts\AccountCommand.cs" />
+    <Compile Include="Platform\Accounts\AccountEvent.cs" />
+    <Compile Include="Platform\Accounts\Intents\ChangeAccountProfileName.cs" />
+    <Compile Include="Platform\Accounts\Intents\ChangeAccountUserPeriod.cs" />
+    <Compile Include="Platform\Accounts\Intents\CreateAccount.cs" />
     <Compile Include="Platform\Tenants\TenantCommand.cs" />
     <Compile Include="Platform\Tenants\TenantEvent.cs" />
     <Compile Include="Platform\Tenants\Intents\CreateTenant.cs" />
@@ -76,9 +76,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Platform\Authorizations\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

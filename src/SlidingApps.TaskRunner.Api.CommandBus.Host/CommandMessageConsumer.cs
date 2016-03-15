@@ -1,8 +1,8 @@
 ﻿
 using MassTransit;
 using MediatR;
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons;
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Intents;
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts;
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts.Intents;
 using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants;
 using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Intents;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
@@ -15,9 +15,9 @@ namespace SlidingApps.TaskRunner.Api.CommandBus.Host
 {
     public class CommandMessageConsumer :
         IConsumer<CommandMessage<TenantCommand<CreateTenant>>>,
-        IConsumer<CommandMessage<PersonCommand<CreatePerson>>>,
-        IConsumer<CommandMessage<PersonCommand<ChangePersonName>>>,
-        IConsumer<CommandMessage<PersonCommand<ChangePersonPeriod>>>
+        IConsumer<CommandMessage<AccountCommand<CreateAccount>>>,
+        IConsumer<CommandMessage<AccountCommand<ChangeAccountProfileName>>>,
+        IConsumer<CommandMessage<AccountCommand<ChangeAccountUserPeriod>>>
     {
         private readonly IMediator mediator;
 
@@ -34,17 +34,17 @@ namespace SlidingApps.TaskRunner.Api.CommandBus.Host
             return this.ConsumeCommand(context);
         }
 
-        public Task Consume(ConsumeContext<CommandMessage<PersonCommand<CreatePerson>>> context)
+        public Task Consume(ConsumeContext<CommandMessage<AccountCommand<CreateAccount>>> context)
         {
             return this.ConsumeCommand(context);
         }
 
-        public Task Consume(ConsumeContext<CommandMessage<PersonCommand<ChangePersonName>>> context)
+        public Task Consume(ConsumeContext<CommandMessage<AccountCommand<ChangeAccountProfileName>>> context)
         {
             return this.ConsumeCommand(context);
         }
 
-        public Task Consume(ConsumeContext<CommandMessage<PersonCommand<ChangePersonPeriod>>> context)
+        public Task Consume(ConsumeContext<CommandMessage<AccountCommand<ChangeAccountUserPeriod>>> context)
         {
             return this.ConsumeCommand(context);
         }

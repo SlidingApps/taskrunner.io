@@ -3,23 +3,23 @@ using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
 using System;
 
-namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons
+namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
 {
-    public sealed class PersonEvent<TProps>
+    public sealed class AccountEvent<TProps>
         : DomainEvent<TProps> where TProps : IIntent
     {
-        public PersonEvent()
+        public AccountEvent()
             : base() { }
 
-        public PersonEvent(PersonCommand<TProps> command)
+        public AccountEvent(AccountCommand<TProps> command)
             : base(command)
         {
             this.TenantId = command.TenantId;
-            this.PersonId = command.PersonId;
+            this.AccountId = command.AccountId;
         }
 
         public Guid TenantId { get; set; }
 
-        public Guid PersonId { get; set; }
+        public Guid AccountId { get; set; }
     }
 }

@@ -1,20 +1,17 @@
 ﻿
 using SlidingApps.TaskRunner.Foundation.WriteModel;
-using System;
 
-namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Intents
+namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts.Intents
 {
-    public class CreatePerson
+    public class CreateAccount
         : IIntent
     {
+        public string EmailAddress { get; set; }
+
         public string Name { get; set; }
 
         public string FirstName { get; set; }
 
         public string Info { get; set; }
-
-        public DateTime StartDate { get; set; }
-
-        public DateTime EndDate { get; set; }
     }
 }

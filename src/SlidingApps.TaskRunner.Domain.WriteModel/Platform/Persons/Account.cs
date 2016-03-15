@@ -1,27 +1,28 @@
 ﻿
 using FluentValidation;
 using FluentValidation.Results;
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Intents;
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts;
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts.Intents;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
 using System;
 
 namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons
 {
-    public class Person
-        : DomainEntity<Guid, Entities.Person>, IWithValidator<Person>
+    public class Account
+        : DomainEntity<Guid, Entities.Account>, IWithValidator<Account>
     {
-        private readonly IValidator<Person> validator;
+        private readonly IValidator<Account> validator;
 
-        public Person(Entities.Person entity, IValidator<Person> validator)
+        public Account(Entities.Account entity, IValidator<Account> validator)
         {
             this.validator = validator;
 
             this.entity = entity;
-            if (this.entity.Identity == null)
+            if (this.entity.Profile == null)
             {
-                this.entity.Identity = new Entities.PersonIdentity(Guid.NewGuid());
-                this.entity.Identity.Person = this.entity;
+                this.entity.Profile = new Entities.AccountProfile(Guid.NewGuid());
+                this.entity.Profile.Account = this.entity;
             };
         }
 
@@ -33,20 +34,20 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons
 
         public string Name
         {
-            get { return this.entity.Identity.Name; }
-            private set { this.entity.Identity.Name = value; }
+            get { return this.entity.Profile.Name; }
+            private set { this.entity.Profile.Name = value; }
         }
 
         public string FirstName
         {
-            get { return this.entity.Identity.FirstName; }
-            private set { this.entity.Identity.FirstName = value; }
+            get { return this.entity.Profile.FirstName; }
+            private set { this.entity.Profile.FirstName = value; }
         }
 
         public string Info
         {
-            get { return this.entity.Identity.Info; }
-            private set { this.entity.Identity.Info = value; }
+            get { return this.entity.Profile.Info; }
+            private set { this.entity.Profile.Info = value; }
         }
 
         public DateTime StartDate
@@ -61,36 +62,34 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons
             private set { this.entity.EndDate = value; }
         }
 
-        public IDomainEvent Apply(PersonCommand<CreatePerson> command)
+        public IDomainEvent Apply(AccountCommand<CreateAccount> command)
         {
-            PersonEvent<CreatePerson> domainEvent = new PersonEvent<CreatePerson>(command);
+            AccountEvent<CreateAccount> domainEvent = new AccountEvent<CreateAccount>(command);
             this.When(domainEvent);
 
             return domainEvent;
         }
 
-        public void When(PersonEvent<CreatePerson> domainEvent)
+        public void When(AccountEvent<CreateAccount> domainEvent)
         {
-            this.Id = domainEvent.PersonId;
+            this.Id = domainEvent.AccountId;
             this.TenantId = domainEvent.TenantId;
             this.Name = domainEvent.Arguments.Name;
             this.Info = domainEvent.Arguments.Info;
             this.FirstName = domainEvent.Arguments.FirstName;
-            this.StartDate = domainEvent.Arguments.StartDate;
-            this.EndDate = domainEvent.Arguments.EndDate;
 
             this.DomainEvents.Add(domainEvent);
         }
 
-        public IDomainEvent Apply(PersonCommand<ChangePersonName> command)
+        public IDomainEvent Apply(AccountCommand<ChangeAccountProfileName> command)
         {
-            PersonEvent<ChangePersonName> domainEvent = new PersonEvent<ChangePersonName>(command);
+            AccountEvent<ChangeAccountProfileName> domainEvent = new AccountEvent<ChangeAccountProfileName>(command);
             this.When(domainEvent);
 
             return domainEvent;
         }
 
-        public void When(PersonEvent<ChangePersonName> domainEvent)
+        public void When(AccountEvent<ChangeAccountProfileName> domainEvent)
         {
             this.Name = domainEvent.Arguments.Name;
             this.FirstName = domainEvent.Arguments.FirstName;
@@ -98,15 +97,15 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons
             this.DomainEvents.Add(domainEvent);
         }
 
-        public IDomainEvent Apply(PersonCommand<ChangePersonPeriod> command)
+        public IDomainEvent Apply(AccountCommand<ChangeAccountUserPeriod> command)
         {
-            PersonEvent<ChangePersonPeriod> domainEvent = new PersonEvent<ChangePersonPeriod>(command);
+            AccountEvent<ChangeAccountUserPeriod> domainEvent = new AccountEvent<ChangeAccountUserPeriod>(command);
             this.When(domainEvent);
 
             return domainEvent;
         }
 
-        public void When(PersonEvent<ChangePersonPeriod> domainEvent)
+        public void When(AccountEvent<ChangeAccountUserPeriod> domainEvent)
         {
             this.StartDate = domainEvent.Arguments.StartDate;
             this.EndDate = domainEvent.Arguments.EndDate;

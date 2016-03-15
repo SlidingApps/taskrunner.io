@@ -108,7 +108,7 @@
       <Link>Properties\AssemblyVersionInfo.cs</Link>
     </Compile>
     <Compile Include="AutofacModule.cs" />
-    <Compile Include="Platform\PersonController.cs" />
+    <Compile Include="Platform\AccountController.cs" />
     <Compile Include="Platform\TenantController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

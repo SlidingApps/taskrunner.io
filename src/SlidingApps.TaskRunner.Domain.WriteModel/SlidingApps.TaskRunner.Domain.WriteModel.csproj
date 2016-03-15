@@ -115,9 +115,7 @@
     <Compile Include="AutofacModule.cs" />
     <Compile Include="LocalDomainEventPublisher.cs" />
     <Compile Include="Platform\Metadata.cs" />
-    <Compile Include="Platform\Persons\Entities\PersonUser.cs" />
-    <Compile Include="Platform\Persons\Entities\User.cs" />
-    <Compile Include="Platform\Persons\Entities\UserPasswordHistory.cs" />
+    <Compile Include="Platform\Persons\Entities\AccountUser.cs" />
     <Compile Include="Platform\Tenants\Entities\Tenant.cs" />
     <Compile Include="Platform\Tenants\Entities\TenantInfo.cs" />
     <Compile Include="Platform\Tenants\Maps\TenantInfoMap.cs" />
@@ -126,14 +124,14 @@
     <Compile Include="Platform\Tenants\TenantService.cs" />
     <Compile Include="Platform\Tenants\Validations\CreateTenantValidator.cs" />
     <Compile Include="Platform\Tenants\Validations\TenantValidator.cs" />
-    <Compile Include="Platform\Persons\Entities\Person.cs" />
-    <Compile Include="Platform\Persons\Entities\PersonIdentity.cs" />
+    <Compile Include="Platform\Persons\Entities\Account.cs" />
+    <Compile Include="Platform\Persons\Entities\AccountProfile.cs" />
     <Compile Include="Platform\Persons\Maps\PersonIdentityMap.cs" />
     <Compile Include="Platform\Persons\Maps\PersonMap.cs" />
-    <Compile Include="Platform\Persons\Person.cs" />
-    <Compile Include="Platform\Persons\PersonService.cs" />
-    <Compile Include="Platform\Persons\Validations\CreatePersonValidator.cs" />
-    <Compile Include="Platform\Persons\Validations\PersonValidator.cs" />
+    <Compile Include="Platform\Persons\Account.cs" />
+    <Compile Include="Platform\Persons\AccountService.cs" />
+    <Compile Include="Platform\Persons\Validations\CreateAccountValidator.cs" />
+    <Compile Include="Platform\Persons\Validations\AccountValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

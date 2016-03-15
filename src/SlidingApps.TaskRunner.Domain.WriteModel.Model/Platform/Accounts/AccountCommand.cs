@@ -3,26 +3,26 @@ using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
 using System;
 
-namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons
+namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
 {
-    public class PersonCommand<TIntent>
+    public class AccountCommand<TIntent>
         : TenantCommand<TIntent> where TIntent : IIntent
     {
-        public PersonCommand()
+        public AccountCommand()
             :base() { }
 
-        public PersonCommand(Guid tenantId, TIntent intent)
+        public AccountCommand(Guid tenantId, TIntent intent)
             : base(tenantId, intent)
         {
             this.TenantId = tenantId;
         }
 
-        public PersonCommand(Guid tenantId, Guid personId, TIntent intent)
+        public AccountCommand(Guid tenantId, Guid accountId, TIntent intent)
             : this(tenantId, intent)
         {
-            this.PersonId = personId;
+            this.AccountId = accountId;
         }
 
-        public Guid PersonId { get; set; }
+        public Guid AccountId { get; set; }
     }
 }
