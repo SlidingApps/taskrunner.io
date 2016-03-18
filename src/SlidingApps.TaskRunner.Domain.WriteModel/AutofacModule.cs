@@ -37,11 +37,11 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel
                 .Keyed("request-with-validation-write", typeof(IRequestHandler<,>))
                 .InstancePerDependency();
 
-            builder.RegisterGenericDecorator(typeof(UnitOfWorkDecorator<,>), typeof(IRequestHandler<,>), "request-with-validation-write")
-                .Keyed("request-with-unit-of-work-write", typeof(IRequestHandler<,>))
-                .InstancePerDependency();
+            //builder.RegisterGenericDecorator(typeof(UnitOfWorkDecorator<,>), typeof(IRequestHandler<,>), "request-with-validation-write")
+            //    .Keyed("request-with-unit-of-work-write", typeof(IRequestHandler<,>))
+            //    .InstancePerDependency();
 
-            builder.RegisterGenericDecorator(typeof(BusDomainEventPublisherDecorator<,>), typeof(IRequestHandler<,>), "request-with-unit-of-work-write")
+            builder.RegisterGenericDecorator(typeof(BusDomainEventPublisherDecorator<,>), typeof(IRequestHandler<,>), "request-with-validation-write")
                 .Keyed("request-pipeline-write", typeof(IRequestHandler<,>))
                 .InstancePerDependency();
 

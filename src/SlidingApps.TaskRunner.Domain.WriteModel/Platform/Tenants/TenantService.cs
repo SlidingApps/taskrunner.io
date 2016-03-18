@@ -1,6 +1,8 @@
 ﻿
 using MediatR;
 using NHibernate;
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts;
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts.Intents;
 using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Intents;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Extension;
@@ -29,6 +31,8 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
         {
             Tenant entity = new Tenant(new Entities.Tenant(), this.validator.CreateFor<Tenant>());
             var result = entity.Apply(command);
+
+            ICommandResult events = this.mediator.Send(new AccountCommand<CreateTenantAdminAccount>(entity.Id, new CreateTenantAdminAccount { EmailAddress = command.Intent.UserName }));
 
             entity
                 .IfValid(e => this.queryProvider.Session.Save(e.GetDataEntity()))

@@ -13,8 +13,8 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Validations
             this.RuleFor(x => x.Id).NotEmpty().WithMessage("COMMAND ID equals Guid.Empty");
 
             this.RuleFor(x => x.Intent.Code).NotEmpty();
-            this.RuleFor(x => x.Intent.AdminUserName).NotEmpty();
-            this.RuleFor(x => x.Intent.AdminUserPassword).NotEmpty();
+            this.RuleFor(x => x.Intent.UserName).NotEmpty();
+            this.RuleFor(x => x.Intent.UserPassword).NotEmpty();
         }
 
         private bool BeAuthorized(Guid taskId)

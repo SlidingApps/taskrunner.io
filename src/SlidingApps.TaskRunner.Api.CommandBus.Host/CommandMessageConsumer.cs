@@ -9,6 +9,8 @@ using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Infrastructure;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Logging;
+using SlidingApps.TaskRunner.Foundation.Infrastructure.Transaction;
+using System;
 using System.Threading.Tasks;
 
 namespace SlidingApps.TaskRunner.Api.CommandBus.Host
@@ -19,13 +21,16 @@ namespace SlidingApps.TaskRunner.Api.CommandBus.Host
         IConsumer<CommandMessage<AccountCommand<ChangeAccountProfileName>>>,
         IConsumer<CommandMessage<AccountCommand<ChangeAccountUserPeriod>>>
     {
+        private readonly IUnitOfWork unitOfWork;
+
         private readonly IMediator mediator;
 
         public CommandMessageConsumer() { }
 
-        public CommandMessageConsumer(IMediator mediator)
+        public CommandMessageConsumer(IUnitOfWork unitOfWork, IMediator mediator)
             : this()
         {
+            this.unitOfWork = unitOfWork;
             this.mediator = mediator;
         }
 
@@ -54,12 +59,21 @@ namespace SlidingApps.TaskRunner.Api.CommandBus.Host
         {
             return Task.Run(() =>
             {
-                var _message = context.Message.ToJson();
+                Logger.Log.InfoFormat(Logger.CORRELATED_CONTENT, context.Message.Command.Id, "starting unit of work", unitOfWork.GetType().FullName);
+                this.unitOfWork.Start(() =>
+                {
+                    Logger.Log.DebugFormat(Logger.CORRELATED_CONTENT, context.Message.Command.Id, "unit of work started", unitOfWork.GetType().FullName);
+                    var _message = context.Message.ToJson();
 
-                Logger.Log.InfoFormat(Logger.CORRELATED_LONG_CONTENT, context.Message.Command.Id, "consuming message", _message);
-                ICommandResult events = this.mediator.Send(context.Message.Command);
+                    Logger.Log.InfoFormat(Logger.CORRELATED_LONG_CONTENT, context.Message.Command.Id, "consuming message", _message);
+                    ICommandResult events = this.mediator.Send(context.Message.Command);
 
-                Logger.Log.InfoFormat(Logger.CORRELATED_LONG_CONTENT, context.Message.Command.Id, "message consumed", _message);
+                    Logger.Log.InfoFormat(Logger.CORRELATED_LONG_CONTENT, context.Message.Command.Id, "message consumed", _message);
+
+                    Logger.Log.DebugFormat(Logger.CORRELATED_LONG_CONTENT, context.Message.Command.Id, "unit of work handled command", _message);
+                }, (context.Message.Command is IWithIdentifier<Guid>) ? ((IWithIdentifier<Guid>)context.Message.Command).Id.ToString() : string.Empty);
+
+                Logger.Log.InfoFormat(Logger.CORRELATED_CONTENT, context.Message.Command.Id, "unit of work completed", unitOfWork.GetType().FullName);
             });
         }
     }

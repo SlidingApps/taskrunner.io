@@ -8,11 +8,13 @@ using SlidingApps.TaskRunner.Foundation.Extension;
 using SlidingApps.TaskRunner.Foundation.NHibernate;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
 using System.Linq;
+using System;
 
 namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
 {
     public class AccountService :
         ICommandHandler<AccountCommand<CreateAccount>>,
+        ICommandHandler<AccountCommand<CreateTenantAdminAccount>>,
         ICommandHandler<AccountCommand<ChangeAccountProfileName>>,
         ICommandHandler<AccountCommand<ChangeAccountUserPeriod>>
     {
@@ -41,9 +43,21 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
             return new CommandResult(command.Id, result);
         }
 
+        public ICommandResult Handle(AccountCommand<CreateTenantAdminAccount> command)
+        {
+            Account entity = new Account(new Entities.Account(), this.validator.CreateFor<Account>());
+            var result = entity.Apply(command);
+
+            entity
+                .IfValid(e => this.queryProvider.Session.Save(e.GetDataEntity()))
+                .ElseThrow();
+
+            return new CommandResult(command.Id, result);
+        }
+
         public ICommandResult Handle(AccountCommand<ChangeAccountProfileName> command)
         {
-            var existing = this.queryProvider.CreateQuery<Entities.Account>().Where(x => x.TenantId == command.TenantId && x.Id == command.AccountId).Single();
+            var existing = this.queryProvider.CreateQuery<Entities.Account>().Where(x => x.Id == command.AccountId).Single();
             Account entity = new Account(existing, this.validator.CreateFor<Account>());
             var result = entity.Apply(command);
 
@@ -56,7 +70,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
 
         public ICommandResult Handle(AccountCommand<ChangeAccountUserPeriod> command)
         {
-            var existing = this.queryProvider.CreateQuery<Entities.Account>().Where(x => x.TenantId == command.TenantId && x.Id == command.AccountId).Single();
+            var existing = this.queryProvider.CreateQuery<Entities.Account>().Where(x => x.Id == command.AccountId).Single();
             Account entity = new Account(existing, this.validator.CreateFor<Account>());
             var result = entity.Apply(command);
 

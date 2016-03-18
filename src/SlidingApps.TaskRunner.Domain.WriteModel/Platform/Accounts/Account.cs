@@ -1,7 +1,6 @@
 ﻿
 using FluentValidation;
 using FluentValidation.Results;
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts;
 using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts.Intents;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
@@ -26,10 +25,10 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
             };
         }
 
-        public Guid TenantId
+        public string EmailAddress
         {
-            get { return this.entity.TenantId; }
-            private set { this.entity.TenantId = value; }
+            get { return this.entity.EmailAddress; }
+            private set { this.entity.EmailAddress = value; }
         }
 
         public string Name
@@ -60,11 +59,27 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
 
         public void When(AccountEvent<CreateAccount> domainEvent)
         {
-            this.Id = domainEvent.AccountId;
-            this.TenantId = domainEvent.TenantId;
+            this.Id = domainEvent.AccountId = Guid.NewGuid();
             this.Name = domainEvent.Arguments.Name;
             this.Info = domainEvent.Arguments.Info;
             this.FirstName = domainEvent.Arguments.FirstName;
+
+            this.DomainEvents.Add(domainEvent);
+        }
+
+        public IDomainEvent Apply(AccountCommand<CreateTenantAdminAccount> command)
+        {
+            AccountEvent<CreateTenantAdminAccount> domainEvent = new AccountEvent<CreateTenantAdminAccount>(command);
+            this.When(domainEvent);
+
+            return domainEvent;
+        }
+
+        public void When(AccountEvent<CreateTenantAdminAccount> domainEvent)
+        {
+            this.Id = domainEvent.AccountId =  Guid.NewGuid();
+            this.EmailAddress = domainEvent.Arguments.EmailAddress;
+            this.Name = domainEvent.Arguments.EmailAddress;
 
             this.DomainEvents.Add(domainEvent);
         }

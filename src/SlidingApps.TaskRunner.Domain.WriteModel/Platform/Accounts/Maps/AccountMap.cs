@@ -12,7 +12,6 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts.Maps
         public AccountMap()
             : base(Metadata.SCHEMA_NAME, AccountMap.TABLE_NAME)
         {
-            this.Map(x => x.TenantId);
             this.Map(x => x.EmailAddress);
 
             this.HasOne(x => x.Profile).Cascade.All().PropertyRef(x => x.Account).LazyLoad(Laziness.Proxy);
