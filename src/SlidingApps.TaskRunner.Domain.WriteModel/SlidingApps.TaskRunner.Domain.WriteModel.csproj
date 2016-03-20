@@ -119,7 +119,9 @@
     <Compile Include="Platform\Metadata.cs" />
     <Compile Include="Platform\Accounts\Entities\AccountUser.cs" />
     <Compile Include="Platform\Tenants\Entities\Tenant.cs" />
+    <Compile Include="Platform\Tenants\Entities\TenantAccount.cs" />
     <Compile Include="Platform\Tenants\Entities\TenantInfo.cs" />
+    <Compile Include="Platform\Tenants\Maps\TenantAccountMap.cs" />
     <Compile Include="Platform\Tenants\Maps\TenantInfoMap.cs" />
     <Compile Include="Platform\Tenants\Maps\TenantMap.cs" />
     <Compile Include="Platform\Tenants\Tenant.cs" />

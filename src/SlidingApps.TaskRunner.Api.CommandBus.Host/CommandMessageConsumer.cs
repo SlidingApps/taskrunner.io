@@ -17,6 +17,7 @@ namespace SlidingApps.TaskRunner.Api.CommandBus.Host
 {
     public class CommandMessageConsumer :
         IConsumer<CommandMessage<TenantCommand<CreateTenant>>>,
+        IConsumer<CommandMessage<TenantCommand<ChangeTenantInfo>>>,
         IConsumer<CommandMessage<AccountCommand<CreateAccount>>>,
         IConsumer<CommandMessage<AccountCommand<ChangeAccountProfileName>>>,
         IConsumer<CommandMessage<AccountCommand<ChangeAccountUserPeriod>>>
@@ -35,6 +36,11 @@ namespace SlidingApps.TaskRunner.Api.CommandBus.Host
         }
 
         public Task Consume(ConsumeContext<CommandMessage<TenantCommand<CreateTenant>>> context)
+        {
+            return this.ConsumeCommand(context);
+        }
+
+        public Task Consume(ConsumeContext<CommandMessage<TenantCommand<ChangeTenantInfo>>> context)
         {
             return this.ConsumeCommand(context);
         }

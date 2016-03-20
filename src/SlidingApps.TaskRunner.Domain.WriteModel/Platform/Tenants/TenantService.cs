@@ -1,4 +1,5 @@
 ﻿
+using System;
 using MediatR;
 using NHibernate;
 using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts;
@@ -8,11 +9,13 @@ using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Extension;
 using SlidingApps.TaskRunner.Foundation.NHibernate;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
+using System.Linq;
 
 namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
 {
     public class TenantService :
-        ICommandHandler<TenantCommand<CreateTenant>>
+        ICommandHandler<TenantCommand<CreateTenant>>,
+        ICommandHandler<TenantCommand<ChangeTenantInfo>>
     {
         private readonly IMediator mediator;
 
@@ -39,6 +42,14 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
                 .ElseThrow();
 
             return new CommandResult(command.Id, result);
+        }
+
+        public ICommandResult Handle(TenantCommand<ChangeTenantInfo> command)
+        {
+            var existing = this.queryProvider.CreateQuery<Entities.Tenant>().Where(x => x.Id == command.TenantId).Single();
+            var entity = new Tenant(existing, this.validator.CreateFor<Tenant>());
+
+            throw new NotImplementedException();
         }
     }
 }

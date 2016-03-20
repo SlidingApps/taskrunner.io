@@ -58,6 +58,7 @@
     <Compile Include="Platform\Accounts\Intents\ChangeAccountUserPeriod.cs" />
     <Compile Include="Platform\Accounts\Intents\CreateTenantAdminAccount.cs" />
     <Compile Include="Platform\Accounts\Intents\CreateAccount.cs" />
+    <Compile Include="Platform\Tenants\Intents\ChangeTenantInfo.cs" />
     <Compile Include="Platform\Tenants\TenantCommand.cs" />
     <Compile Include="Platform\Tenants\TenantEvent.cs" />
     <Compile Include="Platform\Tenants\Intents\CreateTenant.cs" />

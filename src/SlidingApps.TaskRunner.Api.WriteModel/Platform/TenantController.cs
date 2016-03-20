@@ -3,6 +3,7 @@ using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants;
 using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Intents;
 using SlidingApps.TaskRunner.Foundation.MessageBus;
 using SlidingApps.TaskRunner.Foundation.Web;
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -25,6 +26,15 @@ namespace SlidingApps.TaskRunner.Api.WriteModel.Platform
         public async Task<HttpResponseMessage> PostCreateTenant([FromBody] CreateTenant intent)
         {
             var command = new TenantCommand<CreateTenant>(intent);
+            await this.connector.SendCommand(command);
+
+            return ApiResponse.CommandResponse(command);
+        }
+
+        [HttpPost, Route("{tenantId:guid}/changeinfo")]
+        public async Task<HttpResponseMessage> PostChangeTenantInfo(Guid tenantId, [FromBody] ChangeTenantInfo intent)
+        {
+            var command = new TenantCommand<ChangeTenantInfo>(tenantId, intent);
             await this.connector.SendCommand(command);
 
             return ApiResponse.CommandResponse(command);
