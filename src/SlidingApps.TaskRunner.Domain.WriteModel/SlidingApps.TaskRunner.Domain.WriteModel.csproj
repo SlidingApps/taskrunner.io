@@ -125,6 +125,7 @@
     <Compile Include="Platform\Tenants\Maps\TenantInfoMap.cs" />
     <Compile Include="Platform\Tenants\Maps\TenantMap.cs" />
     <Compile Include="Platform\Tenants\Tenant.cs" />
+    <Compile Include="Platform\Tenants\TenantAccount.cs" />
     <Compile Include="Platform\Tenants\TenantService.cs" />
     <Compile Include="Platform\Tenants\Validations\CreateTenantValidator.cs" />
     <Compile Include="Platform\Tenants\Validations\TenantValidator.cs" />

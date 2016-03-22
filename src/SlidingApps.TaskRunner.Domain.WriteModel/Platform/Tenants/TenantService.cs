@@ -36,6 +36,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
             var result = entity.Apply(command);
 
             ICommandResult events = this.mediator.Send(new AccountCommand<CreateTenantAdminAccount>(entity.Id, new CreateTenantAdminAccount { EmailAddress = command.Intent.UserName }));
+            entity.AddAccount(events.OfType<AccountEvent<CreateTenantAdminAccount>>().Single().AccountId);
 
             entity
                 .IfValid(e => this.queryProvider.Session.Save(e.GetDataEntity()))
@@ -48,8 +49,13 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
         {
             var existing = this.queryProvider.CreateQuery<Entities.Tenant>().Where(x => x.Id == command.TenantId).Single();
             var entity = new Tenant(existing, this.validator.CreateFor<Tenant>());
+            var result = entity.Apply(command);
 
-            throw new NotImplementedException();
+            entity
+                .IfValid(e => this.queryProvider.Session.Save(e.GetDataEntity()))
+                .ElseThrow();
+
+            return new CommandResult(command.Id, result);
         }
     }
 }

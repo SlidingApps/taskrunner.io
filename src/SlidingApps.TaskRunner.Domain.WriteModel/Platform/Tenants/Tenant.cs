@@ -6,6 +6,8 @@ using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
 {
@@ -68,6 +70,33 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
             private set { this.entity.Info.ValidUntil = value; }
         }
 
+        private List<TenantAccount> accounts;
+        public List<TenantAccount> Accounts
+        {
+            get
+            {
+                var accounts = new List<TenantAccount>();
+                if (this.accounts == null)
+                {
+                    accounts = this.entity.Accounts.ToList().Select(x => new TenantAccount(x)).ToList();
+                }
+
+                return this.accounts = accounts;
+            }
+            private set { this.accounts = value; }
+        }
+
+        public void AddAccount(Guid accountId)
+        {
+            var account = new Entities.TenantAccount(Guid.NewGuid());
+            account.Tenant = this.entity;
+            account.AccountId = accountId;
+            this.entity.Accounts.Add(account);
+
+            var _account = new TenantAccount(account);
+            this.Accounts.Add(_account);
+        }
+
         public IDomainEvent Apply(TenantCommand<CreateTenant> command)
         {
             TenantEvent<CreateTenant> domainEvent = new TenantEvent<CreateTenant>(command);
@@ -84,6 +113,22 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
             this.Description = domainEvent.Arguments.Description;
             this.ValidFrom = domainEvent.Arguments.ValidFrom.HasValue ? domainEvent.Arguments.ValidFrom.Value : Tenant.DEFAULT_VALIDFROM_DATE;
             this.ValidUntil = domainEvent.Arguments.ValidUntil.HasValue ? domainEvent.Arguments.ValidUntil.Value : Tenant.DEFAULT_VALIDUNTIL_DATE;
+
+            this.DomainEvents.Add(domainEvent);
+        }
+
+        public IDomainEvent Apply(TenantCommand<ChangeTenantInfo> command)
+        {
+            TenantEvent<ChangeTenantInfo> domainEvent = new TenantEvent<ChangeTenantInfo>(command);
+            this.When(domainEvent);
+
+            return domainEvent;
+        }
+
+        public void When(TenantEvent<ChangeTenantInfo> domainEvent)
+        {
+            this.Name = domainEvent.Arguments.Name;
+            this.Description = domainEvent.Arguments.Description;
 
             this.DomainEvents.Add(domainEvent);
         }

@@ -8,6 +8,12 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Entities
     public class Tenant
         : AuditableDataEntity<Guid>
     {
+        public Tenant()
+            : base()
+        {
+            this.Accounts = new List<TenantAccount>();
+        }
+
         public virtual string Code { get; set; }
 
         public virtual TenantInfo Info { get; set; }
