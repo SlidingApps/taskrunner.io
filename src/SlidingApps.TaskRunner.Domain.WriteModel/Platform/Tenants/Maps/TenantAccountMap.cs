@@ -8,7 +8,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Maps
         : AuditableDataEntityMap<Entities.TenantAccount, Guid>
     {
         /// <summary>
-        /// The <see cref="Tenant"/> database table name.
+        /// The <see cref="TenantAccount"/> database table name.
         /// </summary>
         public const string TABLE_NAME = "Tenant_Account_L";
 
@@ -21,6 +21,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Maps
             this.Map(x => x.AccountId);
 
             this.References(x => x.Tenant).Unique().Column("TenantId");
+            this.HasMany(x => x.Roles).KeyColumn("TenantAccountId").Cascade.SaveUpdate();
         }
     }
 }

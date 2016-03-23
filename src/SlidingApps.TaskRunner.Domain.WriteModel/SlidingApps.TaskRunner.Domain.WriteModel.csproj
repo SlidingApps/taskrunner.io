@@ -120,11 +120,14 @@
     <Compile Include="Platform\Accounts\Entities\AccountUser.cs" />
     <Compile Include="Platform\Tenants\Entities\Tenant.cs" />
     <Compile Include="Platform\Tenants\Entities\TenantAccount.cs" />
+    <Compile Include="Platform\Tenants\Entities\TenantAccountRole.cs" />
     <Compile Include="Platform\Tenants\Entities\TenantInfo.cs" />
+    <Compile Include="Platform\Tenants\Maps\TenantAccountRoleMap.cs" />
     <Compile Include="Platform\Tenants\Maps\TenantAccountMap.cs" />
     <Compile Include="Platform\Tenants\Maps\TenantInfoMap.cs" />
     <Compile Include="Platform\Tenants\Maps\TenantMap.cs" />
     <Compile Include="Platform\Tenants\Tenant.cs" />
+    <Compile Include="Platform\Tenants\TenantAccountRole.cs" />
     <Compile Include="Platform\Tenants\TenantAccount.cs" />
     <Compile Include="Platform\Tenants\TenantService.cs" />
     <Compile Include="Platform\Tenants\Validations\CreateTenantValidator.cs" />

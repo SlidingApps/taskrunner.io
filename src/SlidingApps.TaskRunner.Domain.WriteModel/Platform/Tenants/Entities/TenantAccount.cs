@@ -1,6 +1,7 @@
 ﻿
 using SlidingApps.TaskRunner.Foundation.WriteModel;
 using System;
+using System.Collections.Generic;
 
 namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Entities
 {
@@ -16,5 +17,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Entities
         public virtual Tenant Tenant { get; set; }
 
         public virtual Guid AccountId { get; set; }
+
+        public virtual IList<TenantAccountRole> Roles { get; set; }
     }
 }
