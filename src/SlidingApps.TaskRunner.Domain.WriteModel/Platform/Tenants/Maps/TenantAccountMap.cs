@@ -1,4 +1,5 @@
 ﻿
+using FluentNHibernate.Mapping;
 using SlidingApps.TaskRunner.Foundation.NHibernate;
 using System;
 
@@ -21,7 +22,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Maps
             this.Map(x => x.AccountId);
 
             this.References(x => x.Tenant).Unique().Column("TenantId");
-            this.HasMany(x => x.Roles).KeyColumn("TenantAccountId").Cascade.SaveUpdate();
+            this.HasOne(x => x.RoleSet).Cascade.All().PropertyRef(x => x.TenantAccount).LazyLoad(Laziness.Proxy);
         }
     }
 }

@@ -18,6 +18,6 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Entities
 
         public virtual Guid AccountId { get; set; }
 
-        public virtual IList<TenantAccountRole> Roles { get; set; }
+        public virtual TenantAccountRoleSet RoleSet { get; set; }
     }
 }
