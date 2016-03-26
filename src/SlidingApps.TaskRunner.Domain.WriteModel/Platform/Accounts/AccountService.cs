@@ -14,7 +14,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
 {
     public class AccountService :
         ICommandHandler<AccountCommand<CreateAccount>>,
-        ICommandHandler<AccountCommand<CreateTenantAdminAccount>>,
+        ICommandHandler<AccountCommand<CreateTenantOwnerAccount>>,
         ICommandHandler<AccountCommand<ChangeAccountProfileName>>,
         ICommandHandler<AccountCommand<ChangeAccountUserPeriod>>
     {
@@ -43,7 +43,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
             return new CommandResult(command.Id, result);
         }
 
-        public ICommandResult Handle(AccountCommand<CreateTenantAdminAccount> command)
+        public ICommandResult Handle(AccountCommand<CreateTenantOwnerAccount> command)
         {
             Account entity = new Account(new Entities.Account(), this.validator.CreateFor<Account>());
             var result = entity.Apply(command);

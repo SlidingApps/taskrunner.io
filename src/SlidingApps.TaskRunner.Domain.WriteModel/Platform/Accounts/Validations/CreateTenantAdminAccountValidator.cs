@@ -5,7 +5,7 @@ using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts.Intents;
 namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts.Validations
 {
     public class CreateTenantAdminAccountValidator
-        : AbstractValidator<AccountCommand<CreateTenantAdminAccount>>
+        : AbstractValidator<AccountCommand<CreateTenantOwnerAccount>>
     {
         public CreateTenantAdminAccountValidator()
         {

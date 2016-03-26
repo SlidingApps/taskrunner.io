@@ -16,10 +16,9 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Maps
         /// Default constructor.
         /// </summary>
         public TenantAccountRoleSetMap()
-            : base(Metadata.SCHEMA_NAME, TenantAccountMap.TABLE_NAME)
+            : base(Metadata.SCHEMA_NAME, TenantAccountRoleSetMap.TABLE_NAME)
         {
             this.Map(x => x.IsOwner);
-            this.Map(x => x.IsAdmin);
             this.Map(x => x.IsMember);
             this.Map(x => x.IsFollower);
 

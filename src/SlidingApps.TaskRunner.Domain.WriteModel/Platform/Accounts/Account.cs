@@ -67,15 +67,15 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
             this.DomainEvents.Add(domainEvent);
         }
 
-        public IDomainEvent Apply(AccountCommand<CreateTenantAdminAccount> command)
+        public IDomainEvent Apply(AccountCommand<CreateTenantOwnerAccount> command)
         {
-            AccountEvent<CreateTenantAdminAccount> domainEvent = new AccountEvent<CreateTenantAdminAccount>(command);
+            AccountEvent<CreateTenantOwnerAccount> domainEvent = new AccountEvent<CreateTenantOwnerAccount>(command);
             this.When(domainEvent);
 
             return domainEvent;
         }
 
-        public void When(AccountEvent<CreateTenantAdminAccount> domainEvent)
+        public void When(AccountEvent<CreateTenantOwnerAccount> domainEvent)
         {
             this.Id = domainEvent.AccountId =  Guid.NewGuid();
             this.EmailAddress = domainEvent.Arguments.EmailAddress;

@@ -32,17 +32,25 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
 
         public ICommandResult Handle(TenantCommand<CreateTenant> command)
         {
+            // Create TENANT.
             Tenant entity = new Tenant(new Entities.Tenant(), this.validator.CreateFor<Tenant>());
-            var result = entity.Apply(command);
+            IDomainEvent tenantEvent = entity.Apply(command);
 
-            ICommandResult events = this.mediator.Send(new AccountCommand<CreateTenantAdminAccount>(entity.Id, new CreateTenantAdminAccount { EmailAddress = command.Intent.UserName }));
-            entity.AddAccount(events.OfType<AccountEvent<CreateTenantAdminAccount>>().Single().AccountId);
+            // Create ACCOUNT.
+            ICommandResult accountResult = this.mediator.Send(new AccountCommand<CreateTenantOwnerAccount>(entity.Id, new CreateTenantOwnerAccount { EmailAddress = command.Intent.UserName }));
+            var accountEvent = accountResult.OfType<AccountEvent<CreateTenantOwnerAccount>>().Single();
+
+            // Associate the ACCOUNT with the TENANT.
+            var account = entity.AddAccount(accountEvent.AccountId);
+
+            // Set the new ACCOUNT as TENANT OWNER.
+            var roleEvent = account.Apply(new TenantCommand<SetTenantOwner>(entity.Id, new SetTenantOwner(command.Intent.UserName)));
 
             entity
                 .IfValid(e => this.queryProvider.Session.Save(e.GetDataEntity()))
                 .ElseThrow();
 
-            return new CommandResult(command.Id, result);
+            return new CommandResult(command.Id, new IDomainEvent[] { tenantEvent, accountEvent, roleEvent });
         }
 
         public ICommandResult Handle(TenantCommand<ChangeTenantInfo> command)

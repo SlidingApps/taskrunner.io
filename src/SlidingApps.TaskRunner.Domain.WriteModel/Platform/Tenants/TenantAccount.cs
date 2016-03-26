@@ -1,9 +1,9 @@
 ﻿
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Intents;
+using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
 {
@@ -19,10 +19,13 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
             Argument.InstanceIsRequired(entity, "entity");
 
             this.entity = entity;
-            this.role = new TenantAccountRoleSet(entity.RoleSet ?? new Entities.TenantAccountRoleSet(Guid.NewGuid()));
-        }
 
-        private TenantAccountRoleSet role;
+            if (this.entity.RoleSet == null)
+            {
+                this.entity.RoleSet = new Entities.TenantAccountRoleSet(Guid.NewGuid());
+                this.entity.RoleSet.TenantAccount = this.entity;
+            };
+        }
 
         public Guid AccountId
         {
@@ -30,10 +33,37 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
             private set { this.entity.AccountId = value; }
         }
 
-        public TenantAccountRoleSet Role
+        public virtual bool IsOwner
         {
-            get { return this.role; }
-            private set { this.role = value; }
+            get { return this.entity.RoleSet.IsOwner; }
+            private set { this.entity.RoleSet.IsOwner = value; }
+        }
+
+        public virtual bool IsMember
+        {
+            get { return this.entity.RoleSet.IsMember; }
+            private set { this.entity.RoleSet.IsMember = value; }
+        }
+
+        public virtual bool IsFollower
+        {
+            get { return this.entity.RoleSet.IsFollower; }
+            private set { this.entity.RoleSet.IsFollower = value; }
+        }
+
+        public IDomainEvent Apply(TenantCommand<SetTenantOwner> command)
+        {
+            TenantEvent<SetTenantOwner> domainEvent = new TenantEvent<SetTenantOwner>(command);
+            this.When(domainEvent);
+
+            return domainEvent;
+        }
+
+        public void When(TenantEvent<SetTenantOwner> domainEvent)
+        {
+            this.IsOwner = true;
+
+            this.DomainEvents.Add(domainEvent);
         }
     }
 }

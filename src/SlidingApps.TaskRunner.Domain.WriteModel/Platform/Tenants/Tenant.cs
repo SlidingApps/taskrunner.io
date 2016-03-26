@@ -86,7 +86,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
             private set { this.accounts = value; }
         }
 
-        public void AddAccount(Guid accountId)
+        public TenantAccount AddAccount(Guid accountId)
         {
             var account = new Entities.TenantAccount(Guid.NewGuid());
             account.Tenant = this.entity;
@@ -95,6 +95,8 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
 
             var _account = new TenantAccount(account);
             this.Accounts.Add(_account);
+
+            return _account;
         }
 
         public IDomainEvent Apply(TenantCommand<CreateTenant> command)

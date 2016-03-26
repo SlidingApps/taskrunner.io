@@ -15,8 +15,6 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Entities
 
         public virtual bool IsOwner { get; set; }
 
-        public virtual bool IsAdmin { get; set; }
-
         public virtual bool IsMember { get; set; }
 
         public virtual bool IsFollower { get; set; }

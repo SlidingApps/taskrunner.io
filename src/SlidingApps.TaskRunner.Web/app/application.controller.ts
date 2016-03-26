@@ -18,7 +18,7 @@ import { HomeController } from './view/public/home.controller';
 import { AccountController } from './view/account/account.controller';
 
 
-@Component({ 
+@Component({
     selector: 'application',
     providers: ['ui.router'],
     directives: [ Navigation, Content],
@@ -29,9 +29,9 @@ import { AccountController } from './view/account/account.controller';
     { name: 'account', url: '/account', component: AccountController }
 ])
 @Inject('$scope', '$state')
-export class Application { 
-    
-    constructor(private $scope: angular.IScope, private $state: angular.ui.IStateService) { 
+export class Application {
+
+    constructor(private $scope: angular.IScope, private $state: angular.ui.IStateService) {
         console.log('application', this);
     }
 }
