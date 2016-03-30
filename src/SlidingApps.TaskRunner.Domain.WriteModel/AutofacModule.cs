@@ -34,16 +34,16 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel
                 .InstancePerDependency();
 
             builder.RegisterGenericDecorator(typeof(ValidationDecorator<,>), typeof(IRequestHandler<,>), "request-with-internal-domain-event-publish-write")
-                .Keyed("request-with-validation-write", typeof(IRequestHandler<,>))
+                .Keyed("request-pipeline-write" /* "request-with-validation-write" */, typeof(IRequestHandler<,>))
                 .InstancePerDependency();
 
             //builder.RegisterGenericDecorator(typeof(UnitOfWorkDecorator<,>), typeof(IRequestHandler<,>), "request-with-validation-write")
             //    .Keyed("request-with-unit-of-work-write", typeof(IRequestHandler<,>))
             //    .InstancePerDependency();
 
-            builder.RegisterGenericDecorator(typeof(BusDomainEventPublisherDecorator<,>), typeof(IRequestHandler<,>), "request-with-validation-write")
-                .Keyed("request-pipeline-write", typeof(IRequestHandler<,>))
-                .InstancePerDependency();
+            //builder.RegisterGenericDecorator(typeof(BusDomainEventPublisherDecorator<,>), typeof(IRequestHandler<,>), "request-with-validation-write")
+            //    .Keyed("request-pipeline-write", typeof(IRequestHandler<,>))
+            //    .InstancePerDependency();
 
             builder.RegisterAssemblyTypes(typeof(AutofacModule).Assembly)
                 .As(t => t.GetInterfaces()

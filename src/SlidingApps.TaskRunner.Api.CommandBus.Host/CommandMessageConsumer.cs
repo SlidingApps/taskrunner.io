@@ -10,7 +10,9 @@ using SlidingApps.TaskRunner.Foundation.Infrastructure;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Logging;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Transaction;
+using SlidingApps.TaskRunner.Foundation.MessageBus;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SlidingApps.TaskRunner.Api.CommandBus.Host
@@ -26,13 +28,16 @@ namespace SlidingApps.TaskRunner.Api.CommandBus.Host
 
         private readonly IMediator mediator;
 
+        private IBusConnector connector;
+
         public CommandMessageConsumer() { }
 
-        public CommandMessageConsumer(IUnitOfWork unitOfWork, IMediator mediator)
+        public CommandMessageConsumer(IUnitOfWork unitOfWork, IMediator mediator, IBusConnector connector)
             : this()
         {
             this.unitOfWork = unitOfWork;
             this.mediator = mediator;
+            this.connector = connector;
         }
 
         public Task Consume(ConsumeContext<CommandMessage<TenantCommand<CreateTenant>>> context)
@@ -76,6 +81,15 @@ namespace SlidingApps.TaskRunner.Api.CommandBus.Host
 
                     Logger.Log.InfoFormat(Logger.CORRELATED_LONG_CONTENT, context.Message.Command.Id, "message consumed", _message);
 
+                    Logger.Log.InfoFormat(Logger.CORRELATED_LONG_CONTENT, context.Message.Command.Id, "publishing event", string.Format("{0} event(s)", events.Count()));
+                    events.ToList().OrderBy(x => x.Timestamp).ToList()
+                        .ForEach(x => 
+                            {
+                                Logger.Log.InfoFormat(Logger.CORRELATED_LONG_CONTENT, context.Message.Command.Id, "publish event", x.ToJson());
+                                this.connector.PublishEvent(x, context.Message.Command.Id.ToString());
+                            });
+
+                    Logger.Log.DebugFormat(Logger.CORRELATED_MESSAGE, context.Message.Command.Id, "events published");
                     Logger.Log.DebugFormat(Logger.CORRELATED_LONG_CONTENT, context.Message.Command.Id, "unit of work handled command", _message);
                 }, (context.Message.Command is IWithIdentifier<Guid>) ? ((IWithIdentifier<Guid>)context.Message.Command).Id.ToString() : string.Empty);
 

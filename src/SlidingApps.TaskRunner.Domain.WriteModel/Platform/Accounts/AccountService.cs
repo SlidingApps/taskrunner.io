@@ -1,7 +1,6 @@
 ﻿
 using MediatR;
 using NHibernate;
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts;
 using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts.Intents;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Extension;
@@ -14,9 +13,9 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
 {
     public class AccountService :
         ICommandHandler<AccountCommand<CreateAccount>>,
-        ICommandHandler<AccountCommand<CreateTenantOwnerAccount>>,
         ICommandHandler<AccountCommand<ChangeAccountProfileName>>,
-        ICommandHandler<AccountCommand<ChangeAccountUserPeriod>>
+        ICommandHandler<AccountCommand<ChangeAccountUserPeriod>>,
+        ICommandHandler<AccountCommand<ChangeAccountUser>>
     {
         private readonly IMediator mediator;
 
@@ -32,18 +31,6 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
         }
 
         public ICommandResult Handle(AccountCommand<CreateAccount> command)
-        {
-            Account entity = new Account(new Entities.Account(), this.validator.CreateFor<Account>());
-            var result = entity.Apply(command);
-
-            entity
-                .IfValid(e => this.queryProvider.Session.Save(e.GetDataEntity()))
-                .ElseThrow();
-
-            return new CommandResult(command.Id, result);
-        }
-
-        public ICommandResult Handle(AccountCommand<CreateTenantOwnerAccount> command)
         {
             Account entity = new Account(new Entities.Account(), this.validator.CreateFor<Account>());
             var result = entity.Apply(command);
@@ -73,6 +60,19 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
             var existing = this.queryProvider.CreateQuery<Entities.Account>().Where(x => x.Id == command.AccountId).Single();
             Account entity = new Account(existing, this.validator.CreateFor<Account>());
             var result = entity.Apply(command);
+
+            entity
+                .IfValid(e => this.queryProvider.Session.SaveOrUpdate(e.GetDataEntity()))
+                .ElseThrow();
+
+            return new CommandResult(command.Id, result);
+        }
+        
+        public ICommandResult Handle(AccountCommand<ChangeAccountUser> command)
+        {
+            var existing = this.queryProvider.CreateQuery<Entities.Account>().Where(x => x.Id == command.AccountId).Single();
+            Account entity = new Account(existing, this.validator.CreateFor<Account>());
+            var result = entity.User.Apply(command);
 
             entity
                 .IfValid(e => this.queryProvider.Session.SaveOrUpdate(e.GetDataEntity()))

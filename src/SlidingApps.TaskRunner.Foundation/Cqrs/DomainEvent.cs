@@ -10,6 +10,7 @@ namespace SlidingApps.TaskRunner.Foundation.Cqrs
         protected DomainEvent()
         {
             this.Id = Guid.NewGuid();
+            this.Timestamp = DateTime.UtcNow;
         }
 
         protected DomainEvent(Command command)
@@ -21,6 +22,8 @@ namespace SlidingApps.TaskRunner.Foundation.Cqrs
         public Guid Id { get; set; }
 
         public Guid CorrelationId { get; set; }
+
+        public DateTime Timestamp { get; set; }
     }
 
     public abstract class DomainEvent<TIntent>

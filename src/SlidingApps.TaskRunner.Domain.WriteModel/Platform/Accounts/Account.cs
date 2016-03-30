@@ -8,7 +8,7 @@ using System;
 
 namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
 {
-    public class Account
+    public partial class Account
         : DomainEntity<Guid, Entities.Account>, IWithValidator<Account>
     {
         private readonly IValidator<Account> validator;
@@ -49,6 +49,23 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
             private set { this.entity.Profile.Info = value; }
         }
 
+        private AccountUser user;
+
+        public AccountUser User
+        {
+            get
+            {
+                if (this.entity.User == null)
+                {
+                    this.entity.User = new Entities.AccountUser(Guid.NewGuid());
+                    this.entity.User.Account = this.entity;
+                };
+
+                return this.user = new AccountUser(this.entity.User); ;
+            }
+            private set { this.user = value; }
+        }
+
         public IDomainEvent Apply(AccountCommand<CreateAccount> command)
         {
             AccountEvent<CreateAccount> domainEvent = new AccountEvent<CreateAccount>(command);
@@ -56,30 +73,14 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
 
             return domainEvent;
         }
-
+        
         public void When(AccountEvent<CreateAccount> domainEvent)
         {
             this.Id = domainEvent.AccountId = Guid.NewGuid();
-            this.Name = domainEvent.Arguments.Name;
-            this.Info = domainEvent.Arguments.Info;
-            this.FirstName = domainEvent.Arguments.FirstName;
-
-            this.DomainEvents.Add(domainEvent);
-        }
-
-        public IDomainEvent Apply(AccountCommand<CreateTenantOwnerAccount> command)
-        {
-            AccountEvent<CreateTenantOwnerAccount> domainEvent = new AccountEvent<CreateTenantOwnerAccount>(command);
-            this.When(domainEvent);
-
-            return domainEvent;
-        }
-
-        public void When(AccountEvent<CreateTenantOwnerAccount> domainEvent)
-        {
-            this.Id = domainEvent.AccountId =  Guid.NewGuid();
             this.EmailAddress = domainEvent.Arguments.EmailAddress;
-            this.Name = domainEvent.Arguments.EmailAddress;
+            this.Name = domainEvent.Arguments.Name ?? domainEvent.Arguments.EmailAddress;
+            this.FirstName = domainEvent.Arguments.FirstName;
+            this.Info = domainEvent.Arguments.Info;
 
             this.DomainEvents.Add(domainEvent);
         }

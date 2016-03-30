@@ -1,5 +1,4 @@
 ﻿
-using System;
 using MediatR;
 using NHibernate;
 using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts;
@@ -37,8 +36,18 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
             IDomainEvent tenantEvent = entity.Apply(command);
 
             // Create ACCOUNT.
-            ICommandResult accountResult = this.mediator.Send(new AccountCommand<CreateTenantOwnerAccount>(entity.Id, new CreateTenantOwnerAccount { EmailAddress = command.Intent.UserName }));
-            var accountEvent = accountResult.OfType<AccountEvent<CreateTenantOwnerAccount>>().Single();
+            ICommandResult accountResult = this.mediator.Send(new AccountCommand<CreateAccount>(entity.Id, new CreateAccount { EmailAddress = command.Intent.UserName }));
+            var accountEvent = accountResult.OfType<AccountEvent<CreateAccount>>().Single();
+
+            ICommandResult userResult = 
+                this.mediator.Send(
+                    new AccountCommand<ChangeAccountUser>(entity.Id, accountEvent.AccountId, 
+                        new ChangeAccountUser
+                        {
+                            Name = command.Intent.UserName,
+                            Password = command.Intent.UserPassword
+                        }));
+            var userEvent = userResult.OfType<AccountEvent<ChangeAccountUser>>().Single();
 
             // Associate the ACCOUNT with the TENANT.
             var account = entity.AddAccount(accountEvent.AccountId);
@@ -50,7 +59,14 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
                 .IfValid(e => this.queryProvider.Session.Save(e.GetDataEntity()))
                 .ElseThrow();
 
-            return new CommandResult(command.Id, new IDomainEvent[] { tenantEvent, accountEvent, roleEvent });
+            return new CommandResult(command.Id, 
+                new IDomainEvent[] 
+                {
+                    tenantEvent,
+                    accountEvent,
+                    userEvent,
+                    roleEvent
+                });
         }
 
         public ICommandResult Handle(TenantCommand<ChangeTenantInfo> command)

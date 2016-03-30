@@ -7,6 +7,12 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts.Entities
     public class AccountUser
            : AuditableDataEntity<Guid>
     {
+        public AccountUser()
+            : base() { }
+
+        public AccountUser(Guid id)
+            : base(id) { }
+
         public virtual Guid AccountId { get; set; }
 
         public virtual string Name { get; set; }
