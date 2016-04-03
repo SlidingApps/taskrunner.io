@@ -97,7 +97,6 @@
     ],
     "typedef": [
       true,
-      "call-signature",
       "parameter",
       "property-declaration",
       "variable-declaration",
@@ -127,7 +126,6 @@
     ],
     "variable-name": [
       true,
-      "check-format",
       "allow-leading-underscore",
       "ban-keywords"
     ],

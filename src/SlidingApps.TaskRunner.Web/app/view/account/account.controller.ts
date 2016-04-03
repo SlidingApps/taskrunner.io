@@ -1,17 +1,13 @@
 /// <reference path="../../typings.d.ts" />
 
 // COMMON
-import * as angular from 'angular';
-import { Component, Inject, StateConfig } from 'ng-forward';
-
-// TEMPLATE
-import template from './account.html';
+import { Component, StateConfig } from 'ng-forward';
 
 // COMPONENTS
-import { GetStartedController } from './get-started.controller';
-import { SignInController } from './sign-in.controller';
-import { ForgotPasswordController } from './forgot-password.controller';
-import { ResetPasswordController } from './reset-password.controller';
+import { View as GetStarted } from './get-started/view';
+import { View as SignIn } from './sign-in/view';
+import { View as ForgotPassword } from './forgot-password/view';
+import { View as ResetPassword } from './reset-password/view';
 
 // ANGULAR MODULES
 import 'angular-ui-router';
@@ -19,37 +15,30 @@ import 'angular-ui-router';
 
 @Component({
     selector: 'account',
-    template: template,
-    providers: ['ui.router']
+    providers: ['ui.router'],
+    template: `<div data-ui-view></div>`
 })
 @StateConfig([
-    { 
-        name: 'account.signin', 
-        url: '/signin', 
-        component: SignInController, 
-        template: '<signin />'
-    }, { 
-        name: 'account.getStarted', 
-        url: '/getstarted', 
-        component: GetStartedController, 
-        template: '<get-started />'
-    }, { 
-        name: 'account.forgotPassword', 
-        url: '/forgotpassword', 
-        component: ForgotPasswordController, 
-        template: '<forgot-password />'
-    }, { 
-        name: 'account.resetPassword', 
-        url: '/resetpassword', 
-        component: ResetPasswordController, 
-        template: '<reset-password />'
+    {
+        name: 'account.signin',
+        url: '/signin',
+        component: SignIn,
+        template: '<account-sign-in />'
+    }, {
+        name: 'account.getStarted',
+        url: '/getstarted',
+        component: GetStarted,
+        template: '<account-get-started />'
+    }, {
+        name: 'account.forgotPassword',
+        url: '/forgotpassword',
+        component: ForgotPassword,
+        template: '<account-forgot-password />'
+    }, {
+        name: 'account.resetPassword',
+        url: '/resetpassword',
+        component: ResetPassword,
+        template: '<account-reset-password />'
     }
 ])
-@Inject('$scope', '$state')
-export class AccountController {
-    
-    constructor(private $scope: angular.IScope, private $state: angular.ui.IStateService) { 
-        // console.log('account', this);
-    }
-    
-}
+export class AccountController { }

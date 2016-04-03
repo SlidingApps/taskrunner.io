@@ -3,7 +3,6 @@
 // COMMON
 import * as angular from 'angular';
 import { Subscription } from 'rxjs';
-import { ContentHub } from '../../component/layout/content';
 import { Component, Inject } from 'ng-forward';
 
 // TEMPLATE
@@ -17,24 +16,19 @@ import 'angular-ui-router';
     template: template,
     providers: ['ui.router']
 })
-@Inject('$scope', '$element', '$state', ContentHub)
+@Inject('$scope', '$element', '$state')
 export class HomeController {
 
-    constructor(private $scope: angular.IScope, private $element: angular.IAugmentedJQuery, private $state: angular.ui.IStateService, private contentHub: ContentHub) {
+    constructor(private $scope: angular.IScope, private $element: angular.IAugmentedJQuery, private $state: angular.ui.IStateService) {
         console.log('home', this);
     }
 
-    private subscription: Subscription;
-
     private ngOnInit(): void {
         console.log('ngOnInit', this);
-        this.subscription = this.contentHub.change$.filter(x => !!x).distinctUntilChanged().subscribe(x => console.log('change', x));
-        this.contentHub.change$.next('home');
     }
 
     private ngOnDestroy(): void {
         console.log('ngOnDestroy', this);
-        this.subscription.unsubscribe();
     }
 
 }

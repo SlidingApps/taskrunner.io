@@ -7,10 +7,13 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "removeComments": false,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "noEmit": true,
+    "declaration": true
   },
   "exclude": [
     "node_modules",
-    "jspm_packages"
+    "jspm_packages",
+    "typings"
   ]
 }

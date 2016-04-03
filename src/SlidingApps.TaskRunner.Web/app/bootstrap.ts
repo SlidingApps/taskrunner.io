@@ -6,7 +6,7 @@ import 'reflect-metadata';
 import { bootstrap } from 'ng-forward';
 
 // APPLICATION
-import { Application } from './application.controller';
+import { Application } from './application.ts';
 
 // ANGULAR MODULES
 import 'angular-ui-router';
