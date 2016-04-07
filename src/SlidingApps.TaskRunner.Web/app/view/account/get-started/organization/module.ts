@@ -2,7 +2,7 @@
 
 import 'angular';
 
-import { DirectiveFactory as NgModelDirective } from './ng-model';
+import { DirectiveFactory as NgModelDirective } from './organization-constraints';
 
 const Module: angular.IModule =
     angular.module('taskrunner-view-account-get-started-organization', [])
