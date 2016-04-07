@@ -3,7 +3,9 @@
 export class Model {
     private _organization: string;
     public get organization(): string { return this._organization; }
-    public set organization(value: string) { this._organization = value; }
+    public set organization(value: string) {
+        this._organization = value.replace( /[^a-z]/g, '');
+    }
 
     private _username: string;
     public get username(): string { return this._username; }

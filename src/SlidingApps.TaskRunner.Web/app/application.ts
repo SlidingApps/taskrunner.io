@@ -11,7 +11,7 @@ import { Content } from './view/layout/content';
 
 // VIEWS
 import { HomeController } from './view/public/home.controller';
-import { AccountController } from './view/account/account.controller.ts';
+import { AccountController } from './view/account/account-controller.ts';
 
 
 @Component({

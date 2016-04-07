@@ -20,9 +20,11 @@ import { Model } from '../model';
                         placeholder="organization" 
                         autocomplete="off"
                         autofocus
-                        required 
+                        required
+                        tr-organization-constraints
+                        organization-is-unique-validator
                         data-ng-model="ctrl.model.organization"
-                        data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 1000, blur: 0 } }"
+                        data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 0, blur: 0 } }"
                         data-ng-minlength="2"/>
                 <i class="fa fa-users"></i>
             </div>
