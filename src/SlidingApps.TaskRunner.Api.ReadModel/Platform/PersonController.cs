@@ -9,7 +9,7 @@ using System.Web.Http;
 
 namespace SlidingApps.TaskRunner.Api.ReadModel.Platform
 {
-    [RoutePrefix("query/organizations/{organizationId}/persons"), ApiExceptionFilter]
+    [RoutePrefix("query/tenants/{organizationId}/persons"), ApiExceptionFilter]
     public class PersonController
         : ApiController
     {

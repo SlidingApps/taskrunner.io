@@ -22,7 +22,7 @@ import { Model } from '../model';
                         autofocus
                         required
                         tr-organization-constraints
-                        organization-is-unique-validator
+                        organization-is-unique-async-validator
                         data-ng-model="ctrl.model.organization"
                         data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 0, blur: 0 } }"
                         data-ng-minlength="2"/>
@@ -31,6 +31,7 @@ import { Model } from '../model';
         </div>
         <div class="col-lg-4">
             <span ng-show="ctrl.form.organization.$error.minlength" style="color: orangered; font-weight: bold;">Organization name is too short</span>
+            <span ng-show="ctrl.form.organization.$error.minlength" style="color: orangered; font-weight: bold;">Checking...</span>
         </div>
     </div>
     `

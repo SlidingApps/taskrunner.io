@@ -1,14 +1,13 @@
 ﻿
 using Autofac;
 using Autofac.Core;
+using FluentValidation;
+using MediatR;
 using SlidingApps.TaskRunner.Domain.ReadModel.Platform;
-using SlidingApps.TaskRunner.Foundation.Configuration;
 using SlidingApps.TaskRunner.Foundation.Dapper;
 using SlidingApps.TaskRunner.Foundation.Dapper.Dialect;
 using SlidingApps.TaskRunner.Foundation.Dapper.Filter;
 using SlidingApps.TaskRunner.Foundation.Decorator;
-using FluentValidation;
-using MediatR;
 using System.Linq;
 
 namespace SlidingApps.TaskRunner.Domain.ReadModel.Composition
@@ -17,7 +16,7 @@ namespace SlidingApps.TaskRunner.Domain.ReadModel.Composition
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterAssemblyTypes(typeof(AutofacModule).Assembly)
+            builder.RegisterAssemblyTypes(typeof(IAssemblyMarker).Assembly)
                 .As(t => t.GetInterfaces()
                     .Where(i => i.IsClosedTypeOf(typeof(IRequestHandler<,>)))
                     .Select(i =>

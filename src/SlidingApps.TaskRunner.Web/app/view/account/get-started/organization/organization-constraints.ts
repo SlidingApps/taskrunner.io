@@ -3,9 +3,15 @@
 import 'angular';
 
 export class Directive implements angular.IDirective {
+    constructor(private $http: angular.IHttpService, private $q: angular.IQService) { }
+
     public priority: number = 100;
     public require: Array<string> = ['ngModel'];
     public restrict: string = 'A';
+
+    public compile(): void {
+        return this.link.bind(this);
+    }
 
     public link(
         scope: angular.IScope,
@@ -43,7 +49,25 @@ export class Directive implements angular.IDirective {
 
             return true;
         };
+
+        ctrl.$asyncValidators['organization-is-unique-async'] = (modelValue: string, viewValue: string) => {
+            let value: string = modelValue || viewValue;
+
+            console.log('$asyncValidators', this, value);
+
+            // Lookup user by username
+            return this.$http.get('http://www.google.be').then(
+                response => {
+                    console.log('http', response);
+                    // username exists, this means validation fails
+                    return this.$q.reject('exists');
+                },
+                reason => {
+                    // username does not exist, therefore this validation passes
+                    return true;
+                });
+        };
     }
 }
 
-export const DirectiveFactory: () => angular.IDirective = () => new Directive();
+export const DirectiveFactory: [() => angular.IDirective] = ['$http', '$q', ($http, $q) => new Directive($http, $q)];

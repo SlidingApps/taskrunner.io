@@ -8,7 +8,8 @@ namespace SlidingApps.TaskRunner.Domain.ReadModel.Platform.Organizations
 {
     public class OrganizationService :
         IQueryHandler<OrganizationQuery, Organization>,
-        IQueryHandler<OrganizationCollectionQuery, OrganizationCollection>
+        IQueryHandler<OrganizationCollectionQuery, OrganizationCollection>,
+        IQueryHandler<OrganizationCodeQuery, Organization>
     {
         private readonly IQueryProvider queryProvider;
 
@@ -35,6 +36,16 @@ namespace SlidingApps.TaskRunner.Domain.ReadModel.Platform.Organizations
             var resource =
                 this.queryProvider.From<Organization>()
                     .By(x => x.Id).EqualTo(query.OrganizationId)
+                    .SingleOrDefault();
+
+            return resource;
+        }
+
+        public Organization Handle(OrganizationCodeQuery query)
+        {
+            var resource =
+                this.queryProvider.From<Organization>()
+                    .By(x => x.Code).EqualTo(query.Code)
                     .SingleOrDefault();
 
             return resource;

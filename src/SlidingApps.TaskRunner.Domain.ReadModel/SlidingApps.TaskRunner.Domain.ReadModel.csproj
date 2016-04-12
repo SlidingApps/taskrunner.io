@@ -75,13 +75,16 @@
     <Compile Include="..\AssemblyVersionInfo.cs">
       <Link>Properties\AssemblyVersionInfo.cs</Link>
     </Compile>
+    <Compile Include="IAssemblyMarker.cs" />
     <Compile Include="Platform\Organizations\OrganizationService.cs" />
     <Compile Include="Platform\Organizations\Queries\OrganizationCollectionQuery.cs" />
+    <Compile Include="Platform\Organizations\Queries\OrganizationCodeQuery.cs" />
     <Compile Include="Platform\Organizations\Queries\OrganizationQuery.cs" />
     <Compile Include="Platform\Organizations\Representations\IOrganizationFormatValues.cs" />
     <Compile Include="Platform\Organizations\Representations\Organization.cs" />
     <Compile Include="Platform\Organizations\Representations\OrganizationCollection.cs" />
     <Compile Include="Platform\Organizations\Validations\OrganizationCollectionQueryValidator.cs" />
+    <Compile Include="Platform\Organizations\Validations\OrganizationCodeQueryValidator.cs" />
     <Compile Include="Platform\Organizations\Validations\OrganizationQueryValidator.cs" />
     <Compile Include="Platform\Persons\PersonService.cs" />
     <Compile Include="Platform\Persons\Queries\PersonCollectionQuery.cs" />
