@@ -38,13 +38,13 @@ namespace SlidingApps.TaskRunner.Api.ReadModel.Platform
             return ApiResponse.Found(representation);
         }
 
-        //[HttpGet, Route("{code:string}/availability")]
-        //public bool GetTenantCodeAvailability(string code)
-        //{
-        //    OrganizationCodeQuery query = new OrganizationCodeQuery(code);
-        //    var representation = this.mediator.Send(query).FormatHalJsonLinks(query);
+        [HttpGet, Route("{code:alpha}/availability")]
+        public bool GetTenantCodeAvailability([FromUri]string code)
+        {
+            OrganizationCodeQuery query = new OrganizationCodeQuery(code);
+            var representation = this.mediator.Send(query).FormatHalJsonLinks(query);
 
-        //    return representation != null ? false : true;
-        //}
+            return representation != null ? false : true;
+        }
     }
 }
