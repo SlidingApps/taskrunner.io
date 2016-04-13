@@ -24,13 +24,14 @@ import { EventHub } from './event-hub';
     providers: [FoundationModule.name],
     directives: [ Form, Organization, Username, Password, PasswordConfirmation ],
     template: `
-    <!-- ACCOUNT GET STARTED -->
+    <!-- ACCOUNT GET STARTED: BEGIN -->
     <account-get-started-form [(model)]="ctrl.model">
         <account-get-started-organization [form]="ctrl.form" [(model)]="ctrl.model"></account-get-started-organization>
         <account-get-started-username [form]="ctrl.form" [(model)]="ctrl.model"></account-get-started-username>
         <account-get-started-password [form]="ctrl.form" [(model)]="ctrl.model"></account-get-started-password>
         <account-get-started-password-confirmation [form]="ctrl.form" [(model)]="ctrl.model"></account-get-started-password-confirmation>
     </account-get-started-form>
+    <!-- ACCOUNT GET STARTED: END -->
     `
 })
 @Inject(EventHub)
@@ -46,7 +47,7 @@ export class View {
     private ngOnInit(): void {
         this.subscription = this.hub.form$.filter(x => !!x).distinctUntilChanged().subscribe(x => this.form = x);
     }
-    
+
     private ngOnDestroy(): void {
         if (this.subscription && !this.subscription.isUnsubscribed) { this.subscription.unsubscribe(); }
     }

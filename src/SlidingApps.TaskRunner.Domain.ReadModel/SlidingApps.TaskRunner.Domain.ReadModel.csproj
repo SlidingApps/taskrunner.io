@@ -76,16 +76,17 @@
       <Link>Properties\AssemblyVersionInfo.cs</Link>
     </Compile>
     <Compile Include="IAssemblyMarker.cs" />
-    <Compile Include="Platform\Organizations\OrganizationService.cs" />
-    <Compile Include="Platform\Organizations\Queries\OrganizationCollectionQuery.cs" />
-    <Compile Include="Platform\Organizations\Queries\OrganizationCodeQuery.cs" />
-    <Compile Include="Platform\Organizations\Queries\OrganizationQuery.cs" />
-    <Compile Include="Platform\Organizations\Representations\IOrganizationFormatValues.cs" />
-    <Compile Include="Platform\Organizations\Representations\Organization.cs" />
-    <Compile Include="Platform\Organizations\Representations\OrganizationCollection.cs" />
-    <Compile Include="Platform\Organizations\Validations\OrganizationCollectionQueryValidator.cs" />
-    <Compile Include="Platform\Organizations\Validations\OrganizationCodeQueryValidator.cs" />
-    <Compile Include="Platform\Organizations\Validations\OrganizationQueryValidator.cs" />
+    <Compile Include="Platform\Tenants\Representations\TenantCodeAvailability.cs" />
+    <Compile Include="Platform\Tenants\TenantService.cs" />
+    <Compile Include="Platform\Tenants\Queries\TenantCollectionQuery.cs" />
+    <Compile Include="Platform\Tenants\Queries\TenantCodeQuery.cs" />
+    <Compile Include="Platform\Tenants\Queries\TenantQuery.cs" />
+    <Compile Include="Platform\Tenants\Representations\ITenantFormatValues.cs" />
+    <Compile Include="Platform\Tenants\Representations\Tenant.cs" />
+    <Compile Include="Platform\Tenants\Representations\TenantCollection.cs" />
+    <Compile Include="Platform\Tenants\Validations\TenantCollectionQueryValidator.cs" />
+    <Compile Include="Platform\Tenants\Validations\TenantCodeQueryValidator.cs" />
+    <Compile Include="Platform\Tenants\Validations\TenantQueryValidator.cs" />
     <Compile Include="Platform\Persons\PersonService.cs" />
     <Compile Include="Platform\Persons\Queries\PersonCollectionQuery.cs" />
     <Compile Include="Platform\Persons\Queries\PersonQuery.cs" />

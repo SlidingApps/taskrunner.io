@@ -9,7 +9,7 @@ import { Model } from '../model';
 @Component({
     selector: 'account-get-started-organization',
     template: `
-    <!-- ORGANIZATION -->
+    <!-- ORGANIZATION: BEGIN -->
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-lg-4 col-lg-offset-4">
             <div class="form-group" style="margin-bottom: 20px;">
@@ -34,6 +34,7 @@ import { Model } from '../model';
             <span ng-show="ctrl.form.organization.$error.minlength" style="color: orangered; font-weight: bold;">Checking...</span>
         </div>
     </div>
+    <!-- ORGANIZATION: END -->
     `
 })
 @Inject('$timeout')

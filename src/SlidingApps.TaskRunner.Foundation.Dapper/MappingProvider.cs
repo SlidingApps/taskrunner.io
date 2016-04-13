@@ -30,9 +30,9 @@ namespace SlidingApps.TaskRunner.Foundation.Dapper
             MappingProvider.SCHEMA_CONFIG[schemaName] = schema;
         }
 
-        protected void Map<TType>(string schemName, string tableName)
+        protected void Map<TType>(string schemaName, string tableName)
         {
-            MappingProvider.TABLE_CONFIG[typeof(TType)] = new TableInfo(schemName, tableName);
+            MappingProvider.TABLE_CONFIG[typeof(TType)] = new TableInfo(schemaName, tableName);
         }
 
         public TableMapping GetMapping<TEntity>()

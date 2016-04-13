@@ -19,7 +19,7 @@ interface ILocalScope extends angular.IScope {
     selector: 'account-get-started-form',
     providers: ['ui.router'],
     template: `
-    <!-- FORM -->
+    <!-- FORM: BEGIN -->
     <div class="page-login">
         <div class="loginContentWrap" style="padding: 0;">
             <div class="container-fluid">
@@ -40,6 +40,7 @@ interface ILocalScope extends angular.IScope {
             </div>
         </div>
     </div>
+    <!-- FORM: END -->
     `
 })
 @Inject('$scope', EventHub)

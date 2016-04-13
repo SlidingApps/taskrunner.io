@@ -1,9 +1,9 @@
 ﻿
-using SlidingApps.TaskRunner.Domain.ReadModel.Platform.Organizations.Queries;
-using SlidingApps.TaskRunner.Domain.ReadModel.Platform.Organizations.Representations;
+using MediatR;
+using SlidingApps.TaskRunner.Domain.ReadModel.Platform.Tenants.Queries;
+using SlidingApps.TaskRunner.Domain.ReadModel.Platform.Tenants.Representations;
 using SlidingApps.TaskRunner.Foundation.Extension;
 using SlidingApps.TaskRunner.Foundation.Web;
-using MediatR;
 using System;
 using System.Web.Http;
 
@@ -21,30 +21,30 @@ namespace SlidingApps.TaskRunner.Api.ReadModel.Platform
         }
 
         [HttpGet, Route("")]
-        public OrganizationCollection GetTenantList([FromUri] string code = null, [FromUri] int page = 1, [FromUri] int pageSize = 50)
+        public TenantCollection GetTenantList([FromUri] string code = null, [FromUri] int page = 1, [FromUri] int pageSize = 50)
         {
-            OrganizationCollectionQuery query = new OrganizationCollectionQuery(code, page, pageSize);
+            TenantCollectionQuery query = new TenantCollectionQuery(code, page, pageSize);
             var representations = this.mediator.Send(query).FormatHalJsonLinks(query);
 
             return representations;
         }
 
         [HttpGet, Route("{organizationId:guid}")]
-        public Organization GetTenant(Guid organizationId)
+        public Tenant GetTenant(Guid organizationId)
         {
-            OrganizationQuery query = new OrganizationQuery(organizationId);
+            TenantQuery query = new TenantQuery(organizationId);
             var representation = this.mediator.Send(query).FormatHalJsonLinks(query);
 
             return ApiResponse.Found(representation);
         }
 
-        [HttpGet, Route("{code:alpha}/availability")]
-        public bool GetTenantCodeAvailability([FromUri]string code)
+        [HttpGet, Route(@"{code:regex([a-z\d])}/availability")]
+        public TenantCodeAvailability GetTenantCodeAvailability([FromUri]string code)
         {
-            OrganizationCodeQuery query = new OrganizationCodeQuery(code);
+            TenantCodeQuery query = new TenantCodeQuery(code);
             var representation = this.mediator.Send(query).FormatHalJsonLinks(query);
 
-            return representation != null ? false : true;
+            return ApiResponse.Found(representation);
         }
     }
 }

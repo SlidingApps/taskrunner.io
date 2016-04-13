@@ -9,7 +9,7 @@ import { Model } from '../model';
 @Component({
     selector: 'account-get-started-username',
     template: `
-    <!-- USERNAME -->
+    <!-- USERNAME: BEGIN -->
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-lg-4 col-lg-offset-4">
             <div class="form-group">
@@ -30,6 +30,7 @@ import { Model } from '../model';
             <span ng-show="ctrl.form.email.$error.minlength" style="color: orangered; font-weight: bold;">Username is too short</span>
         </div>
     </div>
+    <!-- USERNAME: END -->
     `
 })
 export class Username {

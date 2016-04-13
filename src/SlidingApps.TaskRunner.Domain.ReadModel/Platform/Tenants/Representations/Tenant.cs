@@ -2,16 +2,16 @@
 using SlidingApps.TaskRunner.Foundation.ReadModel;
 using System;
 
-namespace SlidingApps.TaskRunner.Domain.ReadModel.Platform.Organizations.Representations
+namespace SlidingApps.TaskRunner.Domain.ReadModel.Platform.Tenants.Representations
 {
-    public sealed class Organization
+    public sealed class Tenant
         : DataRepresentation
     {
-        private const string SELF_LINK_TEMPLATE = "/organizations/{organizationId}";
+        private const string SELF_LINK_TEMPLATE = "/tenants/{tenantId}";
 
-        private Organization()
+        private Tenant()
         {
-            this.templates.Add(new SelfLinkTemplate(Organization.SELF_LINK_TEMPLATE));
+            this.templates.Add(new SelfLinkTemplate(Tenant.SELF_LINK_TEMPLATE));
         }
 
         public Guid Id { get; set; }
