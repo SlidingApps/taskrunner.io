@@ -31,7 +31,7 @@ namespace SlidingApps.TaskRunner.Domain.ReadModel.Composition
                 .Keyed("request-pipeline-read", typeof(IRequestHandler<,>))
                 .InstancePerDependency();
 
-            builder.RegisterAssemblyTypes(typeof(AutofacModule).Assembly)
+            builder.RegisterAssemblyTypes(typeof(IAssemblyMarker).Assembly)
                 .AsClosedTypesOf(typeof(IValidator<>))
                 .SingleInstance();
 

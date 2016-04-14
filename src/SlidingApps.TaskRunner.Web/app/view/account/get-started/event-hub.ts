@@ -17,11 +17,11 @@ export class EventHub {
             .combineLatest(this.password$, this.passwordConfirmation$)
             .map(([password, passwordConfirmation]: [string, string]) => {
                 if (password === undefined || passwordConfirmation === undefined) { return false; }
-    
+
                 return password === passwordConfirmation;
             })
             .share();
-    
+
     public formValid$: Observable<boolean> =
         Observable
             .combineLatest(this.passwordEquality$)

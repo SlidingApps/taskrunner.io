@@ -13,11 +13,14 @@ namespace SlidingApps.TaskRunner.Domain.ReadModel.Platform.Tenants.Representatio
             this.templates.Add(new SelfLinkTemplate(TenantCodeAvailability.SELF_LINK_TEMPLATE));
         }
 
-        public TenantCodeAvailability(bool isAvailable)
+        public TenantCodeAvailability(string code, bool isAvailable)
             : this()
         {
+            this.Code = code;
             this.IsAvailable = isAvailable;
         }
+
+        public string Code { get; set; }
 
         public bool IsAvailable { get; set; }
     }
