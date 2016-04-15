@@ -1,4 +1,4 @@
-/// <reference path="../../../../typings.d.ts" />
+/// <reference path="../../../typings.d.ts" />
 
 export class Directive implements angular.IDirective {
     public priority: number = 100;

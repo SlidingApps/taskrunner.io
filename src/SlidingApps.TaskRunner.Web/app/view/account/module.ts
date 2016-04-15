@@ -3,7 +3,7 @@
 import { Module as GetStartedModule } from './get-started/module';
 
 const Module: angular.IModule =
-    angular.module('taskrunner-view-account', [
+    angular.module('application.view.account', [
         GetStartedModule.name
     ]);
 

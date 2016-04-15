@@ -4,10 +4,12 @@
     "angular-loading-bar": "github:DefinitelyTyped/DefinitelyTyped/angular-loading-bar/angular-loading-bar.d.ts#159b479af1b59bdfc435d11d3a1d83d82aa56ec8",
     "angular-ui-router": "github:DefinitelyTyped/DefinitelyTyped/angular-ui-router/angular-ui-router.d.ts#655f8c1bf3c71b0e1ba415b36309604f79326ac8",
     "jquery": "github:DefinitelyTyped/DefinitelyTyped/jquery/jquery.d.ts#fab0b336b0414fac23963bde83f7d7077f6cf14c",
-    "lodash": "github:DefinitelyTyped/DefinitelyTyped/lodash/lodash-3.10.d.ts#86dbea8fc37d9473fee465da4f0a21bea4f8cbd9"
+    "lodash": "github:DefinitelyTyped/DefinitelyTyped/lodash/lodash-3.10.d.ts#86dbea8fc37d9473fee465da4f0a21bea4f8cbd9",
+    "moment": "registry:dt/moment#2.8.0+20160316155526",
+    "moment-node": "registry:dt/moment-node#2.11.1+20160329220348"
   },
-	"dependencies": {
-		"rxjs": "file:jspm_packages\\npm\\rxjs@5.0.0-beta.2\\Rx.d.ts",
-        "ng-forward": "file:jspm_packages\\npm\\ng-forward@0.0.1-alpha.12\\index.d.ts"
-	}
+  "dependencies": {
+    "ng-forward": "file:jspm_packages\\npm\\ng-forward@0.0.1-alpha.12\\index.d.ts",
+    "rxjs": "file:jspm_packages\\npm\\rxjs@5.0.0-beta.2\\Rx.d.ts"
+  }
 }

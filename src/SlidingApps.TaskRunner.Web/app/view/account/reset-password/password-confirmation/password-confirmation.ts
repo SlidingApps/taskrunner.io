@@ -11,7 +11,7 @@ import { EventHub } from '../event-hub';
 @Component({
     selector: 'account-reset-password-password-confirmation',
     template: `
-    <!-- PASSWORD CONFIRMATION -->
+    <!-- ACCOUNT.RESET-PASSWORD.PASSWORD-CONFIRMATION: BEGIN -->
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-lg-4 col-lg-offset-4">
             <div class="form-group">
@@ -34,6 +34,7 @@ import { EventHub } from '../event-hub';
             <span ng-show="ctrl.form.password.$error.test">The value is not a valid integer!</span>
         </div>
     </div>
+    <!-- ACCOUNT.RESET-PASSWORD.PASSWORD-CONFIRMATION: END -->
     `
 })
 @Inject(EventHub)

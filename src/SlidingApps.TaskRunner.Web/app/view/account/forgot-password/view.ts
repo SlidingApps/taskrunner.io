@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { Component, Inject } from 'ng-forward';
 
 // FOUNDATION
-import { Module as FoundationModule } from '../../../component/foundation/module';
+import { Module as ComponentModule } from '../../../component/module';
 
 // DIRECTIVES
 import { Form } from './form/form';
@@ -18,7 +18,7 @@ import { EventHub } from './event-hub';
 
 @Component({
     selector: 'account-forgot-password',
-    providers: [FoundationModule.name],
+    providers: [ComponentModule.name],
     directives: [ Form, Username],
     template: `
     <!-- ACCOUNT FORGOT PASSWORD -->

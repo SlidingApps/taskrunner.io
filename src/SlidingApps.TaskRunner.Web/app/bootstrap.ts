@@ -6,7 +6,7 @@ import 'reflect-metadata';
 import { bootstrap } from 'ng-forward';
 
 // APPLICATION
-import { Application } from './application.ts';
+import { Application } from './application/application.ts';
 
 // ANGULAR MODULES
 import 'angular-ui-router';
@@ -20,7 +20,7 @@ import './vendor/application/less/application.less';
 import './vendor/sharpen/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css';
 
 
-const ApplicationConfigModule: angular.IModule = 
+const ApplicationConfigModule: angular.IModule =
     angular.module('application.config', [ConstantModule.name])
         .config(['$locationProvider', '$urlRouterProvider', ($locationProvider: angular.ILocationProvider, $urlRouterProvider: angular.ui.IUrlRouterProvider) => {
             $locationProvider.html5Mode(false).hashPrefix();
@@ -30,12 +30,12 @@ const ApplicationConfigModule: angular.IModule =
             loadingBarProvider.includeSpinner = false;
         }])
         ;
-    
+
 // BOOTSTRAP APPLICATION
 bootstrap(Application, [
-    'ui.router', 
+    'ui.router',
     'angular-loading-bar',
-    ConstantModule.name, 
-    ApplicationConfigModule.name, 
+    ConstantModule.name,
+    ApplicationConfigModule.name,
     ViewModule.name
 ]);

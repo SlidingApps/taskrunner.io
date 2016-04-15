@@ -1,4 +1,4 @@
-/// <reference path="../../typings.d.ts" />
+/// <reference path="../../../typings.d.ts" />
 
 // COMMON
 import * as angular from 'angular';
@@ -7,7 +7,7 @@ import { Component, Inject } from 'ng-forward';
 @Component({
     selector: 'navigation',
     template: `
-        <!-- HEADER: BEGIN -->
+        <!-- LAYOUT.NAVIGATION: BEGIN -->
         <header id="header" style="position: fixed; top:0; left: 0; width: 100%;">
             <h1 class="logo">
                 <a href="#" class="js-nav-toggler">
@@ -27,7 +27,7 @@ import { Component, Inject } from 'ng-forward';
                 </div>
             </div>
         </header>
-        <!-- HEADER: END -->
+        <!-- LAYOUT.NAVIGATION: END -->
     `
 })
 @Inject('$scope', '$state', '$stateParams')

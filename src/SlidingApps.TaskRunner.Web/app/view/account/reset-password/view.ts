@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { Component, Inject } from 'ng-forward';
 
 // FOUNDATION
-import { Module as FoundationModule } from '../../../component/foundation/module';
+import { Module as FoundationModule } from '../../../component/module';
 
 // DIRECTIVES
 import { Form } from './form/form';

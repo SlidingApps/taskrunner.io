@@ -9,7 +9,7 @@ import { Model } from '../model';
 @Component({
     selector: 'account-sign-in-username',
     template: `
-    <!-- USERNAME -->
+    <!-- ACCOUNT.SIGN-IN.USERNAME: BEGIN -->
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-lg-4 col-lg-offset-4">
             <div class="form-group">
@@ -25,6 +25,7 @@ import { Model } from '../model';
             </div>
         </div>
     </div>
+    <!-- ACCOUNT.SIGN-IN.USERNAME: END -->
     `
 })
 @Inject('$timeout')

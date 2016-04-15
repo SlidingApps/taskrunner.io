@@ -1,4 +1,4 @@
-/// <reference path="./typings.d.ts" />
+/// <reference path="../typings.d.ts" />
 
 import { Component, StateConfig } from 'ng-forward';
 
@@ -6,22 +6,20 @@ import { Component, StateConfig } from 'ng-forward';
 import 'angular-ui-router';
 
 // COMPONENTS
-import { Navigation } from './view/layout/navigation';
-import { Content } from './view/layout/content';
+import { Page } from '../view/layout/page';
 
 // VIEWS
-import { HomeController } from './view/public/home.controller';
-import { AccountController } from './view/account/account-controller.ts';
+import { HomeController } from '../view/public/home.controller';
+import { AccountController } from '../view/account/account-controller.ts';
 
 
 @Component({
     selector: 'application',
     providers: ['ui.router'],
-    directives: [ Navigation, Content],
+    directives: [Page],
     template: `
     <!-- APPLICATION: BEGIN -->
-    <navigation></navigation>
-    <content></content>
+    <page></page>
     <!-- APPLICATION: END -->
     `
 })

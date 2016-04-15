@@ -19,7 +19,7 @@ interface ILocalScope extends angular.IScope {
     selector: 'account-reset-password-form',
     providers: ['ui.router'],
     template: `
-    <!-- FORM -->
+    <!-- ACCOUNT.RESET-PASSWORD.FORM: BEGIN -->
     <div class="page-login">
         <div class="loginContentWrap" style="padding: 0;">
             <div class="container-fluid">
@@ -44,6 +44,7 @@ interface ILocalScope extends angular.IScope {
             </div>
         </div>
     </div>
+    <!-- ACCOUNT.RESET-PASSWORD.FORM: END -->
     `
 })
 @Inject('$scope', EventHub)

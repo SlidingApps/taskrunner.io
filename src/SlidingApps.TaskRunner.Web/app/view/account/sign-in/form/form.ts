@@ -9,6 +9,7 @@ import 'angular-ui-router';
 // PARTIAL SPECIFICS
 import { Model } from '../model';
 import { EventHub } from '../event-hub';
+import { ReadModelService } from '../../../../service/read-model/read-model-service';
 
 interface ILocalScope extends angular.IScope {
     form: angular.IFormController;
@@ -18,7 +19,7 @@ interface ILocalScope extends angular.IScope {
     selector: 'account-sign-in-form',
     providers: ['ui.router'],
     template: `
-    <!-- FORM -->
+    <!-- ACCOUNT.SIGN-IN.FORM: BEGIN -->
     <div>NEW SIGN IN</div>
     <div class="page-login">
         <div class="loginContentWrap" style="padding: 0;">
@@ -30,6 +31,7 @@ interface ILocalScope extends angular.IScope {
                         <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-lg-4 col-lg-offset-4">
                             <div class="form-group">
                                 <button type="submit" class="btn btn-orange submit" data-ng-disabled="ctrl.isBusy || ctrl.isInvalid || form.$invalid">Sign in</button>
+                                <button type="submit" class="btn btn-orange submit" (click)="ctrl.test()">Test</button>
                             </div>
                         </div>
                     </div>
@@ -41,11 +43,12 @@ interface ILocalScope extends angular.IScope {
             </div>
         </div>
     </div>
+    <!-- ACCOUNT.SIGN-IN.FORM: END -->
     `
 })
-@Inject('$scope', EventHub)
+@Inject('$scope', ReadModelService, EventHub)
 export class Form {
-    constructor(private $scope: ILocalScope, private hub: EventHub) { }
+    constructor(private $scope: ILocalScope, private service: ReadModelService, private hub: EventHub) { }
 
     @Input() public model: Model;
 
@@ -62,4 +65,12 @@ export class Form {
         });
     }
     /* tslint:enable:no-unused-variable */
+
+    private test() {
+        console.log('test', this);
+        this.service.getTenantCodeAvailability('demo')
+            .then(response => {
+                console.log('response', response);
+            });
+    }
 }
