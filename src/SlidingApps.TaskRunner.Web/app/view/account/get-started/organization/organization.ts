@@ -31,7 +31,7 @@ import { Model } from '../model';
         </div>
         <div class="col-lg-4">
             <span ng-show="ctrl.form.organization.$error.minlength" style="color: orangered; font-weight: bold;">Organization name is too short</span>
-            <span ng-show="ctrl.form.organization.$error.minlength" style="color: orangered; font-weight: bold;">Checking...</span>
+            <span ng-show="ctrl.form.organization.$error.organizationIsUniqueAsync" style="color: orangered; font-weight: bold;">This name is not available</span>
         </div>
     </div>
     <!-- ACCOUNT.GET-STARTED.ORGANIZATION: END -->

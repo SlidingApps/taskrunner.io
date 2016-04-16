@@ -1,3 +1,10 @@
-/**
- * Created by Peter Vyvey on 15/04/2016.
- */
+/// <reference path="../typings.d.ts" />
+
+import { Module as ReadModelModule } from './read-model/module';
+
+const Module: angular.IModule =
+    angular.module('application.service', [
+        ReadModelModule.name
+    ]);
+
+export { Module };

@@ -7,6 +7,16 @@ import { RestService } from '../rest/rest-service';
 // MODEL
 import { ITenantCodeAvailability } from './representation/tenant-code-availability';
 
+export class ReadModelServiceProvider implements angular.IServiceProvider{
+    public $get: Array<any> = [
+        '$q',
+        'restService',
+        'READMODEL_HOST',
+        'READMODEL_API',
+        ($q, restService, host, api) => new ReadModelService($q, restService, host, api)
+    ];
+}
+
 
 @Injectable()
 @Inject('$q', RestService, 'READMODEL_HOST', 'READMODEL_API')
@@ -19,7 +29,7 @@ export class ReadModelService {
 
     private static TENANT_RESOURCE: string = 'tenants';
 
-    public getTenantCodeAvailability(code: string): ng.IPromise<ITenantCodeAvailability> {
+    public getTenantCodeAvailability(code: string): angular.IPromise<ITenantCodeAvailability> {
         return this.service.all(`${ReadModelService.TENANT_RESOURCE}/${code}/availability`).get();
     }
 

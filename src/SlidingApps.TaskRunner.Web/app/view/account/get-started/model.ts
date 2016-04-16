@@ -4,7 +4,7 @@ export class Model {
     private _organization: string;
     public get organization(): string { return this._organization; }
     public set organization(value: string) {
-        this._organization = value.replace( /[^a-z]/g, '');
+        this._organization =  value ? value.replace( /[^a-z0-9]/g, '') : value;
     }
 
     private _username: string;

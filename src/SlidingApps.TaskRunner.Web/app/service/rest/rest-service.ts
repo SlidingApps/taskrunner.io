@@ -2,6 +2,14 @@
 
 import { Injectable, Inject } from 'ng-forward';
 
+export class RestServiceProvider implements angular.IServiceProvider {
+    public $get: Array<any> = [
+        '$http', 
+        '$q',
+        ($http, $q) => new RestService($http, $q)
+    ];
+}
+
 @Injectable()
 @Inject('$http', '$q')
 export class RestService {

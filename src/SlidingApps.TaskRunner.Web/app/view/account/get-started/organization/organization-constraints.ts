@@ -2,8 +2,11 @@
 
 import 'angular';
 
+import { ReadModelService } from '../../../../service/read-model/read-model-service';
+import { ITenantCodeAvailability } from '../../../../service/read-model/representation/tenant-code-availability'
+
 export class Directive implements angular.IDirective {
-    constructor(private $http: angular.IHttpService, private $q: angular.IQService) { }
+    constructor(private $q: angular.IQService, private service: ReadModelService) { }
 
     public priority: number = 100;
     public require: Array<string> = ['ngModel'];
@@ -23,7 +26,7 @@ export class Directive implements angular.IDirective {
             let _value: string = '';
 
             if (value) {
-                _value = value.replace( /[^a-z]/g, '').trim();
+                _value = value.replace( /[^a-z0-9]/g, '').trim();
             }
 
             return _value;
@@ -33,7 +36,7 @@ export class Directive implements angular.IDirective {
             let _value: string = '';
 
             if (value) {
-                _value = value.replace( /[^a-z]/g, '').trim();
+                _value = value.replace( /[^a-z0-9]/g, '').trim();
 
                 if (_value !== value) {
                     ctrl.$setViewValue(_value);
@@ -44,30 +47,23 @@ export class Directive implements angular.IDirective {
             return _value;
         });
 
-        ctrl.$validators['organization-is-unique'] = (modelValue: string, viewValue: string) => {
-            if (!modelValue || !viewValue) { return true; }
-
-            return true;
-        };
-
-        ctrl.$asyncValidators['organization-is-unique-async'] = (modelValue: string, viewValue: string) => {
+        ctrl.$asyncValidators.organizationIsUniqueAsync = (modelValue: string, viewValue: string) => {
+            let deferred: angular.IDeferred<void> = this.$q.defer<void>();
             let value: string = modelValue || viewValue;
 
-            console.log('$asyncValidators', this, value);
+            this.service.getTenantCodeAvailability(value)
+                .then((response: ITenantCodeAvailability) => {
+                    if (response.isAvailable) {
+                        deferred.resolve();
+                    } else {
+                        deferred.reject();
+                    }
+                })
+                .catch(() => deferred.reject());
 
-            // Lookup user by username
-            return this.$http.get('http://www.google.be').then(
-                response => {
-                    console.log('http', response);
-                    // username exists, this means validation fails
-                    return this.$q.reject('exists');
-                },
-                reason => {
-                    // username does not exist, therefore this validation passes
-                    return true;
-                });
+            return deferred.promise;
         };
     }
 }
 
-export const DirectiveFactory: [() => angular.IDirective] = ['$http', '$q', ($http, $q) => new Directive($http, $q)];
+export const DirectiveFactory: [() => angular.IDirective] = ['$q', 'readModelService', ($q, readModelService) => new Directive($q, readModelService)];
