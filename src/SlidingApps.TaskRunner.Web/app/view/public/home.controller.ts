@@ -2,7 +2,6 @@
 
 // COMMON
 import * as angular from 'angular';
-import { Subscription } from 'rxjs';
 import { Component, Inject } from 'ng-forward';
 
 // TEMPLATE
@@ -20,15 +19,17 @@ import 'angular-ui-router';
 export class HomeController {
 
     constructor(private $scope: angular.IScope, private $element: angular.IAugmentedJQuery, private $state: angular.ui.IStateService) {
-        console.log('home', this);
+        // console.log('home', this);
     }
 
+    /* tslint:disable:no-unused-variable */
     private ngOnInit(): void {
-        console.log('ngOnInit', this);
+        // console.log('ngOnInit', this);
     }
 
     private ngOnDestroy(): void {
-        console.log('ngOnDestroy', this);
+        // console.log('ngOnDestroy', this);
     }
+    /* tslint:enable:no-unused-variable */
 
 }

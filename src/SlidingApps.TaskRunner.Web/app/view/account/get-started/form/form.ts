@@ -9,7 +9,9 @@ import 'angular-ui-router';
 
 // PARTIAL SPECIFICS
 import { Model } from '../model';
+import { ICreateTenantPayload  } from '../../../../service/write-model/tenant/create-tenant';
 import { EventHub } from '../event-hub';
+import { WriteModelService  } from '../../../../service/write-model/write-model-service';
 
 interface ILocalScope extends angular.IScope {
     form: angular.IFormController;
@@ -43,9 +45,9 @@ interface ILocalScope extends angular.IScope {
     <!-- ACCOUNT.GET-STARTED.FORM: END -->
     `
 })
-@Inject('$scope', EventHub)
+@Inject('$scope', EventHub, WriteModelService)
 export class Form {
-    constructor(private $scope: ILocalScope, private hub: EventHub) { }
+    constructor(private $scope: ILocalScope, private hub: EventHub, private writeModel: WriteModelService) { }
 
     @Input() public model: Model;
 
@@ -53,7 +55,10 @@ export class Form {
     private validator: Subscription;
 
     public submit(form: angular.IFormController): void {
-        console.log('form', angular.toJson(form), this.model);
+        let payload: ICreateTenantPayload = this.model.$toCreateTenant();
+        this.writeModel.postCreateTenant(payload)
+            .then(response => console.log('response', response))
+            .catch(reason => console.log('reason', reason));
     }
 
     /* tslint:disable:no-unused-variable */

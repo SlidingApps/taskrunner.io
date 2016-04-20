@@ -4,26 +4,23 @@ import { Injectable, Inject } from 'ng-forward';
 
 export class RestServiceProvider implements angular.IServiceProvider {
     public $get: Array<any> = [
-        '$http', 
+        '$http',
         '$q',
-        ($http, $q) => new RestService($http, $q)
+        '$log',
+        ($http, $q, $log) => new RestService($http, $q, $log)
     ];
 }
 
 @Injectable()
-@Inject('$http', '$q')
+@Inject('$http', '$q', '$log')
 export class RestService {
 
-    constructor($http: angular.IHttpService, $q: angular.IQService) {
-        this.$http = $http;
-        this.$q = $q;
+    constructor(private $http: angular.IHttpService, private $q: angular.IQService, private $log: angular.ILogService) {
         this.defaultConfiguration = new RestServiceConfiguration();
     }
 
     public static get DELIMITER(): string { return '/'; };
 
-    public $http: angular.IHttpService;
-    public $q: angular.IQService;
     public configuration: RestServiceConfiguration;
     public defaultConfiguration: RestServiceConfiguration;
 
@@ -34,7 +31,7 @@ export class RestService {
         let configuration: RestServiceConfiguration = angular.extend({}, this.configuration);
         configuration.host.url = _options.url;
 
-        let connector: RestServiceConnector = new RestServiceConnector(this.$http, this.$q, configuration);
+        let connector: RestServiceConnector = new RestServiceConnector(this.$http, this.$q, this.$log, configuration);
 
         return connector;
     }
@@ -47,7 +44,7 @@ export class RestService {
         configuration.api.path = _options.path;
         configuration.api.values = _options.values;
 
-        let connector: RestServiceConnector = new RestServiceConnector(this.$http, this.$q, configuration);
+        let connector: RestServiceConnector = new RestServiceConnector(this.$http, this.$q, this.$log, configuration);
 
         return connector;
     }
@@ -55,39 +52,24 @@ export class RestService {
     /** Gets a collection of the specified resource. */
     public all<TRepresentation>(options: string|IResourceOptions): RestServiceEndpoint {
         this.configuration = angular.copy(this.defaultConfiguration);
-        let connector: RestServiceConnector = new RestServiceConnector(this.$http, this.$q, this.configuration);
+        let connector: RestServiceConnector = new RestServiceConnector(this.$http, this.$q, this.$log, this.configuration);
+
         return connector.all<TRepresentation>(options);
     }
 
     /** Gets a resource identified by the given identifier. */
-    public one<TRepresentation>(name: string, id?: string): RestServiceEndpoint {
+    public one<TRepresentation>(name: string, identifier: string): RestServiceEndpoint {
         this.configuration = angular.copy(this.defaultConfiguration);
-        let connector: RestServiceConnector = new RestServiceConnector(this.$http, this.$q, this.configuration);
-        return connector.one<TRepresentation>(name, id);
+        let connector: RestServiceConnector = new RestServiceConnector(this.$http, this.$q, this.$log, this.configuration);
+
+        return connector.one<TRepresentation>(name, identifier);
     }
-
-    public full<TRepresentation>(url): RestServiceEndpoint {
-        this.configuration = angular.copy(this.defaultConfiguration);
-        let connector: RestServiceConnector = new RestServiceConnector(this.$http, this.$q, this.configuration);
-        return connector.full<TRepresentation>(url);
-    }
-
-
 }
 
 export class RestServiceConnector {
 
-    constructor($http: angular.IHttpService, $q: angular.IQService, configuration: RestServiceConfiguration) {
-        this.$http = $http;
-        this.$q = $q;
-
-        this.configuration = configuration;
+    constructor(private $http: angular.IHttpService, private $q: angular.IQService, private $log: angular.ILogService, private configuration: RestServiceConfiguration) {
     }
-
-    private $q: angular.IQService;
-    private $http: angular.IHttpService;
-
-    public configuration: RestServiceConfiguration;
 
     public host(options: string|IHostOptions): RestServiceConnector {
         let _options: IHostOptions = typeof options === 'string' ? { url: options } : options;
@@ -108,45 +90,32 @@ export class RestServiceConnector {
 
     public all<TRepresentation>(options: string|IResourceOptions): RestServiceEndpoint {
         let endpointUrl: string = RestServiceUtils.BuildEndpointUrl(this.configuration);
-        let endpoint: RestServiceEndpoint = new RestServiceEndpoint(this.$http, this.$q, new EndpointConfiguration(endpointUrl));
+        let endpoint: RestServiceEndpoint = new RestServiceEndpoint(this.$http, this.$q, this.$log, new EndpointConfiguration(endpointUrl));
         endpoint.all(options);
 
         return endpoint;
     }
 
-    public one<TRepresentation>(name: string, id?: string): RestServiceEndpoint {
+    public one<TRepresentation>(name: string, identifier: string): RestServiceEndpoint {
         let endpointUrl: string = RestServiceUtils.BuildEndpointUrl(this.configuration);
-        let endpoint: RestServiceEndpoint = new RestServiceEndpoint(this.$http, this.$q, new EndpointConfiguration(endpointUrl));
-        endpoint.one(name, id);
+        let endpoint: RestServiceEndpoint = new RestServiceEndpoint(this.$http, this.$q, this.$log, new EndpointConfiguration(endpointUrl));
+        endpoint.one(name, identifier);
 
-        return endpoint;
-    }
-
-    public full<TRepresentation>(url): RestServiceEndpoint {
-        let endpointUrl: string = url;
-        let endpoint: RestServiceEndpoint = new RestServiceEndpoint(this.$http, this.$q, new EndpointConfiguration(endpointUrl));
         return endpoint;
     }
 }
 
 export class RestServiceEndpoint {
 
-    constructor($http: angular.IHttpService, $q: angular.IQService, configuration: EndpointConfiguration) {
-        this.$http = $http;
-        this.$q = $q;
-        this.configuration = configuration;
-    }
-
-    private $q: angular.IQService;
-    private $http: angular.IHttpService;
+    constructor(private $http: angular.IHttpService, private $q: angular.IQService, private $log: angular.ILogService, private configuration: EndpointConfiguration) { }
 
     private requestConfiguration: angular.IRequestShortcutConfig = {
         headers: {
             'Accept': 'application/hal+json',
             'Content-Type': 'application/json; charset=utf-8'
         }
-    }
-    private configuration: EndpointConfiguration;
+    };
+
     private resources: Array<ResourceConfiguration> = [];
     private queryString: string = '';
 
@@ -182,8 +151,8 @@ export class RestServiceEndpoint {
         });
 
         let endpoints: Array<RestServiceEndpoint> = [];
-        for (let i = 0; i < identifiers.length; i++) {
-            let endpoint: RestServiceEndpoint = new RestServiceEndpoint(this.$http, this.$q, new EndpointConfiguration(url));
+        for (let i: number = 0; i < identifiers.length; i++) {
+            let endpoint: RestServiceEndpoint = new RestServiceEndpoint(this.$http, this.$q, this.$log, new EndpointConfiguration(url));
             endpoint.one(name, identifiers[i]);
 
             endpoints.push(endpoint);
@@ -203,20 +172,23 @@ export class RestServiceEndpoint {
         });
 
         url = url + this.queryString;
+        this.$log.info('RestServiceEndpoint.get', url);
 
         this.$http.get(url, angular.extend({}, this.requestConfiguration, { cache: cache }))
             .success((data: TRepresentation) => {
+                this.$log.debug('RestServiceEndpoint.get', url, data);
                 deferred.resolve(data);
             })
             .error((error: any) => {
+                this.$log.error('RestServiceEndpoint.get', error);
                 deferred.reject(error);
             });
 
         return deferred.promise;
     }
 
-    public post<TRepresentation>(instance: TRepresentation): angular.IPromise<any> {
-        let deferred: angular.IDeferred<TRepresentation> = this.$q.defer();
+    public post<TPayload>(instance: TPayload): angular.IPromise<any> {
+        let deferred: angular.IDeferred<TPayload> = this.$q.defer();
 
         let url: string = this.configuration.url;
         this.resources.forEach((resource: ResourceConfiguration) => {
@@ -224,12 +196,15 @@ export class RestServiceEndpoint {
         });
 
         url = url + this.queryString;
+        this.$log.info('RestServiceEndpoint.post', url, instance);
 
         this.$http.post(url, instance, this.requestConfiguration)
             .success((data: any) => {
+                this.$log.debug('RestServiceEndpoint.post', url, data);
                 deferred.resolve(data);
             })
             .error((error: any) => {
+                this.$log.error('RestServiceEndpoint.post', error);
                 deferred.reject(error);
             });
 
@@ -304,7 +279,7 @@ export class RestServiceEndpointSet {
         // let config: angular.IRequestShortcutConfig = { headers: {} };
         // config.headers = this.addCustomHttpHeaders();
 
-        for (let i = 0; i < this.endpoints.length; i++) {
+        for (let i: number = 0; i < this.endpoints.length; i++) {
             let promise: angular.IPromise<TRepresentation> = this.endpoints[i].query(this._query).get();
             promises.push(promise);
         }
@@ -347,18 +322,20 @@ class RestServiceUtils {
                         return {
                             key: key,
                             value: query[key]
-                        }
+                        };
                     })
                     .filter((pair: IKeyValuePair<any>) => {
+                        /* tslint:disable:no-null-keyword */
                         return pair.value !== null && pair.value !== undefined;
+                        /* tslint:enable:no-null-keyword */
                     })
                     .map((pair: IKeyValuePair<any>) => {
                         if (pair.value instanceof Date) {
-                            pair.value = pair.value.toISOString()
+                            pair.value = pair.value.toISOString();
                         }
 
                         if (pair.value instanceof Array) {
-                            if (pair.value.length === 0) return pair.key.toLowerCase() + '=';
+                            if (pair.value.length === 0) { return pair.key.toLowerCase() + '='; }
                             return pair.value.map(x => pair.key.toLowerCase() + '=' + encodeURIComponent(x)).join('&');
                         }
 
@@ -416,7 +393,9 @@ export class ResourceConfiguration implements IResourceConfiguration {
     }
 
     public name: string;
+    /* tslint:disable:no-null-keyword */
     public id: string = null;
+    /* tslint:enable:no-null-keyword */
 }
 
 export interface IHostOptions {
@@ -429,7 +408,10 @@ export interface IHostConfiguration extends IHostOptions {
 
 export interface IApiOptions {
     path: string;
-    values?: any
+    
+    /* tslint:disable:no-null-keyword */
+    values?: any;
+    /* tslint:enable:no-null-keyword */
 }
 
 export interface IApiConfiguration extends IApiOptions {
@@ -443,12 +425,14 @@ export interface IRestServiceConfiguration {
 }
 
 export class HostConfiguration implements IHostConfiguration {
-    url: string = '/';
+    public url: string = '/';
 }
 
 export class ApiConfiguration implements IApiConfiguration {
-    path: string = 'api';
-    values: any = null;
+    public path: string = 'api';
+    /* tslint:disable:no-null-keyword */
+    public values: any = null;
+    /* tslint:enable:no-null-keyword */
 }
 
 export class RestServiceConfiguration implements IRestServiceConfiguration {
@@ -458,6 +442,6 @@ export class RestServiceConfiguration implements IRestServiceConfiguration {
         this.api = new ApiConfiguration();
     }
 
-    host: IHostConfiguration;
-    api: IApiConfiguration;
+    public host: IHostConfiguration;
+    public api: IApiConfiguration;
 }

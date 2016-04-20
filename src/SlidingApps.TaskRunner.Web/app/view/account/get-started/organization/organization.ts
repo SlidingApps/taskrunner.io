@@ -2,6 +2,7 @@
 
 // COMMON
 import { Component, Input, Inject } from 'ng-forward';
+import { Logger } from '../../../../component/foundation/logger';
 
 // PARTIAL SPECIFICS
 import { Model } from '../model';
@@ -24,7 +25,7 @@ import { Model } from '../model';
                         tr-organization-constraints
                         organization-is-unique-async-validator
                         data-ng-model="ctrl.model.organization"
-                        data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 0, blur: 0 } }"
+                        data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 300, blur: 0 } }"
                         data-ng-minlength="2"/>
                 <i class="fa fa-users"></i>
             </div>
@@ -47,6 +48,10 @@ export class Organization {
     /* tslint:disable:no-unused-variable */
     private ngOnInit(): void {
         this.$timeout(() => angular.element('#organization').focus(), 300);
+    }
+
+    private ngOnDestroy(): void {
+        this.model.$destroy();
     }
     /* tslint:enable:no-unused-variable */
 }

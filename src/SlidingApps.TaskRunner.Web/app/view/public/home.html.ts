@@ -1,3 +1,2 @@
-/**
- * Created by Peter Vyvey on 16/04/2016.
- */
+let template: string;
+export default template;

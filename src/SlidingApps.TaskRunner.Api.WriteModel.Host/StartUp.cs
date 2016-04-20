@@ -1,6 +1,7 @@
 ﻿
 using Autofac;
 using Autofac.Integration.WebApi;
+using Microsoft.Owin.Cors;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Owin;
@@ -83,6 +84,7 @@ namespace SlidingApps.TaskRunner.Api.WriteModel.Host
 
 		private void ConfigureOwin(IAppBuilder app, HttpConfiguration config, IContainer container)
 		{
+            app.UseCors(CorsOptions.AllowAll);
 			app.UseWebApi(config);
 			app.UseAutofacMiddleware(container);
 			//app.UseAutofacWebApi(GlobalConfiguration.Configuration);

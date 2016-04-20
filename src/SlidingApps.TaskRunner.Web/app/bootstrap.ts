@@ -22,12 +22,47 @@ import './vendor/sharpen/fonts/material-design-iconic-font/css/material-design-i
 
 const ApplicationConfigModule: angular.IModule =
     angular.module('application.config', [ConstantModule.name])
+        .config(['$compileProvider', ($compileProvider: angular.ICompileProvider) => {
+            $compileProvider.debugInfoEnabled(false);
+        }])
+        .config(['$logProvider', ($logProvider: angular.ILogProvider) => {
+            $logProvider.debugEnabled(true);
+        }])
         .config(['$locationProvider', '$urlRouterProvider', ($locationProvider: angular.ILocationProvider, $urlRouterProvider: angular.ui.IUrlRouterProvider) => {
             $locationProvider.html5Mode(false).hashPrefix();
             $urlRouterProvider.otherwise('/');
         }])
         .config(['cfpLoadingBarProvider', (loadingBarProvider: angular.loadingBar.ILoadingBarProvider) => {
             loadingBarProvider.includeSpinner = false;
+        }])
+        .config(['$provide', '$logProvider', ($provide, $logProvider) => {
+            $provide.decorator('$log', ['$delegate', $delegate => {
+                let debug: any = $delegate.debug;
+                $delegate.debug = () => {
+                    if ($logProvider.debugEnabled()) {
+                        let args: any = [].slice.call(arguments);
+                        let now: string = new Date().toISOString().substr(11, 12);
+
+                        args.unshift('DEBUG');
+                        args.unshift(now);
+                        debug.apply(undefined, args);
+                    }
+                };
+
+                let info: any = $delegate.info;
+                $delegate.info = () => {
+                    if ($logProvider.debugEnabled()) {
+                        let args: any = [].slice.call(arguments);
+                        let now: string = new Date().toISOString().substr(11, 12);
+
+                        args.unshift('INFO ');
+                        args.unshift(now);
+                        info.apply(undefined, args);
+                    }
+                };
+
+                return $delegate;
+            }]);
         }])
         ;
 

@@ -1,3 +1,5 @@
-/**
- * Created by Peter Vyvey on 16/04/2016.
- */
+/// <reference path="../../typings.d.ts" />
+
+export class Logger {
+    public static LOG: angular.ILogService;
+}

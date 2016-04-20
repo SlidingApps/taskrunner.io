@@ -3,7 +3,7 @@
 import 'angular';
 
 import { Module as ServiceModule } from '../../../../service/module';
-import { DirectiveFactory as NgModelDirective } from './organization-constraints';
+import { DirectiveFactory as NgModelDirective } from './organization-validation';
 
 const Module: angular.IModule =
     angular.module('application.view.account.get-started.organization', [

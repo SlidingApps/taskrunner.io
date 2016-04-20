@@ -5,9 +5,9 @@ import { Injectable, Inject } from 'ng-forward';
 import { RestService } from '../rest/rest-service';
 
 // MODEL
-import { ITenantCodeAvailability } from './representation/tenant-code-availability';
+import {TenantCodeAvailability, ITenantCodeAvailability} from './tenant/tenant-code-availability';
 
-export class ReadModelServiceProvider implements angular.IServiceProvider{
+export class ReadModelServiceProvider implements angular.IServiceProvider {
     public $get: Array<any> = [
         '$q',
         'restService',
@@ -29,8 +29,16 @@ export class ReadModelService {
 
     private static TENANT_RESOURCE: string = 'tenants';
 
-    public getTenantCodeAvailability(code: string): angular.IPromise<ITenantCodeAvailability> {
-        return this.service.all(`${ReadModelService.TENANT_RESOURCE}/${code}/availability`).get();
-    }
+    public getTenantCodeAvailability(code: string): angular.IPromise<TenantCodeAvailability> {
+        let deferred: angular.IDeferred<TenantCodeAvailability> = this.$q.defer<TenantCodeAvailability>();
 
+        this.service.all(`${ReadModelService.TENANT_RESOURCE}/${code}/availability`)
+            .get()
+            .then((representation: ITenantCodeAvailability) => {
+                deferred.resolve(new TenantCodeAvailability(representation));
+            })
+            .catch(reason => deferred.reject(reason));
+
+        return deferred.promise;
+    }
 }

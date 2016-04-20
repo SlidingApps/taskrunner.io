@@ -42,7 +42,6 @@ export class Password {
     @Input() public form: angular.IFormController;
 
     public changed(): void {
-        console.log('changed password', this.model.password);
         this.hub.password$.next(this.model.password);
     }
 }

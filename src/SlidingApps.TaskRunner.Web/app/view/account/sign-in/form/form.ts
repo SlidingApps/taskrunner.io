@@ -31,7 +31,6 @@ interface ILocalScope extends angular.IScope {
                         <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-lg-4 col-lg-offset-4">
                             <div class="form-group">
                                 <button type="submit" class="btn btn-orange submit" data-ng-disabled="ctrl.isBusy || ctrl.isInvalid || form.$invalid">Sign in</button>
-                                <button type="submit" class="btn btn-orange submit" (click)="ctrl.test()">Test</button>
                             </div>
                         </div>
                     </div>
@@ -65,12 +64,4 @@ export class Form {
         });
     }
     /* tslint:enable:no-unused-variable */
-
-    private test() {
-        console.log('test', this);
-        this.service.getTenantCodeAvailability('demo')
-            .then(response => {
-                console.log('response', response);
-            });
-    }
 }

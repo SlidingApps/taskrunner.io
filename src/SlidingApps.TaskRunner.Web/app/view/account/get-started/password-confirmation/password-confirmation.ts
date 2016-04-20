@@ -49,7 +49,6 @@ export class PasswordConfirmation {
     private validator: Subscription;
 
     public changed(): void {
-        console.log('changed password confirm', this.model.password);
         this.hub.passwordConfirmation$.next(this.model.passwordConfirmation);
     }
 

@@ -3,16 +3,18 @@
 import 'angular';
 
 import { ReadModelService } from '../../../../service/read-model/read-model-service';
-import { ITenantCodeAvailability } from '../../../../service/read-model/representation/tenant-code-availability'
+import { TenantCodeAvailability } from '../../../../service/read-model/tenant/tenant-code-availability';
 
 export class Directive implements angular.IDirective {
     constructor(private $q: angular.IQService, private service: ReadModelService) { }
+    
+    private static ORGANIZATION_IS_UNIQUE_ASYNC_VALIDATOR: string = 'organizationIsUniqueAsync';
 
     public priority: number = 100;
     public require: Array<string> = ['ngModel'];
     public restrict: string = 'A';
 
-    public compile(): void {
+    public compile(): angular.IDirectiveCompileFn {
         return this.link.bind(this);
     }
 
@@ -47,12 +49,12 @@ export class Directive implements angular.IDirective {
             return _value;
         });
 
-        ctrl.$asyncValidators.organizationIsUniqueAsync = (modelValue: string, viewValue: string) => {
+        ctrl.$asyncValidators[Directive.ORGANIZATION_IS_UNIQUE_ASYNC_VALIDATOR] = (modelValue: string, viewValue: string) => {
             let deferred: angular.IDeferred<void> = this.$q.defer<void>();
             let value: string = modelValue || viewValue;
 
             this.service.getTenantCodeAvailability(value)
-                .then((response: ITenantCodeAvailability) => {
+                .then((response: TenantCodeAvailability) => {
                     if (response.isAvailable) {
                         deferred.resolve();
                     } else {
@@ -66,4 +68,4 @@ export class Directive implements angular.IDirective {
     }
 }
 
-export const DirectiveFactory: [() => angular.IDirective] = ['$q', 'readModelService', ($q, readModelService) => new Directive($q, readModelService)];
+export const DirectiveFactory: Array<any> = ['$q', 'readModelService', ($q, readModelService) => new Directive($q, readModelService)];
