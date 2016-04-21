@@ -87,14 +87,14 @@
     <Compile Include="Platform\Tenants\Validations\TenantCollectionQueryValidator.cs" />
     <Compile Include="Platform\Tenants\Validations\TenantCodeQueryValidator.cs" />
     <Compile Include="Platform\Tenants\Validations\TenantQueryValidator.cs" />
-    <Compile Include="Platform\Persons\PersonService.cs" />
-    <Compile Include="Platform\Persons\Queries\PersonCollectionQuery.cs" />
-    <Compile Include="Platform\Persons\Queries\PersonQuery.cs" />
-    <Compile Include="Platform\Persons\Representations\IPersonFormatValues.cs" />
-    <Compile Include="Platform\Persons\Representations\Person.cs" />
-    <Compile Include="Platform\Persons\Representations\PersonCollection.cs" />
-    <Compile Include="Platform\Persons\Validations\PersonCollectionQueryValidator.cs" />
-    <Compile Include="Platform\Persons\Validations\PersonQueryValidator.cs" />
+    <Compile Include="Platform\Accounts\AccountService.cs" />
+    <Compile Include="Platform\Accounts\Queries\AccountCollectionQuery.cs" />
+    <Compile Include="Platform\Accounts\Queries\AccountQuery.cs" />
+    <Compile Include="Platform\Accounts\Representations\IAccountFormatValues.cs" />
+    <Compile Include="Platform\Accounts\Representations\Account.cs" />
+    <Compile Include="Platform\Accounts\Representations\AccountCollection.cs" />
+    <Compile Include="Platform\Accounts\Validations\AccountCollectionQueryValidator.cs" />
+    <Compile Include="Platform\Accounts\Validations\AccountQueryValidator.cs" />
     <Compile Include="Platform\PlatformMappingProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

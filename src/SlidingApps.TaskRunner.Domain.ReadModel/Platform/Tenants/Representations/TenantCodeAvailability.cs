@@ -1,5 +1,6 @@
 ﻿
 using SlidingApps.TaskRunner.Foundation.ReadModel;
+using System;
 
 namespace SlidingApps.TaskRunner.Domain.ReadModel.Platform.Tenants.Representations
 {
@@ -13,12 +14,15 @@ namespace SlidingApps.TaskRunner.Domain.ReadModel.Platform.Tenants.Representatio
             this.templates.Add(new SelfLinkTemplate(TenantCodeAvailability.SELF_LINK_TEMPLATE));
         }
 
-        public TenantCodeAvailability(string code, bool isAvailable)
+        public TenantCodeAvailability(Guid id, string code, bool isAvailable)
             : this()
         {
+            this.Id = id;
             this.Code = code;
             this.IsAvailable = isAvailable;
         }
+
+        public Guid Id { get; set; }
 
         public string Code { get; set; }
 

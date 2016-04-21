@@ -48,7 +48,7 @@ namespace SlidingApps.TaskRunner.Domain.ReadModel.Platform.Tenants
                     .By(x => x.Code).EqualTo(query.Code)
                     .SingleOrDefault();
 
-            return resource != null ? new TenantCodeAvailability(query.Code, false) : new TenantCodeAvailability(query.Code, true);
+            return resource != null ? new TenantCodeAvailability(resource.Id, query.Code, false) : new TenantCodeAvailability(resource.Id, query.Code, true);
         }
     }
 }
