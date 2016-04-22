@@ -50,7 +50,7 @@ namespace SlidingApps.TaskRunner.Foundation.Dapper
 
         public IQueryProvider OrderBy<TEntity>(Expression<Func<TEntity, object>> property)
         {
-            this.clauses.Add(new OrderByClause<TEntity>(this.mappingProvider.GetMapping<TEntity>().Table, property));
+            this.clauses.Add(new OrderByClause<TEntity>(this.mappingProvider.GetMapping<TEntity>().GetSchemaAndTableName(), property));
 
             return this;
         }
@@ -68,7 +68,7 @@ namespace SlidingApps.TaskRunner.Foundation.Dapper
             var provider = this.databaseProviderFactory.Resolve(name);
 
             this.clauses.Add(new SelectClause("*"));
-            this.clauses.Add(new FromClause(this.mappingProvider.GetMapping<TEntity>().Table));
+            this.clauses.Add(new FromClause(this.mappingProvider.GetMapping<TEntity>().GetSchemaAndTableName()));
             this.clauses.Add(new WhereClause(this.criteria));
 
             return provider.Get<TEntity>(this.clauses);
@@ -80,7 +80,7 @@ namespace SlidingApps.TaskRunner.Foundation.Dapper
             var provider = this.databaseProviderFactory.Resolve(name);
 
             this.clauses.Add(new SelectClause("*"));
-            this.clauses.Add(new FromClause(this.mappingProvider.GetMapping<TEntity>().Table));
+            this.clauses.Add(new FromClause(this.mappingProvider.GetMapping<TEntity>().GetSchemaAndTableName()));
             this.clauses.Add(new WhereClause(this.criteria));
 
             return provider.GetList<TEntity>(this.clauses);

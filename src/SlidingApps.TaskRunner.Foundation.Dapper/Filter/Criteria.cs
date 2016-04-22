@@ -153,7 +153,7 @@ namespace SlidingApps.TaskRunner.Foundation.Dapper.Filter
 
             if (propertyInfo != null)
             {
-                string prefix = this.mappingProvider.GetMapping<TEntity>().Table;
+                string prefix = this.mappingProvider.GetMapping<TEntity>().GetSchemaAndTableName();
                 criterion = this.provider.CreateCriterion<TEntity>(prefix);
                 criterion.Criteria = this;
                 criterion.Field = propertyInfo.Name;
