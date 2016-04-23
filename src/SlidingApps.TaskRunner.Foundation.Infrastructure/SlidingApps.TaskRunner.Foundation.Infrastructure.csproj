@@ -53,6 +53,7 @@
     <Compile Include="..\AssemblyVersionInfo.cs">
       <Link>Properties\AssemblyVersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Encryption\Blowfish.cs" />
     <Compile Include="ExceptionManagement\ApplicationException.cs" />
     <Compile Include="ExceptionManagement\BusinessException.cs" />
     <Compile Include="ExceptionManagement\TechnicalException.cs" />

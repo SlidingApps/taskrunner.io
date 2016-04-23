@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Web.Routing;
 
@@ -23,6 +24,25 @@ namespace SlidingApps.TaskRunner.Foundation.Infrastructure.Extension
             }
 
             return format;
+        }
+
+        public static string ToHexString(this string value)
+        {
+            return string.Format("{0:X}", value);
+        }
+
+        public static byte[] ToBytes(this string value)
+        {
+            ASCIIEncoding encoding = new ASCIIEncoding();
+
+            return encoding.GetBytes(value);
+        }
+
+        public static string FromBytes(this byte[] value)
+        {
+            ASCIIEncoding encoding = new ASCIIEncoding();
+
+            return encoding.GetString(value);
         }
     }
 }

@@ -14,6 +14,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts.Maps
         {
             this.Map(x => x.Name);
             this.Map(x => x.Password);
+            this.Map(x => x.Salt);
             this.Map(x => x.ValidUntil);
 
             this.References(x => x.Account).Unique().Column("AccountId");

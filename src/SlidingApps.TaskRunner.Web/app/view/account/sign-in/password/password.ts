@@ -19,7 +19,9 @@ import { Model } from '../model';
                         class="form-control simple-form-control" 
                         placeholder="password" 
                         required
-                        data-ng-model="ctrl.model.password" />
+                        data-ng-model="ctrl.model.password" 
+                        data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 1000, blur: 0 } }"
+                        data-ng-minlength="4"/>
                 <i class="fa fa-lock"></i>
             </div>
         </div>

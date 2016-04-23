@@ -88,6 +88,7 @@
       <Link>Properties\AssemblyVersionInfo.cs</Link>
     </Compile>
     <Compile Include="IAssemblyMarker.cs" />
+    <Compile Include="Platform\AuthorizationController.cs" />
     <Compile Include="Platform\TenantController.cs" />
     <Compile Include="Platform\AccountController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

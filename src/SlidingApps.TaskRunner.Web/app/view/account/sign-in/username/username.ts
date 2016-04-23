@@ -20,9 +20,14 @@ import { Model } from '../model';
                         placeholder="email"
                         autocomplete="off"
                         required
-                        data-ng-model="ctrl.model.username" />
+                        data-ng-model="ctrl.model.username"
+                        data-ng-model-options="{ updateOn: 'default blur', debounce: { default: 1000, blur: 0 } }"
+                        data-ng-minlength="6"/>
                 <i class="fa fa-envelope"></i>
             </div>
+        </div>
+        <div class="col-lg-4">
+            <span ng-show="ctrl.form.email.$error.minlength" style="color: orangered; font-weight: bold;">Username is too short</span>
         </div>
     </div>
     <!-- ACCOUNT.SIGN-IN.USERNAME: END -->

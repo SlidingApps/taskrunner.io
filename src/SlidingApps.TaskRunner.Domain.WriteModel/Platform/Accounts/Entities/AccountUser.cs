@@ -8,16 +8,26 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts.Entities
            : AuditableDataEntity<Guid>
     {
         public AccountUser()
-            : base() { }
+            : base()
+        {
+            this.ValidFrom = Constant.DEFAULT_START_DATE;
+            this.ValidUntil = Constant.DEFAULT_END_DATE;
+        }
 
         public AccountUser(Guid id)
-            : base(id) { }
+            : base(id)
+        {
+            this.ValidFrom = Constant.DEFAULT_START_DATE;
+            this.ValidUntil = Constant.DEFAULT_END_DATE;
+        }
 
         public virtual Guid AccountId { get; set; }
 
         public virtual string Name { get; set; }
 
         public virtual string Password { get; set; }
+
+        public virtual string Salt { get; set; }
 
         public virtual DateTime ValidFrom { get; set; }
 

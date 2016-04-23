@@ -2,7 +2,6 @@
 
 // COMMON
 import { Component, Input, Inject } from 'ng-forward';
-import { Logger } from '../../../../component/foundation/logger';
 
 // PARTIAL SPECIFICS
 import { Model } from '../model';
@@ -51,7 +50,7 @@ export class Organization {
     }
 
     private ngOnDestroy(): void {
-        this.model.$destroy();
+        
     }
     /* tslint:enable:no-unused-variable */
 }

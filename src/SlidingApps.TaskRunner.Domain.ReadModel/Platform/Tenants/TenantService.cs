@@ -3,6 +3,7 @@ using SlidingApps.TaskRunner.Domain.ReadModel.Platform.Tenants.Queries;
 using SlidingApps.TaskRunner.Domain.ReadModel.Platform.Tenants.Representations;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Dapper;
+using System;
 
 namespace SlidingApps.TaskRunner.Domain.ReadModel.Platform.Tenants
 {
@@ -48,7 +49,9 @@ namespace SlidingApps.TaskRunner.Domain.ReadModel.Platform.Tenants
                     .By(x => x.Code).EqualTo(query.Code)
                     .SingleOrDefault();
 
-            return resource != null ? new TenantCodeAvailability(resource.Id, query.Code, false) : new TenantCodeAvailability(resource.Id, query.Code, true);
+            var resourceId = resource != null ? resource.Id : Guid.Empty; 
+
+            return resource != null ? new TenantCodeAvailability(resourceId, query.Code, false) : new TenantCodeAvailability(resourceId, query.Code, true);
         }
     }
 }

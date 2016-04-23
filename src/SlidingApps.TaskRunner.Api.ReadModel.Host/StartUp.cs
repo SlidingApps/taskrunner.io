@@ -3,6 +3,7 @@ using Autofac;
 using Autofac.Integration.WebApi;
 using HalJsonNet;
 using HalJsonNet.Serialization;
+using Microsoft.Owin.Cors;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Owin;
@@ -21,7 +22,8 @@ namespace SlidingApps.TaskRunner.Api.ReadModel.Host
 	{
 	    internal readonly Type[] SERVICES = {
             typeof(ManagementController),
-			typeof(Platform.TenantController),
+            typeof(Platform.AuthorizationController),
+            typeof(Platform.TenantController),
             typeof(Platform.AccountController)
 		};
 
@@ -103,7 +105,8 @@ namespace SlidingApps.TaskRunner.Api.ReadModel.Host
 
 		private void ConfigureOwin(IAppBuilder app, HttpConfiguration config, IContainer container)
 		{
-			app.UseWebApi(config);
+            app.UseCors(CorsOptions.AllowAll);
+            app.UseWebApi(config);
 			app.UseAutofacMiddleware(container);
 			//app.UseAutofacWebApi(GlobalConfiguration.Configuration);
 

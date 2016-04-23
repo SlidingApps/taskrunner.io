@@ -116,6 +116,7 @@
     <Compile Include="LocalDomainEventPublisher.cs" />
     <Compile Include="Platform\Accounts\AccountUser.cs" />
     <Compile Include="Platform\Accounts\Maps\AccountUserMap.cs" />
+    <Compile Include="Platform\Constant.cs" />
     <Compile Include="Platform\Metadata.cs" />
     <Compile Include="Platform\Accounts\Entities\AccountUser.cs" />
     <Compile Include="Platform\Tenants\Entities\Tenant.cs" />

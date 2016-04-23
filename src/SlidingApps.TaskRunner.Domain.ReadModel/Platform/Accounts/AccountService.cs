@@ -1,4 +1,5 @@
 ﻿
+using System;
 using SlidingApps.TaskRunner.Domain.ReadModel.Platform.Accounts.Queries;
 using SlidingApps.TaskRunner.Domain.ReadModel.Platform.Accounts.Representations;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
@@ -8,7 +9,8 @@ namespace SlidingApps.TaskRunner.Domain.ReadModel.Platform.Accounts
 {
     public class AccountService : 
         IQueryHandler<AccountCollectionQuery, AccountCollection>,
-        IQueryHandler<AccountQuery, Account>
+        IQueryHandler<AccountQuery, Account>,
+        IQueryHandler<UserCredentialsQuery, Account>
     {
         private readonly IQueryProvider queryProvider;
 
@@ -41,6 +43,18 @@ namespace SlidingApps.TaskRunner.Domain.ReadModel.Platform.Accounts
                 this.queryProvider.From<Account>()
                     .By(x => x.TenantId).EqualTo(query.TenantId)
                     .By(x => x.Id).EqualTo(query.PersonId)
+                    .SingleOrDefault();
+
+            return person;
+        }
+
+        public Account Handle(UserCredentialsQuery query)
+        {
+            var person =
+                this.queryProvider.From<Account>()
+                    .By(x => x.TenantId).EqualTo(query.TenantId)
+                    .By(x => x.UserName).EqualTo(query.Name)
+                    .By(x => x.UserName).EqualTo(query.Password)
                     .SingleOrDefault();
 
             return person;

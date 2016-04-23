@@ -13,6 +13,7 @@ import { Organization } from './organization/organization';
 import { Username } from './username/username';
 import { Password } from './password/password';
 import { PasswordConfirmation } from './password-confirmation/password-confirmation';
+import { Button } from './button/button';
 
 // VIEW SPECIFICS
 import { Model } from './model';
@@ -22,7 +23,7 @@ import { EventHub } from './event-hub';
 @Component({
     selector: 'account-get-started',
     providers: [FoundationModule.name],
-    directives: [ Form, Organization, Username, Password, PasswordConfirmation ],
+    directives: [ Form, Organization, Username, Password, PasswordConfirmation, Button ],
     template: `
     <!-- ACCOUNT GET STARTED: BEGIN -->
     <account-get-started-form [(model)]="ctrl.model">
@@ -30,6 +31,7 @@ import { EventHub } from './event-hub';
         <account-get-started-username [form]="ctrl.form" [(model)]="ctrl.model"></account-get-started-username>
         <account-get-started-password [form]="ctrl.form" [(model)]="ctrl.model"></account-get-started-password>
         <account-get-started-password-confirmation [form]="ctrl.form" [(model)]="ctrl.model"></account-get-started-password-confirmation>
+        <account-get-started-button [form]="ctrl.form" [(model)]="ctrl.model"></account-get-started-button>
     </account-get-started-form>
     <!-- ACCOUNT GET STARTED: END -->
     `
@@ -50,6 +52,7 @@ export class View {
 
     private ngOnDestroy(): void {
         if (this.subscription && !this.subscription.isUnsubscribed) { this.subscription.unsubscribe(); }
+        this.model.$destroy();
     }
     /* tslint:enable:no-unused-variable */
 }

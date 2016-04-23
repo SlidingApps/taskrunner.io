@@ -7,8 +7,8 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts.Intents
     public class ChangeAccountUserPeriod
         : IIntent
     {
-        public DateTime StartDate { get; set; }
+        public DateTime ValidFrom { get; set; }
 
-        public DateTime EndDate { get; set; }
+        public DateTime ValidUntil { get; set; }
     }
 }

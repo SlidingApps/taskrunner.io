@@ -76,6 +76,7 @@
       <Link>Properties\AssemblyVersionInfo.cs</Link>
     </Compile>
     <Compile Include="IAssemblyMarker.cs" />
+    <Compile Include="Platform\Accounts\Queries\UserCredentialsQuery.cs" />
     <Compile Include="Platform\Tenants\Representations\TenantCodeAvailability.cs" />
     <Compile Include="Platform\Tenants\TenantService.cs" />
     <Compile Include="Platform\Tenants\Queries\TenantCollectionQuery.cs" />

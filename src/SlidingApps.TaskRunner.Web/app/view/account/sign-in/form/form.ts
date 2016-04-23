@@ -9,7 +9,7 @@ import 'angular-ui-router';
 // PARTIAL SPECIFICS
 import { Model } from '../model';
 import { EventHub } from '../event-hub';
-import { ReadModelService } from '../../../../service/read-model/read-model-service';
+import { AuthorizationService } from '../../../../service/authorization/authorization-service';
 
 interface ILocalScope extends angular.IScope {
     form: angular.IFormController;
@@ -26,14 +26,6 @@ interface ILocalScope extends angular.IScope {
             <div class="container-fluid">
                 <form name="form" data-ng-submit="ctrl.submit(form)">
                     <data-ng-transclude></data-ng-transclude>
-                    <!-- SUBMIT -->
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-lg-4 col-lg-offset-4">
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-orange submit" data-ng-disabled="ctrl.isBusy || ctrl.isInvalid || form.$invalid">Sign in</button>
-                            </div>
-                        </div>
-                    </div>
                 </form>
                 <ul class="more">
                     <li><a data-ui-sref="account.getStarted">Get started</a></li>
@@ -45,23 +37,27 @@ interface ILocalScope extends angular.IScope {
     <!-- ACCOUNT.SIGN-IN.FORM: END -->
     `
 })
-@Inject('$scope', ReadModelService, EventHub)
+@Inject('$scope', AuthorizationService, EventHub)
 export class Form {
-    constructor(private $scope: ILocalScope, private service: ReadModelService, private hub: EventHub) { }
+    constructor(private $scope: ILocalScope, private authorization: AuthorizationService, private hub: EventHub) {
+        console.log('sign-in', this);
+    }
 
     @Input() public model: Model;
 
+    private formWatch: any;
+
     public submit(form: angular.IFormController): void {
-        console.log('form', angular.toJson(form), this.model);
+        this.authorization.verifyCredentials(this.model.username, this.model.password);
     }
 
     /* tslint:disable:no-unused-variable */
     private ngOnInit(): void {
-        this.$scope.$watch(() => this.$scope.form, (current) => {
-            if (this.hub.form$ && !this.hub.form$.isUnsubscribed) {
-                this.hub.form$.next(current);
-            }
-        });
+        this.formWatch = this.$scope.$watch(() => this.$scope.form, (current) => this.hub.form$.next(current));
+    }
+
+    private ngOnDestroy(): void {
+        if (this.formWatch) { this.formWatch(); }
     }
     /* tslint:enable:no-unused-variable */
 }

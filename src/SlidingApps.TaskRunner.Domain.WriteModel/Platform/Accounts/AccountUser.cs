@@ -1,6 +1,8 @@
 ﻿
 using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts.Intents;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
+using SlidingApps.TaskRunner.Foundation.Infrastructure.Encryption;
+using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
 using System;
 
@@ -26,6 +28,12 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
             private set { this.entity.Password = value; }
         }
 
+        public virtual string Salt
+        {
+            get { return this.entity.Salt; }
+            private set { this.entity.Salt = value; }
+        }
+
         public virtual DateTime ValidFrom
         {
             get { return this.entity.ValidFrom; }
@@ -49,7 +57,28 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
         public void When(AccountEvent<ChangeAccountUser> domainEvent)
         {
             this.Name = domainEvent.Arguments.Name;
-            this.Password = domainEvent.Arguments.Password;
+
+            var cryptor = new BlowFish(Constant.PASSWORD_ENCRYPTION_KEY);
+            cryptor.IV = Constant.PASSWORD_ENCRYPTION_INIT_VECTOR.ToBytes();
+
+            this.Salt = !string.IsNullOrEmpty(this.Salt) ? this.Salt : Guid.NewGuid().ToString().Replace("-", string.Empty).ToUpper().ToHexString();
+            this.Password = cryptor.Encrypt_CBC(string.Format(Constant.PASSWORD_SALTING_TEMPLATE, domainEvent.Arguments.Password, this.Salt));
+
+            this.DomainEvents.Add(domainEvent);
+        }
+
+        public IDomainEvent Apply(AccountCommand<ChangeAccountUserPeriod> command)
+        {
+            AccountEvent<ChangeAccountUserPeriod> domainEvent = new AccountEvent<ChangeAccountUserPeriod>(command);
+            this.When(domainEvent);
+
+            return domainEvent;
+        }
+
+        public void When(AccountEvent<ChangeAccountUserPeriod> domainEvent)
+        {
+            this.ValidFrom = domainEvent.Arguments.ValidFrom;
+            this.ValidUntil = domainEvent.Arguments.ValidUntil;
             this.DomainEvents.Add(domainEvent);
         }
     }

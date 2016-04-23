@@ -1,7 +1,6 @@
 /// <reference path="../../../../typings.d.ts" />
 
 // COMMON
-import { Subscription } from 'rxjs';
 import { Component, Inject, Input } from 'ng-forward';
 
 // ANGULAR MODULES
@@ -27,14 +26,6 @@ interface ILocalScope extends angular.IScope {
             <div class="container-fluid">
                 <form name="form" data-ng-submit="ctrl.submit(form)">
                     <data-ng-transclude></data-ng-transclude>
-                    <!-- SUBMIT -->
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-lg-4 col-lg-offset-4">
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-orange submit" data-ng-disabled="ctrl.isBusy || ctrl.isInvalid || form.$invalid">Sign up</button>
-                            </div>
-                        </div>
-                    </div>
                 </form>
                 <ul class="more">
                     <li>Allready have an account? Sign in <a data-ui-sref="account.signin">here</a>.</li>
@@ -50,9 +41,8 @@ export class Form {
     constructor(private $scope: ILocalScope, private hub: EventHub, private writeModel: WriteModelService) { }
 
     @Input() public model: Model;
-
-    public isInvalid: boolean = false;
-    private validator: Subscription;
+    
+    private formWatch: any;
 
     public submit(form: angular.IFormController): void {
         let payload: ICreateTenantPayload = this.model.$toCreateTenant();
@@ -63,12 +53,11 @@ export class Form {
 
     /* tslint:disable:no-unused-variable */
     private ngOnInit(): void {
-        this.$scope.$watch(() => this.$scope.form, (current) => this.hub.form$.next(current));
-        this.validator = this.hub.formValid$.subscribe(valid => this.isInvalid = !valid);
+        this.formWatch = this.$scope.$watch(() => this.$scope.form, (current) => this.hub.form$.next(current));
     }
 
     private ngOnDestroy(): void {
-        if (this.validator) { this.validator.unsubscribe(); }
+        if (this.formWatch) { this.formWatch(); }
     }
     /* tslint:enable:no-unused-variable */
 }

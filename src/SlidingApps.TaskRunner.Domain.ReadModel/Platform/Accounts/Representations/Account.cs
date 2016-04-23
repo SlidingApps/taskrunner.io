@@ -1,5 +1,6 @@
 ﻿
 using ImpromptuInterface;
+using Newtonsoft.Json;
 using SlidingApps.TaskRunner.Foundation.ReadModel;
 using System;
 
@@ -25,12 +26,18 @@ namespace SlidingApps.TaskRunner.Domain.ReadModel.Platform.Accounts.Representati
 
         public string Info { get; set; }
 
-        public DateTime StartDate { get; set; }
+        public string EmailAddress { get; set; }
 
-        public DateTime EndDate { get; set; }
+        public string UserName { get; set; }
 
+        public DateTime ValidFrom { get; set; }
+
+        public DateTime ValidUntil { get; set; }
+
+        [JsonIgnore]
         public Guid TenantId { get; set; }
 
+        [JsonIgnore]
         public string TenantCode { get; set; }
 
         public override void FormatLinks(IFormatValues values)

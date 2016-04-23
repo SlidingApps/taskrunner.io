@@ -103,15 +103,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
 
         public IDomainEvent Apply(AccountCommand<ChangeAccountUserPeriod> command)
         {
-            AccountEvent<ChangeAccountUserPeriod> domainEvent = new AccountEvent<ChangeAccountUserPeriod>(command);
-            this.When(domainEvent);
-
-            return domainEvent;
-        }
-
-        public void When(AccountEvent<ChangeAccountUserPeriod> domainEvent)
-        {
-            this.DomainEvents.Add(domainEvent);
+            return this.User.Apply(command);
         }
 
         public ValidationResult Validate()
