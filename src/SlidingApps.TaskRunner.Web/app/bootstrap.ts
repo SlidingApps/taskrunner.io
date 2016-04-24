@@ -33,6 +33,7 @@ const ApplicationConfigModule: angular.IModule =
             $urlRouterProvider.otherwise('/');
         }])
         .config(['cfpLoadingBarProvider', (loadingBarProvider: angular.loadingBar.ILoadingBarProvider) => {
+            loadingBarProvider.latencyThreshold = 500;
             loadingBarProvider.includeSpinner = false;
         }])
         .config(['$provide', '$logProvider', ($provide, $logProvider) => {

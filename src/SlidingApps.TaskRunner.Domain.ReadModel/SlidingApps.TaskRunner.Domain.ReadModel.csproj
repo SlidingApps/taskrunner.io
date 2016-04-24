@@ -77,6 +77,12 @@
     </Compile>
     <Compile Include="IAssemblyMarker.cs" />
     <Compile Include="Platform\Accounts\Queries\UserCredentialsQuery.cs" />
+    <Compile Include="Platform\Authorization\AuthorizationService.cs" />
+    <Compile Include="Platform\Authorization\Queries\AccountCredentialsCollectionQuery.cs" />
+    <Compile Include="Platform\Authorization\Representations\AccountCredentials.cs" />
+    <Compile Include="Platform\Authorization\Representations\AccountCredentialsCollection.cs" />
+    <Compile Include="Platform\Authorization\Representations\IAccountCredentialsFormatValues.cs" />
+    <Compile Include="Platform\Authorization\Validations\CredentialsQueryValidator.cs" />
     <Compile Include="Platform\Tenants\Representations\TenantCodeAvailability.cs" />
     <Compile Include="Platform\Tenants\TenantService.cs" />
     <Compile Include="Platform\Tenants\Queries\TenantCollectionQuery.cs" />
@@ -125,6 +131,7 @@
       <Name>SlidingApps.TaskRunner.Foundation</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

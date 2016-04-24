@@ -7,7 +7,7 @@ import { TenantCodeAvailability } from '../../../../service/read-model/tenant/te
 
 export class Directive implements angular.IDirective {
     constructor(private $q: angular.IQService, private service: ReadModelService) { }
-    
+
     private static ORGANIZATION_IS_UNIQUE_ASYNC_VALIDATOR: string = 'organizationIsUniqueAsync';
 
     public priority: number = 100;

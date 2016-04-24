@@ -1,20 +1,23 @@
 /// <reference path="../../typings.d.ts" />
 
+// COMMON
+import { Subscription } from 'rxjs';
 import { Injectable, Inject } from 'ng-forward';
+import * as crypto from 'crypto';
 
 @Injectable()
-@Inject('$http', '$q', 'READMODEL_HOST', 'READMODEL_API')
+@Inject('$http', '$q', 'AUTH_HOST', 'AUTH_API')
 export class AuthorizationService {
 
-    constructor(private $http: angular.IHttpService, private $q: angular.IQService, private hostUrl: any, private apiPath: any) {
-
-    }
+    constructor(private $http: angular.IHttpService, private $q: angular.IQService, private hostUrl: any, private apiPath: any) { }
 
     public verifyCredentials(userName: string, password: string): void {
         let credentials: string =  window.btoa(userName + ':' + password);
-        console.log('authentication', credentials);
+        let hash: string = crypto.createHash('sha1').update(password).digest('hex');
 
-        this.$http.get(`${this.hostUrl}/auth`, {
+        console.log('authentication', credentials, hash);
+
+        this.$http.get(`${this.hostUrl}/${this.apiPath}`, {
             headers: {
                 'Authorization': 'Basic ' + credentials,
                 'Accept': 'application/hal+json',

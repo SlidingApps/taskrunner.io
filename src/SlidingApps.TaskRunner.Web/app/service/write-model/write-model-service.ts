@@ -22,20 +22,22 @@ export class WriteModelServiceProvider implements angular.IServiceProvider {
 @Inject('$q', RestService, 'WRITEMODEL_HOST', 'WRITEMODEL_API')
 export class WriteModelService {
 
-    constructor(private $q: ng.IQService, private service: RestService, private hostUrl: any, private apiPath: any) {
-        this.service.defaultConfiguration.host.url = hostUrl;
-        this.service.defaultConfiguration.api.path = apiPath;
-    }
+    constructor(private $q: ng.IQService, private restService: RestService, private hostUrl: any, private apiPath: any) { }
 
     private static TENANT_RESOURCE: string = 'tenants';
+    
+    private get service() { 
+        return this.restService.host(this.hostUrl).api(this.apiPath);
+    }
 
     public postCreateTenant(payload: ICreateTenantPayload): angular.IPromise<void> {
         let deferred: angular.IDeferred<void> = this.$q.defer<void>();
 
-        this.service.all(`${WriteModelService.TENANT_RESOURCE}`)
+        this.service
+            .all(`${WriteModelService.TENANT_RESOURCE}`)
             .post(payload)
             .then(response => {
-                
+
                 deferred.resolve();
             })
             .catch(reason => deferred.reject(reason));

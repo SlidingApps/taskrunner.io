@@ -44,5 +44,13 @@ namespace SlidingApps.TaskRunner.Foundation.Infrastructure.Extension
 
             return encoding.GetString(value);
         }
+
+        public static string FromBase64(this string value)
+        {
+            byte[] data = Convert.FromBase64String(value);
+            string result = Encoding.UTF8.GetString(data);
+
+            return result;
+        }
     }
 }

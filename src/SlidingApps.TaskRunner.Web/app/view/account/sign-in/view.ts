@@ -6,7 +6,6 @@ import { Component, Inject } from 'ng-forward';
 
 // FOUNDATION
 import { Module as FoundationModule } from '../../../component/module';
-import { AuthorizationService } from '../../../service/authorization/authorization-service';
 
 // DIRECTIVES
 import { Form } from './form/form';

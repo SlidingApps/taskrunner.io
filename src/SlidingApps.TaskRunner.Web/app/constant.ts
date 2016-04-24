@@ -2,6 +2,10 @@
 
 const Module: angular.IModule =
     angular.module('application.constant', [])
+
+        // .constant('READMODEL_HOST', 'http://sazuattsuperman.cloudapp.net:82')
+        .constant('AUTH_HOST', 'http://localhost:8082')
+        .constant('AUTH_API', 'auth')
         
         // .constant('WRITEMODEL_HOST', 'http://sazuattsuperman.cloudapp.net:81')
         .constant('WRITEMODEL_HOST', 'http://localhost:8081')

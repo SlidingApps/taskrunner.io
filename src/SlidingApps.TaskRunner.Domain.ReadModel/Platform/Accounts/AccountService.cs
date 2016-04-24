@@ -1,5 +1,4 @@
 ﻿
-using System;
 using SlidingApps.TaskRunner.Domain.ReadModel.Platform.Accounts.Queries;
 using SlidingApps.TaskRunner.Domain.ReadModel.Platform.Accounts.Representations;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
