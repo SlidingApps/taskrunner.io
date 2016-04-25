@@ -78,6 +78,7 @@
     </Compile>
     <Compile Include="ApiExceptionFilterAttribute.cs" />
     <Compile Include="ApiResponse.cs" />
+    <Compile Include="AuthorizationException.cs" />
     <Compile Include="CommandResponse.cs" />
     <Compile Include="CorsMessageHandler.cs" />
     <Compile Include="ManagementController.cs" />

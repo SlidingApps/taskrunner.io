@@ -3,11 +3,14 @@ using SlidingApps.TaskRunner.Domain.ReadModel.Platform.Authorization.Queries;
 using SlidingApps.TaskRunner.Domain.ReadModel.Platform.Authorization.Representations;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Dapper;
+using SlidingApps.TaskRunner.Foundation.Infrastructure.Encryption;
+using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
+using System;
 
 namespace SlidingApps.TaskRunner.Domain.ReadModel.Platform.Authorization
 {
     public class AuthorizationService :
-        IQueryHandler<AccountCredentialsCollectionQuery, AccountCredentialsCollection>
+        IQueryHandler<AccountValidityQuery, AccountValidity>
     {
         private readonly IQueryProvider queryProvider;
 
@@ -16,17 +19,34 @@ namespace SlidingApps.TaskRunner.Domain.ReadModel.Platform.Authorization
             this.queryProvider = queryProvider;
         }
 
-        public AccountCredentialsCollection Handle(AccountCredentialsCollectionQuery query)
+        public AccountValidity Handle(AccountValidityQuery query)
         {
-            var _query =
+            var account =
                 this.queryProvider.From<AccountCredentials>()
                     .By(x => x.Username).EqualTo(query.Username)
-                    .By(x => x.Password).EqualTo(query.Password);
+                    .By(x => x.ValidFrom).LessThanOrEqual(DateTime.Now)
+                    .By(x => x.validUntil).GreaterThanOrEqual(DateTime.Now)
+                    .SingleOrDefault();
 
-            var credentials = _query.ToList();
-            var collection = new AccountCredentialsCollection(credentials);
+            AccountValidity validity = new AccountValidity();
+            validity.IsValid = false;
 
-            return collection;
+            if (account != null)
+            {
+                var cryptor = new BlowFish(Constant.PASSWORD_ENCRYPTION_KEY);
+                cryptor.IV = Constant.PASSWORD_ENCRYPTION_INIT_VECTOR.ToBytes();
+                var password = cryptor.Encrypt_CBC(string.Format(Constant.PASSWORD_SALTING_TEMPLATE, query.Password, account.Salt));
+
+                validity.IsValid = account.Password == password;
+                if (validity.IsValid)
+                {
+                    validity.Id = account.Id;
+                    validity.EmailAddress = account.EmailAddress;
+                    validity.Username = account.Username;
+                }
+            }
+
+            return validity;
         }
     }
 }

@@ -17,7 +17,12 @@ namespace SlidingApps.TaskRunner.Foundation.Web
             HttpStatusCode statusCode = HttpStatusCode.InternalServerError;
             if (actionExecutedContext.Exception is BusinessException)
             {
-                message = (actionExecutedContext.Exception as BusinessException).ToString();
+                if (actionExecutedContext.Exception is AuthorizationException)
+                {
+                    statusCode = HttpStatusCode.Unauthorized;
+                }
+
+                message = (actionExecutedContext.Exception as AuthorizationException).ToString();
                 Logger.Log.WarnFormat(Logger.LONG_CONTENT, "business exception", message);
             }
             else if (actionExecutedContext.Exception is TechnicalException)

@@ -44,6 +44,48 @@ namespace SlidingApps.TaskRunner.Foundation.Web
             throw new NotFoundException();
         }
 
+        public static HttpResponseMessage OK<TRepresentation>(TRepresentation representation)
+            where TRepresentation : class
+        {
+            return new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content =
+                    new ObjectContent(
+                        typeof(object),
+                        representation,
+                        new JsonMediaTypeFormatter
+                        {
+                            SerializerSettings =
+                                new JsonSerializerSettings
+                                {
+                                    ContractResolver = new CamelCasePropertyNamesContractResolver()
+                                }
+                        })
+            };
+        }
+
+        public static HttpResponseMessage Exception<TRepresentation>(HttpStatusCode statusCode, TRepresentation representation)
+            where TRepresentation : class
+        {
+            return new HttpResponseMessage
+            {
+                StatusCode = statusCode,
+                Content =
+                    new ObjectContent(
+                        typeof(object),
+                        representation,
+                        new JsonMediaTypeFormatter
+                        {
+                            SerializerSettings =
+                                new JsonSerializerSettings
+                                {
+                                    ContractResolver = new CamelCasePropertyNamesContractResolver()
+                                }
+                        })
+            };
+        }
+
         public static string GetQuerystring()
         {
             List<string> values = new List<string>();

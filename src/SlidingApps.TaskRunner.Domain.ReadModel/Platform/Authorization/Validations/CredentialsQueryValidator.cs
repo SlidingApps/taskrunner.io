@@ -5,7 +5,7 @@ using SlidingApps.TaskRunner.Domain.ReadModel.Platform.Authorization.Queries;
 namespace SlidingApps.TaskRunner.Domain.ReadModel.Platform.Authorization.Validations
 {
     public class CredentialsQueryValidator
-        : AbstractValidator<AccountCredentialsCollectionQuery>
+        : AbstractValidator<AccountValidityQuery>
     {
         public CredentialsQueryValidator()
         {

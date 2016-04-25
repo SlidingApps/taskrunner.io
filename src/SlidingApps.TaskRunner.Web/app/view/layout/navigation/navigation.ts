@@ -3,6 +3,10 @@
 // COMMON
 import * as angular from 'angular';
 import { Component, Inject } from 'ng-forward';
+import { Subscription } from 'rxjs';
+
+// PARTIAL SPECIFIC
+import { AuthorizationService } from '../../../service/authorization/authorization-service';
 
 @Component({
     selector: 'navigation',
@@ -30,10 +34,12 @@ import { Component, Inject } from 'ng-forward';
         <!-- LAYOUT.NAVIGATION: END -->
     `
 })
-@Inject('$scope', '$state', '$stateParams')
+@Inject('$scope', '$state', AuthorizationService)
 export class Navigation {
 
-    constructor(private $scope: angular.IScope, private $state: angular.ui.IStateService) { }
+    constructor(private $scope: angular.IScope, private $state: angular.ui.IStateService,  private authorization: AuthorizationService) { }
+
+    private subscription: Subscription;
 
     public onGotoGetStarted(): void {
         this.$state.go('account.getStarted');
@@ -42,5 +48,15 @@ export class Navigation {
     public onGotoSignIn(): void {
         this.$state.go('account.signin');
     }
+
+    /* tslint:disable:no-unused-variable */
+    private ngOnInit(): void {
+        // this.subscription = this.authorization.account$.filter(x => !!x).subscribe(x => console.log('account', x));
+    }
+
+    private ngOnDestroy(): void {
+        if (this.subscription && !this.subscription.isUnsubscribed) { this.subscription.unsubscribe(); }
+    }
+    /* tslint:enable:no-unused-variable */
 
 }

@@ -11,10 +11,10 @@ export class Entity<TRepresentation> extends Model implements IEntity<TRepresent
 
     constructor(representation: TRepresentation) {
         super();
-        this.$representation = representation;
+        this.$representation = representation ? representation : {};
     }
 
-    protected $representation: TRepresentation;
+    public $representation: TRepresentation;
 
     public static Create<TInstance extends IEntity<TRepresentation>>(ctor: { new(representation: TRepresentation): TInstance; }, representation: TRepresentation): TInstance {
         let instance: TInstance = new ctor(representation);

@@ -2,7 +2,7 @@
 
 // COMMON
 import { Injectable, Inject } from 'ng-forward';
-import { RestService, HostConfiguration } from '../rest/rest-service';
+import { RestService } from '../rest/rest-service';
 
 // MODEL
 import {TenantCodeAvailability, ITenantCodeAvailability} from './tenant/tenant-code-availability';

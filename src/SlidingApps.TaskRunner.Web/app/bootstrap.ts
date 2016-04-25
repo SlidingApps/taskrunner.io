@@ -10,6 +10,7 @@ import { Application } from './application/application.ts';
 
 // ANGULAR MODULES
 import 'angular-ui-router';
+import 'angular-local-storage';
 import 'angular-loading-bar';
 import { Module as ConstantModule } from './constant';
 import { Module as ViewModule } from './view/module';
@@ -35,6 +36,11 @@ const ApplicationConfigModule: angular.IModule =
         .config(['cfpLoadingBarProvider', (loadingBarProvider: angular.loadingBar.ILoadingBarProvider) => {
             loadingBarProvider.latencyThreshold = 500;
             loadingBarProvider.includeSpinner = false;
+        }])
+        .config(['localStorageServiceProvider', (localStorageServiceProvider: angular.local.storage.ILocalStorageServiceProvider) => {
+            localStorageServiceProvider.setNotify(true, true);
+            localStorageServiceProvider.setPrefix('taskrunner');
+            localStorageServiceProvider.setStorageType('sessionStorage');
         }])
         .config(['$provide', '$logProvider', ($provide, $logProvider) => {
             $provide.decorator('$log', ['$delegate', $delegate => {
@@ -62,6 +68,30 @@ const ApplicationConfigModule: angular.IModule =
                     }
                 };
 
+                let warn: any = $delegate.warn;
+                $delegate.warn = () => {
+                    if ($logProvider.debugEnabled()) {
+                        let args: any = [].slice.call(arguments);
+                        let now: string = new Date().toISOString().substr(11, 12);
+
+                        args.unshift('WARN ');
+                        args.unshift(now);
+                        warn.apply(undefined, args);
+                    }
+                };
+
+                let error: any = $delegate.error;
+                $delegate.error = () => {
+                    if ($logProvider.debugEnabled()) {
+                        let args: any = [].slice.call(arguments);
+                        let now: string = new Date().toISOString().substr(11, 12);
+
+                        args.unshift('ERROR');
+                        args.unshift(now);
+                        error.apply(undefined, args);
+                    }
+                };
+
                 return $delegate;
             }]);
         }])
@@ -71,6 +101,7 @@ const ApplicationConfigModule: angular.IModule =
 bootstrap(Application, [
     'ui.router',
     'angular-loading-bar',
+    'LocalStorageModule',
     ConstantModule.name,
     ApplicationConfigModule.name,
     ViewModule.name

@@ -1,7 +1,10 @@
 /// <reference path="../../typings.d.ts" />
 
+// COMMON
 import { BehaviorSubject } from 'rxjs';
 import { IPropertyChangedEvent} from './event';
+
+// FOUNDATION
 import { Logger } from './logger';
 
 export interface IModel {

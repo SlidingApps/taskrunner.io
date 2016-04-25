@@ -35,6 +35,7 @@ System.config({
     "angular": "github:angular/bower-angular@1.5.4",
     "angular-filter": "npm:angular-filter@0.5.8",
     "angular-loading-bar": "github:chieffancypants/angular-loading-bar@0.8.0",
+    "angular-local-storage": "github:grevory/angular-local-storage@0.2.7",
     "angular-route": "github:angular/bower-angular-route@1.5.3",
     "angular-ui-router": "github:angular-ui/ui-router@0.2.18",
     "clean-css": "npm:clean-css@3.4.12",

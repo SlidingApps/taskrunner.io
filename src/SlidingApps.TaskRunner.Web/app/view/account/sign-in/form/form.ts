@@ -39,9 +39,7 @@ interface ILocalScope extends angular.IScope {
 })
 @Inject('$scope', AuthorizationService, EventHub)
 export class Form {
-    constructor(private $scope: ILocalScope, private authorization: AuthorizationService, private hub: EventHub) {
-        console.log('sign-in', this);
-    }
+    constructor(private $scope: ILocalScope, private authorization: AuthorizationService, private hub: EventHub) { }
 
     @Input() public model: Model;
 

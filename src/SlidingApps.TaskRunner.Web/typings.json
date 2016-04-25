@@ -2,6 +2,7 @@
   "ambientDependencies": {
     "angular": "github:DefinitelyTyped/DefinitelyTyped/angularjs/angular.d.ts#17ef40452039d19e06dc2a3815ea898c505860fa",
     "angular-loading-bar": "github:DefinitelyTyped/DefinitelyTyped/angular-loading-bar/angular-loading-bar.d.ts#159b479af1b59bdfc435d11d3a1d83d82aa56ec8",
+    "angular-local-storage": "registry:dt/angular-local-storage#0.1.5+20160317120654",
     "angular-ui-router": "github:DefinitelyTyped/DefinitelyTyped/angular-ui-router/angular-ui-router.d.ts#655f8c1bf3c71b0e1ba415b36309604f79326ac8",
     "jquery": "github:DefinitelyTyped/DefinitelyTyped/jquery/jquery.d.ts#fab0b336b0414fac23963bde83f7d7077f6cf14c",
     "lodash": "github:DefinitelyTyped/DefinitelyTyped/lodash/lodash-3.10.d.ts#86dbea8fc37d9473fee465da4f0a21bea4f8cbd9",

@@ -10,7 +10,7 @@ namespace SlidingApps.TaskRunner.Domain.ReadModel.Platform.Authorization.Represe
     public class AccountCredentialsCollection
         : CollectionRepresentation
     {
-        private const string SELF_LINK_TEMPLATE = "/";
+        private const string SELF_LINK_TEMPLATE = "/auth";
 
         private AccountCredentialsCollection(int? page = null, int? pageSize = null)
             : base(page, pageSize)
