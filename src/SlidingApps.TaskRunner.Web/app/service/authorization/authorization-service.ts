@@ -20,19 +20,22 @@ import { IAuthenticationStateChangedEvent, AuthenticationStateChangedEvent } fro
 export class AuthorizationService {
 
     constructor(private $http: angular.IHttpService, private $q: angular.IQService, private $window: angular.IWindowService, private hostUrl: any, private apiPath: any, private storage: angular.local.storage.ILocalStorageService) {
-        let account: string = this.$window.localStorage.getItem('taskrunner.authentication.account');
+        let accountStored: string = this.$window.localStorage.getItem(AuthorizationService.AUTHENTICATION_ACCOUNT);
 
-        if (account) {
-            let _account: IAccountValidity = angular.fromJson(account);
+        if (accountStored) {
+            this.secret = this.$window.localStorage.getItem(AuthorizationService.AUTHENTICATION_SECRET);
+            
+            let _account: IAccountValidity = angular.fromJson(accountStored);
             this.account = new AccountValidity(_account);
-
-            this.secret = this.$window.localStorage.getItem('taskrunner.authentication.secret');
-
             this.authenticationState$.next(new AuthenticationStateChangedEvent(true, this.account));
         } else {
             this.authenticationState$.next(new AuthenticationStateChangedEvent(false));
         }
     }
+    
+    public static get AUTHENTICATION_ACCOUNT(): string { return 'taskrunner.authentication.account'; }
+    
+    public static get AUTHENTICATION_SECRET(): string { return 'taskrunner.authentication.secret'; }
 
     private account: AccountValidity;
     private secret: string;
@@ -42,7 +45,7 @@ export class AuthorizationService {
     public verifyCredentials(userName: string, password: string): angular.IPromise<AccountValidity> {
         let deferred: angular.IDeferred<AccountValidity> = this.$q.defer<AccountValidity>();
 
-        let credentials: string =  window.btoa(userName + ':' + password);
+        let credentials: string =  this.$window.btoa(userName + ':' + password);
         this.$http.get(`${this.hostUrl}/${this.apiPath}`, {
             headers: {
                 'Authorization': 'Basic ' + credentials,
@@ -54,12 +57,12 @@ export class AuthorizationService {
                 this.account = new AccountValidity(<IAccountValidity>(response.data));
                 this.authenticationState$.next(new AuthenticationStateChangedEvent(true, this.account));
 
-                this.$window.localStorage.setItem('taskrunner.authentication.account', angular.toJson(response.data));
-                this.$window.sessionStorage.setItem('taskrunner.authentication.account', angular.toJson(response.data));
+                this.$window.localStorage.setItem(AuthorizationService.AUTHENTICATION_ACCOUNT, angular.toJson(response.data));
+                this.$window.sessionStorage.setItem(AuthorizationService.AUTHENTICATION_ACCOUNT, angular.toJson(response.data));
 
                 let secret: string = crypto.createHash('sha256').update(password).digest('hex');
-                this.$window.localStorage.setItem('taskrunner.authentication.secret', secret);
-                this.$window.sessionStorage.setItem('taskrunner.authentication.secret', secret);
+                this.$window.localStorage.setItem(AuthorizationService.AUTHENTICATION_SECRET, secret);
+                this.$window.sessionStorage.setItem(AuthorizationService.AUTHENTICATION_SECRET, secret);
 
                 deferred.resolve(this.account);
             })
