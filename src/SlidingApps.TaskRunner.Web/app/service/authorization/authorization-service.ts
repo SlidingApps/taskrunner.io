@@ -1,11 +1,12 @@
 /// <reference path="../../typings.d.ts" />
+/// <reference path="./crypto-local.d.ts" />
 
 // COMMON
 import * as angular from 'angular';
+import * as crypto from 'crypto-local';
 import 'angular-local-storage';
 import { BehaviorSubject } from 'rxjs';
 import { Injectable, Inject } from 'ng-forward';
-import * as crypto from 'crypto';
 
 // FOUNDATION
 import { Logger } from '../../component/foundation/logger';
@@ -20,13 +21,13 @@ export class AuthorizationService {
 
     constructor(private $http: angular.IHttpService, private $q: angular.IQService, private $window: angular.IWindowService, private hostUrl: any, private apiPath: any, private storage: angular.local.storage.ILocalStorageService) {
         let account: string = this.$window.localStorage.getItem('taskrunner.authentication.account');
-        
+
         if (account) {
             let _account: IAccountValidity = angular.fromJson(account);
             this.account = new AccountValidity(_account);
 
             this.secret = this.$window.localStorage.getItem('taskrunner.authentication.secret');
-            
+
             this.authenticationState$.next(new AuthenticationStateChangedEvent(true, this.account));
         } else {
             this.authenticationState$.next(new AuthenticationStateChangedEvent(false));
@@ -35,7 +36,7 @@ export class AuthorizationService {
 
     private account: AccountValidity;
     private secret: string;
-    
+
     public authenticationState$: BehaviorSubject<IAuthenticationStateChangedEvent> = new BehaviorSubject<IAuthenticationStateChangedEvent>(undefined);
 
     public verifyCredentials(userName: string, password: string): angular.IPromise<AccountValidity> {

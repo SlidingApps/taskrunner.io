@@ -49,7 +49,7 @@
       "angular-local-storage": "github:grevory/angular-local-storage@^0.2.7",
       "angular-route": "github:angular/bower-angular-route@^1.5.0",
       "angular-ui-router": "github:angular-ui/ui-router@^0.2.17",
-      "crypto": "github:jspm/nodelibs-crypto@0.1.0",
+      "crypto-local": "github:jspm/nodelibs-crypto@0.1.0",
       "jquery": "npm:jquery@^2.2.0",
       "lodash": "npm:lodash@^4.6.1",
       "moment": "npm:moment@^2.12.0",
