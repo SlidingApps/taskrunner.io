@@ -19,8 +19,132 @@ import { AuthorizationService } from '../../../service/authorization/authorizati
                 </a>
                 <a href="#" ><span>taskrunner</span>.io</a>
             </h1>
+            
+            <div class="pageContent" data-ng-if="ctrl.isSignedIn">
+                <div class="container-fluid">
+                    <ul class="topNavigation">
+                        <li>
+                            <div class="btn-group simpleList simpleListLighten messages">
+                                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="zmdi zmdi-email zmdi-hc-fw icon"></i>
+                                    <span class="badge">6</span>
+                                </button>
+                                
+                                <ul class="dropdown-menu pull-right">
+                                    <li>
+                                        <a href="#" title="#" class="clearfix">
+                                            <img src="tmp/44x44-3.jpg" alt="#" width="44" height="44" class="pull-left">
+                                            <span class="pull-left">
+                                                <strong class="text-gray">John Doe</strong><br>
+                                                <span class="text-gray">Proin vel sapien at risus...</span>
+                                            </span>
+                                            <span class="pull-right">22 sec. ago</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="#" class="clearfix">
+                                            <img src="tmp/44x44-1.jpg" alt="#" width="44" height="44" class="pull-left">
+                                            <span class="pull-left">
+                                                <strong class="text-gray">Jane Doe</strong><br>
+                                                <span class="text-gray">Aliquam non accumsan...</span>
+                                            </span>
+                                            <span class="pull-right">19 min. ago</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="#" class="clearfix">
+                                            <img src="tmp/44x44-4.jpg" alt="#" width="44" height="44" class="pull-left">
+                                            <span class="pull-left">
+                                                <strong class="text-gray">Nick Doe</strong><br>
+                                                <span class="text-gray">Praesent non hendrerit...</span>
+                                            </span>
+                                            <span class="pull-right">1 hour ago</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="#" class="clearfix">
+                                            <img src="tmp/44x44-5.jpg" alt="#" width="44" height="44" class="pull-left">
+                                            <span class="pull-left">
+                                                <strong class="text-gray">Andrew Doe</strong><br>
+                                                <span class="text-gray">Aliquam ligula ante magna...</span>
+                                            </span>
+                                            <span class="pull-right">21.09.2015</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="#" class="clearfix text-center">
+                                            <i class="zmdi zmdi-plus-square icon"></i> <strong class="text-gray">See all</strong>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="btn-group simpleList list-sm">
+                                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="zmdi zmdi-bookmark zmdi-hc-fw icon"></i>
+                                    <span class="badge">98</span>
+                                </button>
     
-            <div class="pageContent">
+                                <ul class="dropdown-menu pull-right">
+                                    <li>
+                                        <a href="#" title="#" class="clearfix">
+                                            <span class="pull-left"><i class="zmdi zmdi-accounts-add zmdi-hc-fw icon"></i> Followers</span>
+                                            <span class="pull-right info">109,073</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="#" class="clearfix">
+                                            <span class="pull-left"><i class="zmdi zmdi-accounts-list-alt zmdi-hc-fw icon"></i> Subscribers</span>
+                                            <span class="pull-right info">26,114</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="#" class="clearfix">
+                                            <span class="pull-left"><i class="zmdi zmdi-assignment-o zmdi-hc-fw icon"></i> Products sold</span>
+                                            <span class="pull-right info">1,557,669</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="#" class="clearfix">
+                                            <span class="pull-left"><i class="zmdi zmdi-bookmark zmdi-hc-fw icon"></i> Awards</span>
+                                            <span class="pull-right info">14</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="#" class="clearfix">
+                                            <span class="pull-left"><i class="zmdi zmdi-cloud-done zmdi-hc-fw icon"></i> Projects</span>
+                                            <span class="pull-right info">229</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="#" class="clearfix text-center">
+                                            <i class="zmdi zmdi-plus-square icon"></i> See all
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="btn-group simpleList list-sm">
+                                <button type="button" class="btn btn-normal" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: auto; margin: 0 0 0 8px;">
+                                    <div data-ng-bind="ctrl.account.emailAddress" style="vertical-align: center; padding: 0 8px 0 8px;"></div>
+                                </button>
+    
+                                <ul class="dropdown-menu pull-right">
+                                    <li>
+                                        <a href="#" title="#" class="clearfix" data-ng-click="ctrl.signOut()" onclick="return false;">
+                                            <span class="pull-left"><i class="zmdi zmdi-accounts-add zmdi-hc-fw icon"></i> Sign Out</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="pageContent" data-ng-if="!ctrl.isSignedIn">
                 <div class="container-fluid">
                     <div class="col-sm-1 col-sm-offset-10">
                         <button class="btn btn-primary" style="margin-top: 10px;" (click)="ctrl.onGotoGetStarted()">Get started</button>
@@ -34,10 +158,13 @@ import { AuthorizationService } from '../../../service/authorization/authorizati
         <!-- LAYOUT.NAVIGATION: END -->
     `
 })
-@Inject('$scope', '$state', AuthorizationService)
+@Inject('$scope', '$state', '$timeout', AuthorizationService)
 export class Navigation {
 
-    constructor(private $scope: angular.IScope, private $state: angular.ui.IStateService,  private authorization: AuthorizationService) { }
+    constructor(private $scope: angular.IScope, private $state: angular.ui.IStateService, private $timeout: angular.ITimeoutService, private authorization: AuthorizationService) { }
+
+    public isSignedIn: boolean = false;
+    public account: { id: string, emailAddress: string, username: string };
 
     private subscription: Subscription;
 
@@ -49,9 +176,22 @@ export class Navigation {
         this.$state.go('account.signin');
     }
 
+    public signOut(): void {
+        this.authorization.signOut();
+    }
+
     /* tslint:disable:no-unused-variable */
     private ngOnInit(): void {
-        this.subscription = this.authorization.authenticationState$.subscribe(x => console.log('state', x));
+        this.subscription =
+            this.authorization.authenticationState$
+                .subscribe(x => {
+                    this.$timeout(() => {
+                        this.isSignedIn = x.isSignedIn;
+                        this.account = x.account;
+
+                        this.$state.go('home');
+                    });
+                });
     }
 
     private ngOnDestroy(): void {

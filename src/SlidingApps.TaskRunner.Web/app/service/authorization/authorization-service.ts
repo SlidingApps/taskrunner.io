@@ -5,7 +5,7 @@
 import * as angular from 'angular';
 import * as crypto from 'crypto';
 import 'angular-local-storage';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observer, Observable } from 'rxjs';
 import { Injectable, Inject } from 'ng-forward';
 
 // FOUNDATION
@@ -24,25 +24,28 @@ export class AuthorizationService {
 
         if (accountStored) {
             this.secret = this.$window.localStorage.getItem(AuthorizationService.AUTHENTICATION_SECRET);
-            
+
             let _account: IAccountValidity = angular.fromJson(accountStored);
             this.account = new AccountValidity(_account);
             this.authenticationState$.next(new AuthenticationStateChangedEvent(true, this.account));
         } else {
             this.authenticationState$.next(new AuthenticationStateChangedEvent(false));
         }
+
+        this.$window.addEventListener('storage', event => this.onStorageChanged(event));
     }
-    
+
     public static get AUTHENTICATION_ACCOUNT(): string { return 'taskrunner.authentication.account'; }
-    
+
     public static get AUTHENTICATION_SECRET(): string { return 'taskrunner.authentication.secret'; }
 
     private account: AccountValidity;
     private secret: string;
 
     public authenticationState$: BehaviorSubject<IAuthenticationStateChangedEvent> = new BehaviorSubject<IAuthenticationStateChangedEvent>(undefined);
+    public test: any = Observable.fromEvent(window, 'storage', event => { console.log('storage', event); return event; });
 
-    public verifyCredentials(userName: string, password: string): angular.IPromise<AccountValidity> {
+    public signIn(userName: string, password: string): angular.IPromise<AccountValidity> {
         let deferred: angular.IDeferred<AccountValidity> = this.$q.defer<AccountValidity>();
 
         let credentials: string =  this.$window.btoa(userName + ':' + password);
@@ -72,5 +75,24 @@ export class AuthorizationService {
             });
 
         return deferred.promise;
+    }
+
+    public signOut() {
+        this.clearStorage();
+        this.authenticationState$.next(new AuthenticationStateChangedEvent(false));
+    }
+
+    private onStorageChanged(event: StorageEvent): void {
+        if ((event.key === AuthorizationService.AUTHENTICATION_ACCOUNT || event.key === AuthorizationService.AUTHENTICATION_SECRET) && !event.newValue) {
+            this.signOut();
+        }
+    }
+
+    private clearStorage() {
+        this.$window.localStorage.removeItem(AuthorizationService.AUTHENTICATION_ACCOUNT);
+        this.$window.sessionStorage.removeItem(AuthorizationService.AUTHENTICATION_ACCOUNT);
+
+        this.$window.localStorage.removeItem(AuthorizationService.AUTHENTICATION_SECRET);
+        this.$window.sessionStorage.removeItem(AuthorizationService.AUTHENTICATION_SECRET);
     }
 }

@@ -37,16 +37,18 @@ interface ILocalScope extends angular.IScope {
     <!-- ACCOUNT.SIGN-IN.FORM: END -->
     `
 })
-@Inject('$scope', AuthorizationService, EventHub)
+@Inject('$scope', '$state', AuthorizationService, EventHub)
 export class Form {
-    constructor(private $scope: ILocalScope, private authorization: AuthorizationService, private hub: EventHub) { }
+    constructor(private $scope: ILocalScope, private $state: angular.ui.IStateService, private authorization: AuthorizationService, private hub: EventHub) { }
 
     @Input() public model: Model;
 
     private formWatch: any;
 
     public submit(form: angular.IFormController): void {
-        this.authorization.verifyCredentials(this.model.username, this.model.password);
+        this.authorization
+            .signIn(this.model.username, this.model.password)
+            .then(() => this.$state.go('home'));
     }
 
     /* tslint:disable:no-unused-variable */

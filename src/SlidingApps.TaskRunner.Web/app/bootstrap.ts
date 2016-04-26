@@ -27,7 +27,7 @@ const ApplicationConfigModule: angular.IModule =
             $compileProvider.debugInfoEnabled(false);
         }])
         .config(['$logProvider', ($logProvider: angular.ILogProvider) => {
-            $logProvider.debugEnabled(true);
+            $logProvider.debugEnabled(false);
         }])
         .config(['$locationProvider', '$urlRouterProvider', ($locationProvider: angular.ILocationProvider, $urlRouterProvider: angular.ui.IUrlRouterProvider) => {
             $locationProvider.html5Mode(false).hashPrefix();
