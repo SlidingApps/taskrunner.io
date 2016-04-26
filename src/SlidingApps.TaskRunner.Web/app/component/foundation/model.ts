@@ -34,7 +34,7 @@ export class Model implements IModel {
 
     protected $onPropertyChanged(property: string, value: any) {
         Logger.LOG.debug(this.constructor.name, property, value);
-        this.$propertyChanged.next({ sender: this, args: { property, value}});
+        this.$propertyChanged.next({ property, value });
     }
 
     public $destroy() {

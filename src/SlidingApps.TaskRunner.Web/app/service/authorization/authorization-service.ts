@@ -5,43 +5,43 @@ import * as angular from 'angular';
 import 'angular-local-storage';
 import { BehaviorSubject } from 'rxjs';
 import { Injectable, Inject } from 'ng-forward';
-// import * as crypto from 'crypto';
+import * as crypto from 'crypto';
 
 // FOUNDATION
 import { Logger } from '../../component/foundation/logger';
-import { IEvent, IEventArgs } from '../../component/foundation/event';
 
 // MODEL
-import { AccountValidity } from './account/account-validity';
-
-export interface IAuthenticationStateChangedEvent<TInstance> extends IEvent<TInstance, IAuthenticationStateChangedEventArgs> { }
-export interface IAuthenticationStateChangedEventArgs extends IEventArgs {
-    property: string;
-    value: string;
-}
+import { IAccountValidity, AccountValidity } from './account/account-validity';
+import { IAuthenticationStateChangedEvent, AuthenticationStateChangedEvent } from './authentication-state';
 
 @Injectable()
-@Inject('$http', '$q', 'AUTH_HOST', 'AUTH_API', 'localStorageService')
+@Inject('$http', '$q', '$window', 'AUTH_HOST', 'AUTH_API', 'localStorageService')
 export class AuthorizationService {
 
-    constructor(private $http: angular.IHttpService, private $q: angular.IQService, private hostUrl: any, private apiPath: any, private storage: angular.local.storage.ILocalStorageService) {
-        console.log(this);
-        this.account = new AccountValidity();
-        this.account.isValid = false;
+    constructor(private $http: angular.IHttpService, private $q: angular.IQService, private $window: angular.IWindowService, private hostUrl: any, private apiPath: any, private storage: angular.local.storage.ILocalStorageService) {
+        let account: string = this.$window.localStorage.getItem('taskrunner.authentication.account');
+        
+        if (account) {
+            let _account: IAccountValidity = angular.fromJson(account);
+            this.account = new AccountValidity(_account);
 
-        this.authenticationState$ = new BehaviorSubject<AccountValidity>(this.account);
-        this.authenticationState$.next(this.account);
+            this.secret = this.$window.localStorage.getItem('taskrunner.authentication.secret');
+            
+            this.authenticationState$.next(new AuthenticationStateChangedEvent(true, this.account));
+        } else {
+            this.authenticationState$.next(new AuthenticationStateChangedEvent(false));
+        }
     }
 
     private account: AccountValidity;
-    public authenticationState$: BehaviorSubject<AccountValidity>;
+    private secret: string;
+    
+    public authenticationState$: BehaviorSubject<IAuthenticationStateChangedEvent> = new BehaviorSubject<IAuthenticationStateChangedEvent>(undefined);
 
     public verifyCredentials(userName: string, password: string): angular.IPromise<AccountValidity> {
         let deferred: angular.IDeferred<AccountValidity> = this.$q.defer<AccountValidity>();
 
         let credentials: string =  window.btoa(userName + ':' + password);
-        // let hash: string = crypto.createHash('sha1').update(password).digest('hex');
-
         this.$http.get(`${this.hostUrl}/${this.apiPath}`, {
             headers: {
                 'Authorization': 'Basic ' + credentials,
@@ -50,13 +50,17 @@ export class AuthorizationService {
             }
         })
             .then(response => {
-                let account: AccountValidity = new AccountValidity(response.data);
-                this.authenticationState$.next(account);
+                this.account = new AccountValidity(<IAccountValidity>(response.data));
+                this.authenticationState$.next(new AuthenticationStateChangedEvent(true, this.account));
 
-                window.localStorage.setItem('username', angular.toJson(response.data));
-                this.storage.set('account.validity', response);
+                this.$window.localStorage.setItem('taskrunner.authentication.account', angular.toJson(response.data));
+                this.$window.sessionStorage.setItem('taskrunner.authentication.account', angular.toJson(response.data));
 
-                deferred.resolve(account);
+                let secret: string = crypto.createHash('sha256').update(password).digest('hex');
+                this.$window.localStorage.setItem('taskrunner.authentication.secret', secret);
+                this.$window.sessionStorage.setItem('taskrunner.authentication.secret', secret);
+
+                deferred.resolve(this.account);
             })
             .catch(reason => {
                 Logger.LOG.error(reason.data);

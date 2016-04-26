@@ -1,13 +1,8 @@
 /// <reference path="../../typings.d.ts" />
 
-export interface IEvent<TEventSender, TEventArgs extends IEventArgs> {
-    sender: TEventSender;
-    args?: TEventArgs;
-}
-export interface IEventArgs { }
+export interface IEvent { }
 
-export interface IPropertyChangedEvent<TInstance> extends IEvent<TInstance, IPropertyChangedEventArgs> { }
-export interface IPropertyChangedEventArgs extends IEventArgs {
+export interface IPropertyChangedEvent extends IEvent {
     property: string;
     value: string;
 }

@@ -51,7 +51,7 @@ export class Navigation {
 
     /* tslint:disable:no-unused-variable */
     private ngOnInit(): void {
-        // this.subscription = this.authorization.account$.filter(x => !!x).subscribe(x => console.log('account', x));
+        this.subscription = this.authorization.authenticationState$.subscribe(x => console.log('state', x));
     }
 
     private ngOnDestroy(): void {

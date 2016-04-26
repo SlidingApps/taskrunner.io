@@ -1,7 +1,6 @@
 /// <reference path="../../../../typings.d.ts" />
 
 // COMMON
-import { Subscription } from 'rxjs';
 import { Component, Input, Inject } from 'ng-forward';
 
 // PARTIAL SPECIFICS

@@ -1,6 +1,6 @@
 /// <reference path="../../typings.d.ts" />
 
-import { IEvent, IEventArgs } from './event';
+import { IEvent } from './event';
 
 export interface IBusinessRule<TInstance> {
     name: string;
@@ -23,8 +23,7 @@ export class BusinessRulesValidator<TInstance> implements IBusinessRulesValidato
     public get rules(): Array<IBusinessRule<TInstance>> { return this._rules; }
 }
 
-export interface IValidatedInstanceChangedEvent<TInstance> extends IEvent<TInstance, IValidatedInstanceChangedEventArgs> { }
-export interface IValidatedInstanceChangedEventArgs extends IEventArgs {
+export interface IValidatedInstanceChangedEvent extends IEvent {
     failures: Array<{ name: string }>;
 }
 

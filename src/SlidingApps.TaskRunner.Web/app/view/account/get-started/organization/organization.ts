@@ -48,9 +48,5 @@ export class Organization {
     private ngOnInit(): void {
         this.$timeout(() => angular.element('#organization').focus(), 300);
     }
-
-    private ngOnDestroy(): void {
-        
-    }
     /* tslint:enable:no-unused-variable */
 }
