@@ -3,7 +3,7 @@
 
 // COMMON
 import * as angular from 'angular';
-import * as crypto from 'crypto-local';
+import * as crypto from 'crypto';
 import 'angular-local-storage';
 import { BehaviorSubject } from 'rxjs';
 import { Injectable, Inject } from 'ng-forward';

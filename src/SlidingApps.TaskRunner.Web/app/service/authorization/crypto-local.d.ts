@@ -1,4 +1,4 @@
 declare var cryptoLocal: any;
-declare module 'crypto-local' {
+declare module 'crypto' {
     export = cryptoLocal;
 }
