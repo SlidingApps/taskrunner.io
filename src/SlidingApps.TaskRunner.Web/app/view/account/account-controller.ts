@@ -6,6 +6,7 @@ import { Component, StateConfig } from 'ng-forward';
 // COMPONENTS
 import { View as GetStarted } from './get-started/view';
 import { View as SignIn } from './sign-in/view';
+import { View as SignOut } from './sign-out/view';
 import { View as ForgotPassword } from './forgot-password/view';
 import { View as ResetPassword } from './reset-password/view';
 
@@ -24,6 +25,11 @@ import 'angular-ui-router';
         url: '/signin',
         component: SignIn,
         template: '<account-sign-in />'
+    }, {
+        name: 'account.signout',
+        url: '/signout',
+        component: SignOut,
+        template: '<account-sign-out />'
     }, {
         name: 'account.getStarted',
         url: '/getstarted',

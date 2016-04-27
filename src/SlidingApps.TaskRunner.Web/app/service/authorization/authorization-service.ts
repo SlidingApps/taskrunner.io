@@ -5,7 +5,7 @@
 import * as angular from 'angular';
 import * as crypto from 'crypto';
 import 'angular-local-storage';
-import { BehaviorSubject, Observer, Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Injectable, Inject } from 'ng-forward';
 
 // FOUNDATION
@@ -43,7 +43,15 @@ export class AuthorizationService {
     private secret: string;
 
     public authenticationState$: BehaviorSubject<IAuthenticationStateChangedEvent> = new BehaviorSubject<IAuthenticationStateChangedEvent>(undefined);
-    public test: any = Observable.fromEvent(window, 'storage', event => { console.log('storage', event); return event; });
+    private storage$: Observable<{key: string, newValue: string, oldValue: string }> =
+        Observable
+            .fromEvent(window, 'storage', (event: StorageEvent) => event)
+            .filter((x: StorageEvent) => x.key === AuthorizationService.AUTHENTICATION_ACCOUNT || x.key === AuthorizationService.AUTHENTICATION_SECRET)
+            .map((x: StorageEvent) => { return { key: x.key, newValue: x.newValue, oldValue: x.oldValue }; })
+            .share()
+            .subscribe(x => {
+                console.log('from observable', x);
+            });
 
     public signIn(userName: string, password: string): angular.IPromise<AccountValidity> {
         let deferred: angular.IDeferred<AccountValidity> = this.$q.defer<AccountValidity>();

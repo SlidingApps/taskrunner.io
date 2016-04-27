@@ -133,7 +133,7 @@ import { AuthorizationService } from '../../../service/authorization/authorizati
     
                                 <ul class="dropdown-menu pull-right">
                                     <li>
-                                        <a href="#" title="#" class="clearfix" data-ng-click="ctrl.signOut()" onclick="return false;">
+                                        <a href="#" class="clearfix" (click)="ctrl.onGotoSignOut()" onclick="return false;">
                                             <span class="pull-left"><i class="zmdi zmdi-accounts-add zmdi-hc-fw icon"></i> Sign Out</span>
                                         </a>
                                     </li>
@@ -176,8 +176,8 @@ export class Navigation {
         this.$state.go('account.signin');
     }
 
-    public signOut(): void {
-        this.authorization.signOut();
+    public onGotoSignOut(): void {
+        this.$state.go('account.signout');
     }
 
     /* tslint:disable:no-unused-variable */
