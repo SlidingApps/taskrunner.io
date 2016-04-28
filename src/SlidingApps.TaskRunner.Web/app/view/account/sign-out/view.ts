@@ -8,7 +8,7 @@ import { AuthorizationService } from '../../../service/authorization/authorizati
 
 @Component({
     selector: 'account-sign-out',
-    template: '<div>SIGN OUT</div>'
+    template: '<div></div>'
 })
 @Inject(AuthorizationService)
 export class View {

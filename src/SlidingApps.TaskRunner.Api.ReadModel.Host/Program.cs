@@ -50,24 +50,48 @@ namespace SlidingApps.TaskRunner.Api.ReadModel.Host
                 var hostUri = WebApiConfiguration.HostUri;
                 Program.WriteMessage(string.Format("Network binding: {0}", hostUri));
 
-				using (WebApp.Start<Startup>(new StartOptions(hostUri)))
-				{
-                    Program.WriteMessage("Listening ...");
-					while (true)
-					{
-						while (!Console.KeyAvailable)
-						{
-							Thread.Sleep(250);
-						}
+                var server = WebApp.Start(hostUri, app =>
+                {
+                    app.Properties.Add("Development", true);
+                    var startup = new Startup();
+                    startup.Configuration(app);
+                });
 
-						if (Console.ReadKey().Key == ConsoleKey.Q) 
-						{
-                            Program.WriteMessage("Received 'q' to quit");
-							break;
-						}
-					}
-				}
-			}
+                Program.WriteMessage("Listening ...");
+                while (true)
+                {
+                    while (!Console.KeyAvailable)
+                    {
+                        Thread.Sleep(250);
+                    }
+
+                    if (Console.ReadKey().Key == ConsoleKey.Q)
+                    {
+                        Program.WriteMessage("Received 'q' to quit");
+                        server.Dispose();
+                        break;
+                    }
+                }
+
+
+                //using (WebApp.Start<Startup>(new StartOptions(hostUri)))
+                //{
+                //                Program.WriteMessage("Listening ...");
+                //	while (true)
+                //	{
+                //		while (!Console.KeyAvailable)
+                //		{
+                //			Thread.Sleep(250);
+                //		}
+
+                //		if (Console.ReadKey().Key == ConsoleKey.Q) 
+                //		{
+                //                        Program.WriteMessage("Received 'q' to quit");
+                //			break;
+                //		}
+                //	}
+                //}
+            }
 			catch (Exception ex)
 			{
 				Logger.Log.Error(ex.ToJson());
