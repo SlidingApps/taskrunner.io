@@ -25,20 +25,12 @@ interface ILocalScope extends angular.IScope {
                 <div class="row">
                     <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-lg-4 col-lg-offset-4">
                         <div class="text-center">
-                            <p>Enter your email address and we'll send you a link to reset your password.</p>
+                            <p>Enter your email address or username and we'll send you a link to reset your password.</p>
                         </div>
                     </div>
                 </div>
                 <form name="form" data-ng-submit="ctrl.submit(form)">
                     <data-ng-transclude></data-ng-transclude>
-                    <!-- SUBMIT -->
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-lg-4 col-lg-offset-4">
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-orange submit" data-ng-disabled="ctrl.isBusy || ctrl.isInvalid || form.$invalid">Send instructions</button>
-                            </div>
-                        </div>
-                    </div>
                 </form>
                 <ul class="more">
                     <li><a data-ui-sref="account.getStarted">Get started</a></li>

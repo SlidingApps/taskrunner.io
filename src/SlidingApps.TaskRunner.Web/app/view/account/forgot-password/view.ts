@@ -10,6 +10,7 @@ import { Module as ComponentModule } from '../../../component/module';
 // DIRECTIVES
 import { Form } from './form/form';
 import { Username } from './username/username';
+import { Button } from './button/button';
 
 // VIEW SPECIFICS
 import { Model } from './model';
@@ -19,11 +20,12 @@ import { EventHub } from './event-hub';
 @Component({
     selector: 'account-forgot-password',
     providers: [ComponentModule.name],
-    directives: [ Form, Username],
+    directives: [ Form, Username, Button],
     template: `
     <!-- ACCOUNT FORGOT PASSWORD -->
     <account-forgot-password-form [(model)]="ctrl.model">
         <account-forgot-password-username [form]="ctrl.form" [(model)]="ctrl.model"></account-forgot-password-username>
+        <account-forgot-password-button [form]="ctrl.form" [(model)]="ctrl.model"></account-forgot-password-button>
     </account-forgot-password-form>
     `
 })

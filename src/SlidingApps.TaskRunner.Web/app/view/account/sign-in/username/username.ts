@@ -15,9 +15,9 @@ import { Model } from '../model';
             <div class="form-group">
                 <input id="email"
                         name="email"
-                        type="email"
+                        type="text"
                         class="form-control simple-form-control"
-                        placeholder="email"
+                        placeholder="email or username"
                         autocomplete="off"
                         required
                         data-ng-model="ctrl.model.username"

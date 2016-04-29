@@ -186,10 +186,13 @@ export class Navigation {
             this.authorization.authenticationState$
                 .subscribe(x => {
                     this.$timeout(() => {
+                        // redirect only if have not set account, which means it is the first time the view is loaded
+                        let redirect: boolean = this.account !== undefined;
+
                         this.isSignedIn = x.isSignedIn;
                         this.account = x.account;
 
-                        this.$state.go('home');
+                        if (redirect) { this.$state.go('home'); }
                     });
                 });
     }
