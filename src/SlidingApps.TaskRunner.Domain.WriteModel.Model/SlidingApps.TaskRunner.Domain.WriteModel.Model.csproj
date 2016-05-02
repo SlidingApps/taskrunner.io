@@ -58,6 +58,7 @@
     <Compile Include="Platform\Accounts\Intents\ChangeAccountUserPeriod.cs" />
     <Compile Include="Platform\Accounts\Intents\ChangeAccountUser.cs" />
     <Compile Include="Platform\Accounts\Intents\CreateAccount.cs" />
+    <Compile Include="Platform\Accounts\Intents\SendResetPasswordLink.cs" />
     <Compile Include="Platform\Tenants\Intents\ChangeTenantInfo.cs" />
     <Compile Include="Platform\Tenants\Intents\SetTenantOwner.cs" />
     <Compile Include="Platform\Tenants\TenantCommand.cs" />

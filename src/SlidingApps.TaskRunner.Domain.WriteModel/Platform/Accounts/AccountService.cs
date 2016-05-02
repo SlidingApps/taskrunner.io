@@ -15,7 +15,8 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
         ICommandHandler<AccountCommand<CreateAccount>>,
         ICommandHandler<AccountCommand<ChangeAccountProfileName>>,
         ICommandHandler<AccountCommand<ChangeAccountUserPeriod>>,
-        ICommandHandler<AccountCommand<ChangeAccountUser>>
+        ICommandHandler<AccountCommand<ChangeAccountUser>>,
+        ICommandHandler<AccountCommand<SendResetPasswordLink>>
     {
         private readonly IMediator mediator;
 
@@ -79,6 +80,11 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
                 .ElseThrow();
 
             return new CommandResult(command.Id, result);
+        }
+
+        public ICommandResult Handle(AccountCommand<SendResetPasswordLink> command)
+        {
+            throw new NotImplementedException();
         }
     }
 }

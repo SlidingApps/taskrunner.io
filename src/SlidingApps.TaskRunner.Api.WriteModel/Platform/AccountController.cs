@@ -31,6 +31,15 @@ namespace SlidingApps.TaskRunner.Api.WriteModel.Platform
             return ApiResponse.CommandResponse(command);
         }
 
+        [HttpPost, Route(@"{name:regex([a-z.@\d])}/passwordresetlink")]
+        public async Task<HttpResponseMessage> PostSendResetPasswordLink(Guid tenantId, Guid personId, [FromBody] SendResetPasswordLink intent)
+        {
+            var command = new AccountCommand<SendResetPasswordLink>(tenantId, personId, intent);
+            await this.connector.SendCommand(command);
+
+            return ApiResponse.CommandResponse(command);
+        }
+
         [HttpPost, Route("{accountId:guid}/changename")]
         public async Task<HttpResponseMessage> PostChangeAccountProfileName(Guid tenantId, Guid personId, [FromBody] ChangeAccountProfileName intent)
         {
