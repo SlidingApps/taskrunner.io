@@ -22,7 +22,8 @@ namespace SlidingApps.TaskRunner.Api.CommandBus.Host
         IConsumer<CommandMessage<TenantCommand<ChangeTenantInfo>>>,
         IConsumer<CommandMessage<AccountCommand<CreateAccount>>>,
         IConsumer<CommandMessage<AccountCommand<ChangeAccountProfileName>>>,
-        IConsumer<CommandMessage<AccountCommand<ChangeAccountUserPeriod>>>
+        IConsumer<CommandMessage<AccountCommand<ChangeAccountUserPeriod>>>,
+        IConsumer<CommandMessage<AccountCommand<SendResetPasswordLink>>>
     {
         private readonly IUnitOfWork unitOfWork;
 
@@ -61,6 +62,11 @@ namespace SlidingApps.TaskRunner.Api.CommandBus.Host
         }
 
         public Task Consume(ConsumeContext<CommandMessage<AccountCommand<ChangeAccountUserPeriod>>> context)
+        {
+            return this.ConsumeCommand(context);
+        }
+
+        public Task Consume(ConsumeContext<CommandMessage<AccountCommand<SendResetPasswordLink>>> context)
         {
             return this.ConsumeCommand(context);
         }

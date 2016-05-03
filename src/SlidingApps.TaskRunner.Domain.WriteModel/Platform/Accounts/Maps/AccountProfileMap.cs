@@ -1,4 +1,5 @@
 ﻿
+using FluentNHibernate.Mapping;
 using SlidingApps.TaskRunner.Foundation.NHibernate;
 using System;
 
@@ -15,6 +16,8 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts.Maps
             this.Map(x => x.Name);
             this.Map(x => x.FirstName);
             this.Map(x => x.Info);
+            this.Map(x => x.Status).CustomType<GenericEnumMapper<EntityStatus>>();
+            this.Map(x => x.Link);
 
             this.References(x => x.Account).Unique().Column("AccountId");
         }
