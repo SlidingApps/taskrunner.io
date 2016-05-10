@@ -3,6 +3,7 @@ using FluentValidation;
 using FluentValidation.Results;
 using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts.Intents;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
+using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
 using System;
 
@@ -47,6 +48,18 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
         {
             get { return this.entity.Profile.Info; }
             private set { this.entity.Profile.Info = value; }
+        }
+
+        public EntityStatus Status
+        {
+            get { return this.entity.Profile.Status; }
+            private set { this.entity.Profile.Status = value; }
+        }
+
+        public string Link
+        {
+            get { return this.entity.Profile.Link; }
+            private set { this.entity.Profile.Link = value; }
         }
 
         private AccountUser user;
@@ -104,6 +117,21 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
         public IDomainEvent Apply(AccountCommand<ChangeAccountUserPeriod> command)
         {
             return this.User.Apply(command);
+        }
+
+        public IDomainEvent Apply(AccountCommand<SendResetPasswordLink> command)
+        {
+            AccountEvent<SendResetPasswordLink> domainEvent = new AccountEvent<SendResetPasswordLink>(command);
+            this.When(domainEvent);
+
+            return domainEvent;
+        }
+
+        public void When(AccountEvent<SendResetPasswordLink> domainEvent)
+        {
+            this.Link = Guid.NewGuid().ToString().Replace("-", string.Empty).ToUpper();
+
+            this.DomainEvents.Add(domainEvent);
         }
 
         public ValidationResult Validate()

@@ -85,8 +85,10 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
         public ICommandResult Handle(AccountCommand<SendResetPasswordLink> command)
         {
             var existing = this.queryProvider.CreateQuery<Entities.Account>().Where(x => x.EmailAddress == command.Intent.Name || x.User.Name == command.Intent.Name).Single();
+            Account entity = new Account(existing, this.validator.CreateFor<Account>());
+            var result = entity.Apply(command);
 
-            return new CommandResult(command.Id, default(IDomainEvent));
+            return new CommandResult(command.Id, result);
         }
     }
 }
