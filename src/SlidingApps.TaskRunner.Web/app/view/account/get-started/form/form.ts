@@ -46,7 +46,7 @@ export class Form {
 
     public submit(form: angular.IFormController): void {
         let payload: ICreateTenantPayload = this.model.$toCreateTenant();
-        this.writeModel.postCreateTenant(payload)
+        this.writeModel.tenant.postCreateTenant(payload)
             .then(response => console.log('response', response))
             .catch(reason => console.log('reason', reason));
     }

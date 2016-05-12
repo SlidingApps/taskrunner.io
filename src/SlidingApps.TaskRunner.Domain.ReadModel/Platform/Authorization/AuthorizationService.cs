@@ -24,8 +24,8 @@ namespace SlidingApps.TaskRunner.Domain.ReadModel.Platform.Authorization
             var account =
                 this.queryProvider.From<AccountCredentials>()
                     .By(x => x.Username).EqualTo(query.Username)
-                    .By(x => x.ValidFrom).LessThanOrEqual(DateTime.Now)
-                    .By(x => x.validUntil).GreaterThanOrEqual(DateTime.Now)
+                    .By(x => x.ValidFrom).LessThanOrEqual(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+                    .By(x => x.validUntil).GreaterThanOrEqual(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
                     .SingleOrDefault();
 
             AccountValidity validity = new AccountValidity();

@@ -31,7 +31,7 @@ namespace SlidingApps.TaskRunner.Api.WriteModel.Platform
             return ApiResponse.CommandResponse(command);
         }
 
-        [HttpPost, Route(@"{name:regex([a-z0-9.%@])}/passwordresetlink")]
+        [HttpPost, Route(@"{name:regex([a-z0-9.%@])}/passwordlink")]
         public async Task<HttpResponseMessage> PostSendResetPasswordLink(Guid tenantId, string name, [FromBody] SendResetPasswordLink intent)
         {
             var command = new AccountCommand<SendResetPasswordLink>(tenantId, Guid.NewGuid(), intent);
