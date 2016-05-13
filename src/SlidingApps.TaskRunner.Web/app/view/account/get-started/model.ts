@@ -4,9 +4,10 @@
 import { Model as FoundationModel } from '../../../component/foundation/model';
 
 // MODEL
-import { ICreateTenantPayload  } from '../../../service/write-model/tenant/create-tenant';
+import { ICreateTenantPayload } from '../../../service/write-model/tenant/create-tenant';
 
 export class Model extends FoundationModel {
+    
     constructor() {
         super();
     }

@@ -32,6 +32,8 @@ export class AuthorizationService {
             this.authenticationState$.next(new AuthenticationStateChangedEvent(false));
         }
 
+        this.storage$.subscribe(x => console.log('from observable', x));
+
         this.$window.addEventListener('storage', event => this.onStorageChanged(event));
     }
 
@@ -48,10 +50,7 @@ export class AuthorizationService {
             .fromEvent(window, 'storage', (event: StorageEvent) => event)
             .filter((x: StorageEvent) => x.key === AuthorizationService.AUTHENTICATION_ACCOUNT || x.key === AuthorizationService.AUTHENTICATION_SECRET)
             .map((x: StorageEvent) => { return { key: x.key, newValue: x.newValue, oldValue: x.oldValue }; })
-            .share()
-            .subscribe(x => {
-                console.log('from observable', x);
-            });
+            .share();
 
     public signIn(userName: string, password: string): angular.IPromise<AccountValidity> {
         let deferred: angular.IDeferred<AccountValidity> = this.$q.defer<AccountValidity>();

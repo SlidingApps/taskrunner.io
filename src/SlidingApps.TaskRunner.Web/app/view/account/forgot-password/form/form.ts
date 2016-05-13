@@ -9,6 +9,8 @@ import 'angular-ui-router';
 // PARTIAL SPECIFICS
 import { Model } from '../model';
 import { EventHub } from '../event-hub';
+import { IPasswordLinkPayload  } from '../../../../service/write-model/account/password-link';
+import { WriteModelService  } from '../../../../service/write-model/write-model-service';
 
 interface ILocalScope extends angular.IScope {
     form: angular.IFormController;
@@ -42,14 +44,18 @@ interface ILocalScope extends angular.IScope {
     <!-- ACCOUNT.FORGOT-PASSWORD.FORM: END -->
     `
 })
-@Inject('$scope', EventHub)
+@Inject('$scope', EventHub, WriteModelService)
 export class Form {
-    constructor(private $scope: ILocalScope, private hub: EventHub) { }
+    constructor(private $scope: ILocalScope, private hub: EventHub, private writeModel: WriteModelService) { }
 
     @Input() public model: Model;
 
     public submit(form: angular.IFormController): void {
         console.log('form', angular.toJson(form), this.model);
+        let payload: IPasswordLinkPayload = this.model.$toPasswordLink();
+        this.writeModel.account.postPasswordLink(this.model.username, payload)
+            .then(response => console.log('response', response))
+            .catch(reason => console.log('reason', reason));
     }
 
     /* tslint:disable:no-unused-variable */

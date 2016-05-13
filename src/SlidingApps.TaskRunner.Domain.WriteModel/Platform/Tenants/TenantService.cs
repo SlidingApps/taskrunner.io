@@ -41,7 +41,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
 
             ICommandResult userResult = 
                 this.mediator.Send(
-                    new AccountCommand<ChangeAccountUser>(entity.Id, accountEvent.AccountId, 
+                    new AccountCommand<ChangeAccountUser>(accountEvent.AccountId, 
                         new ChangeAccountUser
                         {
                             Name = command.Intent.UserName,

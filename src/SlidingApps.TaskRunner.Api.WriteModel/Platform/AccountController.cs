@@ -10,7 +10,7 @@ using System.Web.Http;
 
 namespace SlidingApps.TaskRunner.Api.WriteModel.Platform
 {
-    [RoutePrefix("command/tenants/{tenantId:guid}/accounts"), ApiExceptionFilter]
+    [RoutePrefix("command/accounts"), ApiExceptionFilter]
     public class AccountController
         : ApiController
     {
@@ -32,27 +32,27 @@ namespace SlidingApps.TaskRunner.Api.WriteModel.Platform
         }
 
         [HttpPost, Route(@"{name:regex([a-z0-9.%@])}/passwordlink")]
-        public async Task<HttpResponseMessage> PostSendResetPasswordLink(Guid tenantId, string name, [FromBody] SendResetPasswordLink intent)
+        public async Task<HttpResponseMessage> PostSendResetPasswordLink(string name, [FromBody] SendResetPasswordLink intent)
         {
-            var command = new AccountCommand<SendResetPasswordLink>(tenantId, Guid.NewGuid(), intent);
+            var command = new AccountCommand<SendResetPasswordLink>(Guid.NewGuid(), intent);
             await this.connector.SendCommand(command);
 
             return ApiResponse.CommandResponse(command);
         }
 
         [HttpPost, Route("{accountId:guid}/changename")]
-        public async Task<HttpResponseMessage> PostChangeAccountProfileName(Guid tenantId, Guid personId, [FromBody] ChangeAccountProfileName intent)
+        public async Task<HttpResponseMessage> PostChangeAccountProfileName(Guid accountId, [FromBody] ChangeAccountProfileName intent)
         {
-            var command = new AccountCommand<ChangeAccountProfileName>(tenantId, personId, intent);
+            var command = new AccountCommand<ChangeAccountProfileName>(accountId, intent);
             await this.connector.SendCommand(command);
 
             return ApiResponse.CommandResponse(command);
         }
 
         [HttpPost, Route("{accountId:guid}/changeperiod")]
-        public async Task<HttpResponseMessage> PostChangeAccountUserPeriod(Guid tenantId, Guid personId, [FromBody] ChangeAccountUserPeriod intent)
+        public async Task<HttpResponseMessage> PostChangeAccountUserPeriod(Guid accountId, [FromBody] ChangeAccountUserPeriod intent)
         {
-            var command = new AccountCommand<ChangeAccountUserPeriod>(tenantId, personId, intent);
+            var command = new AccountCommand<ChangeAccountUserPeriod>(accountId, intent);
             await this.connector.SendCommand(command);
 
             return ApiResponse.CommandResponse(command);

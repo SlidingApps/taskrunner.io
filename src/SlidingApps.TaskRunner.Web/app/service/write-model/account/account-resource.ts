@@ -5,11 +5,10 @@ import 'angular';
 
 // MODEL
 import { RestServiceConnector } from '../../rest/rest-service';
-import { TenantResource } from '../tenant/tenant-resource';
 import { IPasswordLinkPayload } from './password-link';
 
 export interface IAccountResource {
-    postPasswordLink(tenantId: string, userName: string, payload: IPasswordLinkPayload): angular.IPromise<void>;
+    postPasswordLink(userName: string, payload: IPasswordLinkPayload): angular.IPromise<void>;
 }
 
 export class AccountResource implements IAccountResource {
@@ -17,11 +16,11 @@ export class AccountResource implements IAccountResource {
 
     public static RESOURCE: string = 'accounts';
 
-    public postPasswordLink(tenantId: string, userName: string, payload: IPasswordLinkPayload): angular.IPromise<void> {
+    public postPasswordLink(userName: string, payload: IPasswordLinkPayload): angular.IPromise<void> {
         let deferred: angular.IDeferred<void> = this.$q.defer<void>();
 
         this.service
-            .all(`${TenantResource.RESOURCE}/${tenantId}/${AccountResource.RESOURCE}/${userName}`)
+            .all(`${AccountResource.RESOURCE}/${userName}/passwordlink`)
             .post(payload)
             .then(response => {
 

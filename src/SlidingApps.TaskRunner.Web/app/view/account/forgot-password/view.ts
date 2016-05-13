@@ -45,6 +45,7 @@ export class View {
 
     private ngOnDestroy(): void {
         if (this.subscription && !this.subscription.isUnsubscribed) { this.subscription.unsubscribe(); }
+        this.model.$destroy();
     }
     /* tslint:enable:no-unused-variable */
 }

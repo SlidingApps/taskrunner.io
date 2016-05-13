@@ -14,11 +14,8 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
         public AccountEvent(AccountCommand<TProps> command)
             : base(command)
         {
-            this.TenantId = command.TenantId;
             this.AccountId = command.AccountId;
         }
-
-        public Guid TenantId { get; set; }
 
         public Guid AccountId { get; set; }
     }

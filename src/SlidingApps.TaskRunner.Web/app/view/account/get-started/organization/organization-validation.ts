@@ -53,7 +53,7 @@ export class Directive implements angular.IDirective {
             let deferred: angular.IDeferred<void> = this.$q.defer<void>();
             let value: string = modelValue || viewValue;
 
-            this.service.getTenantCodeAvailability(value)
+            this.service.tenant.getTenantCodeAvailability(value)
                 .then((response: TenantCodeAvailability) => {
                     if (response.isAvailable) {
                         deferred.resolve();
