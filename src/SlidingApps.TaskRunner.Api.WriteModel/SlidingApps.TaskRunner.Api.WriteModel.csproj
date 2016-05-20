@@ -125,6 +125,10 @@
       <Project>{e13532de-5159-4031-95f3-bfda5053342b}</Project>
       <Name>SlidingApps.TaskRunner.Foundation.Contract</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation.Infrastructure\SlidingApps.TaskRunner.Foundation.Infrastructure.csproj">
+      <Project>{34A3A49F-D391-4F83-A10D-4CFEEA3DFDF9}</Project>
+      <Name>SlidingApps.TaskRunner.Foundation.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation.MassTransit\SlidingApps.TaskRunner.Foundation.MassTransit.csproj">
       <Project>{c866a9c7-bf83-46f7-a8ae-7204bbbcfc7c}</Project>
       <Name>SlidingApps.TaskRunner.Foundation.MassTransit</Name>

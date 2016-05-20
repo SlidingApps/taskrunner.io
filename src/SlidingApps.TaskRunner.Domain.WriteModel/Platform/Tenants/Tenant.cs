@@ -99,7 +99,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
             return _account;
         }
 
-        public IDomainEvent Apply(TenantCommand<CreateTenant> command)
+        public TenantEvent<CreateTenant> Apply(TenantCommand<CreateTenant> command)
         {
             TenantEvent<CreateTenant> domainEvent = new TenantEvent<CreateTenant>(command);
             this.When(domainEvent);
@@ -119,7 +119,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
             this.DomainEvents.Add(domainEvent);
         }
 
-        public IDomainEvent Apply(TenantCommand<ChangeTenantInfo> command)
+        public TenantEvent<ChangeTenantInfo> Apply(TenantCommand<ChangeTenantInfo> command)
         {
             TenantEvent<ChangeTenantInfo> domainEvent = new TenantEvent<ChangeTenantInfo>(command);
             this.When(domainEvent);

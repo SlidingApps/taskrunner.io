@@ -5,6 +5,10 @@ using SlidingApps.TaskRunner.Foundation.MassTransit;
 using SlidingApps.TaskRunner.Foundation.MessageBus;
 using MassTransit;
 using MassTransit.Log4NetIntegration;
+using MassTransit.RabbitMqTransport.Contexts;
+using SlidingApps.TaskRunner.Foundation.Cqrs;
+using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
+using System;
 
 namespace SlidingApps.TaskRunner.Api.WriteModel
 {
@@ -19,6 +23,12 @@ namespace SlidingApps.TaskRunner.Api.WriteModel
             builder.Register(context => Bus.Factory.CreateUsingRabbitMq(config =>
             {
                 RabbitMQConfigration rabbitMQSettings = context.Resolve<RabbitMQConfigration>();
+
+                config.ConfigureSend(send =>
+                    send.UseSendExecute(se =>
+                    {
+                        se.Headers.Set("type", ((Type)((dynamic)se).Message.Command.GetType()).ToFriendlyName());
+                    }));
 
                 config.UseLog4Net();
                 config.UseJsonSerializer();

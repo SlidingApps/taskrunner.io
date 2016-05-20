@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SlidingApps.TaskRunner.Foundation.Cqrs
 {
-    public class CommandResult
+    public sealed class CommandResult
         : List<IDomainEvent>, ICommandResult
     {
         public CommandResult(Guid correlationId, IDomainEvent domainEvent)

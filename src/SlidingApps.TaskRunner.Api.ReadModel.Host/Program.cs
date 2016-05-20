@@ -106,7 +106,7 @@ namespace SlidingApps.TaskRunner.Api.ReadModel.Host
             if (Console.CursorLeft > 0) Console.Write("\r\n");
 
             Console.ForegroundColor = Program.FOREGROUNDCOLOR;
-            Console.WriteLine("{0} - {1}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss,fff"), message);
+            Console.WriteLine("{0} - {1}", DateTime.Now.ToString("HH:mm:ss.fff"), message);
             Console.ResetColor();
         }
 	}

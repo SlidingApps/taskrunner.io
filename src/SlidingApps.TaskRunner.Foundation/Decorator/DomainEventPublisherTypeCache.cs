@@ -7,18 +7,18 @@ using System.Collections.Concurrent;
 
 namespace SlidingApps.TaskRunner.Foundation.Decorator
 {
-    internal class DomainEventPublisherTypeCache
+    public class DomainEventPublisherTypeCache
     {
         private static readonly ConcurrentDictionary<Type, Type> MESSAGE_TYPES = new ConcurrentDictionary<Type, Type>();
 
         private static object LOCK = new object();
 
-        internal static Type Get(Type requestedType, Guid correlationId)
+        public static Type Get(Type requestedType, Guid correlationId)
         {
             return DomainEventPublisherTypeCache.Get(requestedType, correlationId.ToString());
         }
 
-        internal static Type Get(Type requestedType, string correlationId = "__UNSPECIFIED__")
+        public static Type Get(Type requestedType, string correlationId = "__UNSPECIFIED__")
         {
             Logger.Log.InfoFormat(Logger.CORRELATED_CONTENT, correlationId, "find domain event type message type for ", requestedType);
             Type messageType;

@@ -78,7 +78,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
             private set { this.user = value; }
         }
 
-        public IDomainEvent Apply(AccountCommand<CreateAccount> command)
+        public AccountEvent<CreateAccount> Apply(AccountCommand<CreateAccount> command)
         {
             AccountEvent<CreateAccount> domainEvent = new AccountEvent<CreateAccount>(command);
             this.When(domainEvent);
@@ -97,7 +97,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
             this.DomainEvents.Add(domainEvent);
         }
 
-        public IDomainEvent Apply(AccountCommand<ChangeAccountProfileName> command)
+        public AccountEvent<ChangeAccountProfileName> Apply(AccountCommand<ChangeAccountProfileName> command)
         {
             AccountEvent<ChangeAccountProfileName> domainEvent = new AccountEvent<ChangeAccountProfileName>(command);
             this.When(domainEvent);
@@ -113,12 +113,12 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
             this.DomainEvents.Add(domainEvent);
         }
 
-        public IDomainEvent Apply(AccountCommand<ChangeAccountUserPeriod> command)
+        public AccountEvent<ChangeAccountUserPeriod> Apply(AccountCommand<ChangeAccountUserPeriod> command)
         {
             return this.User.Apply(command);
         }
 
-        public IDomainEvent Apply(AccountCommand<SendResetPasswordLink> command)
+        public AccountEvent<SendResetPasswordLink> Apply(AccountCommand<SendResetPasswordLink> command)
         {
             AccountEvent<SendResetPasswordLink> domainEvent = new AccountEvent<SendResetPasswordLink>(command);
             this.When(domainEvent);

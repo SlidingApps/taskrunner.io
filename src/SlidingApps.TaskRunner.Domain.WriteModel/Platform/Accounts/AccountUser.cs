@@ -1,6 +1,5 @@
 ﻿
 using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts.Intents;
-using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Encryption;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
@@ -46,7 +45,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
             private set { this.entity.ValidUntil = value; }
         }
 
-        public IDomainEvent Apply(AccountCommand<ChangeAccountUser> command)
+        public AccountEvent<ChangeAccountUser> Apply(AccountCommand<ChangeAccountUser> command)
         {
             AccountEvent<ChangeAccountUser> domainEvent = new AccountEvent<ChangeAccountUser>(command);
             this.When(domainEvent);
@@ -67,7 +66,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
             this.DomainEvents.Add(domainEvent);
         }
 
-        public IDomainEvent Apply(AccountCommand<ChangeAccountUserPeriod> command)
+        public AccountEvent<ChangeAccountUserPeriod> Apply(AccountCommand<ChangeAccountUserPeriod> command)
         {
             AccountEvent<ChangeAccountUserPeriod> domainEvent = new AccountEvent<ChangeAccountUserPeriod>(command);
             this.When(domainEvent);

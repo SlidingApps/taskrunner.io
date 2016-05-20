@@ -17,6 +17,8 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
         ICommandHandler<AccountCommand<ChangeAccountUserPeriod>>,
         ICommandHandler<AccountCommand<ChangeAccountUser>>,
         ICommandHandler<AccountCommand<SendResetPasswordLink>>
+    //,
+    //ICommandHandler2<AccountCommand<SendResetPasswordLink>, AccountEvent<SendResetPasswordLink>>
     {
         private readonly IMediator mediator;
 
@@ -34,7 +36,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
         public ICommandResult Handle(AccountCommand<CreateAccount> command)
         {
             Account entity = new Account(new Entities.Account(), this.validator.CreateFor<Account>());
-            var result = entity.Apply(command);
+            AccountEvent<CreateAccount> result = entity.Apply(command);
 
             entity
                 .IfValid(e => this.queryProvider.Session.Save(e.GetDataEntity()))
@@ -47,7 +49,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
         {
             var existing = this.queryProvider.CreateQuery<Entities.Account>().Where(x => x.Id == command.AccountId).Single();
             Account entity = new Account(existing, this.validator.CreateFor<Account>());
-            var result = entity.Apply(command);
+            AccountEvent<ChangeAccountProfileName> result = entity.Apply(command);
 
             entity
                 .IfValid(e => this.queryProvider.Session.SaveOrUpdate(e.GetDataEntity()))
@@ -60,7 +62,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
         {
             var existing = this.queryProvider.CreateQuery<Entities.Account>().Where(x => x.Id == command.AccountId).Single();
             Account entity = new Account(existing, this.validator.CreateFor<Account>());
-            var result = entity.Apply(command);
+            AccountEvent<ChangeAccountUserPeriod> result = entity.Apply(command);
 
             entity
                 .IfValid(e => this.queryProvider.Session.SaveOrUpdate(e.GetDataEntity()))
@@ -73,7 +75,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
         {
             var existing = this.queryProvider.CreateQuery<Entities.Account>().Where(x => x.Id == command.AccountId).Single();
             Account entity = new Account(existing, this.validator.CreateFor<Account>());
-            var result = entity.User.Apply(command);
+            AccountEvent<ChangeAccountUser> result = entity.User.Apply(command);
 
             entity
                 .IfValid(e => this.queryProvider.Session.SaveOrUpdate(e.GetDataEntity()))
@@ -86,7 +88,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
         {
             var existing = this.queryProvider.CreateQuery<Entities.Account>().Where(x => x.EmailAddress == command.Intent.Name || x.User.Name == command.Intent.Name).Single();
             Account entity = new Account(existing, this.validator.CreateFor<Account>());
-            var result = entity.Apply(command);
+            AccountEvent<SendResetPasswordLink> result = entity.Apply(command);
 
             return new CommandResult(command.Id, result);
         }

@@ -25,7 +25,7 @@ namespace SlidingApps.TaskRunner.Foundation.Cqrs
     }
 
     public abstract class Command<TIntent>
-    : Command where TIntent : IIntent
+        : Command where TIntent : IIntent
     {
         public Command() { }
 

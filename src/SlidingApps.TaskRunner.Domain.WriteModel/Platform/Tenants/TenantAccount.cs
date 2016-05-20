@@ -51,7 +51,7 @@ namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants
             private set { this.entity.RoleSet.IsFollower = value; }
         }
 
-        public IDomainEvent Apply(TenantCommand<SetTenantOwner> command)
+        public TenantEvent<SetTenantOwner> Apply(TenantCommand<SetTenantOwner> command)
         {
             TenantEvent<SetTenantOwner> domainEvent = new TenantEvent<SetTenantOwner>(command);
             this.When(domainEvent);

@@ -9,9 +9,7 @@ namespace SlidingApps.TaskRunner.Foundation.MessageBus
         Task SendCommand<TCommand>(TCommand command)
             where TCommand : ICommand<ICommandResult>;
 
-        Task PublishEvent(object eventMessage, string correlationId);
-
-        Task PublishEvent<TDomainEventMessage>(TDomainEventMessage domainEventMessage)
-            where TDomainEventMessage : class, IDomainEventMessage<IDomainEvent>;
+        Task PublishEvent<TDomainEvent>(TDomainEvent domainEvent, string correlationId)
+            where TDomainEvent : class, IDomainEvent;
     }
 }

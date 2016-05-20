@@ -3,12 +3,16 @@ using MediatR;
 
 namespace SlidingApps.TaskRunner.Foundation.Cqrs
 {
-    public interface IDomainEventMessage<out TDomainEvent>
+    public interface IDomainEventMessage
         : INotification
-        where TDomainEvent : IDomainEvent
     {
         string Type { get; }
+    }
 
+    public interface IDomainEventMessage<out TDomainEvent>
+        : IDomainEventMessage
+        where TDomainEvent : IDomainEvent
+    {
         TDomainEvent Event { get; }
     }
 }

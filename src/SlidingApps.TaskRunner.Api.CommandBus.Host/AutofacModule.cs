@@ -9,9 +9,25 @@ using MediatR;
 using System.Collections.Generic;
 using System.Reflection;
 using Module = Autofac.Module;
+using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
+using System;
+using MassTransit.RabbitMqTransport.Contexts;
+using SlidingApps.TaskRunner.Foundation.Cqrs;
 
 namespace SlidingApps.TaskRunner.Api.CommandBus.Host
 {
+    //public class AttachHeadersOutboundInterceptor : IOutboundMessageInterceptor
+    //{
+    //    public void PreDispatch(ISendContext context)
+    //    {
+    //        context.SetHeader("my key", "my value");
+    //    }
+
+    //    public void PostDispatch(ISendContext context)
+    //    {
+    //    }
+    //}
+
     public class AutofacModule : Module
     {
         protected override void Load(ContainerBuilder builder)
@@ -27,6 +43,17 @@ namespace SlidingApps.TaskRunner.Api.CommandBus.Host
             builder.Register(context => Bus.Factory.CreateUsingRabbitMq(config =>
             {
                 RabbitMQConfigration rabbitMQSettings = context.Resolve<RabbitMQConfigration>();
+
+                config.ConfigureSend(send =>
+                    send.UseSendExecute(se =>
+                    {
+                        var _se = se as RabbitMqSendContextImpl<DomainEventMessage<IDomainEvent>>;
+                        if (_se != null)
+                        {
+                            _se.Headers.Set("type", _se.Message.Event.GetType().ToFriendlyName());
+                
+                        }
+                    }));
 
                 var host = config.Host(rabbitMQSettings.VirtualHostUri, h =>
                 {

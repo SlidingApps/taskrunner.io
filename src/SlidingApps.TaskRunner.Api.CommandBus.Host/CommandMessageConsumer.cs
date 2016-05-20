@@ -6,6 +6,7 @@ using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts.Intents;
 using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants;
 using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Intents;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
+using SlidingApps.TaskRunner.Foundation.Decorator;
 using SlidingApps.TaskRunner.Foundation.Infrastructure;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Logging;
@@ -89,10 +90,15 @@ namespace SlidingApps.TaskRunner.Api.CommandBus.Host
 
                     Logger.Log.InfoFormat(Logger.CORRELATED_LONG_CONTENT, context.Message.Command.Id, "publishing event", string.Format("{0} event(s)", events.Count()));
                     events.ToList().OrderBy(x => x.Timestamp).ToList()
-                        .ForEach(x => 
+                        .ForEach(domainEvent => 
                             {
-                                Logger.Log.InfoFormat(Logger.CORRELATED_LONG_CONTENT, context.Message.Command.Id, "publish event", x.ToJson());
-                                this.connector.PublishEvent(x, context.Message.Command.Id.ToString());
+                                var _domainEvent = domainEvent.ToJson();
+                                Logger.Log.InfoFormat(Logger.CORRELATED_LONG_CONTENT, context.Message.Command.Id, "domain event", _domainEvent);
+
+                                Logger.Log.InfoFormat(Logger.CORRELATED_LONG_CONTENT, context.Message.Command.Id, "publish event", _domainEvent);
+                                this.connector.PublishEvent(domainEvent, context.Message.Command.Id.ToString());
+
+                                Logger.Log.DebugFormat(Logger.CORRELATED_LONG_CONTENT, context.Message.Command.Id, "domain event published", _domainEvent);
                             });
 
                     Logger.Log.DebugFormat(Logger.CORRELATED_MESSAGE, context.Message.Command.Id, "events published");

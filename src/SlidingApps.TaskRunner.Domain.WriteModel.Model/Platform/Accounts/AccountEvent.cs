@@ -6,7 +6,8 @@ using System;
 namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts
 {
     public sealed class AccountEvent<TProps>
-        : DomainEvent<TProps> where TProps : IIntent
+        : DomainEvent<TProps>, IDomainEvent
+        where TProps : IIntent
     {
         public AccountEvent()
             : base() { }

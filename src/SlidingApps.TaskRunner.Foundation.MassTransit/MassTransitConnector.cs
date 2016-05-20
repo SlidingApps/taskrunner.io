@@ -36,19 +36,14 @@ namespace SlidingApps.TaskRunner.Foundation.MassTransit
             Logger.Log.DebugFormat(Logger.CORRELATED_CONTENT, command.Id, "command submitted", command.GetType().FullName);
         }
 
-        public async Task PublishEvent<TDomainEventMessage>(TDomainEventMessage domainEventMessage)
-            where TDomainEventMessage : class, IDomainEventMessage<IDomainEvent>
+        public async Task PublishEvent<TDomainEvent>(TDomainEvent domainEvent, string correlationId)
+            where TDomainEvent : class, IDomainEvent
         {
-            await this.PublishEvent(domainEventMessage, domainEventMessage.Event.CorrelationId.ToString());
-        }
+            Logger.Log.InfoFormat(Logger.CORRELATED_CONTENT, correlationId, "submiting event", domainEvent.GetType().FullName);
+            ISendEndpoint endpoint = this.eventEndpoint ?? (this.eventEndpoint = await this.bus.GetSendEndpoint(this.rabbitMQConfiguration.EventExchangeUri));
+            await endpoint.Send(new DomainEventMessage<TDomainEvent>(domainEvent));
 
-        public async Task PublishEvent(object eventMessage, string correlationId)
-        {
-            Logger.Log.InfoFormat(Logger.CORRELATED_CONTENT, correlationId, "submiting event", eventMessage.GetType().FullName);
-            ISendEndpoint endpoint = this.eventEndpoint ?? (this.eventEndpoint= await this.bus.GetSendEndpoint(this.rabbitMQConfiguration.EventExchangeUri));
-            await endpoint.Send(eventMessage);
-
-            Logger.Log.DebugFormat(Logger.CORRELATED_CONTENT, correlationId, "event submitted", eventMessage.GetType().FullName);
+            Logger.Log.DebugFormat(Logger.CORRELATED_CONTENT, correlationId, "event submitted", domainEvent.GetType().FullName);
         }
     }
 }

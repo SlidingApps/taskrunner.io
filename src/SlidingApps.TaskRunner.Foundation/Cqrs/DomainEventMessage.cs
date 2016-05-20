@@ -1,4 +1,6 @@
 ﻿
+using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
+
 namespace SlidingApps.TaskRunner.Foundation.Cqrs
 {
     public class DomainEventMessage<TDomainEvent>
@@ -9,7 +11,7 @@ namespace SlidingApps.TaskRunner.Foundation.Cqrs
             this.Event = @event;
         }
 
-        public string Type { get { return this.Event.GetType().FullName; } }
+        public string Type { get { return this.Event.GetType().ToFriendlyName(); } }
 
         public TDomainEvent Event { get; private set; }
     }

@@ -2,12 +2,15 @@
 
 namespace SlidingApps.TaskRunner.Foundation.Cqrs
 {
+    public abstract class CommandMessage
+        : ICommandMessage { }
+
     /// <summary>
     /// Wrapper used for sending <see cref="Command"/> instance over a <see cref="MediatR"/> request pipeline.
     /// </summary>
     /// <typeparam name="TCommand">The <see cref="ICommand"/> instance.</typeparam>
     public sealed class CommandMessage<TCommand>
-        : ICommandMessage<TCommand, ICommandResult>
+        : CommandMessage, ICommandMessage<TCommand, ICommandResult>
         where TCommand : ICommand<ICommandResult>
     {
         /// <summary>

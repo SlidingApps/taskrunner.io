@@ -61,6 +61,7 @@
     <Compile Include="Extension\ObjectExtension.cs" />
     <Compile Include="Extension\SerializerExtension.cs" />
     <Compile Include="Extension\StringExtension.cs" />
+    <Compile Include="Extension\TypeExtension.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Logging\LogProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
