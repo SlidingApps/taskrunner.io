@@ -16,18 +16,6 @@ using SlidingApps.TaskRunner.Foundation.Cqrs;
 
 namespace SlidingApps.TaskRunner.Api.CommandBus.Host
 {
-    //public class AttachHeadersOutboundInterceptor : IOutboundMessageInterceptor
-    //{
-    //    public void PreDispatch(ISendContext context)
-    //    {
-    //        context.SetHeader("my key", "my value");
-    //    }
-
-    //    public void PostDispatch(ISendContext context)
-    //    {
-    //    }
-    //}
-
     public class AutofacModule : Module
     {
         protected override void Load(ContainerBuilder builder)
