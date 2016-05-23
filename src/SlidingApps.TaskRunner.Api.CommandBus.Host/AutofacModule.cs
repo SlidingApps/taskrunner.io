@@ -1,18 +1,19 @@
 
 using Autofac;
 using Autofac.Features.Variance;
+using MassTransit;
+using MassTransit.Log4NetIntegration;
+using MassTransit.RabbitMqTransport.Contexts;
+using MediatR;
 using SlidingApps.TaskRunner.Foundation.Configuration;
+using SlidingApps.TaskRunner.Foundation.Cqrs;
+using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
 using SlidingApps.TaskRunner.Foundation.MassTransit;
 using SlidingApps.TaskRunner.Foundation.MessageBus;
-using MassTransit;
-using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Module = Autofac.Module;
-using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
-using System;
-using MassTransit.RabbitMqTransport.Contexts;
-using SlidingApps.TaskRunner.Foundation.Cqrs;
 
 namespace SlidingApps.TaskRunner.Api.CommandBus.Host
 {

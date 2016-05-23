@@ -87,7 +87,7 @@ namespace SlidingApps.TaskRunner.Api.WriteModel.Host
             app.UseCors(CorsOptions.AllowAll);
 			app.UseWebApi(config);
 			app.UseAutofacMiddleware(container);
-			//app.UseAutofacWebApi(GlobalConfiguration.Configuration);
+			app.UseAutofacWebApi(config);
 
             Program.WriteMessage("OWIN configuration DONE");
 		}
