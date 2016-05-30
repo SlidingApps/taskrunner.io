@@ -1,10 +1,10 @@
 ﻿
-using SlidingApps.TaskRunner.Domain.Mail.WriteModel.Model;
-using SlidingApps.TaskRunner.Domain.Mail.WriteModel.Model.Intent;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
+using SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model;
+using SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model.Intent;
 using System;
 
-namespace SlidingApps.TaskRunner.Domain.Mail.WriteModel
+namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain
 {
     public class MailService
         : ICommandHandler<MailCommand<SendResetPasswordLink>>

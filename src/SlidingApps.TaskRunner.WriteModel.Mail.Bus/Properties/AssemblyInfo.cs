@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SlidingApps.TaskRunner.Domain.Mail.WriteModel")]
+[assembly: AssemblyTitle("SlidingApps.TaskRunner.WriteModel.Mail.Bus")]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("781c1842-a805-4eb5-ab85-20743860910a")]
+[assembly: Guid("4d93a6f9-51ce-46a9-8573-a56be386c5ce")]
 

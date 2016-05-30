@@ -1,7 +1,7 @@
 ﻿
 using SlidingApps.TaskRunner.Foundation.WriteModel;
 
-namespace SlidingApps.TaskRunner.Domain.Mail.WriteModel.Model.Intent
+namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model.Intent
 {
     public class SendResetPasswordLink
         : IIntent

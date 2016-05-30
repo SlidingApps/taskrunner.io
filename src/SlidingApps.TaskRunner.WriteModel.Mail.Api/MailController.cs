@@ -1,13 +1,13 @@
 ﻿
-using SlidingApps.TaskRunner.Domain.Mail.WriteModel.Model;
-using SlidingApps.TaskRunner.Domain.Mail.WriteModel.Model.Intent;
 using SlidingApps.TaskRunner.Foundation.MessageBus;
 using SlidingApps.TaskRunner.Foundation.Web;
+using SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model;
+using SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model.Intent;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace SlidingApps.TaskRunner.Api.Mail.WriteModel
+namespace SlidingApps.TaskRunner.WriteModel.Mail.Api
 {
     [RoutePrefix("command/v1/mail"), ApiExceptionFilter]
     public class MailManagementController
@@ -16,8 +16,8 @@ namespace SlidingApps.TaskRunner.Api.Mail.WriteModel
         private readonly IBusConnector connector;
 
         public MailManagementController(IBusConnector connector)
-			: base()
-	    {
+            : base()
+        {
             this.connector = connector;
         }
 

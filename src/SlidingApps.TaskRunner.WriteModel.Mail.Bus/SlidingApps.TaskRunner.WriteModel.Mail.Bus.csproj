@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2817302A-704E-472B-978C-68B13B5B30A0}</ProjectGuid>
+    <ProjectGuid>{4D93A6F9-51CE-46A9-8573-A56BE386C5CE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SlidingApps.TaskRunner.Domain.Mail.WriteModel.Model</RootNamespace>
-    <AssemblyName>SlidingApps.TaskRunner.Domain.Mail.WriteModel.Model</AssemblyName>
+    <RootNamespace>SlidingApps.TaskRunner.WriteModel.Mail.Bus</RootNamespace>
+    <AssemblyName>SlidingApps.TaskRunner.WriteModel.Mail.Bus</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -24,7 +24,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\build\SlidingApps.TaskRunner.WriteModel.Mail.Bus\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -46,19 +46,8 @@
     <Compile Include="..\AssemblyVersionInfo.cs">
       <Link>Properties\AssemblyVersionInfo.cs</Link>
     </Compile>
-    <Compile Include="Intent\SendResetPasswordLink.cs" />
-    <Compile Include="MailCommand.cs" />
+    <Compile Include="MailCommandMessageConsumer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation.Contract\SlidingApps.TaskRunner.Foundation.Contract.csproj">
-      <Project>{E13532DE-5159-4031-95F3-BFDA5053342B}</Project>
-      <Name>SlidingApps.TaskRunner.Foundation.Contract</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation\SlidingApps.TaskRunner.Foundation.csproj">
-      <Project>{C57FD21D-CC3B-4BAC-9431-19D92EFCCB2B}</Project>
-      <Name>SlidingApps.TaskRunner.Foundation</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
