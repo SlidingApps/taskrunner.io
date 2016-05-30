@@ -19,7 +19,7 @@ namespace SlidingApps.TaskRunner.Api.WriteModel.Host
 		protected override void Load(ContainerBuilder builder)
 		{
 			builder.RegisterSource(new ContravariantRegistrationSource());
-            builder.RegisterApiControllers(typeof(WriteModel.AutofacModule).Assembly);
+            builder.RegisterApiControllers(typeof(TaskRunner.WriteModel.Platform.Api.AutofacModule).Assembly);
             builder.RegisterAssemblyTypes(typeof (IMediator).Assembly).AsImplementedInterfaces();
 
             builder.RegisterType<MassTransitConnector>().As<IBusConnector>();

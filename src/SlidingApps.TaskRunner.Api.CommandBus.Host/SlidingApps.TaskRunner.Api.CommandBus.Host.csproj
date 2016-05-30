@@ -127,14 +127,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SlidingApps.TaskRunner.Domain.WriteModel.Model\SlidingApps.TaskRunner.Domain.WriteModel.Model.csproj">
-      <Project>{516014d4-9b06-47bd-9a2b-49bd34f0a637}</Project>
-      <Name>SlidingApps.TaskRunner.Domain.WriteModel.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SlidingApps.TaskRunner.Domain.WriteModel\SlidingApps.TaskRunner.Domain.WriteModel.csproj">
-      <Project>{2b821b23-9014-4321-8097-77c88b22268c}</Project>
-      <Name>SlidingApps.TaskRunner.Domain.WriteModel</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation.Configuration\SlidingApps.TaskRunner.Foundation.Configuration.csproj">
       <Project>{036ba076-a10b-4a2f-b2fd-9174d7f30f0f}</Project>
       <Name>SlidingApps.TaskRunner.Foundation.Configuration</Name>
@@ -158,6 +150,14 @@
     <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation\SlidingApps.TaskRunner.Foundation.csproj">
       <Project>{c57fd21d-cc3b-4bac-9431-19d92efccb2b}</Project>
       <Name>SlidingApps.TaskRunner.Foundation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model\SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.csproj">
+      <Project>{30E22C8F-AB7B-4F64-B787-FF2AF007C1BD}</Project>
+      <Name>SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SlidingApps.TaskRunner.WriteModel.Platform.Domain\SlidingApps.TaskRunner.WriteModel.Platform.Domain.csproj">
+      <Project>{3a6f8265-538a-43d5-910f-7862e40c46d9}</Project>
+      <Name>SlidingApps.TaskRunner.WriteModel.Platform.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

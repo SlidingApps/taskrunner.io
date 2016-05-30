@@ -1,11 +1,12 @@
 ﻿
 using MassTransit;
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts;
 using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts.Intents;
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants;
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Tenants.Intents;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.MassTransit;
+using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Accounts;
+using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Accounts.Intents;
+using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Tenants;
+using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Tenants.Intents;
 using System.Threading.Tasks;
 
 namespace SlidingApps.TaskRunner.Api.CommandBus.Host

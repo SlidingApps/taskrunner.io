@@ -9,7 +9,7 @@ namespace SlidingApps.TaskRunner.Api.CommandBus.Host
             ContainerBuilder builder = new ContainerBuilder();
 
             builder.RegisterModule<AutofacModule>();
-            builder.RegisterAssemblyModules(typeof(Domain.WriteModel.AutofacModule).Assembly);
+            builder.RegisterAssemblyModules(typeof(WriteModel.Platform.Domain.AutofacModule).Assembly);
 
             return builder.Build();
         }
