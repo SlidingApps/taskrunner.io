@@ -12,7 +12,7 @@ namespace SlidingApps.TaskRunner.Api.ReadModel.Host
 		protected override void Load(ContainerBuilder builder)
 		{
 			builder.RegisterSource(new ContravariantRegistrationSource());
-            builder.RegisterApiControllers(typeof(IAssemblyMarker).Assembly);
+            builder.RegisterApiControllers(typeof(TaskRunner.ReadModel.Platform.Api.IAssemblyMarker).Assembly);
 			builder.RegisterAssemblyTypes(typeof (IMediator).Assembly).AsImplementedInterfaces();
 
 			builder.Register<SingleInstanceFactory>(ctx =>

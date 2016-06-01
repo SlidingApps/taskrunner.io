@@ -62,10 +62,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SlidingApps.TaskRunner.Domain.ReadModel\SlidingApps.TaskRunner.Domain.ReadModel.csproj">
-      <Project>{1b28e0f6-af3b-431e-9427-5ef9f0124e8b}</Project>
-      <Name>SlidingApps.TaskRunner.Domain.ReadModel</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation.Configuration\SlidingApps.TaskRunner.Foundation.Configuration.csproj">
       <Project>{036ba076-a10b-4a2f-b2fd-9174d7f30f0f}</Project>
       <Name>SlidingApps.TaskRunner.Foundation.Configuration</Name>
@@ -85,6 +81,10 @@
     <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation\SlidingApps.TaskRunner.Foundation.csproj">
       <Project>{c57fd21d-cc3b-4bac-9431-19d92efccb2b}</Project>
       <Name>SlidingApps.TaskRunner.Foundation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SlidingApps.TaskRunner.ReadModel.Platform.Domain\SlidingApps.TaskRunner.ReadModel.Platform.Domain.csproj">
+      <Project>{02e7593a-ca94-4e3f-8aca-639bbe45c2ab}</Project>
+      <Name>SlidingApps.TaskRunner.ReadModel.Platform.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

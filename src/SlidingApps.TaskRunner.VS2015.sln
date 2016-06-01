@@ -36,10 +36,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "10.WriteModel", "10.WriteMo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "20.ReadModel", "20.ReadModel", "{66C75565-40B6-4FFC-9DD4-C13B16BAC826}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.Api.ReadModel", "SlidingApps.TaskRunner.Api.ReadModel\SlidingApps.TaskRunner.Api.ReadModel.csproj", "{8D3BE0E4-9A88-4C23-86A5-774FA9192E35}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.Domain.ReadModel", "SlidingApps.TaskRunner.Domain.ReadModel\SlidingApps.TaskRunner.Domain.ReadModel.csproj", "{1B28E0F6-AF3B-431E-9427-5EF9F0124E8B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.Foundation.MassTransit", "SlidingApps.TaskRunner.Foundation.MassTransit\SlidingApps.TaskRunner.Foundation.MassTransit.csproj", "{C866A9C7-BF83-46F7-A8AE-7204BBBCFC7C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "30.Services", "30.Services", "{33DD99B4-5A17-4BEE-A5C9-ED2A41B3E14B}"
@@ -83,6 +79,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model", "SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model\SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.csproj", "{30E22C8F-AB7B-4F64-B787-FF2AF007C1BD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.WriteModel.Platform.Domain", "SlidingApps.TaskRunner.WriteModel.Platform.Domain\SlidingApps.TaskRunner.WriteModel.Platform.Domain.csproj", "{3A6F8265-538A-43D5-910F-7862E40C46D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.ReadModel.Platform.Api", "SlidingApps.TaskRunner.ReadModel.Platform.Api\SlidingApps.TaskRunner.ReadModel.Platform.Api.csproj", "{537450FB-7B6C-40F8-8DCE-16842AFD859A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.ReadModel.Platform.Domain", "SlidingApps.TaskRunner.ReadModel.Platform.Domain\SlidingApps.TaskRunner.ReadModel.Platform.Domain.csproj", "{02E7593A-CA94-4E3F-8ACA-639BBE45C2AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -130,14 +130,6 @@ Global
 		{8E0FEBBF-FC49-439C-AC8D-24E0A327783A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E0FEBBF-FC49-439C-AC8D-24E0A327783A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E0FEBBF-FC49-439C-AC8D-24E0A327783A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8D3BE0E4-9A88-4C23-86A5-774FA9192E35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8D3BE0E4-9A88-4C23-86A5-774FA9192E35}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8D3BE0E4-9A88-4C23-86A5-774FA9192E35}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8D3BE0E4-9A88-4C23-86A5-774FA9192E35}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1B28E0F6-AF3B-431E-9427-5EF9F0124E8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1B28E0F6-AF3B-431E-9427-5EF9F0124E8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1B28E0F6-AF3B-431E-9427-5EF9F0124E8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1B28E0F6-AF3B-431E-9427-5EF9F0124E8B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C866A9C7-BF83-46F7-A8AE-7204BBBCFC7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C866A9C7-BF83-46F7-A8AE-7204BBBCFC7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C866A9C7-BF83-46F7-A8AE-7204BBBCFC7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -206,6 +198,14 @@ Global
 		{3A6F8265-538A-43D5-910F-7862E40C46D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A6F8265-538A-43D5-910F-7862E40C46D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A6F8265-538A-43D5-910F-7862E40C46D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{537450FB-7B6C-40F8-8DCE-16842AFD859A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{537450FB-7B6C-40F8-8DCE-16842AFD859A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{537450FB-7B6C-40F8-8DCE-16842AFD859A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{537450FB-7B6C-40F8-8DCE-16842AFD859A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02E7593A-CA94-4E3F-8ACA-639BBE45C2AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02E7593A-CA94-4E3F-8ACA-639BBE45C2AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02E7593A-CA94-4E3F-8ACA-639BBE45C2AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02E7593A-CA94-4E3F-8ACA-639BBE45C2AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -221,8 +221,6 @@ Global
 		{E123D615-8BA3-438C-8E46-B99E09312522} = {026944D3-454F-494B-BBFC-21864AE812B0}
 		{147DCDD1-7B9C-45DE-BC2D-9756D687B79B} = {026944D3-454F-494B-BBFC-21864AE812B0}
 		{8E0FEBBF-FC49-439C-AC8D-24E0A327783A} = {026944D3-454F-494B-BBFC-21864AE812B0}
-		{8D3BE0E4-9A88-4C23-86A5-774FA9192E35} = {66C75565-40B6-4FFC-9DD4-C13B16BAC826}
-		{1B28E0F6-AF3B-431E-9427-5EF9F0124E8B} = {66C75565-40B6-4FFC-9DD4-C13B16BAC826}
 		{C866A9C7-BF83-46F7-A8AE-7204BBBCFC7C} = {026944D3-454F-494B-BBFC-21864AE812B0}
 		{374A3E07-57A7-44E1-A1A3-473430B69CF5} = {33DD99B4-5A17-4BEE-A5C9-ED2A41B3E14B}
 		{C10428BF-C305-4D96-B1EE-076F18F12205} = {33DD99B4-5A17-4BEE-A5C9-ED2A41B3E14B}
@@ -242,5 +240,7 @@ Global
 		{7D6980AC-CC62-46F8-923C-4CFC5D694830} = {09B799B1-2010-4278-B738-F53AB4547AB2}
 		{30E22C8F-AB7B-4F64-B787-FF2AF007C1BD} = {09B799B1-2010-4278-B738-F53AB4547AB2}
 		{3A6F8265-538A-43D5-910F-7862E40C46D9} = {09B799B1-2010-4278-B738-F53AB4547AB2}
+		{537450FB-7B6C-40F8-8DCE-16842AFD859A} = {66C75565-40B6-4FFC-9DD4-C13B16BAC826}
+		{02E7593A-CA94-4E3F-8ACA-639BBE45C2AB} = {66C75565-40B6-4FFC-9DD4-C13B16BAC826}
 	EndGlobalSection
 EndGlobal

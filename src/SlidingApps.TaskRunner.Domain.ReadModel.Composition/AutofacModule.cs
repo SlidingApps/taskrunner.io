@@ -3,11 +3,11 @@ using Autofac;
 using Autofac.Core;
 using FluentValidation;
 using MediatR;
-using SlidingApps.TaskRunner.Domain.ReadModel.Platform;
 using SlidingApps.TaskRunner.Foundation.Dapper;
 using SlidingApps.TaskRunner.Foundation.Dapper.Dialect;
 using SlidingApps.TaskRunner.Foundation.Dapper.Filter;
 using SlidingApps.TaskRunner.Foundation.Decorator;
+using SlidingApps.TaskRunner.ReadModel.Platform.Domain;
 using System.Linq;
 
 namespace SlidingApps.TaskRunner.Domain.ReadModel.Composition
@@ -16,7 +16,7 @@ namespace SlidingApps.TaskRunner.Domain.ReadModel.Composition
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterAssemblyTypes(typeof(IAssemblyMarker).Assembly)
+            builder.RegisterAssemblyTypes(typeof(TaskRunner.ReadModel.Platform.Domain.IAssemblyMarker).Assembly)
                 .As(t => t.GetInterfaces()
                     .Where(i => i.IsClosedTypeOf(typeof(IRequestHandler<,>)))
                     .Select(i =>
@@ -31,7 +31,7 @@ namespace SlidingApps.TaskRunner.Domain.ReadModel.Composition
                 .Keyed("request-pipeline-read", typeof(IRequestHandler<,>))
                 .InstancePerDependency();
 
-            builder.RegisterAssemblyTypes(typeof(IAssemblyMarker).Assembly)
+            builder.RegisterAssemblyTypes(typeof(TaskRunner.ReadModel.Platform.Domain.IAssemblyMarker).Assembly)
                 .AsClosedTypesOf(typeof(IValidator<>))
                 .SingleInstance();
 
