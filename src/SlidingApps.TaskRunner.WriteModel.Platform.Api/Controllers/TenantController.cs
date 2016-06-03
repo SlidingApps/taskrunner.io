@@ -8,7 +8,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace SlidingApps.TaskRunner.WriteModel.Platform.Api
+namespace SlidingApps.TaskRunner.WriteModel.Platform.Api.Controllers
 {
     [RoutePrefix("command/tenants"), ApiExceptionFilter]
     public class TenantController

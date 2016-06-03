@@ -7,7 +7,7 @@ using SlidingApps.TaskRunner.ReadModel.Platform.Domain.Authorization.Queries;
 using SlidingApps.TaskRunner.ReadModel.Platform.Domain.Authorization.Representations;
 using System.Web.Http;
 
-namespace SlidingApps.TaskRunner.ReadModel.Platform.Api
+namespace SlidingApps.TaskRunner.ReadModel.Platform.Api.Controllers
 {
     [RoutePrefix("auth"), ApiExceptionFilter]
     public class AuthorizationController

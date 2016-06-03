@@ -7,7 +7,7 @@ using SlidingApps.TaskRunner.ReadModel.Platform.Domain.Tenants.Representations;
 using System;
 using System.Web.Http;
 
-namespace SlidingApps.TaskRunner.ReadModel.Platform.Api
+namespace SlidingApps.TaskRunner.ReadModel.Platform.Api.Controllers
 {
     [RoutePrefix("query/tenants"), ApiExceptionFilter]
     public class TenantController

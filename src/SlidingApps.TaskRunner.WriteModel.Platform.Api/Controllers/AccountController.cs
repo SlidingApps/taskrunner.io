@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace SlidingApps.TaskRunner.WriteModel.Platform.Api
+namespace SlidingApps.TaskRunner.WriteModel.Platform.Api.Controllers
 {
     [RoutePrefix("command/accounts"), ApiExceptionFilter]
     public class AccountController

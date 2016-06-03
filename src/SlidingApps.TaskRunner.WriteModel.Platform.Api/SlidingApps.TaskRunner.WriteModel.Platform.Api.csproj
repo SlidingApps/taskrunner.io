@@ -94,10 +94,10 @@
     <Compile Include="..\AssemblyVersionInfo.cs">
       <Link>Properties\AssemblyVersionInfo.cs</Link>
     </Compile>
-    <Compile Include="AccountController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="AutofacModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TenantController.cs" />
+    <Compile Include="Controllers\TenantController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
