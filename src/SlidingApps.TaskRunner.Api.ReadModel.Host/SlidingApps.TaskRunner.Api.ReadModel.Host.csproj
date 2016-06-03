@@ -174,10 +174,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SlidingApps.TaskRunner.Domain.ReadModel.Composition\SlidingApps.TaskRunner.Domain.ReadModel.Composition.csproj">
-      <Project>{eef3a39e-7cae-4d3a-9551-3277e0a003be}</Project>
-      <Name>SlidingApps.TaskRunner.Domain.ReadModel.Composition</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation.Configuration\SlidingApps.TaskRunner.Foundation.Configuration.csproj">
       <Project>{036ba076-a10b-4a2f-b2fd-9174d7f30f0f}</Project>
       <Name>SlidingApps.TaskRunner.Foundation.Configuration</Name>
@@ -193,6 +189,10 @@
     <ProjectReference Include="..\SlidingApps.TaskRunner.ReadModel.Platform.Api\SlidingApps.TaskRunner.ReadModel.Platform.Api.csproj">
       <Project>{537450FB-7B6C-40F8-8DCE-16842AFD859A}</Project>
       <Name>SlidingApps.TaskRunner.ReadModel.Platform.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SlidingApps.TaskRunner.ReadModel.Platform.Composition\SlidingApps.TaskRunner.ReadModel.Platform.Composition.csproj">
+      <Project>{f170caa8-750c-44b3-aa7c-c46c21aa86d2}</Project>
+      <Name>SlidingApps.TaskRunner.ReadModel.Platform.Composition</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
