@@ -12,14 +12,14 @@ using SlidingApps.TaskRunner.Foundation.MessageBus;
 using System;
 using System.Collections.Generic;
 
-namespace SlidingApps.TaskRunner.WriteModel.Platform.Api.Host
+namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Host
 {
     public class AutofacModule : Module
 	{
 		protected override void Load(ContainerBuilder builder)
 		{
 			builder.RegisterSource(new ContravariantRegistrationSource());
-            builder.RegisterApiControllers(typeof(TaskRunner.WriteModel.Platform.Api.IAssemblyMarker).Assembly);
+            builder.RegisterApiControllers(typeof(TaskRunner.WriteModel.Mail.Api.IAssemblyMarker).Assembly);
             builder.RegisterAssemblyTypes(typeof (IMediator).Assembly).AsImplementedInterfaces();
 
             builder.RegisterType<MassTransitConnector>().As<IBusConnector>();
