@@ -112,7 +112,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Bus.Host
 
 		private static ConnectHandle ConfigureConsumers(IBusControl bus )
 		{
-			ConnectHandle handle = bus.ConnectConsumer<PlatformCommandMessageConsumer>();
+			ConnectHandle handle = bus.ConnectConsumer<PlatformConsumer>();
             Program.WriteMessage("Consumer configuration DONE");
 
 			return handle;

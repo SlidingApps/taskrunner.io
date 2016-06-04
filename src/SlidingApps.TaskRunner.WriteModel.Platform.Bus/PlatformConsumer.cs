@@ -12,9 +12,9 @@ using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Tenants;
 using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Tenants.Intents;
 using System.Threading.Tasks;
 
-namespace SlidingApps.TaskRunner.WriteModel.Platform.Bus.Host
+namespace SlidingApps.TaskRunner.WriteModel.Platform.Bus
 {
-    public class PlatformCommandMessageConsumer 
+    public class PlatformConsumer 
         : CommandMessageConsumer,
 
         IConsumer<CommandMessage<TenantCommand<CreateTenant>>>,
@@ -24,9 +24,9 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Bus.Host
         IConsumer<CommandMessage<AccountCommand<ChangeAccountUserPeriod>>>,
         IConsumer<CommandMessage<AccountCommand<SendResetPasswordLink>>>
     {
-        public PlatformCommandMessageConsumer() { }
+        public PlatformConsumer() { }
 
-        public PlatformCommandMessageConsumer(IUnitOfWork unitOfWork, IMediator mediator, IBusConnector connector)
+        public PlatformConsumer(IUnitOfWork unitOfWork, IMediator mediator, IBusConnector connector)
             : base(unitOfWork, mediator, connector) { }
 
         public Task Consume(ConsumeContext<CommandMessage<TenantCommand<CreateTenant>>> context)

@@ -114,7 +114,6 @@
     </Compile>
     <Compile Include="AutofacConfig.cs" />
     <Compile Include="AutofacModule.cs" />
-    <Compile Include="PlatformCommandMessageConsumer.cs" />
     <Compile Include="MassTransitConfig.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -147,6 +146,10 @@
     <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation\SlidingApps.TaskRunner.Foundation.csproj">
       <Project>{C57FD21D-CC3B-4BAC-9431-19D92EFCCB2B}</Project>
       <Name>SlidingApps.TaskRunner.Foundation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SlidingApps.TaskRunner.WriteModel.Platform.Bus\SlidingApps.TaskRunner.WriteModel.Platform.Bus.csproj">
+      <Project>{D72A5710-1476-49EA-A412-4F2746DA45E9}</Project>
+      <Name>SlidingApps.TaskRunner.WriteModel.Platform.Bus</Name>
     </ProjectReference>
     <ProjectReference Include="..\SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model\SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.csproj">
       <Project>{30E22C8F-AB7B-4F64-B787-FF2AF007C1BD}</Project>
