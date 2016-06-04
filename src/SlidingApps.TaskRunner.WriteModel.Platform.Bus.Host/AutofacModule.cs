@@ -23,7 +23,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Bus.Host
 
             builder.RegisterSource(new ContravariantRegistrationSource());
             builder.RegisterAssemblyTypes(typeof (IMediator).Assembly).AsImplementedInterfaces();
-            builder.RegisterConsumers(Assembly.GetExecutingAssembly());
+            builder.RegisterConsumers(typeof(IAssemblyMarker).Assembly);
 
             builder.RegisterType<RabbitMQConfigration>().As<RabbitMQConfigration>();
 
