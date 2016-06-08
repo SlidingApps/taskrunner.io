@@ -32,11 +32,11 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Bus.Host
         private static void Main(string[] args)
         {
             Console.Clear();
-            Console.WriteLine("-----------------------------------------------------------------");
+            //Console.WriteLine("-----------------------------------------------------------------");
 
-            Console.ForegroundColor = Program.FOREGROUNDCOLOR;
-            HEADER.ToList().ForEach(Console.WriteLine);
-            Console.ResetColor();
+            //Console.ForegroundColor = Program.FOREGROUNDCOLOR;
+            //HEADER.ToList().ForEach(Console.WriteLine);
+            //Console.ResetColor();
 
             Console.WriteLine("-----------------------------------------------------------------");
             Console.WriteLine(string.Format("{0} ({1})", typeof(Program).Assembly.GetName().Name, typeof(Program).Assembly.GetName().Version));
@@ -89,7 +89,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Bus.Host
             if (Console.CursorLeft > 0) Console.Write("\r\n");
 
             Console.ForegroundColor = Program.FOREGROUNDCOLOR;
-            Console.WriteLine("{0} - {1}", DateTime.Now.ToString("HH:mm:ss.fff"), message);
+            Console.WriteLine("[{0}] {1}", DateTime.Now.ToString("HH:mm:ss.fff"), message);
             Console.ResetColor();
         }
 

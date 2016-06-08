@@ -31,16 +31,16 @@ namespace SlidingApps.TaskRunner.Foundation.Decorator
             string _request = request.ToJson();
             string correlationId = request is ICommand ? (request as ICommand).Id.ToString() : "__UNSPECIFIED__";
 
-            Logger.Log.InfoFormat(Logger.CORRELATED_CONTENT, correlationId, "pipeline -> ", this.GetType().Name);
+            Logger.Log.InfoFormat(Logger.CORRELATED_CONTENT, correlationId, "pipeline -> ", this.GetType().ToFriendlyName());
             Logger.Log.InfoFormat(Logger.CORRELATED_LONG_CONTENT, correlationId, "received command", _request);
 
-            Logger.Log.InfoFormat(Logger.CORRELATED_CONTENT, correlationId, "validation started", typeof(TRequest).FullName);
+            Logger.Log.InfoFormat(Logger.CORRELATED_CONTENT, correlationId, "validation started", typeof(TRequest).ToFriendlyName());
             ValidationContext context = new ValidationContext(request);
 
             List<ValidationFailure> failures = new List<ValidationFailure>();
             if (!this.validators.Any())
             {
-                Logger.Log.WarnFormat(Logger.CORRELATED_CONTENT, correlationId, "no validators for", typeof(TRequest).FullName);
+                Logger.Log.WarnFormat(Logger.CORRELATED_CONTENT, correlationId, "no validators for", typeof(TRequest).ToFriendlyName());
             }
             else
             {
@@ -54,7 +54,7 @@ namespace SlidingApps.TaskRunner.Foundation.Decorator
 
             if (failures.Any()) throw new ValidationException((new { Request = request, Failures = failures }).ToJson(), failures);
 
-            Logger.Log.InfoFormat(Logger.CORRELATED_CONTENT, correlationId, "validation completed", typeof(TRequest).FullName);
+            Logger.Log.InfoFormat(Logger.CORRELATED_CONTENT, correlationId, "validation completed", typeof(TRequest).ToFriendlyName());
 
             TRequestResult events = this.handler.Handle(request);
 
