@@ -13,35 +13,19 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Bus.Host
 {
     internal class Program
     {
-        private const ConsoleColor FOREGROUNDCOLOR = ConsoleColor.Yellow;
-
-        private static readonly string[] HEADER = new[]
-        {
-            @"      ____      _   _               ____                _           ",
-            @"     / ___|___ | |_| |_ ___  _ __  / ___|__ _ _ __   __| |_   _     ",
-            @"    | |   / _ \| __| __/ _ \| '_ \| |   / _` | '_ \ / _` | | | |    ",
-            @"    | |__| (_) | |_| || (_) | | | | |__| (_| | | | | (_| | |_| |    ",
-            @"   __\____\___/ \__|\__\___/|_| |_|\____\__,_|_| |_|\__,_|\__, |    ",
-            @"  / ___|___  _ __ ___  _ __ ___   __ _ _ __   __| | __ ) _|___/___  ",
-            @" | |   / _ \| '_ ` _ \| '_ ` _ \ / _` | '_ \ / _` |  _ \| | | / __| ",
-            @" | |__| (_) | | | | | | | | | | | (_| | | | | (_| | |_) | |_| \__ \ ",
-            @"  \____\___/|_| |_| |_|_| |_| |_|\__,_|_| |_|\__,_|____/ \__,_|___/ ",
-            @"                                                                    "
-        };
+        private const ConsoleColor APP_FOREGROUNDCOLOR = ConsoleColor.Green;
+        private const ConsoleColor LOG_FOREGROUNDCOLOR = ConsoleColor.Yellow;
 
         private static void Main(string[] args)
         {
             Console.Clear();
-            //Console.WriteLine("-----------------------------------------------------------------");
 
-            //Console.ForegroundColor = Program.FOREGROUNDCOLOR;
-            //HEADER.ToList().ForEach(Console.WriteLine);
-            //Console.ResetColor();
-
+            Console.ForegroundColor = Program.APP_FOREGROUNDCOLOR;
             Console.WriteLine("-----------------------------------------------------------------");
             Console.WriteLine(string.Format("{0} ({1})", typeof(Program).Assembly.GetName().Name, typeof(Program).Assembly.GetName().Version));
             Console.WriteLine("Press q to quit ...");
             Console.WriteLine("-----------------------------------------------------------------");
+            Console.ResetColor();
 
             XmlConfigurator.Configure();
 
@@ -88,7 +72,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Bus.Host
         {
             if (Console.CursorLeft > 0) Console.Write("\r\n");
 
-            Console.ForegroundColor = Program.FOREGROUNDCOLOR;
+            Console.ForegroundColor = Program.LOG_FOREGROUNDCOLOR;
             Console.WriteLine("[{0}] {1}", DateTime.Now.ToString("HH:mm:ss.fff"), message);
             Console.ResetColor();
         }

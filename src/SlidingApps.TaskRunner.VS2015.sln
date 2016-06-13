@@ -13,7 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99.Solution Items", "99.Sol
 	ProjectSection(SolutionItems) = preProject
 		AssemblySharedInfo.cs = AssemblySharedInfo.cs
 		AssemblyVersionInfo.cs = AssemblyVersionInfo.cs
-		generate-webapi-proxy.bat = generate-webapi-proxy.bat
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.Foundation.Infrastructure", "SlidingApps.TaskRunner.Foundation.Infrastructure\SlidingApps.TaskRunner.Foundation.Infrastructure.csproj", "{34A3A49F-D391-4F83-A10D-4CFEEA3DFDF9}"
@@ -93,6 +92,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mail", "Mail", "{C6991B48-2DB6-44CA-AFD4-F13E6C2D06EA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.WriteModel.Mail.Api.Host", "SlidingApps.TaskRunner.WriteModel.Mail.Api.Host\SlidingApps.TaskRunner.WriteModel.Mail.Api.Host.csproj", "{FB0A9A6E-B9BB-4FDA-93D6-33DFDA5FC4C9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{05BF0D4A-9A60-415B-8BEB-CA48318A191D}"
+	ProjectSection(SolutionItems) = preProject
+		generate-mail-webapi-proxy.bat = generate-mail-webapi-proxy.bat
+		generate-platform-webapi-proxy.bat = generate-platform-webapi-proxy.bat
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
