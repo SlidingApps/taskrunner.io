@@ -6,6 +6,7 @@ using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Extension;
 using SlidingApps.TaskRunner.Foundation.NHibernate;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
+using SlidingApps.TaskRunner.WriteModel.Mail.Api.Clients;
 using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Accounts;
 using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Accounts.Intents;
 using System.Linq;
@@ -90,6 +91,12 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
             var existing = this.queryProvider.CreateQuery<Entities.Account>().Where(x => x.EmailAddress == command.Intent.Name || x.User.Name == command.Intent.Name).Single();
             Account entity = new Account(existing, this.validator.CreateFor<Account>());
             AccountEvent<SendResetPasswordLink> result = entity.Apply(command);
+
+            // Delegate to the MAIL MANAGEMENT SERVICE to send a e-mail. 
+            using (MailManagementClient proxy = new MailManagementClient())
+            {
+                proxy.PostSendResetPasswordLink(new Mail.Api.Models.SendResetPasswordLink { Name = command.Intent.Name });
+            }
 
             return new CommandResult(command.Id, result);
         }

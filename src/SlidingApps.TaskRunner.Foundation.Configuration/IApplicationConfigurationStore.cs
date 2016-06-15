@@ -1,7 +1,7 @@
 ﻿
 namespace SlidingApps.TaskRunner.Foundation.Configuration
 {
-    public interface IApplicationConfigurationStore_ORIG
+    public interface IApplicationConfigurationStore
     {
         string this[string key] { get; }
     }

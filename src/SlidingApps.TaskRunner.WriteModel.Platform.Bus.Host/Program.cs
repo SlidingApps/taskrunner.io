@@ -8,6 +8,7 @@ using MassTransit;
 using System;
 using System.Linq;
 using System.Threading;
+using SlidingApps.TaskRunner.Foundation.Configuration;
 
 namespace SlidingApps.TaskRunner.WriteModel.Platform.Bus.Host
 {
@@ -34,6 +35,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Bus.Host
             try
             {
                 IContainer container = Program.ConfigureAutofac();
+                Program.ConfigureServiceUrl();
                 bus = Program.ConfigureMassTransit(container);
                 handle = Program.ConfigureConsumers(bus);
             }
@@ -94,7 +96,13 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Bus.Host
 			return bus;
 		}
 
-		private static ConnectHandle ConfigureConsumers(IBusControl bus )
+        private static void ConfigureServiceUrl()
+        {
+            Mail.Api.Configuration.WriteModelProxyBaseAddress = ApplicationConfiguration.Store[string.Format(AppSetting.SERVICE_URL_TEMPLATE, "mail")];
+            Program.WriteMessage(string.Format("Mail service URL configuration DONE ({0})", Mail.Api.Configuration.WriteModelProxyBaseAddress));
+        }
+
+        private static ConnectHandle ConfigureConsumers(IBusControl bus )
 		{
 			ConnectHandle handle = bus.ConnectConsumer<PlatformConsumer>();
             Program.WriteMessage("Consumer configuration DONE");

@@ -5,10 +5,10 @@ namespace SlidingApps.TaskRunner.Foundation.Configuration
     {
         static ApplicationConfiguration()
         {
-            ApplicationConfiguration.Store = new ApplicationConfigurationStore_ORIG();
+            ApplicationConfiguration.Store = new ApplicationConfigurationStore();
 
         }
 
-        public static IApplicationConfigurationStore_ORIG Store { get; private set; }
+        public static IApplicationConfigurationStore Store { get; private set; }
     }
 }

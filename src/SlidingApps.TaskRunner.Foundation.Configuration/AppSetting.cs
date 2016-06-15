@@ -71,5 +71,8 @@ namespace SlidingApps.TaskRunner.Foundation.Configuration
         public const string RABBITMQ_PASSWORD = "rabbitmq.password";
 
         public const string RABBITMQ_DURABLE_QUEUE = "rabbitmq.durable";
+
+        //<add key = "service.xxx.url" value="http://localhost:8091" />
+        public const string SERVICE_URL_TEMPLATE = "service.{0}.url";
     }
 }
