@@ -11,12 +11,12 @@ using System.Web.Http;
 namespace SlidingApps.TaskRunner.WriteModel.Platform.Api.Controllers
 {
     [RoutePrefix("command/tenants"), ApiExceptionFilter]
-    public class TenantController
+    public class TenantManagmentController
         : ApiController
     {
         private readonly IBusConnector connector;
 
-        public TenantController(IBusConnector connector)
+        public TenantManagmentController(IBusConnector connector)
 			: base()
 	    {
             this.connector = connector;

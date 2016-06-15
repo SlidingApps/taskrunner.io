@@ -22,9 +22,9 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Api.Host
 	{
 	    internal readonly Type[] SERVICES = {
             typeof(ManagementController),
-            typeof(TaskRunner.ReadModel.Platform.Api.Controllers.AuthorizationController),
-            typeof(TaskRunner.ReadModel.Platform.Api.Controllers.TenantController),
-            typeof(TaskRunner.ReadModel.Platform.Api.Controllers.AccountController)
+            typeof(TaskRunner.ReadModel.Platform.Api.Controllers.AuthorizationResourceController),
+            typeof(TaskRunner.ReadModel.Platform.Api.Controllers.TenantResourceController),
+            typeof(TaskRunner.ReadModel.Platform.Api.Controllers.AccountResourceController)
 		};
 
 		public void Configuration(IAppBuilder app)

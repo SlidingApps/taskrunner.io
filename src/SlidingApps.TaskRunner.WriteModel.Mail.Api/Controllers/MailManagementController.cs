@@ -9,7 +9,7 @@ using System.Web.Http;
 
 namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Controllers
 {
-    [RoutePrefix("command/v1/mail"), ApiExceptionFilter]
+    [RoutePrefix("command/mail"), ApiExceptionFilter]
     public class MailManagementController
         : ApiController
     {

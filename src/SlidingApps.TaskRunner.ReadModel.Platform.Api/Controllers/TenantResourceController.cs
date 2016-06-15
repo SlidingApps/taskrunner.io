@@ -10,12 +10,12 @@ using System.Web.Http;
 namespace SlidingApps.TaskRunner.ReadModel.Platform.Api.Controllers
 {
     [RoutePrefix("query/tenants"), ApiExceptionFilter]
-    public class TenantController
+    public class TenantResourceController
         : ApiController
     {
         private readonly IMediator mediator;
 
-        public TenantController(IMediator mediator)
+        public TenantResourceController(IMediator mediator)
         {
             this.mediator = mediator;
         }

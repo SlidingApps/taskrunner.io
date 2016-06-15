@@ -10,12 +10,12 @@ using System.Web.Http;
 namespace SlidingApps.TaskRunner.ReadModel.Platform.Api.Controllers
 {
     [RoutePrefix("auth"), ApiExceptionFilter]
-    public class AuthorizationController
+    public class AuthorizationResourceController
         : ApiController
     {
         private readonly IMediator mediator;
 
-        public AuthorizationController(IMediator mediator)
+        public AuthorizationResourceController(IMediator mediator)
 			: base()
 		{
             this.mediator = mediator;
