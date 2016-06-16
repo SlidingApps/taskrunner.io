@@ -2,19 +2,24 @@
 //Any changes to this file will be overwritten
 //Project site: http://github.com/faniereynders/webapiproxy
 
-using SlidingApps.TaskRunner.WriteModel.Mail.Api.Models;
 using System;
-using System.Net;
+using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using System.Net.Http.Formatting;
+using System.Linq;
+using System.Net;
+using System.Web;
+using SlidingApps.TaskRunner.WriteModel.Mail.Api.Models;
 
 #region Proxies
 namespace SlidingApps.TaskRunner.WriteModel.Mail.Api
 {
-    /// <summary>
-    /// Client configuration.
-    /// </summary>
-    public partial class Configuration
+	/// <summary>
+	/// Client configuration.
+	/// </summary>
+	public partial class Configuration
 	{
 		/// <summary>
 		/// Web Api Base Address.
@@ -28,7 +33,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api
 #region Models
 namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Models
 {
-    public class WebApiProxyResponseException : Exception
+	public class WebApiProxyResponseException : Exception
 	{
 		public HttpStatusCode StatusCode { get; private set; }
 		public string Content { get; private set; }
@@ -64,7 +69,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Models
 #region Interfaces
 namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Interfaces
 {
-    public interface IClientBase : IDisposable
+	public interface IClientBase : IDisposable
 	{
 		HttpClient HttpClient { get; }
 	}
@@ -98,10 +103,10 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Interfaces
 #region Clients
 namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Clients
 {
-    /// <summary>
-    /// Client base class.
-    /// </summary>
-    public abstract partial class ClientBase : IDisposable
+	/// <summary>
+	/// Client base class.
+	/// </summary>
+	public abstract partial class ClientBase : IDisposable
 	{
 		/// <summary>
 		/// Gests the HttpClient.
@@ -176,7 +181,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Clients
 		/// <returns></returns>
 		public virtual async Task<HttpResponseMessage> PostSendResetPasswordLinkAsync(SendResetPasswordLink intent)
 		{
-			return await HttpClient.PostAsJsonAsync<SendResetPasswordLink>("command/v1/mail/passwordlink", intent);
+			return await HttpClient.PostAsJsonAsync<SendResetPasswordLink>("command/mail/passwordlink", intent);
 		}
 
 		/// <summary>

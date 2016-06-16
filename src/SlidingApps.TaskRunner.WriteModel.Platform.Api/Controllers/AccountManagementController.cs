@@ -24,18 +24,18 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Api.Controllers
         }
 
         [HttpPost, Route("")]
-        public async Task<HttpResponseMessage> PostCreateAccount(Guid tenantId, [FromBody] CreateAccount intent)
+        public async Task<HttpResponseMessage> PostCreateAccount([FromBody] CreateAccount intent)
         {
-            var command = new AccountCommand<CreateAccount>(tenantId, intent);
+            var command = new AccountCommand<CreateAccount>(intent);
             await this.connector.SendCommand(command);
 
             return ApiResponse.CommandResponse(command);
         }
 
         [HttpPost, Route(@"{name:regex([a-z0-9.%@])}/passwordlink")]
-        public async Task<HttpResponseMessage> PostSendResetPasswordLink(string name, [FromBody] SendResetPasswordLink intent)
+        public async Task<HttpResponseMessage> PostSendResetPasswordLink(string name)
         {
-            var command = new AccountCommand<SendResetPasswordLink>(Guid.NewGuid(), intent);
+            var command = new AccountCommand<SendResetPasswordLink>(new SendResetPasswordLink { Name = name });
             await this.connector.SendCommand(command);
 
             return ApiResponse.CommandResponse(command);

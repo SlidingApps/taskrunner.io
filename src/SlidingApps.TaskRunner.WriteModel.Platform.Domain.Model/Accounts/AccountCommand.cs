@@ -11,6 +11,9 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Accounts
         public AccountCommand()
             :base() { }
 
+        public AccountCommand(TIntent intent)
+            : base(intent) { }
+
         public AccountCommand(Guid accountId, TIntent intent)
             : base(intent)
         {
