@@ -48,6 +48,8 @@ export class View {
     /* tslint:disable:no-unused-variable */
     private ngOnInit(): void {
         this.subscription = this.hub.form$.filter(x => !!x).distinctUntilChanged().subscribe(x => this.form = x);
+
+        this.hub.dirty$.subscribe(x => console.log('form dirty', x));
     }
 
     private ngOnDestroy(): void {

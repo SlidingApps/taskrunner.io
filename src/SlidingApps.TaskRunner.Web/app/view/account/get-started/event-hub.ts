@@ -9,6 +9,15 @@ import { Injectable } from 'ng-forward';
 export class EventHub {
     public form$: BehaviorSubject<angular.IFormController> = new BehaviorSubject<angular.IFormController>(undefined);
 
+    public dirty$: Observable<any> =
+        Observable
+            .combineLatest(this.form$, Observable.interval(5000))
+            .map(([x]: [BehaviorSubject<angular.IFormController>]) => x)
+            .filter(x => !!x)
+            .map(x => { return {form: x, dirty: x.$dirty}; })
+            .distinctUntilChanged()
+            .share();
+
     public password$: BehaviorSubject<string> = new BehaviorSubject<string>(undefined);
     public passwordConfirmation$: BehaviorSubject<string> = new BehaviorSubject<string>(undefined);
 

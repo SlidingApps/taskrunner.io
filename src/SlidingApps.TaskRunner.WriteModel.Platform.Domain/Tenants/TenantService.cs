@@ -5,6 +5,7 @@ using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Extension;
 using SlidingApps.TaskRunner.Foundation.NHibernate;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
+using SlidingApps.TaskRunner.WriteModel.Mail.Api.Clients;
 using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Accounts;
 using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Accounts.Intents;
 using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Tenants;
@@ -59,6 +60,13 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants
             entity
                 .IfValid(e => this.queryProvider.Session.Save(e.GetDataEntity()))
                 .ElseThrow();
+
+            // Delegate to the MAIL MANAGEMENT SERVICE to send a e-mail. 
+            using (MailManagementClient mail = new MailManagementClient())
+            {
+                mail.PostSendTenantConfirmationLink (new Mail.Api.Models.SendTenantConfirmationLink { Code = command.Intent.Name });
+                mail.PostSendAccountConfirmationLink(new Mail.Api.Models.SendAccountConfirmationLink { UserName = command.Intent.UserName });
+            }
 
             return new CommandResult(command.Id,
                 new IDomainEvent[]

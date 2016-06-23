@@ -81,7 +81,8 @@
     <Compile Include="AuthorizationException.cs" />
     <Compile Include="CommandResponse.cs" />
     <Compile Include="CorsMessageHandler.cs" />
-    <Compile Include="ManagementController.cs" />
+    <Compile Include="ServiceHealthController.cs" />
+    <Compile Include="ServiceManagementController.cs" />
     <Compile Include="JsonContentNegotiator.cs" />
     <Compile Include="LoggingMessageHandler.cs" />
     <Compile Include="NotFoundException.cs" />

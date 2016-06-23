@@ -41,7 +41,7 @@ export class Form {
     constructor(private $scope: ILocalScope, private hub: EventHub, private writeModel: WriteModelService) { }
 
     @Input() public model: Model;
-    
+
     private formWatch: any;
 
     public submit(form: angular.IFormController): void {

@@ -20,7 +20,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Host
     internal sealed class Startup
 	{
 	    internal readonly Type[] SERVICES = {
-            typeof(ManagementController),
+            typeof(ServiceManagementController),
 			typeof (TaskRunner.WriteModel.Mail.Api.Controllers.MailManagementController),
         };
 

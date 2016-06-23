@@ -3,9 +3,9 @@ using SlidingApps.TaskRunner.Foundation.WriteModel;
 
 namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model.Intent
 {
-    public class SendResetPasswordLink
+    public class SendTenantConfirmationLink
         : IIntent
     {
-        public string UserName { get; set; }
+        public string Code { get; set; }
     }
 }

@@ -99,6 +99,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		generate-platform-webapi-proxy.bat = generate-platform-webapi-proxy.bat
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.WriteModel.Mail.Bus.Host", "SlidingApps.TaskRunner.WriteModel.Mail.Bus.Host\SlidingApps.TaskRunner.WriteModel.Mail.Bus.Host.csproj", "{9999F545-E371-4170-8A92-5B51CF00141C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -229,6 +231,10 @@ Global
 		{FB0A9A6E-B9BB-4FDA-93D6-33DFDA5FC4C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB0A9A6E-B9BB-4FDA-93D6-33DFDA5FC4C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB0A9A6E-B9BB-4FDA-93D6-33DFDA5FC4C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9999F545-E371-4170-8A92-5B51CF00141C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9999F545-E371-4170-8A92-5B51CF00141C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9999F545-E371-4170-8A92-5B51CF00141C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9999F545-E371-4170-8A92-5B51CF00141C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -270,5 +276,6 @@ Global
 		{6599A2BB-D495-4E6B-889C-4E2A19A3B17D} = {F110B19F-7017-466D-B95A-554AFDCE89FA}
 		{C6991B48-2DB6-44CA-AFD4-F13E6C2D06EA} = {33DD99B4-5A17-4BEE-A5C9-ED2A41B3E14B}
 		{FB0A9A6E-B9BB-4FDA-93D6-33DFDA5FC4C9} = {C6991B48-2DB6-44CA-AFD4-F13E6C2D06EA}
+		{9999F545-E371-4170-8A92-5B51CF00141C} = {C6991B48-2DB6-44CA-AFD4-F13E6C2D06EA}
 	EndGlobalSection
 EndGlobal

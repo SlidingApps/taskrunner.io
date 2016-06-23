@@ -30,6 +30,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MassTransit, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\MassTransit.3.1.1\lib\net45\MassTransit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MediatR, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MediatR.2.0.2\lib\net45\MediatR.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NewId, Version=2.1.3.0, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\NewId.2.1.3\lib\net45\NewId.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,8 +62,31 @@
     <Compile Include="..\AssemblyVersionInfo.cs">
       <Link>Properties\AssemblyVersionInfo.cs</Link>
     </Compile>
+    <Compile Include="IAssemblyMarker.cs" />
     <Compile Include="MailCommandMessageConsumer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation.Contract\SlidingApps.TaskRunner.Foundation.Contract.csproj">
+      <Project>{E13532DE-5159-4031-95F3-BFDA5053342B}</Project>
+      <Name>SlidingApps.TaskRunner.Foundation.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation.MassTransit\SlidingApps.TaskRunner.Foundation.MassTransit.csproj">
+      <Project>{C866A9C7-BF83-46F7-A8AE-7204BBBCFC7C}</Project>
+      <Name>SlidingApps.TaskRunner.Foundation.MassTransit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation\SlidingApps.TaskRunner.Foundation.csproj">
+      <Project>{C57FD21D-CC3B-4BAC-9431-19D92EFCCB2B}</Project>
+      <Name>SlidingApps.TaskRunner.Foundation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model\SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model.csproj">
+      <Project>{1BCEF76C-4A38-481E-8B71-EC024C9A314E}</Project>
+      <Name>SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -21,6 +21,24 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Controllers
             this.connector = connector;
         }
 
+        [HttpPost, Route("tenantconfirmation")]
+        public async Task<HttpResponseMessage> PostSendTenantConfirmationLink([FromBody] SendTenantConfirmationLink intent)
+        {
+            var command = new MailCommand<SendTenantConfirmationLink>(intent);
+            await this.connector.SendCommand(command);
+
+            return ApiResponse.CommandResponse(command);
+        }
+
+        [HttpPost, Route("accountconfirmation")]
+        public async Task<HttpResponseMessage> PostSendAccountConfirmationLink([FromBody] SendAccountConfirmationLink intent)
+        {
+            var command = new MailCommand<SendAccountConfirmationLink>(intent);
+            await this.connector.SendCommand(command);
+
+            return ApiResponse.CommandResponse(command);
+        }
+
         [HttpPost, Route("passwordlink")]
         public async Task<HttpResponseMessage> PostSendResetPasswordLink([FromBody] SendResetPasswordLink intent)
         {

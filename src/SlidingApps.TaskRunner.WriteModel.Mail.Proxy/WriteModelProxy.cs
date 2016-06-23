@@ -49,6 +49,22 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Models
 	/// <summary>
 	/// 
 	/// </summary>
+	public partial class SendAccountConfirmationLink
+	{
+		#region Constants
+		#endregion
+
+		#region Properties
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual String UserName { get; set; }
+		#endregion
+	}	
+	
+	/// <summary>
+	/// 
+	/// </summary>
 	public partial class SendResetPasswordLink
 	{
 		#region Constants
@@ -58,7 +74,23 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Models
 		/// <summary>
 		/// 
 		/// </summary>
-		public virtual String Name { get; set; }
+		public virtual String UserName { get; set; }
+		#endregion
+	}	
+	
+	/// <summary>
+	/// 
+	/// </summary>
+	public partial class SendTenantConfirmationLink
+	{
+		#region Constants
+		#endregion
+
+		#region Properties
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual String Code { get; set; }
 		#endregion
 	}	
 
@@ -79,6 +111,18 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Interfaces
 	{	
 
 		/// <returns></returns>
+		Task<HttpResponseMessage> PostSendTenantConfirmationLinkAsync(SendTenantConfirmationLink intent);
+
+		/// <returns></returns>
+		HttpResponseMessage PostSendTenantConfirmationLink(SendTenantConfirmationLink intent);
+
+		/// <returns></returns>
+		Task<HttpResponseMessage> PostSendAccountConfirmationLinkAsync(SendAccountConfirmationLink intent);
+
+		/// <returns></returns>
+		HttpResponseMessage PostSendAccountConfirmationLink(SendAccountConfirmationLink intent);
+
+		/// <returns></returns>
 		Task<HttpResponseMessage> PostSendResetPasswordLinkAsync(SendResetPasswordLink intent);
 
 		/// <returns></returns>
@@ -86,7 +130,18 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Interfaces
 				
 	}
 	
-	public partial interface IManagementClient : IClientBase
+	public partial interface IServiceHealthClient : IClientBase
+	{	
+
+		/// <returns></returns>
+		Task<HttpResponseMessage> GetAsync();
+
+		/// <returns></returns>
+		Boolean Get();
+				
+	}
+	
+	public partial interface IServiceManagementClient : IClientBase
 	{	
 
 		/// <returns></returns>
@@ -179,6 +234,50 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Clients
 		/// 
 		/// </summary>
 		/// <returns></returns>
+		public virtual async Task<HttpResponseMessage> PostSendTenantConfirmationLinkAsync(SendTenantConfirmationLink intent)
+		{
+			return await HttpClient.PostAsJsonAsync<SendTenantConfirmationLink>("command/mail/tenantconfirmation", intent);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual HttpResponseMessage PostSendTenantConfirmationLink(SendTenantConfirmationLink intent)
+		{
+						 var result = Task.Run(() => PostSendTenantConfirmationLinkAsync(intent)).Result;		 
+			 
+			EnsureSuccess(result);
+				 
+			 			 			 
+			 return result.Content.ReadAsAsync<HttpResponseMessage>().Result;
+			 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public virtual async Task<HttpResponseMessage> PostSendAccountConfirmationLinkAsync(SendAccountConfirmationLink intent)
+		{
+			return await HttpClient.PostAsJsonAsync<SendAccountConfirmationLink>("command/mail/accountconfirmation", intent);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual HttpResponseMessage PostSendAccountConfirmationLink(SendAccountConfirmationLink intent)
+		{
+						 var result = Task.Run(() => PostSendAccountConfirmationLinkAsync(intent)).Result;		 
+			 
+			EnsureSuccess(result);
+				 
+			 			 			 
+			 return result.Content.ReadAsAsync<HttpResponseMessage>().Result;
+			 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		public virtual async Task<HttpResponseMessage> PostSendResetPasswordLinkAsync(SendResetPasswordLink intent)
 		{
 			return await HttpClient.PostAsJsonAsync<SendResetPasswordLink>("command/mail/passwordlink", intent);
@@ -202,20 +301,65 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Clients
 	/// <summary>
 	/// 
 	/// </summary>
-	public partial class ManagementClient : ClientBase, Interfaces.IManagementClient
+	public partial class ServiceHealthClient : ClientBase, Interfaces.IServiceHealthClient
 	{		
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public ManagementClient() : base()
+		public ServiceHealthClient() : base()
 		{
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public ManagementClient(HttpMessageHandler handler, bool disposeHandler = true) : base(handler, disposeHandler)
+		public ServiceHealthClient(HttpMessageHandler handler, bool disposeHandler = true) : base(handler, disposeHandler)
+		{
+		}
+
+		#region Methods
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public virtual async Task<HttpResponseMessage> GetAsync()
+		{
+			return await HttpClient.GetAsync("$health");
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual Boolean Get()
+		{
+						 var result = Task.Run(() => GetAsync()).Result;		 
+			 
+			EnsureSuccess(result);
+				 
+			 			 			 
+			 return result.Content.ReadAsAsync<Boolean>().Result;
+			 		}
+
+		#endregion
+	}
+	/// <summary>
+	/// 
+	/// </summary>
+	public partial class ServiceManagementClient : ClientBase, Interfaces.IServiceManagementClient
+	{		
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public ServiceManagementClient() : base()
+		{
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public ServiceManagementClient(HttpMessageHandler handler, bool disposeHandler = true) : base(handler, disposeHandler)
 		{
 		}
 

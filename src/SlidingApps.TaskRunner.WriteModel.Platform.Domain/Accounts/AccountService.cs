@@ -93,9 +93,9 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
             AccountEvent<SendResetPasswordLink> result = entity.Apply(command);
 
             // Delegate to the MAIL MANAGEMENT SERVICE to send a e-mail. 
-            using (MailManagementClient proxy = new MailManagementClient())
+            using (MailManagementClient mail = new MailManagementClient())
             {
-                proxy.PostSendResetPasswordLink(new Mail.Api.Models.SendResetPasswordLink { Name = command.Intent.Name });
+                mail.PostSendResetPasswordLink(new Mail.Api.Models.SendResetPasswordLink { UserName = command.Intent.Name });
             }
 
             return new CommandResult(command.Id, result);
