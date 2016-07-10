@@ -41,19 +41,19 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Api.Controllers
             return ApiResponse.CommandResponse(command);
         }
 
-        [HttpPost, Route("{accountId:guid}/changename")]
-        public async Task<HttpResponseMessage> PostChangeAccountProfileName(Guid accountId, [FromBody] ChangeAccountProfileName intent)
+        [HttpPost, Route(@"{name:regex([a-z0-9.%@])}/changename")]
+        public async Task<HttpResponseMessage> PostChangeAccountProfileName(string name, [FromBody] ChangeAccountProfileName intent)
         {
-            var command = new AccountCommand<ChangeAccountProfileName>(accountId, intent);
+            var command = new AccountCommand<ChangeAccountProfileName>(name, intent);
             await this.connector.SendCommand(command);
 
             return ApiResponse.CommandResponse(command);
         }
 
-        [HttpPost, Route("{accountId:guid}/changeperiod")]
-        public async Task<HttpResponseMessage> PostChangeAccountUserPeriod(Guid accountId, [FromBody] ChangeAccountUserPeriod intent)
+        [HttpPost, Route(@"{name:regex([a-z0-9.%@])}/changeperiod")]
+        public async Task<HttpResponseMessage> PostChangeAccountUserPeriod(string name, [FromBody] ChangeAccountUserPeriod intent)
         {
-            var command = new AccountCommand<ChangeAccountUserPeriod>(accountId, intent);
+            var command = new AccountCommand<ChangeAccountUserPeriod>(name, intent);
             await this.connector.SendCommand(command);
 
             return ApiResponse.CommandResponse(command);

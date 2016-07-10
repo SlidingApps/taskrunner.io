@@ -109,7 +109,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants
 
         public void When(TenantEvent<CreateTenant> domainEvent)
         {
-            this.Id = domainEvent.TenantId = Guid.NewGuid();
+            this.Id = domainEvent.Identifiers.EntityId = Guid.NewGuid();
             this.Code = domainEvent.Arguments.Code;
             this.Name = domainEvent.Arguments.Name;
             this.Description = domainEvent.Arguments.Description;

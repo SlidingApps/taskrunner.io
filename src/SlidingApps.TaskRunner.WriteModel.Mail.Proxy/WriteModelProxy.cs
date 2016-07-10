@@ -75,6 +75,10 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Models
 		/// 
 		/// </summary>
 		public virtual String UserName { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual String Link { get; set; }
 		#endregion
 	}	
 	

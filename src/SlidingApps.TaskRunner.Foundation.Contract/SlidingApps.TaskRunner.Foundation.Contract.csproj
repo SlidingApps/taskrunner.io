@@ -71,15 +71,20 @@
     <Compile Include="..\AssemblyVersionInfo.cs">
       <Link>Properties\AssemblyVersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Cqrs\EmptyKey.cs" />
+    <Compile Include="Cqrs\EntityIdentifier.cs" />
+    <Compile Include="Cqrs\IBusinessKey.cs" />
     <Compile Include="Cqrs\ICommand.cs" />
     <Compile Include="Cqrs\ICommandHandler.cs" />
     <Compile Include="Cqrs\ICommandMessage.cs" />
     <Compile Include="Cqrs\ICommandResult.cs" />
     <Compile Include="Cqrs\IDomainEvent.cs" />
+    <Compile Include="Cqrs\IDomainEventIdentifiers.cs" />
     <Compile Include="Cqrs\IDomainEventMessage.cs" />
     <Compile Include="Cqrs\IDomainEventMessagePublisher.cs" />
     <Compile Include="Cqrs\IEventHandler.cs" />
     <Compile Include="Cqrs\IGenericCommandHandler.cs" />
+    <Compile Include="Cqrs\IIntent.cs" />
     <Compile Include="Cqrs\IQuery.cs" />
     <Compile Include="Cqrs\IQueryHandler.cs" />
     <Compile Include="Cqrs\IWithCorrelationIdentifier.cs" />
@@ -105,7 +110,6 @@
     <Compile Include="WriteModel\IDomainEntity.cs" />
     <Compile Include="WriteModel\IDomainEntityValidatorProvider.cs" />
     <Compile Include="WriteModel\IIdentifiable.cs" />
-    <Compile Include="WriteModel\IIntent.cs" />
     <Compile Include="WriteModel\IWithDomainEvents.cs" />
     <Compile Include="WriteModel\IWithValidator.cs" />
   </ItemGroup>

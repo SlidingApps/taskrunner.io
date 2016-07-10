@@ -1,5 +1,5 @@
 ﻿
-using SlidingApps.TaskRunner.Foundation.WriteModel;
+using SlidingApps.TaskRunner.Foundation.Cqrs;
 
 namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model.Intent
 {
@@ -7,5 +7,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model.Intent
         : IIntent
     {
         public string UserName { get; set; }
+
+        public string Link { get; set; }
     }
 }

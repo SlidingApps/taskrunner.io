@@ -1,25 +1,22 @@
 ﻿
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
-using System;
 
 namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Accounts
 {
     public class AccountCommand<TIntent>
-        : Command<TIntent> where TIntent : IIntent
+        : Command<AccountKey, TIntent> where TIntent : IIntent
     {
         public AccountCommand()
-            :base() { }
+            : base() { }
 
         public AccountCommand(TIntent intent)
-            : base(intent) { }
+            : base(AccountKey.Empty, intent) { }
 
-        public AccountCommand(Guid accountId, TIntent intent)
-            : base(intent)
-        {
-            this.AccountId = accountId;
-        }
+        public AccountCommand(string name, TIntent intent)
+            : base(new AccountKey(name), intent) { }
 
-        public Guid AccountId { get; set; }
+        public AccountCommand(AccountKey key, TIntent intent)
+            : base(key, intent) { }
     }
 }

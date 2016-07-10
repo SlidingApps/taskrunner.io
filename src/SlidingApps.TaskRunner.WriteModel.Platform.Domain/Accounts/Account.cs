@@ -89,7 +89,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
         
         public void When(AccountEvent<CreateAccount> domainEvent)
         {
-            this.Id = domainEvent.AccountId = Guid.NewGuid();
+            this.Id = domainEvent.Identifiers.EntityId = Guid.NewGuid();
             this.EmailAddress = domainEvent.Arguments.EmailAddress;
             this.Name = domainEvent.Arguments.Name ?? domainEvent.Arguments.EmailAddress;
             this.FirstName = domainEvent.Arguments.FirstName;

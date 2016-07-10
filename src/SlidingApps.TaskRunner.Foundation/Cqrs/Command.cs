@@ -1,5 +1,4 @@
 ﻿
-using SlidingApps.TaskRunner.Foundation.WriteModel;
 using System;
 
 namespace SlidingApps.TaskRunner.Foundation.Cqrs
@@ -24,16 +23,20 @@ namespace SlidingApps.TaskRunner.Foundation.Cqrs
         public Guid Id { get; set; }
     }
 
-    public abstract class Command<TIntent>
-        : Command where TIntent : IIntent
+    public abstract class Command<TBusinessKey, TIntent>
+        : Command where TBusinessKey : IBusinessKey
+        where TIntent : IIntent
     {
         public Command() { }
 
-        public Command(TIntent intent)
+        public Command(TBusinessKey key, TIntent intent)
             : this()
         {
+            this.Key = key;
             this.Intent = intent;
         }
+
+        public TBusinessKey Key { get; set; }
 
         public TIntent Intent { get; set; }
     }

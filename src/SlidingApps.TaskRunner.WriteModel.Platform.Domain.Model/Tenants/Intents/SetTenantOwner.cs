@@ -1,5 +1,5 @@
 ﻿
-using SlidingApps.TaskRunner.Foundation.WriteModel;
+using SlidingApps.TaskRunner.Foundation.Cqrs;
 
 namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Tenants.Intents
 {

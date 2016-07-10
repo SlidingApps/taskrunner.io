@@ -31,10 +31,10 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Api.Controllers
             return ApiResponse.CommandResponse(command);
         }
 
-        [HttpPost, Route("{tenantId:guid}/changeinfo")]
-        public async Task<HttpResponseMessage> PostChangeTenantInfo(Guid tenantId, [FromBody] ChangeTenantInfo intent)
+        [HttpPost, Route(@"{code:regex([a-z0-9.%@])}/changeinfo")]
+        public async Task<HttpResponseMessage> PostChangeTenantInfo(string code, [FromBody] ChangeTenantInfo intent)
         {
-            var command = new TenantCommand<ChangeTenantInfo>(tenantId, intent);
+            var command = new TenantCommand<ChangeTenantInfo>(code, intent);
             await this.connector.SendCommand(command);
 
             return ApiResponse.CommandResponse(command);

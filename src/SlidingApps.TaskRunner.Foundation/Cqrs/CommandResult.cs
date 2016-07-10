@@ -8,6 +8,9 @@ namespace SlidingApps.TaskRunner.Foundation.Cqrs
     public sealed class CommandResult
         : List<IDomainEvent>, ICommandResult
     {
+        public CommandResult(Guid correlationId)
+            : this(correlationId, new List<IDomainEvent>()) { }
+
         public CommandResult(Guid correlationId, IDomainEvent domainEvent)
             : this(correlationId, new List<IDomainEvent> { domainEvent }) { }
 

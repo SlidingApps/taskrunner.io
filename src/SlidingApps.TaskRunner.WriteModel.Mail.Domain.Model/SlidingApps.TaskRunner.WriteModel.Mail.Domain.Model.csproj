@@ -54,6 +54,7 @@
     <Compile Include="Intent\SendTenantConfirmationLink.cs" />
     <Compile Include="Intent\SendResetPasswordLink.cs" />
     <Compile Include="MailCommand.cs" />
+    <Compile Include="MailEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

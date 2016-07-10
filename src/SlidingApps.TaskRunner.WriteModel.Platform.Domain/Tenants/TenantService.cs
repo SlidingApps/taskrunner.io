@@ -34,16 +34,16 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants
         public ICommandResult Handle(TenantCommand<CreateTenant> command)
         {
             // Create TENANT.
-            Tenant entity = new Tenant(new Entities.Tenant(), this.validator.CreateFor<Tenant>());
-            TenantEvent<CreateTenant> tenantEvent = entity.Apply(command);
+            Tenant tenant = new Tenant(new Entities.Tenant(), this.validator.CreateFor<Tenant>());
+            TenantEvent<CreateTenant> tenantEvent = tenant.Apply(command);
 
             // Create ACCOUNT.
-            ICommandResult accountResult = this.mediator.Send(new AccountCommand<CreateAccount>(entity.Id, new CreateAccount { EmailAddress = command.Intent.UserName }));
+            ICommandResult accountResult = this.mediator.Send(new AccountCommand<CreateAccount>(command.Intent.UserName, new CreateAccount { EmailAddress = command.Intent.UserName }));
             AccountEvent<CreateAccount> accountEvent = accountResult.OfType<AccountEvent<CreateAccount>>().Single();
 
             ICommandResult userResult =
                 this.mediator.Send(
-                    new AccountCommand<ChangeAccountUser>(accountEvent.AccountId,
+                    new AccountCommand<ChangeAccountUser>(accountEvent.Key,
                         new ChangeAccountUser
                         {
                             Name = command.Intent.UserName,
@@ -52,19 +52,19 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants
             AccountEvent<ChangeAccountUser> userEvent = userResult.OfType<AccountEvent<ChangeAccountUser>>().Single();
 
             // Associate the ACCOUNT with the TENANT.
-            TenantAccount account = entity.AddAccount(accountEvent.AccountId);
+            TenantAccount account = tenant.AddAccount(accountEvent.Identifiers.EntityId);
 
             // Set the new ACCOUNT as TENANT OWNER.
-            TenantEvent<SetTenantOwner> roleEvent = account.Apply(new TenantCommand<SetTenantOwner>(entity.Id, new SetTenantOwner(command.Intent.UserName)));
+            TenantEvent<SetTenantOwner> roleEvent = account.Apply(new TenantCommand<SetTenantOwner>(command.Key, new SetTenantOwner(command.Intent.UserName)));
 
-            entity
+            tenant
                 .IfValid(e => this.queryProvider.Session.Save(e.GetDataEntity()))
                 .ElseThrow();
 
             // Delegate to the MAIL MANAGEMENT SERVICE to send a e-mail. 
             using (MailManagementClient mail = new MailManagementClient())
             {
-                mail.PostSendTenantConfirmationLink (new Mail.Api.Models.SendTenantConfirmationLink { Code = command.Intent.Name });
+                mail.PostSendTenantConfirmationLink (new Mail.Api.Models.SendTenantConfirmationLink { Code = command.Intent.Code });
                 mail.PostSendAccountConfirmationLink(new Mail.Api.Models.SendAccountConfirmationLink { UserName = command.Intent.UserName });
             }
 
@@ -80,7 +80,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants
 
         public ICommandResult Handle(TenantCommand<ChangeTenantInfo> command)
         {
-            var existing = this.queryProvider.CreateQuery<Entities.Tenant>().Where(x => x.Id == command.TenantId).Single();
+            var existing = this.queryProvider.CreateQuery<Entities.Tenant>().Where(x => x.Code == command.Key.Code).Single();
             var entity = new Tenant(existing, this.validator.CreateFor<Tenant>());
             var result = entity.Apply(command);
 

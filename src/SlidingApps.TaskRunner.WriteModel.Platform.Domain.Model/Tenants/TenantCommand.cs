@@ -1,28 +1,22 @@
 ﻿
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
-using System;
 
 namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Tenants
 {
     public class TenantCommand<TIntent>
-        : Command<TIntent> where TIntent : IIntent
+        : Command<TenantKey, TIntent> where TIntent : IIntent
     {
         public TenantCommand()
             :base() { }
 
         public TenantCommand(TIntent intent)
-            : this()
-        {
-            this.Intent = intent;
-        }
+            : base(TenantKey.Empty, intent) { }
 
-        public TenantCommand(Guid tenantId, TIntent intent)
-            : this(intent)
-        {
-            this.TenantId = tenantId;
-        }
+        public TenantCommand(string code, TIntent intent)
+            : base(new TenantKey(code), intent) { }
 
-        public Guid TenantId { get; set; }
+        public TenantCommand(TenantKey key, TIntent intent)
+            : base(key, intent) { }
     }
 }

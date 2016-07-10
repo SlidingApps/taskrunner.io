@@ -49,7 +49,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
 
         public ICommandResult Handle(AccountCommand<ChangeAccountProfileName> command)
         {
-            var existing = this.queryProvider.CreateQuery<Entities.Account>().Where(x => x.Id == command.AccountId).Single();
+            var existing = this.queryProvider.CreateQuery<Entities.Account>().Where(x => x.EmailAddress == command.Key.Name || x.User.Name == command.Key.Name).Single();
             Account entity = new Account(existing, this.validator.CreateFor<Account>());
             AccountEvent<ChangeAccountProfileName> result = entity.Apply(command);
 
@@ -62,7 +62,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
 
         public ICommandResult Handle(AccountCommand<ChangeAccountUserPeriod> command)
         {
-            var existing = this.queryProvider.CreateQuery<Entities.Account>().Where(x => x.Id == command.AccountId).Single();
+            var existing = this.queryProvider.CreateQuery<Entities.Account>().Where(x => x.EmailAddress == command.Key.Name || x.User.Name == command.Key.Name).Single();
             Account entity = new Account(existing, this.validator.CreateFor<Account>());
             AccountEvent<ChangeAccountUserPeriod> result = entity.Apply(command);
 
@@ -75,7 +75,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
         
         public ICommandResult Handle(AccountCommand<ChangeAccountUser> command)
         {
-            var existing = this.queryProvider.CreateQuery<Entities.Account>().Where(x => x.Id == command.AccountId).Single();
+            var existing = this.queryProvider.CreateQuery<Entities.Account>().Where(x => x.EmailAddress == command.Key.Name || x.User.Name == command.Key.Name).Single();
             Account entity = new Account(existing, this.validator.CreateFor<Account>());
             AccountEvent<ChangeAccountUser> result = entity.User.Apply(command);
 
@@ -95,7 +95,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
             // Delegate to the MAIL MANAGEMENT SERVICE to send a e-mail. 
             using (MailManagementClient mail = new MailManagementClient())
             {
-                mail.PostSendResetPasswordLink(new Mail.Api.Models.SendResetPasswordLink { UserName = command.Intent.Name });
+                mail.PostSendResetPasswordLink(new Mail.Api.Models.SendResetPasswordLink { UserName = command.Intent.Name, Link = entity.Link });
             }
 
             return new CommandResult(command.Id, result);

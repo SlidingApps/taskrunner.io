@@ -57,6 +57,7 @@
     <Compile Include="Accounts\Intents\ChangeAccountUserPeriod.cs" />
     <Compile Include="Accounts\Intents\CreateAccount.cs" />
     <Compile Include="Accounts\Intents\SendResetPasswordLink.cs" />
+    <Compile Include="Accounts\AccountKey.cs" />
     <Compile Include="Constant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tenants\Intents\ChangeTenantInfo.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Tenants\Intents\SetTenantOwner.cs" />
     <Compile Include="Tenants\TenantCommand.cs" />
     <Compile Include="Tenants\TenantEvent.cs" />
+    <Compile Include="Tenants\TenantKey.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
