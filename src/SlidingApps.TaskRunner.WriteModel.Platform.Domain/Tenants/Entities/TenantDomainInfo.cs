@@ -4,23 +4,19 @@ using System;
 
 namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants.Entities
 {
-    public class DomainInfo
+    public class TenantDomainInfo
         : AuditableDataEntity<Guid>
     {
-        public DomainInfo()
-        : base() { }
+        public TenantDomainInfo()
+            : base() { }
 
-        public DomainInfo(Guid id)
-        : base(id) { }
+        public TenantDomainInfo(Guid id)
+            : base(id) { }
 
         public virtual string Name { get; set; }
 
         public virtual string Description { get; set; }
 
-        public virtual DateTime ValidFrom { get; set; }
-
-        public virtual DateTime ValidUntil { get; set; }
-
-        public virtual Domain Domain { get; set; }
+        public virtual TenantDomain TenantDomain { get; set; }
     }
 }

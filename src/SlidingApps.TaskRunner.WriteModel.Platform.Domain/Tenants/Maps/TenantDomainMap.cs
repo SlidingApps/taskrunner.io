@@ -11,16 +11,18 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants.Maps
         /// <summary>
         /// The <see cref="TenantAccount"/> database table name.
         /// </summary>
-        public const string TABLE_NAME = "Tenant_Domain_L";
+        public const string TABLE_NAME = "Tenant_Domain_S";
 
         /// <summary>
         /// Default constructor.
         /// </summary>
         public TenantDomainMap()
-            : base(Metadata.SCHEMA_NAME, TenantAccountMap.TABLE_NAME)
+            : base(Metadata.SCHEMA_NAME, TenantDomainMap.TABLE_NAME)
         {
+            this.Map(x => x.Code);
+
             this.References(x => x.Tenant).Unique().Column("TenantId");
-            this.References(x => x.Domain).Unique().Column("DomainId");
+            this.HasOne(x => x.Info).Cascade.All().PropertyRef(x => x.TenantDomain).LazyLoad(Laziness.Proxy);
         }
     }
 }

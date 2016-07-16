@@ -1,4 +1,5 @@
-﻿using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
+﻿
+using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
 using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Tenants;
 using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Tenants.Intents;

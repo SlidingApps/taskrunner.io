@@ -99,6 +99,44 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants
             return _account;
         }
 
+        private List<TenantDomain> domains;
+        public List<TenantDomain> Domains
+        {
+            get
+            {
+                var domains = new List<TenantDomain>();
+                if (this.accounts == null)
+                {
+                    domains = this.entity.Domains.ToList().Select(x => new TenantDomain(x)).ToList();
+                }
+
+                return this.domains = domains;
+            }
+            private set { this.domains = value; }
+        }
+
+        public TenantDomain AddDefaultDomain()
+        {
+            var domain = new TenantDomain();
+            domain.Code = "#";
+            domain.Name = "Default domain";
+            domain.Description = "Default domain";
+
+            domain.SetTenant(this.entity);
+
+            this.AddDomain(domain);
+
+            return domain;
+        }
+
+        public TenantDomain AddDomain(TenantDomain domain)
+        {
+            this.entity.Domains.Add(domain.GetDataEntity());
+            this.Domains.Add(domain);
+
+            return domain;
+        }
+
         public TenantEvent<CreateTenant> Apply(TenantCommand<CreateTenant> command)
         {
             TenantEvent<CreateTenant> domainEvent = new TenantEvent<CreateTenant>(command);

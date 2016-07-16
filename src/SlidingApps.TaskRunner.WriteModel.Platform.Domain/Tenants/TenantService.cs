@@ -35,6 +35,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants
         {
             // Create TENANT.
             Tenant tenant = new Tenant(new Entities.Tenant(), this.validator.CreateFor<Tenant>());
+            tenant.AddDefaultDomain();
             TenantEvent<CreateTenant> tenantEvent = tenant.Apply(command);
 
             // Create ACCOUNT.

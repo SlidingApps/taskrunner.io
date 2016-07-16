@@ -15,6 +15,8 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants.Entities
 
         public virtual Tenant Tenant { get; set; }
 
-        public virtual Domain Domain { get; set; }
+        public virtual string Code { get; set; }
+
+        public virtual TenantDomainInfo Info { get; set; }
     }
 }
