@@ -12,7 +12,7 @@ export class EventHub {
     public dirty$: Observable<any> =
         Observable
             .combineLatest(this.form$, Observable.interval(5000))
-            .map(([x]: [BehaviorSubject<angular.IFormController>]) => x)
+            .map((x: [angular.IFormController, number], index: number) => x[0])
             .filter(x => !!x)
             .map(x => { return {form: x, dirty: x.$dirty}; })
             .distinctUntilChanged()

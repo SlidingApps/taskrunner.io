@@ -44,6 +44,12 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
             private set { this.entity.Profile.FirstName = value; }
         }
 
+        public DateTime CreationTime
+        {
+            get { return this.entity.Profile.CreationTime; }
+            private set { this.entity.Profile.CreationTime = value; }
+        }
+
         public string Info
         {
             get { return this.entity.Profile.Info; }
@@ -93,7 +99,10 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
             this.EmailAddress = domainEvent.Arguments.EmailAddress;
             this.Name = domainEvent.Arguments.Name ?? domainEvent.Arguments.EmailAddress;
             this.FirstName = domainEvent.Arguments.FirstName;
+            this.CreationTime = DateTime.UtcNow;
             this.Info = domainEvent.Arguments.Info;
+            this.Status = EntityStatus.UNCONFIRMED;
+            this.Link = Guid.NewGuid().ToString();
 
             this.DomainEvents.Add(domainEvent);
         }

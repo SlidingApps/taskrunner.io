@@ -11,7 +11,8 @@ import { Page } from '../view/layout/page';
 
 // VIEWS
 import { HomeController } from '../view/public/home.controller';
-import { AccountController } from '../view/account/account-controller.ts';
+import { AccountController } from '../view/account/account-controller';
+import { TenantController } from '../view/tenant/tenant-controller';
 
 
 @Component({
@@ -26,14 +27,15 @@ import { AccountController } from '../view/account/account-controller.ts';
 })
 @StateConfig([
     { name: 'home', url: '/', component: HomeController },
-    { name: 'account', url: '/account', component: AccountController }
+    { name: 'account', url: '/account', component: AccountController },
+    { name: 'tenant', url: '/tenant', component: TenantController }
 ])
 @Inject('$log')
-export class Application { 
+export class Application {
     constructor(private $log: angular.ILogService) {
         Logger.LOG = this.$log;
     }
-    
+
     public static LOGGER: angular.ILogService;
 }
 

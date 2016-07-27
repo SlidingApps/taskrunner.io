@@ -1,7 +1,13 @@
 ﻿
+using NHibernate;
+using SlidingApps.TaskRunner.Foundation.Configuration;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
+using SlidingApps.TaskRunner.Foundation.NHibernate;
+using SlidingApps.TaskRunner.Foundation.WriteModel;
 using SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model;
 using SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model.Intent;
+using System.Linq;
+using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
 
 namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain
 {
@@ -10,15 +16,33 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain
         ICommandHandler<MailCommand<SendAccountConfirmationLink>>,
         ICommandHandler<MailCommand<SendResetPasswordLink>>
     {
+        private readonly IQueryProvider<ISession> queryProvider;
+
+        private readonly IDomainEntityValidatorProvider validator;
+
+        public MailService(IQueryProvider<ISession> queryProvider, IDomainEntityValidatorProvider validator)
+        {
+            this.queryProvider = queryProvider;
+            this.validator = validator;
+        }
+
+        public const string TENANT_CONFIRMATION_LINK_TEMPLATE = "TENANT_CONFIRMATION_LINK";
+        public const string ACCOUNT_CONFIRMATION_LINK_TEMPLATE = "ACCOUNT_CONFIRMATION_LINK";
+        public const string RESET_PASSWORD_LINK_TEMPLATE = "RESET_PASSWORD_LINK";
+
         public ICommandResult Handle(MailCommand<SendTenantConfirmationLink> command)
         {
+            var existing = this.queryProvider.CreateQuery<Entities.MailTemplate>().Where(x => x.Code == MailService.TENANT_CONFIRMATION_LINK_TEMPLATE).Single();
+            var entity = new MailTemplate(existing, this.validator.CreateFor<MailTemplate>());
+
             MailGun.SendSimpleMessage(
                 new MailParameters(
-                    "taskrunner.io",
-                    "TaskRunner <no-reply@taskrunner.io>",
-                    "Confirm tenant",
-                    "Click on the following link to confirm the tenant.",
-                    "Click on the following link to confirm the tenant.",
+                    MailServiceConfiguration.Domain,
+                    MailServiceConfiguration.NoreplyAddress,
+                    entity.Subject,
+                    entity.TextTemplate,
+                    entity.HtmlTemplate,
+                    /*command.Intent.Recipient*/
                     "peter.vyvey@gmail.com")
                 );
 
@@ -27,13 +51,17 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain
 
         public ICommandResult Handle(MailCommand<SendAccountConfirmationLink> command)
         {
+            var existing = this.queryProvider.CreateQuery<Entities.MailTemplate>().Where(x => x.Code == MailService.ACCOUNT_CONFIRMATION_LINK_TEMPLATE).Single();
+            var entity = new MailTemplate(existing, this.validator.CreateFor<MailTemplate>());
+
             MailGun.SendSimpleMessage(
                 new MailParameters(
-                    "taskrunner.io",
-                    "TaskRunner <no-reply@taskrunner.io>",
-                    "Confirm account",
-                    "Click on the following link to confirm your account.",
-                    "Click on the following link to confirm your account.",
+                    MailServiceConfiguration.Domain,
+                    MailServiceConfiguration.NoreplyAddress,
+                    entity.Subject,
+                    entity.TextTemplate,
+                    entity.HtmlTemplate,
+                    /*command.Intent.Recipient*/
                     "peter.vyvey@gmail.com")
                 );
 
@@ -42,13 +70,17 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain
 
         public ICommandResult Handle(MailCommand<SendResetPasswordLink> command)
         {
+            var existing = this.queryProvider.CreateQuery<Entities.MailTemplate>().Where(x => x.Code == MailService.RESET_PASSWORD_LINK_TEMPLATE).Single();
+            var entity = new MailTemplate(existing, this.validator.CreateFor<MailTemplate>());
+
             MailGun.SendSimpleMessage(
                 new MailParameters(
-                    "taskrunner.io", 
-                    "TaskRunner <no-reply@taskrunner.io>", 
-                    "Reset password", 
-                    "Click on the following link to reset your password.",
-                    "Click on the following link to reset your password.", 
+                    MailServiceConfiguration.Domain,
+                    MailServiceConfiguration.NoreplyAddress,
+                    entity.Subject,
+                    entity.TextTemplate,
+                    entity.HtmlTemplate,
+                    /*command.Intent.Recipient*/
                     "peter.vyvey@gmail.com")
                 );
 

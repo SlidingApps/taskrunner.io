@@ -54,6 +54,7 @@
     <Compile Include="IApplicationConfigurationStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RabbitMQConfigration.cs" />
+    <Compile Include="MailServiceConfiguration.cs" />
     <Compile Include="WebApiConfiguration.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

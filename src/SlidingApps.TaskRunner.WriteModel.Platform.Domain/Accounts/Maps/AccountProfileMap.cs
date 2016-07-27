@@ -16,6 +16,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts.Maps
             this.Map(x => x.Name);
             this.Map(x => x.FirstName);
             this.Map(x => x.Info);
+            this.Map(x => x.CreationTime);
             this.Map(x => x.Status).CustomType<GenericEnumMapper<EntityStatus>>();
             this.Map(x => x.Link);
 

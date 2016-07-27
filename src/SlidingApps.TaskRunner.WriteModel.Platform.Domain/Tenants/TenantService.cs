@@ -11,12 +11,14 @@ using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Accounts.Intents;
 using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Tenants;
 using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Tenants.Intents;
 using System.Linq;
+using System;
 
 namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants
 {
     public class TenantService :
         ICommandHandler<TenantCommand<CreateTenant>>,
-        ICommandHandler<TenantCommand<ChangeTenantInfo>>
+        ICommandHandler<TenantCommand<ChangeTenantInfo>>,
+        ICommandHandler<TenantCommand<ConfirmTenant>>
     {
         private readonly IMediator mediator;
 
@@ -62,6 +64,8 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants
                 .IfValid(e => this.queryProvider.Session.Save(e.GetDataEntity()))
                 .ElseThrow();
 
+            this.queryProvider.Session.Flush();
+
             // Delegate to the MAIL MANAGEMENT SERVICE to send a e-mail. 
             using (MailManagementClient mail = new MailManagementClient())
             {
@@ -80,6 +84,19 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants
         }
 
         public ICommandResult Handle(TenantCommand<ChangeTenantInfo> command)
+        {
+            var existing = this.queryProvider.CreateQuery<Entities.Tenant>().Where(x => x.Code == command.Key.Code).Single();
+            var entity = new Tenant(existing, this.validator.CreateFor<Tenant>());
+            var result = entity.Apply(command);
+
+            entity
+                .IfValid(e => this.queryProvider.Session.Save(e.GetDataEntity()))
+                .ElseThrow();
+
+            return new CommandResult(command.Id, result);
+        }
+
+        public ICommandResult Handle(TenantCommand<ConfirmTenant> command)
         {
             var existing = this.queryProvider.CreateQuery<Entities.Tenant>().Where(x => x.Code == command.Key.Code).Single();
             var entity = new Tenant(existing, this.validator.CreateFor<Tenant>());

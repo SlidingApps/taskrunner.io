@@ -1,4 +1,5 @@
 ﻿
+using FluentNHibernate.Mapping;
 using SlidingApps.TaskRunner.Foundation.NHibernate;
 using System;
 
@@ -14,8 +15,11 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants.Maps
         {
             this.Map(x => x.Name);
             this.Map(x => x.Description);
+            this.Map(x => x.CreationTime);
             this.Map(x => x.ValidFrom);
             this.Map(x => x.ValidUntil);
+            this.Map(x => x.Status).CustomType<GenericEnumMapper<EntityStatus>>();
+            this.Map(x => x.Link);
 
             this.References(x => x.Tenant).Unique().Column("TenantId");
         }

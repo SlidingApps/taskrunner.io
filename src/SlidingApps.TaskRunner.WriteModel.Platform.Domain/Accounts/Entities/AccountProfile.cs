@@ -19,6 +19,8 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts.Entities
 
         public virtual string Info { get; set; }
 
+        public virtual DateTime CreationTime { get; set; }
+
         public virtual EntityStatus Status { get; set; }
 
         public virtual string Link { get; set; }

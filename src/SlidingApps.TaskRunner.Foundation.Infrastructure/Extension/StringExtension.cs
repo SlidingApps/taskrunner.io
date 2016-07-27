@@ -11,12 +11,7 @@ namespace SlidingApps.TaskRunner.Foundation.Infrastructure.Extension
     {
         public static string FormatWith(this string format, object source)
         {
-            return FormatWith(format, null, source);
-        }
-
-        public static string FormatWith(this string format, IFormatProvider provider, object source)
-        {
-            Argument.StringIsRequired(format, "format");            
+            Argument.StringIsRequired(format, "format");
 
             var properties = new RouteValueDictionary(source);
             foreach (var key in properties.Keys)
@@ -26,6 +21,19 @@ namespace SlidingApps.TaskRunner.Foundation.Infrastructure.Extension
 
             return format;
         }
+
+        //public static string FormatWith(this string format, IFormatProvider provider, object source)
+        //{
+        //    Argument.StringIsRequired(format, "format");            
+
+        //    var properties = new RouteValueDictionary(source);
+        //    foreach (var key in properties.Keys)
+        //    {
+        //        format = Regex.Replace(format, "{" + key + "}", properties[key] != null ? properties[key].ToString() : string.Empty, RegexOptions.IgnoreCase);
+        //    }
+
+        //    return format;
+        //}
 
         public static string ToHexString(this string value)
         {

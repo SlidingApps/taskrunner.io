@@ -115,24 +115,42 @@
       <Link>Properties\AssemblyVersionInfo.cs</Link>
     </Compile>
     <Compile Include="AutofacModule.cs" />
+    <Compile Include="Entities\Communication.cs" />
+    <Compile Include="Entities\MailCommunication.cs" />
+    <Compile Include="Entities\MailTemplate.cs" />
+    <Compile Include="Entities\MailTemplateInfo.cs" />
     <Compile Include="MailGun.cs" />
     <Compile Include="MailParameters.cs" />
     <Compile Include="MailService.cs" />
+    <Compile Include="MailStatus.cs" />
+    <Compile Include="MailTemplate.cs" />
+    <Compile Include="Maps\MailTemplateInfoMap.cs" />
+    <Compile Include="Maps\MailTemplateMap.cs" />
+    <Compile Include="Metadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validations\MailTemplateValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Entities\" />
-    <Folder Include="Maps\" />
-    <Folder Include="Validations\" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation.Configuration\SlidingApps.TaskRunner.Foundation.Configuration.csproj">
+      <Project>{036BA076-A10B-4A2F-B2FD-9174D7F30F0F}</Project>
+      <Name>SlidingApps.TaskRunner.Foundation.Configuration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation.Contract\SlidingApps.TaskRunner.Foundation.Contract.csproj">
       <Project>{E13532DE-5159-4031-95F3-BFDA5053342B}</Project>
       <Name>SlidingApps.TaskRunner.Foundation.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation.Infrastructure\SlidingApps.TaskRunner.Foundation.Infrastructure.csproj">
+      <Project>{34A3A49F-D391-4F83-A10D-4CFEEA3DFDF9}</Project>
+      <Name>SlidingApps.TaskRunner.Foundation.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation.NHibernate.Contract\SlidingApps.TaskRunner.Foundation.NHibernate.Contract.csproj">
+      <Project>{E123D615-8BA3-438C-8E46-B99E09312522}</Project>
+      <Name>SlidingApps.TaskRunner.Foundation.NHibernate.Contract</Name>
     </ProjectReference>
     <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation.NHibernate\SlidingApps.TaskRunner.Foundation.NHibernate.csproj">
       <Project>{147DCDD1-7B9C-45DE-BC2D-9756D687B79B}</Project>

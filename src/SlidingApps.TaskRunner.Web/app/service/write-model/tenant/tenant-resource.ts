@@ -30,4 +30,18 @@ export class TenantResource implements ITenantResource {
 
         return deferred.promise;
     }
+
+    public confirmTenant(tenantCode: string, link: string): angular.IPromise<void> {
+        let deferred: angular.IDeferred<void> = this.$q.defer<void>();
+
+        this.service
+            .all(`${TenantResource.RESOURCE}/${tenantCode}/confirm/${link}`)
+            .get()
+            .then(response => {
+                deferred.resolve();
+            })
+            .catch(reason => deferred.reject(reason));
+
+        return deferred.promise;
+    }
 }

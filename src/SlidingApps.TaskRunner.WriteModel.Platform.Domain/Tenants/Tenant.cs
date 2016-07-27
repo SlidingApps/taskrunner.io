@@ -58,6 +58,12 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants
             private set { this.entity.Info.Description = value; }
         }
 
+        public DateTime CreationTime
+        {
+            get { return this.entity.Info.CreationTime; }
+            private set { this.entity.Info.CreationTime = value; }
+        }
+
         public DateTime ValidFrom
         {
             get { return this.entity.Info.ValidFrom; }
@@ -68,6 +74,18 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants
         {
             get { return this.entity.Info.ValidUntil; }
             private set { this.entity.Info.ValidUntil = value; }
+        }
+
+        public EntityStatus Status
+        {
+            get { return this.entity.Info.Status; }
+            private set { this.entity.Info.Status = value; }
+        }
+
+        public string Link
+        {
+            get { return this.entity.Info.Link; }
+            private set { this.entity.Info.Link = value; }
         }
 
         private List<TenantAccount> accounts;
@@ -151,8 +169,11 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants
             this.Code = domainEvent.Arguments.Code;
             this.Name = domainEvent.Arguments.Name;
             this.Description = domainEvent.Arguments.Description;
+            this.CreationTime = DateTime.UtcNow;
             this.ValidFrom = domainEvent.Arguments.ValidFrom.HasValue ? domainEvent.Arguments.ValidFrom.Value : Tenant.DEFAULT_VALIDFROM_DATE;
             this.ValidUntil = domainEvent.Arguments.ValidUntil.HasValue ? domainEvent.Arguments.ValidUntil.Value : Tenant.DEFAULT_VALIDUNTIL_DATE;
+            this.Status = EntityStatus.UNCONFIRMED;
+            this.Link = Guid.NewGuid().ToString();
 
             this.DomainEvents.Add(domainEvent);
         }
@@ -170,6 +191,19 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants
             this.Name = domainEvent.Arguments.Name;
             this.Description = domainEvent.Arguments.Description;
 
+            this.DomainEvents.Add(domainEvent);
+        }
+
+        public TenantEvent<ConfirmTenant> Apply(TenantCommand<ConfirmTenant> command)
+        {
+            TenantEvent<ConfirmTenant> domainEvent = new TenantEvent<ConfirmTenant>(command);
+            this.When(domainEvent);
+
+            return domainEvent;
+        }
+
+        public void When(TenantEvent<ConfirmTenant> domainEvent)
+        {
             this.DomainEvents.Add(domainEvent);
         }
 

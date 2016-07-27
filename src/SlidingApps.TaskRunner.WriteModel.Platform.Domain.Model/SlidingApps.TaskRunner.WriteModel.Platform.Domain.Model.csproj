@@ -61,6 +61,7 @@
     <Compile Include="Constant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tenants\Intents\ChangeTenantInfo.cs" />
+    <Compile Include="Tenants\Intents\ConfirmTenant.cs" />
     <Compile Include="Tenants\Intents\CreateTenant.cs" />
     <Compile Include="Tenants\Intents\SetTenantOwner.cs" />
     <Compile Include="Tenants\TenantCommand.cs" />

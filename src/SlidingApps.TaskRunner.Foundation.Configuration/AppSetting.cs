@@ -74,5 +74,9 @@ namespace SlidingApps.TaskRunner.Foundation.Configuration
 
         //<add key = "service.xxx.url" value="http://localhost:8091" />
         public const string SERVICE_URL_TEMPLATE = "service.{0}.url";
+
+        public const string MAIL_SERVICE_DOMAIN = "service.mail.domain";
+
+        public const string MAIL_SERVICE_NO_REPLY_ADDRESS = "service.mail.noReply";
     }
 }
