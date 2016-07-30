@@ -10,6 +10,9 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain.Entities
         public MailCommunication()
             : base() { }
 
+        public MailCommunication(Guid id)
+            : base(id) { }
+
         public virtual string ExternalId { get; set; }
 
         public virtual string Recipient { get; set; }

@@ -8,10 +8,10 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain.Entities
         : AuditableDataEntity<Guid>
     {
         public MailTemplateInfo()
-        : base() { }
+            : base() { }
 
         public MailTemplateInfo(Guid id)
-        : base(id) { }
+            : base(id) { }
 
         public virtual string Subject { get; set; }
 

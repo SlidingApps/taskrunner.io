@@ -7,7 +7,6 @@ using SlidingApps.TaskRunner.Foundation.WriteModel;
 using SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model;
 using SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model.Intent;
 using System.Linq;
-using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
 
 namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain
 {
@@ -32,6 +31,8 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain
 
         public ICommandResult Handle(MailCommand<SendTenantConfirmationLink> command)
         {
+            var test = new Communication<MailCommunicationInfo>(this.validator.CreateFor<Communication<MailCommunicationInfo>>());
+
             var existing = this.queryProvider.CreateQuery<Entities.MailTemplate>().Where(x => x.Code == MailService.TENANT_CONFIRMATION_LINK_TEMPLATE).Single();
             var entity = new MailTemplate(existing, this.validator.CreateFor<MailTemplate>());
 

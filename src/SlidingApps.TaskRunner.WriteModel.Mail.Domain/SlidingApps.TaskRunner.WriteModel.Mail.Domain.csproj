@@ -115,15 +115,20 @@
       <Link>Properties\AssemblyVersionInfo.cs</Link>
     </Compile>
     <Compile Include="AutofacModule.cs" />
+    <Compile Include="Communication.cs" />
+    <Compile Include="CommunicationInfo.cs" />
     <Compile Include="Entities\Communication.cs" />
     <Compile Include="Entities\MailCommunication.cs" />
     <Compile Include="Entities\MailTemplate.cs" />
     <Compile Include="Entities\MailTemplateInfo.cs" />
+    <Compile Include="MailCommunicationInfo.cs" />
     <Compile Include="MailGun.cs" />
     <Compile Include="MailParameters.cs" />
     <Compile Include="MailService.cs" />
     <Compile Include="MailStatus.cs" />
     <Compile Include="MailTemplate.cs" />
+    <Compile Include="Maps\CommunicationMap.cs" />
+    <Compile Include="Maps\MailCommunicationMap.cs" />
     <Compile Include="Maps\MailTemplateInfoMap.cs" />
     <Compile Include="Maps\MailTemplateMap.cs" />
     <Compile Include="Metadata.cs" />
