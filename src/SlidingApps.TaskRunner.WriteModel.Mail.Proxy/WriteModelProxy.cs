@@ -58,6 +58,10 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Models
 		/// <summary>
 		/// 
 		/// </summary>
+		public virtual String Recipient { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
 		public virtual String UserName { get; set; }
 		#endregion
 	}	
@@ -74,11 +78,27 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Models
 		/// <summary>
 		/// 
 		/// </summary>
+		public virtual String Recipient { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual String Subject { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual String ContentTemplate { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
 		public virtual String UserName { get; set; }
 		/// <summary>
 		/// 
 		/// </summary>
 		public virtual String Link { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual MailStatus Status { get; set; }
 		#endregion
 	}	
 	
@@ -94,10 +114,42 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Models
 		/// <summary>
 		/// 
 		/// </summary>
+		public virtual String Recipient { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
 		public virtual String Code { get; set; }
 		#endregion
 	}	
 
+	
+	/// <summary>
+	/// 
+	/// </summary>
+	public enum MailStatus
+	{
+
+		/// <summary>
+		/// 
+		/// </summary>
+		NOT_SPECIFIED = 0,
+
+		/// <summary>
+		/// 
+		/// </summary>
+		FAILED = 1,
+
+		/// <summary>
+		/// 
+		/// </summary>
+		BOUNCED = 2,
+
+		/// <summary>
+		/// 
+		/// </summary>
+		DELIVERED = 3,
+		
+	}
 	
 }
 #endregion

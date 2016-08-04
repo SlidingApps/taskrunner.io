@@ -7,9 +7,9 @@ using System;
 
 namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain
 {
-    public class Communication<TConmmunicationInfo>
+    public partial class Communication<TConmmunicationInfo>
         : DomainEntity<Guid, Entities.Communication>, IWithValidator<Communication<TConmmunicationInfo>> 
-        where TConmmunicationInfo: CommunicationInfo, new()
+        where TConmmunicationInfo: Communication<TConmmunicationInfo>.ConmmunicationInfo, new()
     {
         private readonly IValidator<Communication<TConmmunicationInfo>> validator;
 
@@ -38,7 +38,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain
                 if (this.info == default(TConmmunicationInfo))
                 {
                     this.info = new TConmmunicationInfo();
-                    this.info.SetParent(this.entity);
+                    this.info.SetParent(this);
                 }
 
                 return this.info;

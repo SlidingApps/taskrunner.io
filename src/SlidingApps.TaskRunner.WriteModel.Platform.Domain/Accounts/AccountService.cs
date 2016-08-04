@@ -95,7 +95,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
             // Delegate to the MAIL MANAGEMENT SERVICE to send a e-mail. 
             using (MailManagementClient mail = new MailManagementClient())
             {
-                mail.PostSendResetPasswordLink(new Mail.Api.Models.SendResetPasswordLink { UserName = command.Intent.Name, Link = entity.Link });
+                mail.PostSendResetPasswordLink(new Mail.Api.Models.SendResetPasswordLink { UserName = command.Intent.Name, Recipient = entity.EmailAddress, Link = entity.Link });
             }
 
             return new CommandResult(command.Id, result);

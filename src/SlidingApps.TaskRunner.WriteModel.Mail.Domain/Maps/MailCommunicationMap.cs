@@ -1,6 +1,7 @@
 ﻿
 using FluentNHibernate.Mapping;
 using SlidingApps.TaskRunner.Foundation.NHibernate;
+using SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model;
 using System;
 
 namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain.Maps
@@ -15,6 +16,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain.Maps
         {
             this.Map(x => x.ExternalId);
             this.Map(x => x.Recipient);
+            this.Map(x => x.Subject);
             this.Map(x => x.Content);
             this.Map(x => x.Status).CustomType<GenericEnumMapper<MailStatus>>();
 

@@ -1,5 +1,6 @@
 ﻿
 using SlidingApps.TaskRunner.Foundation.WriteModel;
+using SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model;
 using System;
 
 namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain.Entities
@@ -17,10 +18,13 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain.Entities
 
         public virtual string Recipient { get; set; }
 
+        public virtual string Subject { get; set; }
+
         public virtual string Content { get; set; }
 
         public virtual MailStatus Status { get; set; }
 
         public virtual Communication Communication { get; set; }
+
     }
 }

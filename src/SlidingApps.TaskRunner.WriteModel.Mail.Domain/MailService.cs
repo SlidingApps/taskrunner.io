@@ -74,6 +74,14 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain
             var existing = this.queryProvider.CreateQuery<Entities.MailTemplate>().Where(x => x.Code == MailService.RESET_PASSWORD_LINK_TEMPLATE).Single();
             var entity = new MailTemplate(existing, this.validator.CreateFor<MailTemplate>());
 
+            command.Intent.Subject = entity.Subject;
+            command.Intent.ContentTemplate = entity.HtmlTemplate;
+
+            var communication = new Communication<MailCommunicationInfo>(new Entities.Communication(), this.validator.CreateFor<Communication<MailCommunicationInfo>>());
+            communication.Info.Apply(command);
+
+            this.queryProvider.Session.Save(communication.GetDataEntity());
+
             MailGun.SendSimpleMessage(
                 new MailParameters(
                     MailServiceConfiguration.Domain,
@@ -84,6 +92,10 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain
                     /*command.Intent.Recipient*/
                     "peter.vyvey@gmail.com")
                 );
+
+            communication.Info.Status = MailStatus.SENT;
+            this.queryProvider.Session.Save(communication.GetDataEntity());
+
 
             return new CommandResult(command.Id);
         }

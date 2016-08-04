@@ -8,8 +8,14 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model.Intent
     {
         public string Recipient { get; set; }
 
+        public string Subject { get; set; }
+
+        public string ContentTemplate { get; set; }
+
         public string UserName { get; set; }
 
         public string Link { get; set; }
+
+        public MailStatus Status { get; set; }
     }
 }
