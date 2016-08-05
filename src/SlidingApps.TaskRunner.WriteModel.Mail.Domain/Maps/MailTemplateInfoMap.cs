@@ -2,7 +2,7 @@
 using SlidingApps.TaskRunner.Foundation.NHibernate;
 using System;
 
-namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain.Maps
+namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain.Maps
 {
     public class MailTemplateInfoMap
         : AuditableDataEntityMap<Entities.MailTemplateInfo, Guid>

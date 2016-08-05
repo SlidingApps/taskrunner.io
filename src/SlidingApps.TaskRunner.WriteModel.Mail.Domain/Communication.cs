@@ -5,7 +5,7 @@ using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
 using System;
 
-namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain
+namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
 {
     public partial class Communication<TConmmunicationInfo>
         : DomainEntity<Guid, Entities.Communication>, IWithValidator<Communication<TConmmunicationInfo>> 

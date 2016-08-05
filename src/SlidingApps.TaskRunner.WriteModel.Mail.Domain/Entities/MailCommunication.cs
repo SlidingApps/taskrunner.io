@@ -1,9 +1,9 @@
 ﻿
 using SlidingApps.TaskRunner.Foundation.WriteModel;
-using SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model;
+using SlidingApps.TaskRunner.WriteModel.Communication.Domain.Model;
 using System;
 
-namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain.Entities
+namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain.Entities
 {
     public class MailCommunication
         : AuditableDataEntity<Guid>

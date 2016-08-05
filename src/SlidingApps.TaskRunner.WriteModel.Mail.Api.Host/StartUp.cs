@@ -15,13 +15,13 @@ using System.Net.Http.Formatting;
 using System.Web.Http;
 using WebApiProxy.Server;
 
-namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Host
+namespace SlidingApps.TaskRunner.WriteModel.Communication.Api.Host
 {
     internal sealed class Startup
 	{
 	    internal readonly Type[] SERVICES = {
             typeof(ServiceManagementController),
-			typeof (TaskRunner.WriteModel.Mail.Api.Controllers.MailManagementController),
+			typeof (TaskRunner.WriteModel.Communication.Api.Controllers.MailManagementController),
         };
 
 	    public void Configuration(IAppBuilder app)

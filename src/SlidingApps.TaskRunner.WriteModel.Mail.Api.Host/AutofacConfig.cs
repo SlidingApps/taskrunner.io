@@ -1,7 +1,7 @@
 ﻿
 using Autofac;
 
-namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Host
+namespace SlidingApps.TaskRunner.WriteModel.Communication.Api.Host
 {
 	public class AutofacConfig
 	{
@@ -10,8 +10,8 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Host
 			ContainerBuilder builder = new ContainerBuilder();
 
 			builder.RegisterModule<AutofacModule>();
-            builder.RegisterAssemblyModules(typeof(TaskRunner.WriteModel.Mail.Api.IAssemblyMarker).Assembly);
-            builder.RegisterAssemblyModules(typeof(TaskRunner.WriteModel.Mail.Domain.AutofacModule).Assembly);
+            builder.RegisterAssemblyModules(typeof(TaskRunner.WriteModel.Communication.Api.IAssemblyMarker).Assembly);
+            builder.RegisterAssemblyModules(typeof(TaskRunner.WriteModel.Communication.Domain.AutofacModule).Assembly);
 
 			return builder.Build();
 		}

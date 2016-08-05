@@ -12,7 +12,7 @@ using NHibernate;
 using System.Linq;
 using SlidingApps.TaskRunner.WriteModel.Platform.Domain;
 
-namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain
+namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
 {
     public class AutofacModule : Module
     {

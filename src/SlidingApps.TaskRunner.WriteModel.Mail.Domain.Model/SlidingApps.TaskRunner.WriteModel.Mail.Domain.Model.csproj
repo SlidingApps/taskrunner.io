@@ -7,8 +7,8 @@
     <ProjectGuid>{1BCEF76C-4A38-481E-8B71-EC024C9A314E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model</RootNamespace>
-    <AssemblyName>SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model</AssemblyName>
+    <RootNamespace>SlidingApps.TaskRunner.WriteModel.Communication.Domain.Model</RootNamespace>
+    <AssemblyName>SlidingApps.TaskRunner.WriteModel.Communication.Domain.Model</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

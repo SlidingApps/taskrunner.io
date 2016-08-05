@@ -1,7 +1,7 @@
 ﻿
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 
-namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model.Intent
+namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain.Model.Intent
 {
     public class SendAccountConfirmationLink
         : IIntent

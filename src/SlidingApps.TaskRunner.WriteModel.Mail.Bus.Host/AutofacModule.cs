@@ -12,7 +12,7 @@ using SlidingApps.TaskRunner.Foundation.MessageBus;
 using System.Collections.Generic;
 using Module = Autofac.Module;
 
-namespace SlidingApps.TaskRunner.WriteModel.Mail.Bus.Host
+namespace SlidingApps.TaskRunner.WriteModel.Communication.Bus.Host
 {
     public class AutofacModule : Module
     {

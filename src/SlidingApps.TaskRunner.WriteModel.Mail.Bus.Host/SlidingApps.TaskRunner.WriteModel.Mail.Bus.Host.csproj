@@ -7,8 +7,8 @@
     <ProjectGuid>{9999F545-E371-4170-8A92-5B51CF00141C}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SlidingApps.TaskRunner.WriteModel.Mail.Bus.Host</RootNamespace>
-    <AssemblyName>SlidingApps.TaskRunner.WriteModel.Mail.Bus.Host</AssemblyName>
+    <RootNamespace>SlidingApps.TaskRunner.WriteModel.Communication.Bus.Host</RootNamespace>
+    <AssemblyName>SlidingApps.TaskRunner.WriteModel.Communication.Bus.Host</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -1,5 +1,5 @@
 ﻿
-namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain
+namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
 {
     public partial class Communication<TConmmunicationInfo>
     {

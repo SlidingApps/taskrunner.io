@@ -5,11 +5,11 @@ using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Transaction;
 using SlidingApps.TaskRunner.Foundation.MassTransit;
 using SlidingApps.TaskRunner.Foundation.MessageBus;
-using SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model;
-using SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model.Intent;
+using SlidingApps.TaskRunner.WriteModel.Communication.Domain.Model;
+using SlidingApps.TaskRunner.WriteModel.Communication.Domain.Model.Intent;
 using System.Threading.Tasks;
 
-namespace SlidingApps.TaskRunner.WriteModel.Mail.Bus
+namespace SlidingApps.TaskRunner.WriteModel.Communication.Bus
 {
     public class MailCommandMessageConsumer
         : CommandMessageConsumer,

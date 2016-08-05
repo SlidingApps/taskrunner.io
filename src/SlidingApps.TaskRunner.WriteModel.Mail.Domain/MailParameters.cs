@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain
+namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
 {
     internal class MailParameters
     {

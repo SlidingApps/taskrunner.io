@@ -2,7 +2,7 @@
 using Autofac;
 using MassTransit;
 
-namespace SlidingApps.TaskRunner.WriteModel.Mail.Bus.Host
+namespace SlidingApps.TaskRunner.WriteModel.Communication.Bus.Host
 {
     internal sealed class MassTransitConfig
     {

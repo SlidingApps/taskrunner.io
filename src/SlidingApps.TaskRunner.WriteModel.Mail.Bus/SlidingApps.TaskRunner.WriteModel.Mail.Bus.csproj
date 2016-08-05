@@ -7,8 +7,8 @@
     <ProjectGuid>{4D93A6F9-51CE-46A9-8573-A56BE386C5CE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SlidingApps.TaskRunner.WriteModel.Mail.Bus</RootNamespace>
-    <AssemblyName>SlidingApps.TaskRunner.WriteModel.Mail.Bus</AssemblyName>
+    <RootNamespace>SlidingApps.TaskRunner.WriteModel.Communication.Bus</RootNamespace>
+    <AssemblyName>SlidingApps.TaskRunner.WriteModel.Communication.Bus</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

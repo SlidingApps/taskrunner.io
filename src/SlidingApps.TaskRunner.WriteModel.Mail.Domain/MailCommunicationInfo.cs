@@ -1,10 +1,10 @@
 ﻿
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
-using SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model;
-using SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model.Intent;
+using SlidingApps.TaskRunner.WriteModel.Communication.Domain.Model;
+using SlidingApps.TaskRunner.WriteModel.Communication.Domain.Model.Intent;
 using System;
 
-namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain
+namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
 {
     public sealed class MailCommunicationInfo
         : Communication<MailCommunicationInfo>.ConmmunicationInfo
@@ -12,25 +12,25 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain
         public string ExternalId
         {
             get { return this.Parent.GetDataEntity().Mail.ExternalId; }
-            private set { this.Parent.GetDataEntity().Mail.ExternalId = value; }
+            set { this.Parent.GetDataEntity().Mail.ExternalId = value; }
         }
 
         public string Recipient
         {
             get { return this.Parent.GetDataEntity().Mail.Recipient; }
-            private set { this.Parent.GetDataEntity().Mail.Recipient = value; }
+            set { this.Parent.GetDataEntity().Mail.Recipient = value; }
         }
 
         public string Subject
         {
             get { return this.Parent.GetDataEntity().Mail.Subject; }
-            private set { this.Parent.GetDataEntity().Mail.Subject = value; }
+            set { this.Parent.GetDataEntity().Mail.Subject = value; }
         }
 
         public string Content
         {
             get { return this.Parent.GetDataEntity().Mail.Content; }
-            private set { this.Parent.GetDataEntity().Mail.Content = value; }
+            set { this.Parent.GetDataEntity().Mail.Content = value; }
         }
 
         public MailStatus Status

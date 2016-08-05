@@ -51,7 +51,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "90.Script", "90.Script", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.Script", "SlidingApps.TaskRunner.Script\SlidingApps.TaskRunner.Script.csproj", "{5CAA2C1D-1C4B-4B6A-B82E-4C0DC0044B73}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mail", "Mail", "{F110B19F-7017-466D-B95A-554AFDCE89FA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Communication", "Communication", "{F110B19F-7017-466D-B95A-554AFDCE89FA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platform", "Platform", "{09B799B1-2010-4278-B738-F53AB4547AB2}"
 EndProject

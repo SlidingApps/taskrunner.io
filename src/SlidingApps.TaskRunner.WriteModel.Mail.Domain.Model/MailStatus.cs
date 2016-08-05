@@ -1,5 +1,5 @@
 ﻿
-namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model
+namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain.Model
 {
     public enum MailStatus
     {

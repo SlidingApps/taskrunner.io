@@ -1,7 +1,7 @@
 ﻿
 using SlidingApps.TaskRunner.Foundation.Configuration;
 
-namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain
+namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
 {
     public static class Metadata
     {

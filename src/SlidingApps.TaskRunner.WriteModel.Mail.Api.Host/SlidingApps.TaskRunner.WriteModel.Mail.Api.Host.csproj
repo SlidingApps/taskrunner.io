@@ -7,8 +7,8 @@
     <ProjectGuid>{FB0A9A6E-B9BB-4FDA-93D6-33DFDA5FC4C9}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SlidingApps.TaskRunner.WriteModel.Mail.Api.Host</RootNamespace>
-    <AssemblyName>SlidingApps.TaskRunner.WriteModel.Mail.Api.Host</AssemblyName>
+    <RootNamespace>SlidingApps.TaskRunner.WriteModel.Communication.Api.Host</RootNamespace>
+    <AssemblyName>SlidingApps.TaskRunner.WriteModel.Communication.Api.Host</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

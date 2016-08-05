@@ -9,9 +9,9 @@ using System;
 using System.Linq;
 using System.Threading;
 using SlidingApps.TaskRunner.Foundation.Configuration;
-using SlidingApps.TaskRunner.WriteModel.Mail.Bus;
+using SlidingApps.TaskRunner.WriteModel.Communication.Bus;
 
-namespace SlidingApps.TaskRunner.WriteModel.Mail.Bus.Host
+namespace SlidingApps.TaskRunner.WriteModel.Communication.Bus.Host
 {
     internal class Program
     {

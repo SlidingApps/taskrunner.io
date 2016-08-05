@@ -3,7 +3,7 @@ using FluentNHibernate.Mapping;
 using SlidingApps.TaskRunner.Foundation.NHibernate;
 using System;
 
-namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain.Maps
+namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain.Maps
 {
     public class CommunicationMap
         : AuditableDataEntityMap<Entities.Communication, Guid>

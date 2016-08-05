@@ -4,7 +4,7 @@ using RestSharp.Authenticators;
 using System;
 using System.Linq;
 
-namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain
+namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
 {
     internal class MailGun
     {

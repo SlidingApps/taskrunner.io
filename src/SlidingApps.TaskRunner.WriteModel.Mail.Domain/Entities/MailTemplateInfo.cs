@@ -2,7 +2,7 @@
 using SlidingApps.TaskRunner.Foundation.WriteModel;
 using System;
 
-namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain.Entities
+namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain.Entities
 {
     public class MailTemplateInfo
         : AuditableDataEntity<Guid>

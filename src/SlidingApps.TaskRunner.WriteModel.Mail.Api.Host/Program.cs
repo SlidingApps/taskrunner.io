@@ -9,7 +9,7 @@ using System;
 using System.Linq;
 using System.Threading;
 
-namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Host
+namespace SlidingApps.TaskRunner.WriteModel.Communication.Api.Host
 {
     internal class Program
 	{

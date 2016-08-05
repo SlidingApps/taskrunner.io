@@ -7,8 +7,8 @@
     <ProjectGuid>{6599A2BB-D495-4E6B-889C-4E2A19A3B17D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SlidingApps.TaskRunner.WriteModel.Mail.Proxy</RootNamespace>
-    <AssemblyName>SlidingApps.TaskRunner.WriteModel.Mail.Proxy</AssemblyName>
+    <RootNamespace>SlidingApps.TaskRunner.WriteModel.Communication.Proxy</RootNamespace>
+    <AssemblyName>SlidingApps.TaskRunner.WriteModel.Communication.Proxy</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

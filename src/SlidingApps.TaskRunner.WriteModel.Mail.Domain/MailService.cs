@@ -2,13 +2,14 @@
 using NHibernate;
 using SlidingApps.TaskRunner.Foundation.Configuration;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
+using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
 using SlidingApps.TaskRunner.Foundation.NHibernate;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
-using SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model;
-using SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model.Intent;
+using SlidingApps.TaskRunner.WriteModel.Communication.Domain.Model;
+using SlidingApps.TaskRunner.WriteModel.Communication.Domain.Model.Intent;
 using System.Linq;
 
-namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain
+namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
 {
     public class MailService :
         ICommandHandler<MailCommand<SendTenantConfirmationLink>>,
@@ -82,7 +83,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain
 
             this.queryProvider.Session.Save(communication.GetDataEntity());
 
-            MailGun.SendSimpleMessage(
+            var response = MailGun.SendSimpleMessage(
                 new MailParameters(
                     MailServiceConfiguration.Domain,
                     MailServiceConfiguration.NoreplyAddress,
@@ -93,7 +94,11 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Domain
                     "peter.vyvey@gmail.com")
                 );
 
+            // Deserialize the response. See MailGun docs for info:
+            dynamic content = response.Content.FromJson<dynamic>();
+
             communication.Info.Status = MailStatus.SENT;
+            communication.Info.ExternalId = content.id;
             this.queryProvider.Session.Save(communication.GetDataEntity());
 
 
