@@ -137,13 +137,13 @@
       <Project>{c57fd21d-cc3b-4bac-9431-19d92efccb2b}</Project>
       <Name>SlidingApps.TaskRunner.Foundation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SlidingApps.TaskRunner.WriteModel.Mail.Bus\SlidingApps.TaskRunner.WriteModel.Mail.Bus.csproj">
+    <ProjectReference Include="..\SlidingApps.TaskRunner.WriteModel.Mail.Bus\SlidingApps.TaskRunner.WriteModel.Communication.Bus.csproj">
       <Project>{4D93A6F9-51CE-46A9-8573-A56BE386C5CE}</Project>
-      <Name>SlidingApps.TaskRunner.WriteModel.Mail.Bus</Name>
+      <Name>SlidingApps.TaskRunner.WriteModel.Communication.Bus</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SlidingApps.TaskRunner.WriteModel.Mail.Domain\SlidingApps.TaskRunner.WriteModel.Mail.Domain.csproj">
+    <ProjectReference Include="..\SlidingApps.TaskRunner.WriteModel.Mail.Domain\SlidingApps.TaskRunner.WriteModel.Communication.Domain.csproj">
       <Project>{cea11ce7-8e8b-48ae-9345-4efc7595d77b}</Project>
-      <Name>SlidingApps.TaskRunner.WriteModel.Mail.Domain</Name>
+      <Name>SlidingApps.TaskRunner.WriteModel.Communication.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

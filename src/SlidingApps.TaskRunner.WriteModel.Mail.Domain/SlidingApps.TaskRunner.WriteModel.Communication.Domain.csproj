@@ -149,6 +149,10 @@
       <Project>{E13532DE-5159-4031-95F3-BFDA5053342B}</Project>
       <Name>SlidingApps.TaskRunner.Foundation.Contract</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation.Infrastructure.Contract\SlidingApps.TaskRunner.Foundation.Infrastructure.Contract.csproj">
+      <Project>{f9116265-9f56-4c65-b3e6-124ed20a6721}</Project>
+      <Name>SlidingApps.TaskRunner.Foundation.Infrastructure.Contract</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation.Infrastructure\SlidingApps.TaskRunner.Foundation.Infrastructure.csproj">
       <Project>{34A3A49F-D391-4F83-A10D-4CFEEA3DFDF9}</Project>
       <Name>SlidingApps.TaskRunner.Foundation.Infrastructure</Name>
@@ -165,9 +169,9 @@
       <Project>{c57fd21d-cc3b-4bac-9431-19d92efccb2b}</Project>
       <Name>SlidingApps.TaskRunner.Foundation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model\SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model.csproj">
+    <ProjectReference Include="..\SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model\SlidingApps.TaskRunner.WriteModel.Communication.Domain.Model.csproj">
       <Project>{1BCEF76C-4A38-481E-8B71-EC024C9A314E}</Project>
-      <Name>SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model</Name>
+      <Name>SlidingApps.TaskRunner.WriteModel.Communication.Domain.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\SlidingApps.TaskRunner.WriteModel.Platform.Domain\SlidingApps.TaskRunner.WriteModel.Platform.Domain.csproj">
       <Project>{3A6F8265-538A-43D5-910F-7862E40C46D9}</Project>

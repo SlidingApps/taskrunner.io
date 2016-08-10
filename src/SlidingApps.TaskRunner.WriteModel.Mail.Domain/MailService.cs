@@ -94,13 +94,12 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
                     "peter.vyvey@gmail.com")
                 );
 
-            // Deserialize the response. See MailGun docs for info:
+            // Deserialize the response. See MailGun docs for info: https://documentation.mailgun.com/
             dynamic content = response.Content.FromJson<dynamic>();
 
-            communication.Info.Status = MailStatus.SENT;
+            communication.Info.Status = MailStatus.QUEUED;
             communication.Info.ExternalId = content.id;
             this.queryProvider.Session.Save(communication.GetDataEntity());
-
 
             return new CommandResult(command.Id);
         }

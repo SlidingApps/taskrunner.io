@@ -57,13 +57,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platform", "Platform", "{09
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.WriteModel.Platform.Bus", "SlidingApps.TaskRunner.WriteModel.Platform.Bus\SlidingApps.TaskRunner.WriteModel.Platform.Bus.csproj", "{D72A5710-1476-49EA-A412-4F2746DA45E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model", "SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model\SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model.csproj", "{1BCEF76C-4A38-481E-8B71-EC024C9A314E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.WriteModel.Communication.Domain.Model", "SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model\SlidingApps.TaskRunner.WriteModel.Communication.Domain.Model.csproj", "{1BCEF76C-4A38-481E-8B71-EC024C9A314E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.WriteModel.Mail.Api", "SlidingApps.TaskRunner.WriteModel.Mail.Api\SlidingApps.TaskRunner.WriteModel.Mail.Api.csproj", "{0545C12F-0EF7-413B-A6D4-93EC31B16193}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.WriteModel.Communication.Api", "SlidingApps.TaskRunner.WriteModel.Mail.Api\SlidingApps.TaskRunner.WriteModel.Communication.Api.csproj", "{0545C12F-0EF7-413B-A6D4-93EC31B16193}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.WriteModel.Mail.Bus", "SlidingApps.TaskRunner.WriteModel.Mail.Bus\SlidingApps.TaskRunner.WriteModel.Mail.Bus.csproj", "{4D93A6F9-51CE-46A9-8573-A56BE386C5CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.WriteModel.Communication.Bus", "SlidingApps.TaskRunner.WriteModel.Mail.Bus\SlidingApps.TaskRunner.WriteModel.Communication.Bus.csproj", "{4D93A6F9-51CE-46A9-8573-A56BE386C5CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.WriteModel.Mail.Domain", "SlidingApps.TaskRunner.WriteModel.Mail.Domain\SlidingApps.TaskRunner.WriteModel.Mail.Domain.csproj", "{CEA11CE7-8E8B-48AE-9345-4EFC7595D77B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.WriteModel.Communication.Domain", "SlidingApps.TaskRunner.WriteModel.Mail.Domain\SlidingApps.TaskRunner.WriteModel.Communication.Domain.csproj", "{CEA11CE7-8E8B-48AE-9345-4EFC7595D77B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.WriteModel.Platform.Api", "SlidingApps.TaskRunner.WriteModel.Platform.Api\SlidingApps.TaskRunner.WriteModel.Platform.Api.csproj", "{7D6980AC-CC62-46F8-923C-4CFC5D694830}"
 EndProject
@@ -87,11 +87,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platform", "Platform", "{F3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platform", "Platform", "{60CCD6CA-E7EB-41B8-9E08-177F9C8B7E6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.WriteModel.Mail.Proxy", "SlidingApps.TaskRunner.WriteModel.Mail.Proxy\SlidingApps.TaskRunner.WriteModel.Mail.Proxy.csproj", "{6599A2BB-D495-4E6B-889C-4E2A19A3B17D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.WriteModel.Communication.Proxy", "SlidingApps.TaskRunner.WriteModel.Mail.Proxy\SlidingApps.TaskRunner.WriteModel.Communication.Proxy.csproj", "{6599A2BB-D495-4E6B-889C-4E2A19A3B17D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mail", "Mail", "{C6991B48-2DB6-44CA-AFD4-F13E6C2D06EA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Communication", "Communication", "{C6991B48-2DB6-44CA-AFD4-F13E6C2D06EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.WriteModel.Mail.Api.Host", "SlidingApps.TaskRunner.WriteModel.Mail.Api.Host\SlidingApps.TaskRunner.WriteModel.Mail.Api.Host.csproj", "{FB0A9A6E-B9BB-4FDA-93D6-33DFDA5FC4C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.WriteModel.Communication.Api.Host", "SlidingApps.TaskRunner.WriteModel.Mail.Api.Host\SlidingApps.TaskRunner.WriteModel.Communication.Api.Host.csproj", "{FB0A9A6E-B9BB-4FDA-93D6-33DFDA5FC4C9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{05BF0D4A-9A60-415B-8BEB-CA48318A191D}"
 	ProjectSection(SolutionItems) = preProject
@@ -99,7 +99,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		generate-platform-webapi-proxy.bat = generate-platform-webapi-proxy.bat
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.WriteModel.Mail.Bus.Host", "SlidingApps.TaskRunner.WriteModel.Mail.Bus.Host\SlidingApps.TaskRunner.WriteModel.Mail.Bus.Host.csproj", "{9999F545-E371-4170-8A92-5B51CF00141C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.WriteModel.Communication.Bus.Host", "SlidingApps.TaskRunner.WriteModel.Mail.Bus.Host\SlidingApps.TaskRunner.WriteModel.Communication.Bus.Host.csproj", "{9999F545-E371-4170-8A92-5B51CF00141C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

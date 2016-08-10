@@ -4,7 +4,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain.Model
     public enum MailStatus
     {
         NOT_SPECIFIED,
-        SENT,
+        QUEUED,
         FAILED,
         BOUNCED,
         DELIVERED
