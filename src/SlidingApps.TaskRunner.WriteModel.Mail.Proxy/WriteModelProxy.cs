@@ -86,15 +86,15 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Models
 		/// <summary>
 		/// 
 		/// </summary>
+		public virtual String ConfirmationUrl { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
 		public virtual String ContentTemplate { get; set; }
 		/// <summary>
 		/// 
 		/// </summary>
 		public virtual String UserName { get; set; }
-		/// <summary>
-		/// 
-		/// </summary>
-		public virtual String Link { get; set; }
 		/// <summary>
 		/// 
 		/// </summary>
@@ -137,17 +137,22 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Models
 		/// <summary>
 		/// 
 		/// </summary>
-		FAILED = 1,
+		QUEUED = 1,
 
 		/// <summary>
 		/// 
 		/// </summary>
-		BOUNCED = 2,
+		FAILED = 2,
 
 		/// <summary>
 		/// 
 		/// </summary>
-		DELIVERED = 3,
+		BOUNCED = 3,
+
+		/// <summary>
+		/// 
+		/// </summary>
+		DELIVERED = 4,
 		
 	}
 	

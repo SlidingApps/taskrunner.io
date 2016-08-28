@@ -89,7 +89,8 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
                     MailServiceConfiguration.NoreplyAddress,
                     entity.Subject,
                     entity.TextTemplate,
-                    entity.HtmlTemplate,
+                    //entity.HtmlTemplate,
+                    communication.Info.Content,
                     /*command.Intent.Recipient*/
                     "peter.vyvey@gmail.com")
                 );

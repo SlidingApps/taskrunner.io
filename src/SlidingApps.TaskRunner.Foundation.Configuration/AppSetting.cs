@@ -5,6 +5,16 @@ namespace SlidingApps.TaskRunner.Foundation.Configuration
 {
     public static class AppSetting
     {
+        //<add key = "site.address" value="localhost" />
+        //<add key = "site.port" value="8080" />
+
+        public const string SITE_BASE_URI_TEMPLATE = "http://{0}:{1}";
+
+        public const string SITE_ADDRESS = "site.address";
+
+        public const string SITE_PORT = "site.port";
+
+
         //<add key = "host.address" value="localhost" />
         //<add key = "host.port" value="8081" />
 

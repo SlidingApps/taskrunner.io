@@ -2,6 +2,7 @@
 using MediatR;
 using NHibernate;
 using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts.Intents;
+using SlidingApps.TaskRunner.Foundation.Configuration;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Extension;
 using SlidingApps.TaskRunner.Foundation.NHibernate;
@@ -95,7 +96,8 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
             // Delegate to the MAIL MANAGEMENT SERVICE to send a e-mail. 
             using (MailManagementClient mail = new MailManagementClient())
             {
-                mail.PostSendResetPasswordLink(new Mail.Api.Models.SendResetPasswordLink { UserName = command.Intent.Name, Recipient = entity.EmailAddress, Link = entity.Link });
+                var url = string.Format("{0}/account/resetpassword/{1}", SiteConfiguration.ApplicationBaseUrl, entity.Link);
+                mail.PostSendResetPasswordLink(new Mail.Api.Models.SendResetPasswordLink { ConfirmationUrl = url, UserName = command.Intent.Name, Recipient = entity.EmailAddress });
             }
 
             return new CommandResult(command.Id, result);
