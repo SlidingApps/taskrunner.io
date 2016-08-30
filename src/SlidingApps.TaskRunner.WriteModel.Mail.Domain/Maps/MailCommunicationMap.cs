@@ -17,7 +17,8 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain.Maps
             this.Map(x => x.ExternalId);
             this.Map(x => x.Recipient);
             this.Map(x => x.Subject);
-            this.Map(x => x.Content);
+            this.Map(x => x.TextContent);
+            this.Map(x => x.HtmlContent);
             this.Map(x => x.Status).CustomType<GenericEnumMapper<MailStatus>>();
 
             this.References(x => x.Communication).Unique().Column("CommunicationId");

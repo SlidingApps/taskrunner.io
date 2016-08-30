@@ -76,7 +76,8 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
             var entity = new MailTemplate(existing, this.validator.CreateFor<MailTemplate>());
 
             command.Intent.Subject = entity.Subject;
-            command.Intent.ContentTemplate = entity.HtmlTemplate;
+            command.Intent.TextContentTemplate = entity.TextTemplate;
+            command.Intent.HtmlContentTemplate = entity.HtmlTemplate;
 
             var communication = new Communication<MailCommunicationInfo>(new Entities.Communication(), this.validator.CreateFor<Communication<MailCommunicationInfo>>());
             communication.Info.Apply(command);
@@ -88,9 +89,8 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
                     MailServiceConfiguration.Domain,
                     MailServiceConfiguration.NoreplyAddress,
                     entity.Subject,
-                    entity.TextTemplate,
-                    //entity.HtmlTemplate,
-                    communication.Info.Content,
+                    communication.Info.TextContent,
+                    communication.Info.HtmlContent,
                     /*command.Intent.Recipient*/
                     "peter.vyvey@gmail.com")
                 );

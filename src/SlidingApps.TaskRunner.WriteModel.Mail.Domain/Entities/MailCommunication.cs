@@ -20,7 +20,9 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain.Entities
 
         public virtual string Subject { get; set; }
 
-        public virtual string Content { get; set; }
+        public virtual string TextContent { get; set; }
+
+        public virtual string HtmlContent { get; set; }
 
         public virtual MailStatus Status { get; set; }
 

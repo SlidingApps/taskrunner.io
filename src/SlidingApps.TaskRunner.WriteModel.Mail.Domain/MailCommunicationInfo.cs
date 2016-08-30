@@ -27,10 +27,16 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
             set { this.Parent.GetDataEntity().Mail.Subject = value; }
         }
 
-        public string Content
+        public string TextContent
         {
-            get { return this.Parent.GetDataEntity().Mail.Content; }
-            set { this.Parent.GetDataEntity().Mail.Content = value; }
+            get { return this.Parent.GetDataEntity().Mail.TextContent; }
+            set { this.Parent.GetDataEntity().Mail.TextContent = value; }
+        }
+
+        public string HtmlContent
+        {
+            get { return this.Parent.GetDataEntity().Mail.HtmlContent; }
+            set { this.Parent.GetDataEntity().Mail.HtmlContent = value; }
         }
 
         public MailStatus Status
@@ -63,7 +69,8 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
             this.Parent.GetDataEntity().Id = domainEvent.Identifiers.EntityId = Guid.NewGuid();
             this.Recipient = domainEvent.Arguments.Recipient;
             this.Subject = domainEvent.Arguments.Subject;
-            this.Content = domainEvent.Arguments.ContentTemplate.FormatWith(domainEvent.Arguments); ;
+            this.TextContent = domainEvent.Arguments.TextContentTemplate.FormatWith(domainEvent.Arguments);
+            this.HtmlContent = domainEvent.Arguments.HtmlContentTemplate.FormatWith(domainEvent.Arguments);
             this.Status = domainEvent.Arguments.Status;
 
             this.Parent.DomainEvents.Add(domainEvent);

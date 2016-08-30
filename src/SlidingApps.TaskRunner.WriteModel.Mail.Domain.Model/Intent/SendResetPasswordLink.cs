@@ -12,7 +12,9 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain.Model.Intent
 
         public string ConfirmationUrl { get; set; }
 
-        public string ContentTemplate { get; set; }
+        public string TextContentTemplate { get; set; }
+
+        public string HtmlContentTemplate { get; set; }
 
         public string UserName { get; set; }
 
