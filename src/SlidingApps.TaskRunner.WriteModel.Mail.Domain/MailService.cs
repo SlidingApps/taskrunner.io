@@ -91,8 +91,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
                     entity.Subject,
                     communication.Info.TextContent,
                     communication.Info.HtmlContent,
-                    /*command.Intent.Recipient*/
-                    "peter.vyvey@gmail.com")
+                    MailServiceConfiguration.SandboxAddress ?? command.Intent.Recipient)
                 );
 
             // Deserialize the response. See MailGun docs for info: https://documentation.mailgun.com/

@@ -23,5 +23,15 @@ namespace SlidingApps.TaskRunner.Foundation.Configuration
                 return address;
             }
         }
+
+        public static string SandboxAddress
+        {
+            get
+            {
+                string address = ApplicationConfiguration.Store[AppSetting.MAIL_SERVICE_SANDBOX_ADDRESS];
+
+                return address;
+            }
+        }
     }
 }

@@ -85,8 +85,14 @@ namespace SlidingApps.TaskRunner.Foundation.Configuration
         //<add key = "service.xxx.url" value="http://localhost:8091" />
         public const string SERVICE_URL_TEMPLATE = "service.{0}.url";
 
+
+        //<add key = "service.mail.domain" value="taskrunner.io"/>
         public const string MAIL_SERVICE_DOMAIN = "service.mail.domain";
 
+        //<add key = "service.mail.noReply" value="TaskRunner &lt;no-reply@taskrunner.io&gt;"/>
         public const string MAIL_SERVICE_NO_REPLY_ADDRESS = "service.mail.noReply";
+
+        //<add key = "service.mail.sandboxAddress" value="devy@somedomain.com"/>
+        public const string MAIL_SERVICE_SANDBOX_ADDRESS = "service.mail.sandboxAddress";
     }
 }
