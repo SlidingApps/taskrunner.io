@@ -1,6 +1,5 @@
 ﻿
 using System;
-using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web.Routing;
@@ -44,14 +43,14 @@ namespace SlidingApps.TaskRunner.Foundation.Infrastructure.Extension
         {
             ASCIIEncoding encoding = new ASCIIEncoding();
 
-            return encoding.GetBytes(value);
+            return Encoding.Default.GetBytes(value);
         }
 
         public static string FromBytes(this byte[] value)
         {
             ASCIIEncoding encoding = new ASCIIEncoding();
 
-            return encoding.GetString(value);
+            return Encoding.Default.GetString(value);
         }
 
         public static string ToBase64(this string value)
@@ -66,20 +65,6 @@ namespace SlidingApps.TaskRunner.Foundation.Infrastructure.Extension
         {
             byte[] data = Convert.FromBase64String(value);
             string result = Encoding.UTF8.GetString(data);
-
-            return result;
-        }
-
-        public static string ToSHA256(this string value)
-        {
-            SHA256 sha256 = new SHA256Managed();
-            byte[] sha256Bytes = Encoding.Default.GetBytes(value);
-            byte[] hash = sha256.ComputeHash(sha256Bytes);
-            string result = string.Empty;
-            for (int i = 0; i < hash.Length; i++)
-            {
-                result += hash[i].ToString("X");
-            }
 
             return result;
         }

@@ -78,11 +78,16 @@
     <Compile Include="Accounts\Validations\AccountCollectionQueryValidator.cs" />
     <Compile Include="Accounts\Validations\AccountQueryValidator.cs" />
     <Compile Include="Authorization\AuthorizationService.cs" />
+    <Compile Include="Accounts\NotAuthorizedException.cs" />
     <Compile Include="Authorization\Queries\AccountValidityQuery.cs" />
+    <Compile Include="Accounts\Queries\LinkDecryptionQuery.cs" />
     <Compile Include="Authorization\Representations\AccountCredentials.cs" />
     <Compile Include="Authorization\Representations\AccountCredentialsCollection.cs" />
+    <Compile Include="Accounts\Representations\AccountProfile.cs" />
     <Compile Include="Authorization\Representations\AccountValidity.cs" />
+    <Compile Include="Accounts\Representations\DecryptedLink.cs" />
     <Compile Include="Authorization\Representations\IAccountCredentialsFormatValues.cs" />
+    <Compile Include="Accounts\Representations\IAuthorizationLink.cs" />
     <Compile Include="Authorization\Validations\CredentialsQueryValidator.cs" />
     <Compile Include="Constant.cs" />
     <Compile Include="IAssemblyMarker.cs" />
@@ -124,6 +129,10 @@
     <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation.Infrastructure\SlidingApps.TaskRunner.Foundation.Infrastructure.csproj">
       <Project>{34A3A49F-D391-4F83-A10D-4CFEEA3DFDF9}</Project>
       <Name>SlidingApps.TaskRunner.Foundation.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation.Web\SlidingApps.TaskRunner.Foundation.Web.csproj">
+      <Project>{8E0FEBBF-FC49-439C-AC8D-24E0A327783A}</Project>
+      <Name>SlidingApps.TaskRunner.Foundation.Web</Name>
     </ProjectReference>
     <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation\SlidingApps.TaskRunner.Foundation.csproj">
       <Project>{C57FD21D-CC3B-4BAC-9431-19D92EFCCB2B}</Project>

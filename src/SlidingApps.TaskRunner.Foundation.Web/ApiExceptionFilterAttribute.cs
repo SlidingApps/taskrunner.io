@@ -20,9 +20,12 @@ namespace SlidingApps.TaskRunner.Foundation.Web
                 if (actionExecutedContext.Exception is AuthorizationException)
                 {
                     statusCode = HttpStatusCode.Unauthorized;
+                    message = (actionExecutedContext.Exception as AuthorizationException).ToString();
                 }
-
-                message = (actionExecutedContext.Exception as AuthorizationException).ToString();
+                else
+                {
+                    message = (actionExecutedContext.Exception as BusinessException).ToString();
+                }
                 Logger.Log.WarnFormat(Logger.LONG_CONTENT, "business exception", message);
             }
             else if (actionExecutedContext.Exception is TechnicalException)

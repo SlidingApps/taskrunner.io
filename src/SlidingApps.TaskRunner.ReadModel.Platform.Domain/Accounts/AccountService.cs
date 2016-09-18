@@ -1,6 +1,9 @@
 ﻿
+using ImpromptuInterface;
+using SlidingApps.TaskRunner.Foundation.Configuration;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Dapper;
+using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
 using SlidingApps.TaskRunner.ReadModel.Platform.Domain.Accounts.Queries;
 using SlidingApps.TaskRunner.ReadModel.Platform.Domain.Accounts.Representations;
 
@@ -9,7 +12,8 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Accounts
     public class AccountService : 
         IQueryHandler<AccountCollectionQuery, AccountCollection>,
         IQueryHandler<AccountQuery, Account>,
-        IQueryHandler<UserCredentialsQuery, Account>
+        IQueryHandler<UserCredentialsQuery, Account>,
+        IQueryHandler<LinkDecryptionQuery, DecryptedLink>
     {
         private readonly IQueryProvider queryProvider;
 
@@ -57,6 +61,29 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Accounts
                     .SingleOrDefault();
 
             return person;
+        }
+
+        public DecryptedLink Handle(LinkDecryptionQuery query)
+        {
+            var decoded =
+                query.Link
+                .FromBase58()
+                .FromBytes()
+                .Decrypt(EncryptionConfiguration.SymmetricKey, EncryptionConfiguration.SymmetricInitVector)
+                .FromJson<object>()
+                .ActLike<IAuthorizationLink>();
+
+            var account =
+                this.queryProvider.From<AccountProfile>()
+                    .By(x => x.Link).EqualTo(decoded.link)
+                    .SingleOrDefault();
+
+            if (account == null)
+            {
+                throw new NotAuthorizedException("Invalid or expired link");
+            }
+
+            return new DecryptedLink(decoded.username, decoded.link);
         }
     }
 }

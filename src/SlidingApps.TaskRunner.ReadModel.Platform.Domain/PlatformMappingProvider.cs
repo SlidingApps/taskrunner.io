@@ -18,6 +18,7 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain
             this.Map<Tenant>("TaskRunner", "Tenant_V");
             this.Map<Account>("TaskRunner", "Account_V");
             this.Map<AccountCredentials>("TaskRunner", "Account_Credentials_V");
+            this.Map<AccountProfile>("TaskRunner", "Account_Profile_V");
 
             this.BuildMapping();
         }

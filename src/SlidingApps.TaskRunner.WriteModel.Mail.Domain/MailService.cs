@@ -44,8 +44,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
                     entity.Subject,
                     entity.TextTemplate,
                     entity.HtmlTemplate,
-                    /*command.Intent.Recipient*/
-                    "peter.vyvey@gmail.com")
+                    command.Intent.Recipient)
                 );
 
             return new CommandResult(command.Id);
@@ -63,8 +62,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
                     entity.Subject,
                     entity.TextTemplate,
                     entity.HtmlTemplate,
-                    /*command.Intent.Recipient*/
-                    "peter.vyvey@gmail.com")
+                    command.Intent.Recipient)
                 );
 
             return new CommandResult(command.Id);
@@ -91,7 +89,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
                     entity.Subject,
                     communication.Info.TextContent,
                     communication.Info.HtmlContent,
-                    MailServiceConfiguration.SandboxAddress ?? command.Intent.Recipient)
+                    command.Intent.Recipient)
                 );
 
             // Deserialize the response. See MailGun docs for info: https://documentation.mailgun.com/

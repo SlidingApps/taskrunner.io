@@ -42,7 +42,7 @@ import 'angular-ui-router';
         template: '<account-forgot-password />'
     }, {
         name: 'account.resetPassword',
-        url: '/resetpassword',
+        url: '/{username}/resetpassword/{link}',
         component: ResetPassword,
         template: '<account-reset-password />'
     }

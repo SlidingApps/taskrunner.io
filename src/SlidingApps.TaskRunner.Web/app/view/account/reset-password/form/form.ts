@@ -26,7 +26,7 @@ interface ILocalScope extends angular.IScope {
                 <div class="row">
                     <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-lg-4 col-lg-offset-4">
                         <div class="text-center">
-                            <p>Welcome back, Peter. You can can enter a new password for your account.</p>
+                            <p><span data-ng-show="ctrl.model.username">Welcome back, {{ ctrl.model.username }}. You can can enter a new password for your account.</span></p>
                         </div>
                     </div>
                 </div>

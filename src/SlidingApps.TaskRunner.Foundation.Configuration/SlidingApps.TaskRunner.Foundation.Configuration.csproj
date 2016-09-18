@@ -51,6 +51,7 @@
     <Compile Include="ApplicationConfiguration.cs" />
     <Compile Include="ApplicationConfigurationStore.cs" />
     <Compile Include="AppSetting.cs" />
+    <Compile Include="EncryptionConfiguration.cs" />
     <Compile Include="SiteConfiguration.cs" />
     <Compile Include="IApplicationConfigurationStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

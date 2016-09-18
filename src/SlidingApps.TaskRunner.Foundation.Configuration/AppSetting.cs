@@ -94,5 +94,18 @@ namespace SlidingApps.TaskRunner.Foundation.Configuration
 
         //<add key = "service.mail.sandboxAddress" value="devy@somedomain.com"/>
         public const string MAIL_SERVICE_SANDBOX_ADDRESS = "service.mail.sandboxAddress";
+
+
+        // <add key = "encryption.password.key" value="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" />
+        // <add key = "encryption.password.initvector" value="XXXXXXXX" />
+        public const string ENCRYPTION_PASSWORD_KEY = "encryption.password.key";
+
+        public const string ENCRYPTION_PASSWORD_INITVECTOR = "encryption.password.initvector";
+
+        // <add key = "encryption.symmetric.key" value="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" />
+        // <add key = "encryption.symmetric.initvector" value="XXXXXXXX" />
+        public const string ENCRYPTION_SYMMETRIC_KEY = "encryption.symmetric.key";
+
+        public const string ENCRYPTION_SYMMETRIC_INITVECTOR = "encryption.symmetric.initvector";
     }
 }

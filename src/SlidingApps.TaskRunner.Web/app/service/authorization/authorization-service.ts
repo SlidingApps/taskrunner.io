@@ -7,6 +7,7 @@ import * as crypto from 'crypto';
 import 'angular-local-storage';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Injectable, Inject } from 'ng-forward';
+import { RestService } from '../rest/rest-service';
 
 // FOUNDATION
 import { Logger } from '../../component/foundation/logger';
@@ -16,10 +17,10 @@ import { IAccountValidity, AccountValidity } from './account/account-validity';
 import { IAuthenticationStateChangedEvent, AuthenticationStateChangedEvent } from './authentication-state';
 
 @Injectable()
-@Inject('$http', '$q', '$window', 'AUTH_HOST', 'AUTH_API', 'localStorageService')
+@Inject('$http', '$q', '$window', RestService, 'AUTH_HOST', 'AUTH_API', 'localStorageService')
 export class AuthorizationService {
 
-    constructor(private $http: angular.IHttpService, private $q: angular.IQService, private $window: angular.IWindowService, private hostUrl: any, private apiPath: any, private storage: angular.local.storage.ILocalStorageService) {
+    constructor(private $http: angular.IHttpService, private $q: angular.IQService, private $window: angular.IWindowService, private restService: RestService, private hostUrl: any, private apiPath: any, private storage: angular.local.storage.ILocalStorageService) {
         let accountStored: string = this.$window.localStorage.getItem(AuthorizationService.AUTHENTICATION_ACCOUNT);
 
         if (accountStored) {
@@ -43,6 +44,10 @@ export class AuthorizationService {
 
     private account: AccountValidity;
     private secret: string;
+
+    private get service() {
+        return this.restService.host(this.hostUrl).api(this.apiPath);
+    }
 
     public authenticationState$: BehaviorSubject<IAuthenticationStateChangedEvent> = new BehaviorSubject<IAuthenticationStateChangedEvent>(undefined);
     private storage$: Observable<{key: string, newValue: string, oldValue: string }> =

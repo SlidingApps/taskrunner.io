@@ -5,12 +5,15 @@ using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts.Intents;
 using SlidingApps.TaskRunner.Foundation.Configuration;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Extension;
+using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
 using SlidingApps.TaskRunner.Foundation.NHibernate;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
 using SlidingApps.TaskRunner.WriteModel.Mail.Api.Clients;
 using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Accounts;
 using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Accounts.Intents;
+using System;
 using System.Linq;
+using System.Web;
 
 namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
 {
@@ -93,10 +96,21 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
             Account entity = new Account(existing, this.validator.CreateFor<Account>());
             AccountEvent<SendResetPasswordLink> result = entity.Apply(command);
 
+            var link = (
+                    new {
+                        Salt = Guid.NewGuid().ToString(),
+                        Username = command.Intent.Name,
+                        Link = entity.Link
+                    }
+                ).ToJson()
+                .Encrypt(EncryptionConfiguration.SymmetricKey, EncryptionConfiguration.SymmetricInitVector)
+                .ToBytes()
+                .ToBase58();
+
             // Delegate to the MAIL MANAGEMENT SERVICE to send a e-mail. 
             using (MailManagementClient mail = new MailManagementClient())
             {
-                var url = string.Format("{0}/account/resetpassword/{1}", SiteConfiguration.ApplicationBaseUrl, entity.Link);
+                var url = string.Format("{0}/account/{1}/resetpassword/{2}", SiteConfiguration.ApplicationBaseUrl, command.Intent.Name, link);
                 mail.PostSendResetPasswordLink(new Mail.Api.Models.SendResetPasswordLink { ConfirmationUrl = url, UserName = command.Intent.Name, Recipient = entity.EmailAddress });
             }
 

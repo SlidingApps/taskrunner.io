@@ -23,7 +23,6 @@ export class TenantResource implements ITenantResource {
             .all(`${TenantResource.RESOURCE}`)
             .post(payload)
             .then(response => {
-
                 deferred.resolve();
             })
             .catch(reason => deferred.reject(reason));

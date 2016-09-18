@@ -37,6 +37,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
@@ -58,6 +59,8 @@
     <Compile Include="ExceptionManagement\BusinessException.cs" />
     <Compile Include="ExceptionManagement\TechnicalException.cs" />
     <Compile Include="Extension\Argument.cs" />
+    <Compile Include="Extension\ArrayHelpers.cs" />
+    <Compile Include="Extension\EncryptionExtension.cs" />
     <Compile Include="Extension\ObjectExtension.cs" />
     <Compile Include="Extension\SerializerExtension.cs" />
     <Compile Include="Extension\StringExtension.cs" />

@@ -9,7 +9,7 @@ using System.Web.Http;
 
 namespace SlidingApps.TaskRunner.ReadModel.Platform.Api.Controllers
 {
-    [RoutePrefix("query/tenants/{tenantId}/accounts"), ApiExceptionFilter]
+    [RoutePrefix("query/accounts"), ApiExceptionFilter]
     public class AccountResourceController
         : ApiController
     {
@@ -37,6 +37,15 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Api.Controllers
             var representation = this.mediator.Send(query).FormatHalJsonLinks(query);
 
             return ApiResponse.Found(representation);
+        }
+
+        [HttpGet, Route("{username}/decryption/{link}")]
+        public DecryptedLink GetDecryption(string username, string link)
+        {
+            LinkDecryptionQuery query = new LinkDecryptionQuery(username, link);
+            var representations = this.mediator.Send(query).FormatHalJsonLinks(query);
+
+            return representations;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿
 using RestSharp;
 using RestSharp.Authenticators;
+using SlidingApps.TaskRunner.Foundation.Configuration;
 using System;
 using System.Linq;
 
@@ -18,7 +19,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
             request.AddParameter("domain", parameters.Domain, ParameterType.UrlSegment);
             request.Resource = "{domain}/messages";
             request.AddParameter("from", parameters.From);
-            parameters.To.ToList().ForEach(x => request.AddParameter("to", x));
+            parameters.To.ToList().ForEach(x => request.AddParameter("to", MailServiceConfiguration.SandboxAddress ?? x));
             request.AddParameter("subject", parameters.Subject);
             request.AddParameter("text", parameters.Text);
             request.AddParameter("html", parameters.Html);

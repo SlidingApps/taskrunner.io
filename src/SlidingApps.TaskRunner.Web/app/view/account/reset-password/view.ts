@@ -4,6 +4,9 @@
 import { Subscription } from 'rxjs';
 import { Component, Inject } from 'ng-forward';
 
+// ANGULAR MODULES
+import 'angular-ui-router';
+
 // FOUNDATION
 import { Module as FoundationModule } from '../../../component/module';
 
@@ -14,8 +17,11 @@ import { Password } from './password/password';
 import { PasswordConfirmation } from './password-confirmation/password-confirmation';
 
 // VIEW SPECIFICS
+import { IStateParams } from './state-params';
 import { Model } from './model';
 import { EventHub } from './event-hub';
+import { ReadModelService } from '../../../service/read-model/read-model-service';
+import { DecryptedLink } from '../../../service/authorization/account/decrypted-link';
 
 
 @Component({
@@ -31,9 +37,9 @@ import { EventHub } from './event-hub';
     </account-reset-password-form>
     `
 })
-@Inject(EventHub)
+@Inject(EventHub, '$stateParams', ReadModelService)
 export class View {
-    constructor(private hub: EventHub) { }
+    constructor(private hub: EventHub, private $params: IStateParams, private readModel: ReadModelService) { }
 
     public model: Model = new Model();
     public form: angular.IFormController;
@@ -43,8 +49,14 @@ export class View {
     /* tslint:disable:no-unused-variable */
     private ngOnInit(): void {
         this.subscription = this.hub.form$.filter(x => !!x).distinctUntilChanged().subscribe(x => this.form = x);
+        this.readModel.account
+            .decryptLink(this.$params.username, this.$params.link)
+            .then((response: DecryptedLink) => {
+                this.model.username = response.username;
+            })
+            .catch(reason => console.log('error', reason));
     }
-    
+
     private ngOnDestroy(): void {
         if (this.subscription && !this.subscription.isUnsubscribed) { this.subscription.unsubscribe(); }
     }
