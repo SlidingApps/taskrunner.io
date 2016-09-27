@@ -1,17 +1,30 @@
 /// <reference path="../../typings.d.ts" />
 
-export interface IExceptionCodes {
-    [code: string]: Exception;
+export interface IError {
+    code: string;
+    message: string;
 }
 
-class Exception {
-    constructor(public code: string, public message: string) {
+export class ErrorInfo {
+    constructor(public code: ErrorCode, public message: string) { }
+}
 
+export interface IErrorCodes {
+    [code: string]: Error;
+}
+
+export enum ErrorCode {
+    D8D500AE = <any>'D8D500AE'
+}
+
+export class ApplicationErrors {
+    private static Codes: IErrorCodes = {
+        'D8D500AE': new ErrorInfo(ErrorCode.D8D500AE, 'Unconfirmed account')
     }
-}
 
-export class ApplicationException {
-    public static Codes: IExceptionCodes = {
-        'D8D500AE': new Exception('D8D500AE', '')
-    };
+    public static GetErrorInfo(serialized: string): ErrorInfo {
+        const error: IError = <IError>angular.fromJson(serialized);
+
+        return angular.fromJson(angular.toJson(ApplicationErrors.Codes[error.code]));
+    }
 }

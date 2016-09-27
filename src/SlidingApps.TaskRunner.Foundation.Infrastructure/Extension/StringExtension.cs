@@ -8,6 +8,11 @@ namespace SlidingApps.TaskRunner.Foundation.Infrastructure.Extension
 {
     public static class StringExtension
     {
+        public static T ToEnum<T>(this string value)
+        {
+            return (T)Enum.Parse(typeof(T), value);
+        }
+
         public static string FormatWith(this string format, object source)
         {
             Argument.StringIsRequired(format, "format");

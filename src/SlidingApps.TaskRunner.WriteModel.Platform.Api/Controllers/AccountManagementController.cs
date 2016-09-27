@@ -42,6 +42,15 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Api.Controllers
         //    return ApiResponse.CommandResponse(command);
         //}
 
+        [HttpPost, Route(@"{name:regex([a-z0-9.%@])}/confirmationlink")]
+        public async Task<HttpResponseMessage> PostSendConfirmationLink(string name)
+        {
+            var command = new AccountCommand<SendConfirmationLink>(new SendConfirmationLink { Name = name });
+            await this.connector.SendCommand(command);
+
+            return ApiResponse.CommandResponse(command);
+        }
+
         [HttpPost, Route(@"{name:regex([a-z0-9.%@])}/passwordlink")]
         public async Task<HttpResponseMessage> PostSendResetPasswordLink(string name)
         {

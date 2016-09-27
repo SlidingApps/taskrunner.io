@@ -22,6 +22,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Bus
         IConsumer<CommandMessage<AccountCommand<CreateAccount>>>,
         IConsumer<CommandMessage<AccountCommand<ChangeAccountProfileName>>>,
         IConsumer<CommandMessage<AccountCommand<ChangeAccountUserPeriod>>>,
+        IConsumer<CommandMessage<AccountCommand<SendConfirmationLink>>>,
         IConsumer<CommandMessage<AccountCommand<SendResetPasswordLink>>>
     {
         public PlatformConsumer() { }
@@ -50,6 +51,11 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Bus
         }
 
         public Task Consume(ConsumeContext<CommandMessage<AccountCommand<ChangeAccountUserPeriod>>> context)
+        {
+            return this.ConsumeCommand(context);
+        }
+
+        public Task Consume(ConsumeContext<CommandMessage<AccountCommand<SendConfirmationLink>>> context)
         {
             return this.ConsumeCommand(context);
         }

@@ -20,30 +20,24 @@ interface ILocalScope extends angular.IScope {
     providers: ['ui.router'],
     template: `
     <!-- ACCOUNT.RESET-PASSWORD.FORM: BEGIN -->
-    <div class="page-login">
-        <div class="loginContentWrap" style="padding: 0;">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-lg-4 col-lg-offset-4">
-                        <div class="text-center">
-                            <p><span data-ng-show="ctrl.model.username">Welcome back, {{ ctrl.model.username }}. You can can enter a new password for your account.</span></p>
-                        </div>
-                    </div>
-                </div>
-                <form name="form" data-ng-submit="ctrl.submit(form)">
-                    <data-ng-transclude></data-ng-transclude>
-                    <!-- SUBMIT -->
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-lg-4 col-lg-offset-4">
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-orange submit" data-ng-disabled="ctrl.isBusy || ctrl.isInvalid || form.$invalid">Save the new password</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-lg-4 col-lg-offset-4">
+            <div class="text-center">
+                <p><span data-ng-show="ctrl.model.username">Welcome back, {{ ctrl.model.username }}. You can can enter a new password for your account.</span></p>
             </div>
         </div>
     </div>
+    <form name="form" data-ng-submit="ctrl.submit(form)">
+        <data-ng-transclude></data-ng-transclude>
+        <!-- SUBMIT -->
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-lg-4 col-lg-offset-4">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-orange submit" data-ng-disabled="ctrl.isBusy || ctrl.isInvalid || form.$invalid">Save the new password</button>
+                </div>
+            </div>
+        </div>
+    </form>
     <!-- ACCOUNT.RESET-PASSWORD.FORM: END -->
     `
 })

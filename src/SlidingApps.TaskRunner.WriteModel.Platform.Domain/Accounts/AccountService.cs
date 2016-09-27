@@ -5,6 +5,7 @@ using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts.Intents;
 using SlidingApps.TaskRunner.Foundation.Configuration;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Extension;
+using SlidingApps.TaskRunner.Foundation.Infrastructure.ExceptionManagement;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
 using SlidingApps.TaskRunner.Foundation.NHibernate;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
@@ -22,9 +23,8 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
         ICommandHandler<AccountCommand<ChangeAccountProfileName>>,
         ICommandHandler<AccountCommand<ChangeAccountUserPeriod>>,
         ICommandHandler<AccountCommand<ChangeAccountUser>>,
+        ICommandHandler<AccountCommand<SendConfirmationLink>>,
         ICommandHandler<AccountCommand<SendResetPasswordLink>>
-    //,
-    //ICommandHandler2<AccountCommand<SendResetPasswordLink>, AccountEvent<SendResetPasswordLink>>
     {
         private readonly IMediator mediator;
 
@@ -86,6 +86,26 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
             entity
                 .IfValid(e => this.queryProvider.Session.SaveOrUpdate(e.GetDataEntity()))
                 .ElseThrow();
+
+            return new CommandResult(command.Id, result);
+        }
+
+        public ICommandResult Handle(AccountCommand<SendConfirmationLink> command)
+        {
+            var existing = this.queryProvider.CreateQuery<Entities.Account>().Where(x => x.EmailAddress == command.Intent.Name || x.User.Name == command.Intent.Name).SingleOrDefault();
+            if (existing == null) throw new BusinessException("Unknown user account");
+
+            Account entity = new Account(existing, this.validator.CreateFor<Account>());
+            var result = entity.Apply(command);
+
+            entity
+                .IfValid(e => this.queryProvider.Session.SaveOrUpdate(e.GetDataEntity()))
+                .ElseThrow();
+
+            using (MailManagementClient mail = new MailManagementClient())
+            {
+                mail.PostSendAccountConfirmationLink(new Mail.Api.Models.SendAccountConfirmationLink { UserName = command.Intent.Name });
+            }
 
             return new CommandResult(command.Id, result);
         }

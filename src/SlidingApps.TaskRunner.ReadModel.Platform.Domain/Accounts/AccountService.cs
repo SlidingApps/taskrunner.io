@@ -82,6 +82,10 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Accounts
             {
                 throw new NotAuthorizedException("Invalid or expired link");
             }
+            else if(account != null && account.Status.ToEnum<EntityStatus>() != EntityStatus.CONFIRMED)
+            {
+                throw new UnconfirmedAccountException("Unconfirmed account");
+            }
 
             return new DecryptedLink(decoded.username, decoded.link);
         }

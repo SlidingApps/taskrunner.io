@@ -128,6 +128,21 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
             return this.User.Apply(command);
         }
 
+        public AccountEvent<SendConfirmationLink> Apply(AccountCommand<SendConfirmationLink> command)
+        {
+            AccountEvent<SendConfirmationLink> domainEvent = new AccountEvent<SendConfirmationLink>(command);
+            this.When(domainEvent);
+
+            return domainEvent;
+        }
+
+        public void When(AccountEvent<SendConfirmationLink> domainEvent)
+        {
+            this.Link = Guid.NewGuid().ToString();
+
+            this.DomainEvents.Add(domainEvent);
+        }
+
         public AccountEvent<SendResetPasswordLink> Apply(AccountCommand<SendResetPasswordLink> command)
         {
             AccountEvent<SendResetPasswordLink> domainEvent = new AccountEvent<SendResetPasswordLink>(command);

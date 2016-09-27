@@ -55,6 +55,7 @@
     <Compile Include="Accounts\Intents\ChangeAccountProfileName.cs" />
     <Compile Include="Accounts\Intents\ChangeAccountUser.cs" />
     <Compile Include="Accounts\Intents\ChangeAccountUserPeriod.cs" />
+    <Compile Include="Accounts\Intents\SendConfirmationLink.cs" />
     <Compile Include="Accounts\Intents\CreateAccount.cs" />
     <Compile Include="Accounts\Intents\SendResetPasswordLink.cs" />
     <Compile Include="Accounts\AccountKey.cs" />

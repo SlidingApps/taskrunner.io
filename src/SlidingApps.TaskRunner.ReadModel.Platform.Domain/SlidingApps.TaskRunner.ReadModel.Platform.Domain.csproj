@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Accounts\AccountService.cs" />
+    <Compile Include="Accounts\UnconfirmedAccountException.cs" />
     <Compile Include="Accounts\Queries\AccountCollectionQuery.cs" />
     <Compile Include="Accounts\Queries\AccountQuery.cs" />
     <Compile Include="Accounts\Queries\UserCredentialsQuery.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Accounts\Representations\IAuthorizationLink.cs" />
     <Compile Include="Authorization\Validations\CredentialsQueryValidator.cs" />
     <Compile Include="Constant.cs" />
+    <Compile Include="EntityStatus.cs" />
     <Compile Include="IAssemblyMarker.cs" />
     <Compile Include="PlatformMappingProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
