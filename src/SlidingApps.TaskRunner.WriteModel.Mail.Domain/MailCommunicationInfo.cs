@@ -56,15 +56,17 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
             }
         }
 
-        public MailEvent<SendResetPasswordLink> Apply(MailCommand<SendResetPasswordLink> command)
+        public MailEvent<TIntent> Apply<TIntent>(MailCommand<TIntent> command)
+            where TIntent: IMailIntent
         {
-            MailEvent<SendResetPasswordLink> domainEvent = new MailEvent<SendResetPasswordLink>(command);
+            MailEvent<TIntent> domainEvent = new MailEvent<TIntent>(command);
             this.When(domainEvent);
 
             return domainEvent;
         }
 
-        public void When(MailEvent<SendResetPasswordLink> domainEvent)
+        public void When<TIntent>(MailEvent<TIntent> domainEvent)
+            where TIntent : IMailIntent
         {
             this.Parent.GetDataEntity().Id = domainEvent.Identifiers.EntityId = Guid.NewGuid();
             this.Recipient = domainEvent.Arguments.Recipient;

@@ -50,6 +50,7 @@
     <Compile Include="..\AssemblyVersionInfo.cs">
       <Link>Properties\AssemblyVersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Intent\IMailIntent.cs" />
     <Compile Include="Intent\SendAccountConfirmationLink.cs" />
     <Compile Include="Intent\SendTenantConfirmationLink.cs" />
     <Compile Include="Intent\SendResetPasswordLink.cs" />

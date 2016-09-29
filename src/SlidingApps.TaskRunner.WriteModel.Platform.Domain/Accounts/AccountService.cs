@@ -98,13 +98,26 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
             Account entity = new Account(existing, this.validator.CreateFor<Account>());
             var result = entity.Apply(command);
 
+            var link = (
+                    new
+                    {
+                        Salt = Guid.NewGuid().ToString(),
+                        Username = command.Intent.Name,
+                        Link = entity.Link
+                    }
+                ).ToJson()
+                .Encrypt(EncryptionConfiguration.SymmetricKey, EncryptionConfiguration.SymmetricInitVector)
+                .ToBytes()
+                .ToBase58();
+
             entity
                 .IfValid(e => this.queryProvider.Session.SaveOrUpdate(e.GetDataEntity()))
                 .ElseThrow();
 
             using (MailManagementClient mail = new MailManagementClient())
             {
-                mail.PostSendAccountConfirmationLink(new Mail.Api.Models.SendAccountConfirmationLink { UserName = command.Intent.Name });
+                var url = string.Format("{0}/account/{1}/confirmation/{2}", SiteConfiguration.ApplicationBaseUrl, command.Intent.Name, link);
+                mail.PostSendAccountConfirmationLink(new Mail.Api.Models.SendAccountConfirmationLink { ConfirmationUrl = url, Recipient = entity.EmailAddress, UserName = command.Intent.Name });
             }
 
             return new CommandResult(command.Id, result);
@@ -131,7 +144,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
             using (MailManagementClient mail = new MailManagementClient())
             {
                 var url = string.Format("{0}/account/{1}/resetpassword/{2}", SiteConfiguration.ApplicationBaseUrl, command.Intent.Name, link);
-                mail.PostSendResetPasswordLink(new Mail.Api.Models.SendResetPasswordLink { ConfirmationUrl = url, UserName = command.Intent.Name, Recipient = entity.EmailAddress });
+                mail.PostSendResetPasswordLink(new Mail.Api.Models.SendResetPasswordLink { ResetPasswordUrl = url, UserName = command.Intent.Name, Recipient = entity.EmailAddress });
             }
 
             return new CommandResult(command.Id, result);

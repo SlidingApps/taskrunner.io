@@ -62,7 +62,27 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Models
 		/// <summary>
 		/// 
 		/// </summary>
+		public virtual String Subject { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual String ConfirmationUrl { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual String TextContentTemplate { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual String HtmlContentTemplate { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
 		public virtual String UserName { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual MailStatus Status { get; set; }
 		#endregion
 	}	
 	
@@ -86,11 +106,15 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Models
 		/// <summary>
 		/// 
 		/// </summary>
-		public virtual String ConfirmationUrl { get; set; }
+		public virtual String ResetPasswordUrl { get; set; }
 		/// <summary>
 		/// 
 		/// </summary>
-		public virtual String ContentTemplate { get; set; }
+		public virtual String TextContentTemplate { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual String HtmlContentTemplate { get; set; }
 		/// <summary>
 		/// 
 		/// </summary>
@@ -118,7 +142,27 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Models
 		/// <summary>
 		/// 
 		/// </summary>
+		public virtual String Subject { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual String ResetPasswordUrl { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual String TextContentTemplate { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual String HtmlContentTemplate { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
 		public virtual String Code { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual MailStatus Status { get; set; }
 		#endregion
 	}	
 

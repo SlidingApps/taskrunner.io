@@ -32,45 +32,31 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
 
         public ICommandResult Handle(MailCommand<SendTenantConfirmationLink> command)
         {
-            var test = new Communication<MailCommunicationInfo>(this.validator.CreateFor<Communication<MailCommunicationInfo>>());
-
-            var existing = this.queryProvider.CreateQuery<Entities.MailTemplate>().Where(x => x.Code == MailService.TENANT_CONFIRMATION_LINK_TEMPLATE).Single();
-            var entity = new MailTemplate(existing, this.validator.CreateFor<MailTemplate>());
-
-            MailGun.SendSimpleMessage(
-                new MailParameters(
-                    MailServiceConfiguration.Domain,
-                    MailServiceConfiguration.NoreplyAddress,
-                    entity.Subject,
-                    entity.TextTemplate,
-                    entity.HtmlTemplate,
-                    command.Intent.Recipient)
-                );
+            this.SendMail(MailService.TENANT_CONFIRMATION_LINK_TEMPLATE, command);
 
             return new CommandResult(command.Id);
         }
 
         public ICommandResult Handle(MailCommand<SendAccountConfirmationLink> command)
         {
-            var existing = this.queryProvider.CreateQuery<Entities.MailTemplate>().Where(x => x.Code == MailService.ACCOUNT_CONFIRMATION_LINK_TEMPLATE).Single();
-            var entity = new MailTemplate(existing, this.validator.CreateFor<MailTemplate>());
-
-            MailGun.SendSimpleMessage(
-                new MailParameters(
-                    MailServiceConfiguration.Domain,
-                    MailServiceConfiguration.NoreplyAddress,
-                    entity.Subject,
-                    entity.TextTemplate,
-                    entity.HtmlTemplate,
-                    command.Intent.Recipient)
-                );
+            this.SendMail(MailService.ACCOUNT_CONFIRMATION_LINK_TEMPLATE, command);
 
             return new CommandResult(command.Id);
         }
 
         public ICommandResult Handle(MailCommand<SendResetPasswordLink> command)
         {
-            var existing = this.queryProvider.CreateQuery<Entities.MailTemplate>().Where(x => x.Code == MailService.RESET_PASSWORD_LINK_TEMPLATE).Single();
+            this.SendMail(MailService.RESET_PASSWORD_LINK_TEMPLATE, command);
+
+            return new CommandResult(command.Id);
+        }
+
+        #region - Private & protected method  -
+
+        private void SendMail<TMailIntent>(string templateCode, MailCommand<TMailIntent> command)
+            where TMailIntent : IMailIntent
+        {
+            var existing = this.queryProvider.CreateQuery<Entities.MailTemplate>().Where(x => x.Code == templateCode).Single();
             var entity = new MailTemplate(existing, this.validator.CreateFor<MailTemplate>());
 
             command.Intent.Subject = entity.Subject;
@@ -98,8 +84,8 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
             communication.Info.Status = MailStatus.QUEUED;
             communication.Info.ExternalId = content.id;
             this.queryProvider.Session.Save(communication.GetDataEntity());
-
-            return new CommandResult(command.Id);
         }
+
+        #endregion
     }
 }
