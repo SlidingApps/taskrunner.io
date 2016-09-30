@@ -126,6 +126,7 @@
     <Compile Include="Constant.cs" />
     <Compile Include="EntityStatus.cs" />
     <Compile Include="LocalDomainEventPublisher.cs" />
+    <Compile Include="MailUtils.cs" />
     <Compile Include="Metadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tenants\Entities\Tenant.cs" />

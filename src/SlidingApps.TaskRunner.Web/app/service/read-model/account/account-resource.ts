@@ -21,7 +21,7 @@ export class AccountResource implements IAccountResource {
         let deferred: angular.IDeferred<DecryptedLink> = this.$q.defer<DecryptedLink>();
 
         this.service
-            .all(`${AccountResource.RESOURCE}/${username}/decryption/${link}`)
+            .all(`${AccountResource.RESOURCE}/${username}/decryptions/${link}`)
             .get()
             .then((representation: IDecryptedLink) => {
                 deferred.resolve(new DecryptedLink(representation));

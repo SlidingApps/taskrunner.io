@@ -48,17 +48,18 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="DataDefinition\00001.CT.Tenant_H.sql" />
-    <Content Include="DataDefinition\00002.AT.Tenant_H.sql" />
-    <Content Include="DataDefinition\00003.CT.Tenant_S.sql" />
-    <Content Include="DataDefinition\00004.AT.Tenant_S.sql" />
-    <Content Include="DataDefinition\00005.CV.Tenant_V.sql" />
-    <Content Include="DataDefinition\00006.CT.Person_H.sql" />
-    <Content Include="DataDefinition\00007.AT.Person_H.sql" />
-    <Content Include="DataDefinition\00008.CT.Person_Identity_S.sql" />
-    <Content Include="DataDefinition\00009.AT.Person_Identity_S.sql" />
-    <Content Include="DataDefinition\00010.CV.Person_V.sql" />
-    <Content Include="DataDefinition\00011.CV.Tenant_Summary_V.sql" />
+    <Content Include="Database\Maintenance\00001.M.Clean_Up_Data.sql" />
+    <Content Include="Database\DataDefinition\00001.CT.Tenant_H.sql" />
+    <Content Include="Database\DataDefinition\00002.AT.Tenant_H.sql" />
+    <Content Include="Database\DataDefinition\00003.CT.Tenant_S.sql" />
+    <Content Include="Database\DataDefinition\00004.AT.Tenant_S.sql" />
+    <Content Include="Database\DataDefinition\00005.CV.Tenant_V.sql" />
+    <Content Include="Database\DataDefinition\00006.CT.Person_H.sql" />
+    <Content Include="Database\DataDefinition\00007.AT.Person_H.sql" />
+    <Content Include="Database\DataDefinition\00008.CT.Person_Identity_S.sql" />
+    <Content Include="Database\DataDefinition\00009.AT.Person_Identity_S.sql" />
+    <Content Include="Database\DataDefinition\00010.CV.Person_V.sql" />
+    <Content Include="Database\DataDefinition\00011.CV.Tenant_Summary_V.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

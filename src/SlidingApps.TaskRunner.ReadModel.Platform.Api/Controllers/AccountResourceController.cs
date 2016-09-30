@@ -39,7 +39,7 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Api.Controllers
             return ApiResponse.Found(representation);
         }
 
-        [HttpGet, Route("{username}/decryption/{link}")]
+        [HttpGet, Route("{username}/decryptions/{link}")]
         public DecryptedLink GetDecryption(string username, string link)
         {
             LinkDecryptionQuery query = new LinkDecryptionQuery(username, link);

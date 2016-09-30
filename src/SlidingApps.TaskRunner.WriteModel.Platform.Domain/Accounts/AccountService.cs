@@ -14,7 +14,6 @@ using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Accounts;
 using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Accounts.Intents;
 using System;
 using System.Linq;
-using System.Web;
 
 namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
 {
@@ -97,18 +96,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
 
             Account entity = new Account(existing, this.validator.CreateFor<Account>());
             var result = entity.Apply(command);
-
-            var link = (
-                    new
-                    {
-                        Salt = Guid.NewGuid().ToString(),
-                        Username = command.Intent.Name,
-                        Link = entity.Link
-                    }
-                ).ToJson()
-                .Encrypt(EncryptionConfiguration.SymmetricKey, EncryptionConfiguration.SymmetricInitVector)
-                .ToBytes()
-                .ToBase58();
+            string link = MailUtils.GetLink(command.Intent.Name, entity.Link);
 
             entity
                 .IfValid(e => this.queryProvider.Session.SaveOrUpdate(e.GetDataEntity()))
@@ -128,17 +116,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
             var existing = this.queryProvider.CreateQuery<Entities.Account>().Where(x => x.EmailAddress == command.Intent.Name || x.User.Name == command.Intent.Name).Single();
             Account entity = new Account(existing, this.validator.CreateFor<Account>());
             AccountEvent<SendResetPasswordLink> result = entity.Apply(command);
-
-            var link = (
-                    new {
-                        Salt = Guid.NewGuid().ToString(),
-                        Username = command.Intent.Name,
-                        Link = entity.Link
-                    }
-                ).ToJson()
-                .Encrypt(EncryptionConfiguration.SymmetricKey, EncryptionConfiguration.SymmetricInitVector)
-                .ToBytes()
-                .ToBase58();
+            string link = MailUtils.GetLink(command.Intent.Name, entity.Link);
 
             // Delegate to the MAIL MANAGEMENT SERVICE to send a e-mail. 
             using (MailManagementClient mail = new MailManagementClient())

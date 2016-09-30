@@ -146,7 +146,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Models
 		/// <summary>
 		/// 
 		/// </summary>
-		public virtual String ResetPasswordUrl { get; set; }
+		public virtual String ConfirmationUrl { get; set; }
 		/// <summary>
 		/// 
 		/// </summary>

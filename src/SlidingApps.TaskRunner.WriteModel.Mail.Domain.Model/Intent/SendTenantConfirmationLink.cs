@@ -10,7 +10,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain.Model.Intent
 
         public string Subject { get; set; }
 
-        public string ResetPasswordUrl { get; set; }
+        public string ConfirmationUrl { get; set; }
 
         public string TextContentTemplate { get; set; }
 

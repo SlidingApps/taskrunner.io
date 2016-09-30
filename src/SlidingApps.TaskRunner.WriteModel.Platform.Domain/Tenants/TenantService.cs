@@ -12,6 +12,7 @@ using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Tenants;
 using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Tenants.Intents;
 using System.Linq;
 using System;
+using SlidingApps.TaskRunner.Foundation.Configuration;
 
 namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants
 {
@@ -55,10 +56,10 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants
             AccountEvent<ChangeAccountUser> userEvent = userResult.OfType<AccountEvent<ChangeAccountUser>>().Single();
 
             // Associate the ACCOUNT with the TENANT.
-            TenantAccount account = tenant.AddAccount(accountEvent.Identifiers.EntityId);
+            TenantAccount tenantAccount = tenant.AddAccount(accountEvent.Identifiers.EntityId);
 
             // Set the new ACCOUNT as TENANT OWNER.
-            TenantEvent<SetTenantOwner> roleEvent = account.Apply(new TenantCommand<SetTenantOwner>(command.Key, new SetTenantOwner(command.Intent.UserName)));
+            TenantEvent<SetTenantOwner> roleEvent = tenantAccount.Apply(new TenantCommand<SetTenantOwner>(command.Key, new SetTenantOwner(command.Intent.UserName)));
 
             tenant
                 .IfValid(e => this.queryProvider.Session.Save(e.GetDataEntity()))
@@ -66,12 +67,16 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants
 
             this.queryProvider.Session.Flush();
 
-            // Delegate to the MAIL MANAGEMENT SERVICE to send a e-mail. 
+            // Delegate to the MAIL MANAGEMENT SERVICE to send an e-mail. 
             using (MailManagementClient mail = new MailManagementClient())
             {
-                mail.PostSendTenantConfirmationLink (new Mail.Api.Models.SendTenantConfirmationLink { Code = command.Intent.Code });
-                mail.PostSendAccountConfirmationLink(new Mail.Api.Models.SendAccountConfirmationLink { UserName = command.Intent.UserName });
+                var link = MailUtils.GetLink(command.Intent.Code, tenant.Link);
+                var url = string.Format("{0}/tenant/{1}/confirmation/{2}", SiteConfiguration.ApplicationBaseUrl, command.Intent.Code, link);
+                mail.PostSendTenantConfirmationLink(new Mail.Api.Models.SendTenantConfirmationLink { Recipient = command.Intent.UserName, Code = command.Intent.Code, ConfirmationUrl = url });
             }
+
+            // Delegate to the ACCOUNT MANAGEMENT SERVICE to send an e-mail.
+            this.mediator.Send(new AccountCommand<SendConfirmationLink>(new SendConfirmationLink { Name = command.Intent.UserName }));
 
             return new CommandResult(command.Id,
                 new IDomainEvent[]
