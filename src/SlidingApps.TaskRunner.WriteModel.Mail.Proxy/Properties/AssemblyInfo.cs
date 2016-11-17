@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SlidingApps.TaskRunner.WriteModel.Mail.Proxy")]
+[assembly: AssemblyTitle("SlidingApps.TaskRunner.WriteModel.Infrastructure.Proxy")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SlidingApps.TaskRunner.WriteModel.Mail.Proxy")]
+[assembly: AssemblyProduct("SlidingApps.TaskRunner.WriteModel.Infrastructure.Proxy")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

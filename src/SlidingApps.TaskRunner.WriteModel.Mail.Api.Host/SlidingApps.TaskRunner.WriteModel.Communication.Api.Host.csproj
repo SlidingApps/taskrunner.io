@@ -197,13 +197,13 @@
       <Project>{8E0FEBBF-FC49-439C-AC8D-24E0A327783A}</Project>
       <Name>SlidingApps.TaskRunner.Foundation.Web</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SlidingApps.TaskRunner.WriteModel.Mail.Api\SlidingApps.TaskRunner.WriteModel.Communication.Api.csproj">
+    <ProjectReference Include="..\SlidingApps.TaskRunner.WriteModel.Mail.Api\SlidingApps.TaskRunner.WriteModel.Infrastructure.Api.csproj">
       <Project>{0545c12f-0ef7-413b-a6d4-93ec31b16193}</Project>
-      <Name>SlidingApps.TaskRunner.WriteModel.Communication.Api</Name>
+      <Name>SlidingApps.TaskRunner.WriteModel.Infrastructure.Api</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SlidingApps.TaskRunner.WriteModel.Mail.Domain\SlidingApps.TaskRunner.WriteModel.Communication.Domain.csproj">
+    <ProjectReference Include="..\SlidingApps.TaskRunner.WriteModel.Mail.Domain\SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.csproj">
       <Project>{cea11ce7-8e8b-48ae-9345-4efc7595d77b}</Project>
-      <Name>SlidingApps.TaskRunner.WriteModel.Communication.Domain</Name>
+      <Name>SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
