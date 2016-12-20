@@ -40,10 +40,9 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Api.Controllers
             return ApiResponse.CommandResponse(command);
         }
 
-        [HttpGet, Route(@"{code:regex([a-z0-9.%@])}/confirmation/{link}")]
-        public async Task<HttpResponseMessage> GetConfirmTenant(string code, [FromUri] string link)
+        [HttpPost, Route(@"{code:regex([a-z0-9.%@])}/confirmation")]
+        public async Task<HttpResponseMessage> PostConfirmTenant(string code, [FromBody] ConfirmTenant intent)
         {
-            var intent = new ConfirmTenant(link);
             var command = new TenantCommand<ConfirmTenant>(code, intent);
             await this.connector.SendCommand(command);
 

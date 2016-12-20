@@ -9,11 +9,14 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Tenants.Intent
         public ConfirmTenant()
         : base() { }
 
-        public ConfirmTenant(string link)
+        public ConfirmTenant(string code, string link)
             : this()
         {
+            this.Code = code;
             this.Link = link;
         }
+
+        public string Code { get; set; }
 
         public string Link { get; set; }
     }
