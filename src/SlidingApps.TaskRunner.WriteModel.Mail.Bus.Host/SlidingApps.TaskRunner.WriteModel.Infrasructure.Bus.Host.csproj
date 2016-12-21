@@ -7,8 +7,8 @@
     <ProjectGuid>{0DF23F83-7B38-4441-99C5-B3766CB37183}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SlidingApps.TaskRunner.WriteModel.Communication.Bus.Host</RootNamespace>
-    <AssemblyName>SlidingApps.TaskRunner.WriteModel.Communication.Bus.Host</AssemblyName>
+    <RootNamespace>SlidingApps.TaskRunner.WriteModel.Infrastructure.Bus.Host</RootNamespace>
+    <AssemblyName>SlidingApps.TaskRunner.WriteModel.Infrastructure.Bus.Host</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

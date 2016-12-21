@@ -7,8 +7,8 @@
     <ProjectGuid>{0545C12F-0EF7-413B-A6D4-93EC31B16193}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SlidingApps.TaskRunner.WriteModel.Communication.Api</RootNamespace>
-    <AssemblyName>SlidingApps.TaskRunner.WriteModel.Communication.Api</AssemblyName>
+    <RootNamespace>SlidingApps.TaskRunner.WriteModel.Infrastructure.Api</RootNamespace>
+    <AssemblyName>SlidingApps.TaskRunner.WriteModel.Infrastructure.Api</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
