@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9999F545-E371-4170-8A92-5B51CF00141C}</ProjectGuid>
+    <ProjectGuid>{0DF23F83-7B38-4441-99C5-B3766CB37183}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SlidingApps.TaskRunner.WriteModel.Communication.Bus.Host</RootNamespace>
