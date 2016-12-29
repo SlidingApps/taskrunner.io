@@ -1,6 +1,7 @@
 ﻿
 using MediatR;
 using NHibernate;
+using SlidingApps.TaskRunner.Foundation.Configuration;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Extension;
 using SlidingApps.TaskRunner.Foundation.NHibernate;
@@ -11,8 +12,6 @@ using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Accounts.Intents;
 using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Tenants;
 using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Tenants.Intents;
 using System.Linq;
-using System;
-using SlidingApps.TaskRunner.Foundation.Configuration;
 
 namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants
 {
