@@ -22,7 +22,7 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Api.Controllers
         }
 
         [HttpGet, Route("")]
-        public AccountValidity Verify()
+        public CredentialsValidity Verify()
         {
             if (this.Request.Headers.Authorization.Scheme != "Basic") throw new AuthorizationException(AuthorizationException.UNSUPPORTED_AUTHORIZATION_SCHEME);
 
@@ -34,7 +34,7 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Api.Controllers
             string username = _header[0];
             string password = _header[1];
 
-            AccountValidityQuery query = new AccountValidityQuery(username, password);
+            CredentialsValidityQuery query = new CredentialsValidityQuery(username, password);
             var representation = this.mediator.Send(query).FormatHalJsonLinks(query);
 
             if (!representation.IsValid) throw new AuthorizationException(AuthorizationException.INVALID_CREDENTIALS);

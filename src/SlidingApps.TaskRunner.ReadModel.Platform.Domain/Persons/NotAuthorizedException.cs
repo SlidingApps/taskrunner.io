@@ -1,7 +1,7 @@
 ﻿
 using SlidingApps.TaskRunner.Foundation.Web;
 
-namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Accounts
+namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Persons
 {
     public class NotAuthorizedException
         : AuthorizationException

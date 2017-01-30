@@ -1,5 +1,5 @@
 ﻿
-namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Accounts.Representations
+namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Persons.Representations
 {
     public interface IAuthorizationLink
     {

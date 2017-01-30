@@ -4,27 +4,27 @@ using SlidingApps.TaskRunner.Foundation.Configuration;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Dapper;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
-using SlidingApps.TaskRunner.ReadModel.Platform.Domain.Accounts.Queries;
-using SlidingApps.TaskRunner.ReadModel.Platform.Domain.Accounts.Representations;
+using SlidingApps.TaskRunner.ReadModel.Platform.Domain.Persons.Queries;
+using SlidingApps.TaskRunner.ReadModel.Platform.Domain.Persons.Representations;
 
-namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Accounts
+namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Persons
 {
-    public class AccountService : 
-        IQueryHandler<AccountCollectionQuery, AccountCollection>,
-        IQueryHandler<AccountQuery, Account>,
-        IQueryHandler<UserCredentialsQuery, Account>,
+    public class PersonService : 
+        IQueryHandler<PersonCollectionQuery, PersonCollection>,
+        IQueryHandler<PersonQuery, Person>,
+        IQueryHandler<UserCredentialsQuery, Person>,
         IQueryHandler<LinkDecryptionQuery, DecryptedLink>
     {
         private readonly IQueryProvider queryProvider;
 
-        public AccountService(IQueryProvider queryProvider)
+        public PersonService(IQueryProvider queryProvider)
         {
             this.queryProvider = queryProvider;
         }
 
-        public AccountCollection Handle(AccountCollectionQuery query)
+        public PersonCollection Handle(PersonCollectionQuery query)
         {
-            var _query = this.queryProvider.From<Account>().By(x => x.TenantId).EqualTo(query.TenantId);
+            var _query = this.queryProvider.From<Person>().By(x => x.TenantId).EqualTo(query.TenantId);
 
             // Add 'like' criterium.
             if (!string.IsNullOrEmpty(query.Name))
@@ -35,15 +35,15 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Accounts
             _query.OrderBy(x => x.DisplayName).Limit(query.Page, query.PageSize);
 
             var persons = _query.ToList();
-            var collection = new AccountCollection(persons, query.Page, query.PageSize);
+            var collection = new PersonCollection(persons, query.Page, query.PageSize);
 
             return collection;
         }
 
-        public Account Handle(AccountQuery query)
+        public Person Handle(PersonQuery query)
         {
             var person =
-                this.queryProvider.From<Account>()
+                this.queryProvider.From<Person>()
                     .By(x => x.TenantId).EqualTo(query.TenantId)
                     .By(x => x.Id).EqualTo(query.PersonId)
                     .SingleOrDefault();
@@ -51,10 +51,10 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Accounts
             return person;
         }
 
-        public Account Handle(UserCredentialsQuery query)
+        public Person Handle(UserCredentialsQuery query)
         {
             var person =
-                this.queryProvider.From<Account>()
+                this.queryProvider.From<Person>()
                     .By(x => x.TenantId).EqualTo(query.TenantId)
                     .By(x => x.UserName).EqualTo(query.Name)
                     .By(x => x.UserName).EqualTo(query.Password)
@@ -74,7 +74,7 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Accounts
                 .ActLike<IAuthorizationLink>();
 
             var account =
-                this.queryProvider.From<AccountProfile>()
+                this.queryProvider.From<PersonProfile>()
                     .By(x => x.Link).EqualTo(decoded.link)
                     .SingleOrDefault();
 

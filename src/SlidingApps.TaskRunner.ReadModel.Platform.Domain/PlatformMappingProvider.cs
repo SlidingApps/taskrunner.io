@@ -1,7 +1,7 @@
 ﻿
 using Autofac;
 using SlidingApps.TaskRunner.Foundation.Dapper;
-using SlidingApps.TaskRunner.ReadModel.Platform.Domain.Accounts.Representations;
+using SlidingApps.TaskRunner.ReadModel.Platform.Domain.Persons.Representations;
 using SlidingApps.TaskRunner.ReadModel.Platform.Domain.Authorization.Representations;
 using SlidingApps.TaskRunner.ReadModel.Platform.Domain.Tenants.Representations;
 
@@ -16,9 +16,9 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain
             this.Schema("TaskRunner");
 
             this.Map<Tenant>("TaskRunner", "Tenant_V");
-            this.Map<Account>("TaskRunner", "Account_V");
-            this.Map<AccountCredentials>("TaskRunner", "Account_Credentials_V");
-            this.Map<AccountProfile>("TaskRunner", "Account_Profile_V");
+            this.Map<Person>("TaskRunner", "Person_V");
+            this.Map<PersonCredentials>("TaskRunner", "Person_Credentials_V");
+            this.Map<PersonProfile>("TaskRunner", "Person_Identity_V");
 
             this.BuildMapping();
         }

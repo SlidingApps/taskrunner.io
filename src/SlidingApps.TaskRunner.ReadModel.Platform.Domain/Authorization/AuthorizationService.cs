@@ -10,7 +10,7 @@ using System;
 namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Authorization
 {
     public class AuthorizationService :
-        IQueryHandler<AccountValidityQuery, AccountValidity>
+        IQueryHandler<CredentialsValidityQuery, CredentialsValidity>
     {
         private readonly IQueryProvider queryProvider;
 
@@ -19,16 +19,16 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Authorization
             this.queryProvider = queryProvider;
         }
 
-        public AccountValidity Handle(AccountValidityQuery query)
+        public CredentialsValidity Handle(CredentialsValidityQuery query)
         {
             var account =
-                this.queryProvider.From<AccountCredentials>()
+                this.queryProvider.From<PersonCredentials>()
                     .By(x => x.Username).EqualTo(query.Username)
                     .By(x => x.ValidFrom).LessThanOrEqual(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
                     .By(x => x.validUntil).GreaterThanOrEqual(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
                     .SingleOrDefault();
 
-            AccountValidity validity = new AccountValidity();
+            CredentialsValidity validity = new CredentialsValidity();
             validity.IsValid = false;
 
             if (account != null)

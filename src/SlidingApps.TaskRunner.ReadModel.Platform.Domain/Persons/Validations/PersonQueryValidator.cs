@@ -1,14 +1,14 @@
 ﻿
 using FluentValidation;
-using SlidingApps.TaskRunner.ReadModel.Platform.Domain.Accounts.Queries;
+using SlidingApps.TaskRunner.ReadModel.Platform.Domain.Persons.Queries;
 using System;
 
-namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Accounts.Validations
+namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Persons.Validations
 {
-    public class AccountQueryValidator
-        : AbstractValidator<AccountQuery>
+    public class PersonQueryValidator
+        : AbstractValidator<PersonQuery>
     {
-        public AccountQueryValidator()
+        public PersonQueryValidator()
         {
             RuleFor(c => c.TenantId).NotEmpty();
             RuleFor(c => c.TenantId).Must(this.BeAuthorizedForTenant);

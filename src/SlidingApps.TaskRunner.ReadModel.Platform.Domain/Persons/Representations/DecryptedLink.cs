@@ -1,7 +1,7 @@
 ﻿
 using SlidingApps.TaskRunner.Foundation.ReadModel;
 
-namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Accounts.Representations
+namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Persons.Representations
 {
     public class DecryptedLink
      : DataRepresentation

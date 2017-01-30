@@ -3,16 +3,16 @@ using Newtonsoft.Json;
 using SlidingApps.TaskRunner.Foundation.ReadModel;
 using System;
 
-namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Accounts.Representations
+namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Authorization.Representations
 {
-    public class AccountProfile
+    public class PersonCredentials
         : DataRepresentation
     {
         private const string SELF_LINK_TEMPLATE = "/auth";
 
-        private AccountProfile()
+        private PersonCredentials()
         {
-            this.templates.Add(new SelfLinkTemplate(AccountProfile.SELF_LINK_TEMPLATE));
+            this.templates.Add(new SelfLinkTemplate(PersonCredentials.SELF_LINK_TEMPLATE));
         }
 
         public Guid Id { get; set; }
@@ -21,14 +21,13 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Accounts.Representati
 
         public string Username { get; set; }
 
-        public string Name { get; set; }
+        public string Password { get; set; }
 
-        public string FirstName { get; set; }
+        public string Salt { get; set; }
 
-        public string Status { get; set; }
+        public DateTime ValidFrom { get; set; }
 
-        [JsonIgnore]
-        public string Link { get; set; }
+        public DateTime validUntil { get; set; }
 
         [JsonIgnore]
         public Guid TenantId { get; set; }

@@ -24,7 +24,7 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Api.Host
             typeof(ServiceManagementController),
             typeof(TaskRunner.ReadModel.Platform.Api.Controllers.AuthorizationResourceController),
             typeof(TaskRunner.ReadModel.Platform.Api.Controllers.TenantResourceController),
-            typeof(TaskRunner.ReadModel.Platform.Api.Controllers.AccountResourceController)
+            typeof(TaskRunner.ReadModel.Platform.Api.Controllers.PersonResourceController)
 		};
 
 		public void Configuration(IAppBuilder app)

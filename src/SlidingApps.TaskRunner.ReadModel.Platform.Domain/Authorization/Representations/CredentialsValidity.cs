@@ -4,14 +4,14 @@ using System;
 
 namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Authorization.Representations
 {
-    public class AccountValidity
+    public class CredentialsValidity
         : DataRepresentation
     {
         private const string SELF_LINK_TEMPLATE = "/auth";
 
-        public AccountValidity()
+        public CredentialsValidity()
         {
-            this.templates.Add(new SelfLinkTemplate(AccountValidity.SELF_LINK_TEMPLATE));
+            this.templates.Add(new SelfLinkTemplate(CredentialsValidity.SELF_LINK_TEMPLATE));
         }
 
         public Guid Id { get; set; }

@@ -7,29 +7,29 @@ using System.Linq;
 
 namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Authorization.Representations
 {
-    public class AccountCredentialsCollection
+    public class PersonCredentialsCollection
         : CollectionRepresentation
     {
         private const string SELF_LINK_TEMPLATE = "/auth";
 
-        private AccountCredentialsCollection(int? page = null, int? pageSize = null)
+        private PersonCredentialsCollection(int? page = null, int? pageSize = null)
             : base(page, pageSize)
         {
-            this.templates.Add(new SelfLinkTemplate(AccountCredentialsCollection.SELF_LINK_TEMPLATE));
+            this.templates.Add(new SelfLinkTemplate(PersonCredentialsCollection.SELF_LINK_TEMPLATE));
         }
 
-        public AccountCredentialsCollection(IEnumerable<AccountCredentials> accountCredentials, int? page = null, int? pageSize = null)
+        public PersonCredentialsCollection(IEnumerable<PersonCredentials> accountCredentials, int? page = null, int? pageSize = null)
             : this(page, pageSize)
         {
             this.AccountCredentials = accountCredentials;
         }
 
         [HalJsonEmbedded("accountcredentials")]
-        public IEnumerable<AccountCredentials> AccountCredentials { get; set; }
+        public IEnumerable<PersonCredentials> AccountCredentials { get; set; }
 
         public override void FormatEmbeddedObjectLinks(IFormatValues values)
         {
-            this.AccountCredentials.ToList().ForEach(x => x.FormatLinks((new { }).ActLike<IAccountCredentialsFormatValues>()));
+            this.AccountCredentials.ToList().ForEach(x => x.FormatLinks((new { }).ActLike<IPersonCredentialsFormatValues>()));
         }
     }
 }

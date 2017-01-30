@@ -4,16 +4,16 @@ using Newtonsoft.Json;
 using SlidingApps.TaskRunner.Foundation.ReadModel;
 using System;
 
-namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Accounts.Representations
+namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Persons.Representations
 {
-    public sealed class Account
+    public sealed class Person
         : DataRepresentation
     {
         private const string SELF_LINK_TEMPLATE = "/tenants/{tenantId}/accounts/{accountId}";
 
-        private Account()
+        private Person()
         {
-            this.templates.Add(new SelfLinkTemplate(Account.SELF_LINK_TEMPLATE));
+            this.templates.Add(new SelfLinkTemplate(Person.SELF_LINK_TEMPLATE));
         }
 
         public Guid Id { get; set; }
@@ -42,7 +42,7 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Accounts.Representati
 
         public override void FormatLinks(IFormatValues values)
         {
-            base.FormatLinks((new { this.TenantId, AccountId = this.Id }).ActLike<IAccountFormatValues>());
+            base.FormatLinks((new { this.TenantId, AccountId = this.Id }).ActLike<IPersonFormatValues>());
         }
     }
 }

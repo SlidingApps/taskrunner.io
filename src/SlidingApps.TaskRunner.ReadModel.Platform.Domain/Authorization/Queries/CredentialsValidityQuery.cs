@@ -4,10 +4,10 @@ using SlidingApps.TaskRunner.ReadModel.Platform.Domain.Authorization.Representat
 
 namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Authorization.Queries
 {
-    public class AccountValidityQuery
-        : IQuery<AccountValidity>
+    public class CredentialsValidityQuery
+        : IQuery<CredentialsValidity>
     {
-        public AccountValidityQuery(string username, string password)
+        public CredentialsValidityQuery(string username, string password)
         {
             this.Username = username;
             this.Password = password;

@@ -1,12 +1,12 @@
 ﻿
 using SlidingApps.TaskRunner.Foundation.Cqrs;
-using SlidingApps.TaskRunner.ReadModel.Platform.Domain.Accounts.Representations;
+using SlidingApps.TaskRunner.ReadModel.Platform.Domain.Persons.Representations;
 using System;
 
-namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Accounts.Queries
+namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Persons.Queries
 {
     public class UserCredentialsQuery
-        : IQuery<Account>
+        : IQuery<Person>
     {
         public UserCredentialsQuery(Guid tenantId, string name, string password)
         {
