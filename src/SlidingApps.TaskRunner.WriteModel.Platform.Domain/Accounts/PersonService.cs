@@ -6,24 +6,22 @@ using SlidingApps.TaskRunner.Foundation.Configuration;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Extension;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.ExceptionManagement;
-using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
 using SlidingApps.TaskRunner.Foundation.NHibernate;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
 using SlidingApps.TaskRunner.WriteModel.Mail.Api.Clients;
-using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Accounts;
-using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Accounts.Intents;
-using System;
+using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Persons;
+using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Persons.Intents;
 using System.Linq;
 
-namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
+namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Persons
 {
-    public class AccountService :
-        ICommandHandler<AccountCommand<CreateAccount>>,
-        ICommandHandler<AccountCommand<ChangeAccountProfileName>>,
-        ICommandHandler<AccountCommand<ChangeAccountUserPeriod>>,
-        ICommandHandler<AccountCommand<ChangeAccountUser>>,
-        ICommandHandler<AccountCommand<SendConfirmationLink>>,
-        ICommandHandler<AccountCommand<SendResetPasswordLink>>
+    public class PersonService :
+        ICommandHandler<PersonCommand<CreateAccount>>,
+        ICommandHandler<PersonCommand<ChangePersonIdentityName>>,
+        ICommandHandler<PersonCommand<ChangePersonUserPeriod>>,
+        ICommandHandler<PersonCommand<ChangePersonUser>>,
+        ICommandHandler<PersonCommand<SendConfirmationLink>>,
+        ICommandHandler<PersonCommand<SendResetPasswordLink>>
     {
         private readonly IMediator mediator;
 
@@ -31,17 +29,17 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
 
         private readonly IDomainEntityValidatorProvider validator;
 
-        public AccountService(IMediator mediator, IQueryProvider<ISession> queryProvider, IDomainEntityValidatorProvider validator)
+        public PersonService(IMediator mediator, IQueryProvider<ISession> queryProvider, IDomainEntityValidatorProvider validator)
         {
             this.mediator = mediator;
             this.queryProvider = queryProvider;
             this.validator = validator;
         }
 
-        public ICommandResult Handle(AccountCommand<CreateAccount> command)
+        public ICommandResult Handle(PersonCommand<CreateAccount> command)
         {
-            Account entity = new Account(new Entities.Account(), this.validator.CreateFor<Account>());
-            AccountEvent<CreateAccount> result = entity.Apply(command);
+            Person entity = new Person(new Entities.Person(), this.validator.CreateFor<Person>());
+            PersonEvent<CreateAccount> result = entity.Apply(command);
 
             entity
                 .IfValid(e => this.queryProvider.Session.Save(e.GetDataEntity()))
@@ -50,11 +48,11 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
             return new CommandResult(command.Id, result);
         }
 
-        public ICommandResult Handle(AccountCommand<ChangeAccountProfileName> command)
+        public ICommandResult Handle(PersonCommand<ChangePersonIdentityName> command)
         {
-            var existing = this.queryProvider.CreateQuery<Entities.Account>().Where(x => x.EmailAddress == command.Key.Name || x.User.Name == command.Key.Name).Single();
-            Account entity = new Account(existing, this.validator.CreateFor<Account>());
-            AccountEvent<ChangeAccountProfileName> result = entity.Apply(command);
+            var existing = this.queryProvider.CreateQuery<Entities.Person>().Where(x => x.EmailAddress == command.Key.Name || x.User.Name == command.Key.Name).Single();
+            Person entity = new Person(existing, this.validator.CreateFor<Person>());
+            PersonEvent<ChangePersonIdentityName> result = entity.Apply(command);
 
             entity
                 .IfValid(e => this.queryProvider.Session.SaveOrUpdate(e.GetDataEntity()))
@@ -63,11 +61,11 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
             return new CommandResult(command.Id, result);
         }
 
-        public ICommandResult Handle(AccountCommand<ChangeAccountUserPeriod> command)
+        public ICommandResult Handle(PersonCommand<ChangePersonUserPeriod> command)
         {
-            var existing = this.queryProvider.CreateQuery<Entities.Account>().Where(x => x.EmailAddress == command.Key.Name || x.User.Name == command.Key.Name).Single();
-            Account entity = new Account(existing, this.validator.CreateFor<Account>());
-            AccountEvent<ChangeAccountUserPeriod> result = entity.Apply(command);
+            var existing = this.queryProvider.CreateQuery<Entities.Person>().Where(x => x.EmailAddress == command.Key.Name || x.User.Name == command.Key.Name).Single();
+            Person entity = new Person(existing, this.validator.CreateFor<Person>());
+            PersonEvent<ChangePersonUserPeriod> result = entity.Apply(command);
 
             entity
                 .IfValid(e => this.queryProvider.Session.SaveOrUpdate(e.GetDataEntity()))
@@ -76,11 +74,11 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
             return new CommandResult(command.Id, result);
         }
         
-        public ICommandResult Handle(AccountCommand<ChangeAccountUser> command)
+        public ICommandResult Handle(PersonCommand<ChangePersonUser> command)
         {
-            var existing = this.queryProvider.CreateQuery<Entities.Account>().Where(x => x.EmailAddress == command.Key.Name || x.User.Name == command.Key.Name).Single();
-            Account entity = new Account(existing, this.validator.CreateFor<Account>());
-            AccountEvent<ChangeAccountUser> result = entity.User.Apply(command);
+            var existing = this.queryProvider.CreateQuery<Entities.Person>().Where(x => x.EmailAddress == command.Key.Name || x.User.Name == command.Key.Name).Single();
+            Person entity = new Person(existing, this.validator.CreateFor<Person>());
+            PersonEvent<ChangePersonUser> result = entity.User.Apply(command);
 
             entity
                 .IfValid(e => this.queryProvider.Session.SaveOrUpdate(e.GetDataEntity()))
@@ -89,12 +87,12 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
             return new CommandResult(command.Id, result);
         }
 
-        public ICommandResult Handle(AccountCommand<SendConfirmationLink> command)
+        public ICommandResult Handle(PersonCommand<SendConfirmationLink> command)
         {
-            var existing = this.queryProvider.CreateQuery<Entities.Account>().Where(x => x.EmailAddress == command.Intent.Name || x.User.Name == command.Intent.Name).SingleOrDefault();
+            var existing = this.queryProvider.CreateQuery<Entities.Person>().Where(x => x.EmailAddress == command.Intent.Name || x.User.Name == command.Intent.Name).SingleOrDefault();
             if (existing == null) throw new BusinessException("Unknown user account");
 
-            Account entity = new Account(existing, this.validator.CreateFor<Account>());
+            Person entity = new Person(existing, this.validator.CreateFor<Person>());
             var result = entity.Apply(command);
             string link = MailUtils.GetLink(command.Intent.Name, entity.Link);
 
@@ -111,11 +109,11 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
             return new CommandResult(command.Id, result);
         }
 
-        public ICommandResult Handle(AccountCommand<SendResetPasswordLink> command)
+        public ICommandResult Handle(PersonCommand<SendResetPasswordLink> command)
         {
-            var existing = this.queryProvider.CreateQuery<Entities.Account>().Where(x => x.EmailAddress == command.Intent.Name || x.User.Name == command.Intent.Name).Single();
-            Account entity = new Account(existing, this.validator.CreateFor<Account>());
-            AccountEvent<SendResetPasswordLink> result = entity.Apply(command);
+            var existing = this.queryProvider.CreateQuery<Entities.Person>().Where(x => x.EmailAddress == command.Intent.Name || x.User.Name == command.Intent.Name).Single();
+            Person entity = new Person(existing, this.validator.CreateFor<Person>());
+            PersonEvent<SendResetPasswordLink> result = entity.Apply(command);
             string link = MailUtils.GetLink(command.Intent.Name, entity.Link);
 
             // Delegate to the MAIL MANAGEMENT SERVICE to send a e-mail. 

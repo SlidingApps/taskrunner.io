@@ -3,16 +3,16 @@ using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts.Intents;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Encryption;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
-using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Accounts;
-using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Accounts.Intents;
+using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Persons;
+using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Persons.Intents;
 using System;
 
-namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
+namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Persons
 {
-    public class AccountUser
-        : DomainEntity<Guid, Entities.AccountUser>
+    public class PersonUser
+        : DomainEntity<Guid, Entities.PersonUser>
     {
-        public AccountUser(Entities.AccountUser entity)
+        public PersonUser(Entities.PersonUser entity)
         {
             this.entity = entity;
         }
@@ -47,15 +47,15 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
             private set { this.entity.ValidUntil = value; }
         }
 
-        public AccountEvent<ChangeAccountUser> Apply(AccountCommand<ChangeAccountUser> command)
+        public PersonEvent<ChangePersonUser> Apply(PersonCommand<ChangePersonUser> command)
         {
-            AccountEvent<ChangeAccountUser> domainEvent = new AccountEvent<ChangeAccountUser>(command);
+            PersonEvent<ChangePersonUser> domainEvent = new PersonEvent<ChangePersonUser>(command);
             this.When(domainEvent);
 
             return domainEvent;
         }
 
-        public void When(AccountEvent<ChangeAccountUser> domainEvent)
+        public void When(PersonEvent<ChangePersonUser> domainEvent)
         {
             this.Name = domainEvent.Arguments.Name;
 
@@ -68,15 +68,15 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
             this.DomainEvents.Add(domainEvent);
         }
 
-        public AccountEvent<ChangeAccountUserPeriod> Apply(AccountCommand<ChangeAccountUserPeriod> command)
+        public PersonEvent<ChangePersonUserPeriod> Apply(PersonCommand<ChangePersonUserPeriod> command)
         {
-            AccountEvent<ChangeAccountUserPeriod> domainEvent = new AccountEvent<ChangeAccountUserPeriod>(command);
+            PersonEvent<ChangePersonUserPeriod> domainEvent = new PersonEvent<ChangePersonUserPeriod>(command);
             this.When(domainEvent);
 
             return domainEvent;
         }
 
-        public void When(AccountEvent<ChangeAccountUserPeriod> domainEvent)
+        public void When(PersonEvent<ChangePersonUserPeriod> domainEvent)
         {
             this.ValidFrom = domainEvent.Arguments.ValidFrom;
             this.ValidUntil = domainEvent.Arguments.ValidUntil;

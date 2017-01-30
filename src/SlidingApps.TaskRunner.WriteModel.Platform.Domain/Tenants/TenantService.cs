@@ -7,8 +7,8 @@ using SlidingApps.TaskRunner.Foundation.Extension;
 using SlidingApps.TaskRunner.Foundation.NHibernate;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
 using SlidingApps.TaskRunner.WriteModel.Mail.Api.Clients;
-using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Accounts;
-using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Accounts.Intents;
+using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Persons;
+using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Persons.Intents;
 using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Tenants;
 using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Tenants.Intents;
 using System.Linq;
@@ -41,18 +41,18 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants
             TenantEvent<CreateTenant> tenantEvent = tenant.Apply(command);
 
             // Create ACCOUNT.
-            ICommandResult accountResult = this.mediator.Send(new AccountCommand<CreateAccount>(command.Intent.UserName, new CreateAccount { EmailAddress = command.Intent.UserName }));
-            AccountEvent<CreateAccount> accountEvent = accountResult.OfType<AccountEvent<CreateAccount>>().Single();
+            ICommandResult accountResult = this.mediator.Send(new PersonCommand<CreateAccount>(command.Intent.UserName, new CreateAccount { EmailAddress = command.Intent.UserName }));
+            PersonEvent<CreateAccount> accountEvent = accountResult.OfType<PersonEvent<CreateAccount>>().Single();
 
             ICommandResult userResult =
                 this.mediator.Send(
-                    new AccountCommand<ChangeAccountUser>(accountEvent.Key,
-                        new ChangeAccountUser
+                    new PersonCommand<ChangePersonUser>(accountEvent.Key,
+                        new ChangePersonUser
                         {
                             Name = command.Intent.UserName,
                             Password = command.Intent.UserPassword
                         }));
-            AccountEvent<ChangeAccountUser> userEvent = userResult.OfType<AccountEvent<ChangeAccountUser>>().Single();
+            PersonEvent<ChangePersonUser> userEvent = userResult.OfType<PersonEvent<ChangePersonUser>>().Single();
 
             // Associate the ACCOUNT with the TENANT.
             TenantAccount tenantAccount = tenant.AddAccount(accountEvent.Identifiers.EntityId);
@@ -75,7 +75,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants
             }
 
             // Delegate to the ACCOUNT MANAGEMENT SERVICE to send an e-mail.
-            this.mediator.Send(new AccountCommand<SendConfirmationLink>(new SendConfirmationLink { Name = command.Intent.UserName }));
+            this.mediator.Send(new PersonCommand<SendConfirmationLink>(new SendConfirmationLink { Name = command.Intent.UserName }));
 
             return new CommandResult(command.Id,
                 new IDomainEvent[]

@@ -2,15 +2,15 @@
 using SlidingApps.TaskRunner.Foundation.NHibernate;
 using System;
 
-namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts.Maps
+namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Persons.Maps
 {
-    public class AccountUserMap
-        : AuditableDataEntityMap<Entities.AccountUser, Guid>
+    public class PersonUserMap
+        : AuditableDataEntityMap<Entities.PersonUser, Guid>
     {
         private const string TABLE_NAME = "Account_User_S";
 
-        public AccountUserMap()
-            : base(Metadata.SCHEMA_NAME, AccountUserMap.TABLE_NAME)
+        public PersonUserMap()
+            : base(Metadata.SCHEMA_NAME, PersonUserMap.TABLE_NAME)
         {
             this.Map(x => x.Name);
             this.Map(x => x.Password);

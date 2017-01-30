@@ -2,15 +2,15 @@
 using FluentNHibernate.Mapping;
 using System;
 
-namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts.Maps
+namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Persons.Maps
 {
-    public class AccountMap
-        : AuditableDataEntityMap<Entities.Account, Guid>
+    public class PersonMap
+        : AuditableDataEntityMap<Entities.Person, Guid>
     {
         private const string TABLE_NAME = "Account_H";
 
-        public AccountMap()
-            : base(Metadata.SCHEMA_NAME, AccountMap.TABLE_NAME)
+        public PersonMap()
+            : base(Metadata.SCHEMA_NAME, PersonMap.TABLE_NAME)
         {
             this.Map(x => x.EmailAddress);
 

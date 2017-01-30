@@ -1,9 +1,9 @@
 ﻿
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 
-namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Accounts.Intents
+namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Persons.Intents
 {
-    public class ChangeAccountProfileName
+    public class ChangePersonIdentityName
         : IIntent
     {
         public string Name { get; set; }

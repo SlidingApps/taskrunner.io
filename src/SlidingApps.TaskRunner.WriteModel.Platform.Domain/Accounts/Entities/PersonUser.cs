@@ -2,19 +2,19 @@
 using SlidingApps.TaskRunner.Foundation.WriteModel;
 using System;
 
-namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts.Entities
+namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Persons.Entities
 {
-    public class AccountUser
+    public class PersonUser
            : AuditableDataEntity<Guid>
     {
-        public AccountUser()
+        public PersonUser()
             : base()
         {
             this.ValidFrom = Constant.DEFAULT_START_DATE;
             this.ValidUntil = Constant.DEFAULT_END_DATE;
         }
 
-        public AccountUser(Guid id)
+        public PersonUser(Guid id)
             : base(id)
         {
             this.ValidFrom = Constant.DEFAULT_START_DATE;
@@ -33,6 +33,6 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts.Entities
 
         public virtual DateTime ValidUntil { get; set; }
 
-        public virtual Account Account { get; set; }
+        public virtual Person Account { get; set; }
     }
 }

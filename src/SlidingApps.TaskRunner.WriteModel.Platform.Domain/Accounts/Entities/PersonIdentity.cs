@@ -2,15 +2,15 @@
 using SlidingApps.TaskRunner.Foundation.WriteModel;
 using System;
 
-namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts.Entities
+namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Persons.Entities
 {
-    public class AccountProfile
+    public class PersonIdentity
         : AuditableDataEntity<Guid>
     {
-        public AccountProfile()
+        public PersonIdentity()
             : base() { }
 
-        public AccountProfile(Guid id)
+        public PersonIdentity(Guid id)
             : base(id) { }
 
         public virtual string Name { get; set; }
@@ -25,6 +25,6 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts.Entities
 
         public virtual string Link { get; set; }
 
-        public virtual Account Account { get; set; }
+        public virtual Person Account { get; set; }
     }
 }

@@ -3,25 +3,25 @@ using FluentValidation;
 using FluentValidation.Results;
 using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts.Intents;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
-using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Accounts;
-using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Accounts.Intents;
+using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Persons;
+using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Persons.Intents;
 using System;
 
-namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
+namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Persons
 {
-    public partial class Account
-        : DomainEntity<Guid, Entities.Account>, IWithValidator<Account>
+    public partial class Person
+        : DomainEntity<Guid, Entities.Person>, IWithValidator<Person>
     {
-        private readonly IValidator<Account> validator;
+        private readonly IValidator<Person> validator;
 
-        public Account(Entities.Account entity, IValidator<Account> validator)
+        public Person(Entities.Person entity, IValidator<Person> validator)
         {
             this.validator = validator;
 
             this.entity = entity;
             if (this.entity.Profile == null)
             {
-                this.entity.Profile = new Entities.AccountProfile(Guid.NewGuid());
+                this.entity.Profile = new Entities.PersonIdentity(Guid.NewGuid());
                 this.entity.Profile.Account = this.entity;
             };
         }
@@ -68,32 +68,32 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
             private set { this.entity.Profile.Link = value; }
         }
 
-        private AccountUser user;
+        private PersonUser user;
 
-        public AccountUser User
+        public PersonUser User
         {
             get
             {
                 if (this.entity.User == null)
                 {
-                    this.entity.User = new Entities.AccountUser(Guid.NewGuid());
+                    this.entity.User = new Entities.PersonUser(Guid.NewGuid());
                     this.entity.User.Account = this.entity;
                 };
 
-                return this.user = new AccountUser(this.entity.User); ;
+                return this.user = new PersonUser(this.entity.User); ;
             }
             private set { this.user = value; }
         }
 
-        public AccountEvent<CreateAccount> Apply(AccountCommand<CreateAccount> command)
+        public PersonEvent<CreateAccount> Apply(PersonCommand<CreateAccount> command)
         {
-            AccountEvent<CreateAccount> domainEvent = new AccountEvent<CreateAccount>(command);
+            PersonEvent<CreateAccount> domainEvent = new PersonEvent<CreateAccount>(command);
             this.When(domainEvent);
 
             return domainEvent;
         }
         
-        public void When(AccountEvent<CreateAccount> domainEvent)
+        public void When(PersonEvent<CreateAccount> domainEvent)
         {
             this.Id = domainEvent.Identifiers.EntityId = Guid.NewGuid();
             this.EmailAddress = domainEvent.Arguments.EmailAddress;
@@ -107,15 +107,15 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
             this.DomainEvents.Add(domainEvent);
         }
 
-        public AccountEvent<ChangeAccountProfileName> Apply(AccountCommand<ChangeAccountProfileName> command)
+        public PersonEvent<ChangePersonIdentityName> Apply(PersonCommand<ChangePersonIdentityName> command)
         {
-            AccountEvent<ChangeAccountProfileName> domainEvent = new AccountEvent<ChangeAccountProfileName>(command);
+            PersonEvent<ChangePersonIdentityName> domainEvent = new PersonEvent<ChangePersonIdentityName>(command);
             this.When(domainEvent);
 
             return domainEvent;
         }
 
-        public void When(AccountEvent<ChangeAccountProfileName> domainEvent)
+        public void When(PersonEvent<ChangePersonIdentityName> domainEvent)
         {
             this.Name = domainEvent.Arguments.Name;
             this.FirstName = domainEvent.Arguments.FirstName;
@@ -123,35 +123,35 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Accounts
             this.DomainEvents.Add(domainEvent);
         }
 
-        public AccountEvent<ChangeAccountUserPeriod> Apply(AccountCommand<ChangeAccountUserPeriod> command)
+        public PersonEvent<ChangePersonUserPeriod> Apply(PersonCommand<ChangePersonUserPeriod> command)
         {
             return this.User.Apply(command);
         }
 
-        public AccountEvent<SendConfirmationLink> Apply(AccountCommand<SendConfirmationLink> command)
+        public PersonEvent<SendConfirmationLink> Apply(PersonCommand<SendConfirmationLink> command)
         {
-            AccountEvent<SendConfirmationLink> domainEvent = new AccountEvent<SendConfirmationLink>(command);
+            PersonEvent<SendConfirmationLink> domainEvent = new PersonEvent<SendConfirmationLink>(command);
             this.When(domainEvent);
 
             return domainEvent;
         }
 
-        public void When(AccountEvent<SendConfirmationLink> domainEvent)
+        public void When(PersonEvent<SendConfirmationLink> domainEvent)
         {
             this.Link = Guid.NewGuid().ToString();
 
             this.DomainEvents.Add(domainEvent);
         }
 
-        public AccountEvent<SendResetPasswordLink> Apply(AccountCommand<SendResetPasswordLink> command)
+        public PersonEvent<SendResetPasswordLink> Apply(PersonCommand<SendResetPasswordLink> command)
         {
-            AccountEvent<SendResetPasswordLink> domainEvent = new AccountEvent<SendResetPasswordLink>(command);
+            PersonEvent<SendResetPasswordLink> domainEvent = new PersonEvent<SendResetPasswordLink>(command);
             this.When(domainEvent);
 
             return domainEvent;
         }
 
-        public void When(AccountEvent<SendResetPasswordLink> domainEvent)
+        public void When(PersonEvent<SendResetPasswordLink> domainEvent)
         {
             this.Link = Guid.NewGuid().ToString().Replace("-", string.Empty).ToUpper();
 

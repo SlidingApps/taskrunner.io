@@ -111,17 +111,17 @@
     <Compile Include="..\AssemblyVersionInfo.cs">
       <Link>Properties\AssemblyVersionInfo.cs</Link>
     </Compile>
-    <Compile Include="Accounts\Account.cs" />
-    <Compile Include="Accounts\AccountService.cs" />
-    <Compile Include="Accounts\AccountUser.cs" />
-    <Compile Include="Accounts\Entities\Account.cs" />
-    <Compile Include="Accounts\Entities\AccountProfile.cs" />
-    <Compile Include="Accounts\Entities\AccountUser.cs" />
-    <Compile Include="Accounts\Maps\AccountMap.cs" />
-    <Compile Include="Accounts\Maps\AccountProfileMap.cs" />
-    <Compile Include="Accounts\Maps\AccountUserMap.cs" />
-    <Compile Include="Accounts\Validations\AccountValidator.cs" />
-    <Compile Include="Accounts\Validations\CreateAccountValidator.cs" />
+    <Compile Include="Accounts\Person.cs" />
+    <Compile Include="Accounts\PersonService.cs" />
+    <Compile Include="Accounts\PersonUser.cs" />
+    <Compile Include="Accounts\Entities\Person.cs" />
+    <Compile Include="Accounts\Entities\PersonIdentity.cs" />
+    <Compile Include="Accounts\Entities\PersonUser.cs" />
+    <Compile Include="Accounts\Maps\PersonMap.cs" />
+    <Compile Include="Accounts\Maps\PersonIdentityMap.cs" />
+    <Compile Include="Accounts\Maps\PersonUserMap.cs" />
+    <Compile Include="Accounts\Validations\PersonValidator.cs" />
+    <Compile Include="Accounts\Validations\CreatePersonValidator.cs" />
     <Compile Include="AutofacModule.cs" />
     <Compile Include="Constant.cs" />
     <Compile Include="EntityStatus.cs" />
