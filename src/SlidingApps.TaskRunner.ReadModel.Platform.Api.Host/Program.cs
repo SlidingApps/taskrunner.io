@@ -56,25 +56,6 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Api.Host
                         break;
                     }
                 }
-
-
-                //using (WebApp.Start<Startup>(new StartOptions(hostUri)))
-                //{
-                //                Program.WriteMessage("Listening ...");
-                //	while (true)
-                //	{
-                //		while (!Console.KeyAvailable)
-                //		{
-                //			Thread.Sleep(250);
-                //		}
-
-                //		if (Console.ReadKey().Key == ConsoleKey.Q) 
-                //		{
-                //                        Program.WriteMessage("Received 'q' to quit");
-                //			break;
-                //		}
-                //	}
-                //}
             }
 			catch (Exception ex)
 			{
