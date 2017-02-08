@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Database\DataDefinition\00100.BU.20170124.export.sql" />
     <Content Include="Database\Maintenance\00001.M.Clean_Up_Data.sql" />
     <Content Include="Database\DataDefinition\00001.CT.Tenant_H.sql" />
     <Content Include="Database\DataDefinition\00002.AT.Tenant_H.sql" />

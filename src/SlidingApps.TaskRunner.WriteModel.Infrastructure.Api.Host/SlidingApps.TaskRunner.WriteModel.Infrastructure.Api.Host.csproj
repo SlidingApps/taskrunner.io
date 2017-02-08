@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CEA11CE7-8E8B-48AE-9345-4EFC7595D77B}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{F773EBFB-D9DA-4EC6-ADFE-FE42FDB657D8}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain</RootNamespace>
-    <AssemblyName>SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain</AssemblyName>
+    <RootNamespace>SlidingApps.TaskRunner.WriteModel.Infrastructure.Api.Host</RootNamespace>
+    <AssemblyName>SlidingApps.TaskRunner.WriteModel.Infrastructure.Api.Host</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,9 +23,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\build\SlidingApps.TaskRunner.WriteModel.Mail.Domain\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -34,20 +36,40 @@
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="FluentNHibernate, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentNHibernate.2.0.3.0\lib\net40\FluentNHibernate.dll</HintPath>
+    <Reference Include="Autofac.Integration.Owin, Version=3.1.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Owin.3.1.0\lib\net45\Autofac.Integration.Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="FluentValidation, Version=5.6.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentValidation.5.6.2.0\lib\Net45\FluentValidation.dll</HintPath>
+    <Reference Include="Autofac.Integration.WebApi, Version=3.4.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.WebApi2.3.4.0\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
+    <Reference Include="Autofac.Integration.WebApi.Owin, Version=3.3.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.WebApi2.Owin.3.3.0\lib\net45\Autofac.Integration.WebApi.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DocsByReflection, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocsByReflection.1.0.8.0\lib\net40\DocsByReflection.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HalJsonNet, Version=0.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HalJsonNet.0.1.2\lib\net45\HalJsonNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HelperSharp, Version=1.0.5310.16532, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HelperSharp.0.0.3.7\lib\net35\HelperSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net.Ext.Json, Version=1.2.13.29, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.Ext.Json.1.2.13.1.2.13.20140804\lib\net35-full\log4net.Ext.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net.RabbitMQ, Version=0.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.RabbitMQAppender.1.3.0\lib\net40\log4net.RabbitMQ.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MassTransit, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
@@ -70,6 +92,26 @@
       <HintPath>..\packages\MediatR.2.0.2\lib\net45\MediatR.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Cors, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Cors.3.0.1\lib\net45\Microsoft.Owin.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.HttpListener, Version=2.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.HttpListener.2.0.2\lib\net45\Microsoft.Owin.Host.HttpListener.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Hosting, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Hosting.3.0.1\lib\net45\Microsoft.Owin.Hosting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.8\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NewId, Version=2.1.3.0, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
       <HintPath>..\packages\NewId.2.1.3\lib\net45\NewId.dll</HintPath>
       <Private>True</Private>
@@ -78,26 +120,34 @@
       <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <HintPath>..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RabbitMQ.Client, Version=3.5.7.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
       <HintPath>..\packages\RabbitMQ.Client.3.5.7\lib\net40\RabbitMQ.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
+    <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=1.0.30.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Immutable.1.0.30\lib\portable-net45+win8+wp8\System.Collections.Immutable.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web.Cors, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.0.0\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.Owin, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml.Linq" />
@@ -106,40 +156,26 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WebApiProxy.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebApiProxy.1.2.0.7729\lib\net45\WebApiProxy.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebApiProxy.Server, Version=1.2.0.7729, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebApiProxy.1.2.0.7729\lib\net45\WebApiProxy.Server.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\AssemblySharedInfo.cs">
-      <Link>Properties\AssemblySharedInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\AssemblyVersionInfo.cs">
-      <Link>Properties\AssemblyVersionInfo.cs</Link>
-    </Compile>
+    <Compile Include="AutofacConfig.cs" />
     <Compile Include="AutofacModule.cs" />
-    <Compile Include="Communication.CommunicationInfo.cs" />
-    <Compile Include="Communication.cs" />
-    <Compile Include="Entities\Communication.cs" />
-    <Compile Include="Entities\MailCommunication.cs" />
-    <Compile Include="Entities\MailTemplate.cs" />
-    <Compile Include="Entities\MailTemplateInfo.cs" />
-    <Compile Include="MailCommunicationInfo.cs" />
-    <Compile Include="MailGun.cs" />
-    <Compile Include="MailParameters.cs" />
-    <Compile Include="MailService.cs" />
-    <Compile Include="MailTemplate.cs" />
-    <Compile Include="Maps\CommunicationMap.cs" />
-    <Compile Include="Maps\MailCommunicationMap.cs" />
-    <Compile Include="Maps\MailTemplateInfoMap.cs" />
-    <Compile Include="Maps\MailTemplateMap.cs" />
-    <Compile Include="Metadata.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Validations\CommunicationValidator.cs" />
-    <Compile Include="Validations\MailTemplateValidator.cs" />
+    <Compile Include="StartUp.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation.Configuration\SlidingApps.TaskRunner.Foundation.Configuration.csproj">
       <Project>{036BA076-A10B-4A2F-B2FD-9174D7F30F0F}</Project>
@@ -149,33 +185,25 @@
       <Project>{E13532DE-5159-4031-95F3-BFDA5053342B}</Project>
       <Name>SlidingApps.TaskRunner.Foundation.Contract</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation.Infrastructure.Contract\SlidingApps.TaskRunner.Foundation.Infrastructure.Contract.csproj">
-      <Project>{f9116265-9f56-4c65-b3e6-124ed20a6721}</Project>
-      <Name>SlidingApps.TaskRunner.Foundation.Infrastructure.Contract</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation.Infrastructure\SlidingApps.TaskRunner.Foundation.Infrastructure.csproj">
       <Project>{34A3A49F-D391-4F83-A10D-4CFEEA3DFDF9}</Project>
       <Name>SlidingApps.TaskRunner.Foundation.Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation.NHibernate.Contract\SlidingApps.TaskRunner.Foundation.NHibernate.Contract.csproj">
-      <Project>{E123D615-8BA3-438C-8E46-B99E09312522}</Project>
-      <Name>SlidingApps.TaskRunner.Foundation.NHibernate.Contract</Name>
+    <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation.MassTransit\SlidingApps.TaskRunner.Foundation.MassTransit.csproj">
+      <Project>{C866A9C7-BF83-46F7-A8AE-7204BBBCFC7C}</Project>
+      <Name>SlidingApps.TaskRunner.Foundation.MassTransit</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation.NHibernate\SlidingApps.TaskRunner.Foundation.NHibernate.csproj">
-      <Project>{147DCDD1-7B9C-45DE-BC2D-9756D687B79B}</Project>
-      <Name>SlidingApps.TaskRunner.Foundation.NHibernate</Name>
+    <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation.Web\SlidingApps.TaskRunner.Foundation.Web.csproj">
+      <Project>{8E0FEBBF-FC49-439C-AC8D-24E0A327783A}</Project>
+      <Name>SlidingApps.TaskRunner.Foundation.Web</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SlidingApps.TaskRunner.Foundation\SlidingApps.TaskRunner.Foundation.csproj">
-      <Project>{c57fd21d-cc3b-4bac-9431-19d92efccb2b}</Project>
-      <Name>SlidingApps.TaskRunner.Foundation</Name>
+    <ProjectReference Include="..\SlidingApps.TaskRunner.WriteModel.Infrastructure.Api\SlidingApps.TaskRunner.WriteModel.Infrastructure.Api.csproj">
+      <Project>{0545c12f-0ef7-413b-a6d4-93ec31b16193}</Project>
+      <Name>SlidingApps.TaskRunner.WriteModel.Infrastructure.Api</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SlidingApps.TaskRunner.WriteModel.Mail.Domain.Model\SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.csproj">
-      <Project>{1BCEF76C-4A38-481E-8B71-EC024C9A314E}</Project>
-      <Name>SlidingApps.TaskRunner.WriteModel.Communication.Domain.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SlidingApps.TaskRunner.WriteModel.Platform.Domain\SlidingApps.TaskRunner.WriteModel.Platform.Domain.csproj">
-      <Project>{3A6F8265-538A-43D5-910F-7862E40C46D9}</Project>
-      <Name>SlidingApps.TaskRunner.WriteModel.Platform.Domain</Name>
+    <ProjectReference Include="..\SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain\SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.csproj">
+      <Project>{cea11ce7-8e8b-48ae-9345-4efc7595d77b}</Project>
+      <Name>SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

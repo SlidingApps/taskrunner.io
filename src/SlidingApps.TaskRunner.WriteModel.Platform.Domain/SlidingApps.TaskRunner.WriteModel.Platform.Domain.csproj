@@ -181,7 +181,7 @@
       <Project>{c57fd21d-cc3b-4bac-9431-19d92efccb2b}</Project>
       <Name>SlidingApps.TaskRunner.Foundation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SlidingApps.TaskRunner.WriteModel.Mail.Proxy\SlidingApps.TaskRunner.WriteModel.Infrastructure.Proxy.csproj">
+    <ProjectReference Include="..\SlidingApps.TaskRunner.WriteModel.Infrastructure.Proxy\SlidingApps.TaskRunner.WriteModel.Infrastructure.Proxy.csproj">
       <Project>{6599a2bb-d495-4e6b-889c-4e2a19a3b17d}</Project>
       <Name>SlidingApps.TaskRunner.WriteModel.Infrastructure.Proxy</Name>
     </ProjectReference>
