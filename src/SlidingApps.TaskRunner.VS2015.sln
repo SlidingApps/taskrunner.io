@@ -89,7 +89,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platform", "Platform", "{60
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingApps.TaskRunner.WriteModel.Infrastructure.Proxy", "SlidingApps.TaskRunner.WriteModel.Infrastructure.Proxy\SlidingApps.TaskRunner.WriteModel.Infrastructure.Proxy.csproj", "{6599A2BB-D495-4E6B-889C-4E2A19A3B17D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Communication", "Communication", "{C6991B48-2DB6-44CA-AFD4-F13E6C2D06EA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{C6991B48-2DB6-44CA-AFD4-F13E6C2D06EA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{05BF0D4A-9A60-415B-8BEB-CA48318A191D}"
 	ProjectSection(SolutionItems) = preProject

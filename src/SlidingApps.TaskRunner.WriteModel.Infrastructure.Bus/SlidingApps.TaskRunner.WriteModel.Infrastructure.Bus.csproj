@@ -85,7 +85,7 @@
     </ProjectReference>
     <ProjectReference Include="..\SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model\SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.csproj">
       <Project>{1BCEF76C-4A38-481E-8B71-EC024C9A314E}</Project>
-      <Name>SlidingApps.TaskRunner.WriteModel.Communication.Domain.Model</Name>
+      <Name>SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

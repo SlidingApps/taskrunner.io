@@ -1,5 +1,6 @@
-﻿using SlidingApps.TaskRunner.Foundation.NHibernate;
+﻿
 using FluentNHibernate.Mapping;
+using SlidingApps.TaskRunner.Foundation.NHibernate;
 using System;
 
 namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Persons.Maps
