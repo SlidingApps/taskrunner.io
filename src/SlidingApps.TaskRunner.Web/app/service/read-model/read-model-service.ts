@@ -6,7 +6,7 @@ import { RestService } from '../rest/rest-service';
 
 // MODEL
 import { ITenantResource, TenantResource } from './tenant/tenant-resource';
-import { IAccountResource, AccountResource } from './account/account-resource';
+import { IPersonResource, PersonResource } from './person/person-resource';
 
 export class ReadModelServiceProvider implements angular.IServiceProvider {
     public $get: Array<any> = [
@@ -25,7 +25,7 @@ export class ReadModelService {
 
     constructor(private $q: ng.IQService, private restService: RestService, private hostUrl: any, private apiPath: any) {
         this.tenant = new TenantResource(this.$q, this.service);
-        this.account = new AccountResource(this.$q, this.service);
+        this.person = new PersonResource(this.$q, this.service);
     }
 
     private get service() {
@@ -33,5 +33,5 @@ export class ReadModelService {
     }
 
     public tenant: ITenantResource;
-    public account: IAccountResource;
+    public person: IPersonResource;
 }

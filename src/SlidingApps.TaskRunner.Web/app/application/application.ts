@@ -27,7 +27,7 @@ import { TenantController } from '../view/tenant/tenant-controller';
 })
 @StateConfig([
     { name: 'home', url: '/', component: HomeController },
-    { name: 'account', url: '/account', component: AccountController },
+    { name: 'account', url: '/person', component: AccountController },
     { name: 'tenant', url: '/tenant', component: TenantController }
 ])
 @Inject('$log')

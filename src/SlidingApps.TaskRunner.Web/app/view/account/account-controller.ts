@@ -24,27 +24,27 @@ import 'angular-ui-router';
         name: 'account.signin',
         url: '/signin',
         component: SignIn,
-        template: '<account-sign-in />'
+        template: '<person-sign-in />'
     }, {
         name: 'account.signout',
         url: '/signout',
         component: SignOut,
-        template: '<account-sign-out />'
+        template: '<person-sign-out />'
     }, {
         name: 'account.getStarted',
         url: '/getstarted',
         component: GetStarted,
-        template: '<account-get-started />'
+        template: '<person-get-started />'
     }, {
         name: 'account.forgotPassword',
         url: '/forgotpassword',
         component: ForgotPassword,
-        template: '<account-forgot-password />'
+        template: '<person-forgot-password />'
     }, {
         name: 'account.resetPassword',
         url: '/{username}/resetpassword/{link}',
         component: ResetPassword,
-        template: '<account-reset-password />'
+        template: '<person-reset-password />'
     }
 ])
 export class AccountController { }

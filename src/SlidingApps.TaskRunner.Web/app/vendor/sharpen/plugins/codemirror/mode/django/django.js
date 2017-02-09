@@ -77,7 +77,7 @@
 
           var ch = stream.next();
 
-          // Take into account the backslash for escaping characters, such as
+          // Take into person the backslash for escaping characters, such as
           // the string delimeter.
           if (ch == "\\") {
             state.escapeNext = true;

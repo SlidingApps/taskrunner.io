@@ -7,21 +7,21 @@ import { RestServiceConnector } from '../../rest/rest-service';
 import { DecryptedLink, IDecryptedLink } from './decrypted-link';
 
 
-export interface IAccountResource {
+export interface IPersonResource {
     decryptLink(username: string, link: string): angular.IPromise<DecryptedLink>;
 }
 
-export class AccountResource implements IAccountResource {
+export class PersonResource implements IPersonResource {
 
     constructor(private $q: ng.IQService, private service: RestServiceConnector) { }
 
-    private static RESOURCE: string = 'accounts';
+    private static RESOURCE: string = 'persons';
 
     public decryptLink(username: string, link: string): angular.IPromise<DecryptedLink> {
         let deferred: angular.IDeferred<DecryptedLink> = this.$q.defer<DecryptedLink>();
 
         this.service
-            .all(`${AccountResource.RESOURCE}/${username}/decryptions/${link}`)
+            .all(`${PersonResource.RESOURCE}/${username}/decryptions/${link}`)
             .get()
             .then((representation: IDecryptedLink) => {
                 deferred.resolve(new DecryptedLink(representation));
