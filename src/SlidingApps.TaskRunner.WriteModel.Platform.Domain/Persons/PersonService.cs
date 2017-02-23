@@ -1,7 +1,6 @@
 ﻿
 using MediatR;
 using NHibernate;
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts.Intents;
 using SlidingApps.TaskRunner.Foundation.Configuration;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Extension;
@@ -16,7 +15,7 @@ using System.Linq;
 namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Persons
 {
     public class PersonService :
-        ICommandHandler<PersonCommand<CreateAccount>>,
+        ICommandHandler<PersonCommand<CreatePerson>>,
         ICommandHandler<PersonCommand<ChangePersonIdentityName>>,
         ICommandHandler<PersonCommand<ChangePersonUserPeriod>>,
         ICommandHandler<PersonCommand<ChangePersonUser>>,
@@ -36,10 +35,10 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Persons
             this.validator = validator;
         }
 
-        public ICommandResult Handle(PersonCommand<CreateAccount> command)
+        public ICommandResult Handle(PersonCommand<CreatePerson> command)
         {
             Person entity = new Person(new Entities.Person(), this.validator.CreateFor<Person>());
-            PersonEvent<CreateAccount> result = entity.Apply(command);
+            PersonEvent<CreatePerson> result = entity.Apply(command);
 
             entity
                 .IfValid(e => this.queryProvider.Session.Save(e.GetDataEntity()))

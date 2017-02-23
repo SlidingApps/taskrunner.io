@@ -1,7 +1,6 @@
 ﻿
 using MassTransit;
 using MediatR;
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts.Intents;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Transaction;
 using SlidingApps.TaskRunner.Foundation.MassTransit;
@@ -19,7 +18,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Bus
 
         IConsumer<CommandMessage<TenantCommand<CreateTenant>>>,
         IConsumer<CommandMessage<TenantCommand<ChangeTenantInfo>>>,
-        IConsumer<CommandMessage<PersonCommand<CreateAccount>>>,
+        IConsumer<CommandMessage<PersonCommand<CreatePerson>>>,
         IConsumer<CommandMessage<PersonCommand<ChangePersonIdentityName>>>,
         IConsumer<CommandMessage<PersonCommand<ChangePersonUserPeriod>>>,
         IConsumer<CommandMessage<PersonCommand<SendConfirmationLink>>>,
@@ -40,7 +39,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Bus
             return this.ConsumeCommand(context);
         }
 
-        public Task Consume(ConsumeContext<CommandMessage<PersonCommand<CreateAccount>>> context)
+        public Task Consume(ConsumeContext<CommandMessage<PersonCommand<CreatePerson>>> context)
         {
             return this.ConsumeCommand(context);
         }

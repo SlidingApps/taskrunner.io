@@ -6,7 +6,7 @@ using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Persons.Intents;
 namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Persons.Validations
 {
     public class CreatePersonValidator
-        : AbstractValidator<PersonCommand<CreateAccount>>
+        : AbstractValidator<PersonCommand<CreatePerson>>
     {
         public CreatePersonValidator()
         {

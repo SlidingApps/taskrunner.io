@@ -8,7 +8,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Persons.Maps
     public class PersonMap
         : AuditableDataEntityMap<Entities.Person, Guid>
     {
-        private const string TABLE_NAME = "Account_H";
+        private const string TABLE_NAME = "Person_H";
 
         public PersonMap()
             : base(Metadata.SCHEMA_NAME, PersonMap.TABLE_NAME)

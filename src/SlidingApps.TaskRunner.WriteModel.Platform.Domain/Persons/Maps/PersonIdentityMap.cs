@@ -8,7 +8,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Persons.Maps
     public class PersonIdentityMap
         : AuditableDataEntityMap<Entities.PersonIdentity, Guid>
     {
-        private const string TABLE_NAME = "Account_Profile_S";
+        private const string TABLE_NAME = "Person_Identity_S";
 
         public PersonIdentityMap()
             : base(Metadata.SCHEMA_NAME, PersonIdentityMap.TABLE_NAME)
@@ -20,7 +20,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Persons.Maps
             this.Map(x => x.Status).CustomType<GenericEnumMapper<EntityStatus>>();
             this.Map(x => x.Link);
 
-            this.References(x => x.Account).Unique().Column("AccountId");
+            this.References(x => x.Account).Unique().Column("PersonId");
         }
     }
 }

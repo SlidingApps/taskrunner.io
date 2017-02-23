@@ -56,7 +56,7 @@
     <Compile Include="Persons\Intents\ChangePersonUser.cs" />
     <Compile Include="Persons\Intents\ChangePersonUserPeriod.cs" />
     <Compile Include="Persons\Intents\SendConfirmationLink.cs" />
-    <Compile Include="Persons\Intents\CreateAccount.cs" />
+    <Compile Include="Persons\Intents\CreatePerson.cs" />
     <Compile Include="Persons\Intents\SendResetPasswordLink.cs" />
     <Compile Include="Persons\PersonKey.cs" />
     <Compile Include="Constant.cs" />

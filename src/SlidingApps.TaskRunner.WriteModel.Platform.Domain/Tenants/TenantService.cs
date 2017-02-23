@@ -41,8 +41,8 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants
             TenantEvent<CreateTenant> tenantEvent = tenant.Apply(command);
 
             // Create ACCOUNT.
-            ICommandResult accountResult = this.mediator.Send(new PersonCommand<CreateAccount>(command.Intent.UserName, new CreateAccount { EmailAddress = command.Intent.UserName }));
-            PersonEvent<CreateAccount> accountEvent = accountResult.OfType<PersonEvent<CreateAccount>>().Single();
+            ICommandResult accountResult = this.mediator.Send(new PersonCommand<CreatePerson>(command.Intent.UserName, new CreatePerson { EmailAddress = command.Intent.UserName }));
+            PersonEvent<CreatePerson> accountEvent = accountResult.OfType<PersonEvent<CreatePerson>>().Single();
 
             ICommandResult userResult =
                 this.mediator.Send(

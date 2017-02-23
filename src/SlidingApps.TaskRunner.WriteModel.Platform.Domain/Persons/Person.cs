@@ -1,7 +1,6 @@
 ﻿
 using FluentValidation;
 using FluentValidation.Results;
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts.Intents;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
 using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Persons;
 using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Persons.Intents;
@@ -85,15 +84,15 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Persons
             private set { this.user = value; }
         }
 
-        public PersonEvent<CreateAccount> Apply(PersonCommand<CreateAccount> command)
+        public PersonEvent<CreatePerson> Apply(PersonCommand<CreatePerson> command)
         {
-            PersonEvent<CreateAccount> domainEvent = new PersonEvent<CreateAccount>(command);
+            PersonEvent<CreatePerson> domainEvent = new PersonEvent<CreatePerson>(command);
             this.When(domainEvent);
 
             return domainEvent;
         }
         
-        public void When(PersonEvent<CreateAccount> domainEvent)
+        public void When(PersonEvent<CreatePerson> domainEvent)
         {
             this.Id = domainEvent.Identifiers.EntityId = Guid.NewGuid();
             this.EmailAddress = domainEvent.Arguments.EmailAddress;

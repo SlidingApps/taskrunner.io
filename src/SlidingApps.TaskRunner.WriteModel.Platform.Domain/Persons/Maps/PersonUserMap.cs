@@ -7,7 +7,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Persons.Maps
     public class PersonUserMap
         : AuditableDataEntityMap<Entities.PersonUser, Guid>
     {
-        private const string TABLE_NAME = "Account_User_S";
+        private const string TABLE_NAME = "Person_User_S";
 
         public PersonUserMap()
             : base(Metadata.SCHEMA_NAME, PersonUserMap.TABLE_NAME)
@@ -17,7 +17,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Persons.Maps
             this.Map(x => x.Salt);
             this.Map(x => x.ValidUntil);
 
-            this.References(x => x.Account).Unique().Column("AccountId");
+            this.References(x => x.Account).Unique().Column("PersonId");
         }
     }
 }

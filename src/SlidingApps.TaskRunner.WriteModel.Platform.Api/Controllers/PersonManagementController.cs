@@ -1,5 +1,4 @@
 ﻿
-using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Accounts.Intents;
 using SlidingApps.TaskRunner.Foundation.MessageBus;
 using SlidingApps.TaskRunner.Foundation.Web;
 using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Persons;
@@ -24,9 +23,9 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Api.Controllers
         }
 
         [HttpPost, Route("")]
-        public async Task<HttpResponseMessage> PostCreateAccount([FromBody] CreateAccount intent)
+        public async Task<HttpResponseMessage> PostCreateAccount([FromBody] CreatePerson intent)
         {
-            var command = new PersonCommand<CreateAccount>(intent);
+            var command = new PersonCommand<CreatePerson>(intent);
             await this.connector.SendCommand(command);
 
             return ApiResponse.CommandResponse(command);
