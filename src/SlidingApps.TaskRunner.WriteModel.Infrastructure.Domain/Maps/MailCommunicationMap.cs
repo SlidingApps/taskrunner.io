@@ -1,8 +1,8 @@
 ﻿
 using FluentNHibernate.Mapping;
 using SlidingApps.TaskRunner.Foundation.NHibernate;
-using SlidingApps.TaskRunner.WriteModel.Communication.Domain.Model;
 using System;
+using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model;
 
 namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain.Maps
 {

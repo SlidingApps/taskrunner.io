@@ -5,15 +5,15 @@ using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
 using SlidingApps.TaskRunner.Foundation.NHibernate;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
-using SlidingApps.TaskRunner.WriteModel.Communication.Domain.Model;
-using SlidingApps.TaskRunner.WriteModel.Communication.Domain.Model.Intent;
+using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model;
+using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Intents;
 using System.Linq;
 
 namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
 {
     public class MailService :
         ICommandHandler<MailCommand<SendTenantConfirmationLink>>,
-        ICommandHandler<MailCommand<SendAccountConfirmationLink>>,
+        ICommandHandler<MailCommand<SendPersonConfirmationLink>>,
         ICommandHandler<MailCommand<SendResetPasswordLink>>
     {
         private readonly IQueryProvider<ISession> queryProvider;
@@ -37,7 +37,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
             return new CommandResult(command.Id);
         }
 
-        public ICommandResult Handle(MailCommand<SendAccountConfirmationLink> command)
+        public ICommandResult Handle(MailCommand<SendPersonConfirmationLink> command)
         {
             this.SendMail(MailService.ACCOUNT_CONFIRMATION_LINK_TEMPLATE, command);
 
@@ -56,7 +56,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
         private void SendMail<TMailIntent>(string templateCode, MailCommand<TMailIntent> command)
             where TMailIntent : IMailIntent
         {
-            var existing = this.queryProvider.CreateQuery<Entities.MailTemplate>().Where(x => x.Code == templateCode).Single();
+            var existing = this.queryProvider.CreateQuery<Entities.MailTemplate>().Single(x => x.Code == templateCode);
             var entity = new MailTemplate(existing, this.validator.CreateFor<MailTemplate>());
 
             command.Intent.Subject = entity.Subject;

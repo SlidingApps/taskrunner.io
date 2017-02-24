@@ -1,6 +1,6 @@
 ﻿
 using SlidingApps.TaskRunner.Foundation.WriteModel;
-using SlidingApps.TaskRunner.WriteModel.Communication.Domain.Model;
+using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model;
 using System;
 
 namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain.Entities

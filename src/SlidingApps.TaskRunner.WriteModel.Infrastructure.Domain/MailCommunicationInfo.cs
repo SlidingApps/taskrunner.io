@@ -1,7 +1,7 @@
 ﻿
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
-using SlidingApps.TaskRunner.WriteModel.Communication.Domain.Model;
-using SlidingApps.TaskRunner.WriteModel.Communication.Domain.Model.Intent;
+using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model;
+using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Intents;
 using System;
 
 namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain

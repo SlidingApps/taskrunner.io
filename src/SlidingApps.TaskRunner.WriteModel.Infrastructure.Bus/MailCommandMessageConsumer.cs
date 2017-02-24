@@ -5,8 +5,8 @@ using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Transaction;
 using SlidingApps.TaskRunner.Foundation.MassTransit;
 using SlidingApps.TaskRunner.Foundation.MessageBus;
-using SlidingApps.TaskRunner.WriteModel.Communication.Domain.Model;
-using SlidingApps.TaskRunner.WriteModel.Communication.Domain.Model.Intent;
+using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model;
+using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Intents;
 using System.Threading.Tasks;
 
 namespace SlidingApps.TaskRunner.WriteModel.Communication.Bus
@@ -15,7 +15,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Bus
         : CommandMessageConsumer,
 
         IConsumer<CommandMessage<MailCommand<SendTenantConfirmationLink>>>,
-        IConsumer<CommandMessage<MailCommand<SendAccountConfirmationLink>>>,
+        IConsumer<CommandMessage<MailCommand<SendPersonConfirmationLink>>>,
         IConsumer<CommandMessage<MailCommand<SendResetPasswordLink>>>
     {
         public MailCommandMessageConsumer() { }
@@ -28,7 +28,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Bus
             return this.ConsumeCommand(context);
         }
 
-        public Task Consume(ConsumeContext<CommandMessage<MailCommand<SendAccountConfirmationLink>>> context)
+        public Task Consume(ConsumeContext<CommandMessage<MailCommand<SendPersonConfirmationLink>>> context)
         {
             return this.ConsumeCommand(context);
         }

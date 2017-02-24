@@ -1,8 +1,8 @@
 ﻿
 using SlidingApps.TaskRunner.Foundation.MessageBus;
 using SlidingApps.TaskRunner.Foundation.Web;
-using SlidingApps.TaskRunner.WriteModel.Communication.Domain.Model;
-using SlidingApps.TaskRunner.WriteModel.Communication.Domain.Model.Intent;
+using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model;
+using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Intents;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -31,9 +31,9 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Api.Controllers
         }
 
         [HttpPost, Route("accountconfirmation")]
-        public async Task<HttpResponseMessage> PostSendAccountConfirmationLink([FromBody] SendAccountConfirmationLink intent)
+        public async Task<HttpResponseMessage> PostSendAccountConfirmationLink([FromBody] SendPersonConfirmationLink intent)
         {
-            var command = new MailCommand<SendAccountConfirmationLink>(intent);
+            var command = new MailCommand<SendPersonConfirmationLink>(intent);
             await this.connector.SendCommand(command);
 
             return ApiResponse.CommandResponse(command);
