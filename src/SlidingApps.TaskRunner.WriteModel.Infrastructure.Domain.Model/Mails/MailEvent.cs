@@ -2,7 +2,7 @@
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
 
-namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model
+namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Mails
 {
     public sealed class MailEvent<TProps> 
         : DomainEvent<TProps>, IDomainEvent

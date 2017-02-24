@@ -1,5 +1,5 @@
 ﻿
-namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Intents
+namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Mails.Intents
 {
     public class SendTenantConfirmationLink
         : MailIntent

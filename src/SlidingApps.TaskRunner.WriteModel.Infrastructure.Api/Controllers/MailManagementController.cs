@@ -1,8 +1,8 @@
 ﻿
 using SlidingApps.TaskRunner.Foundation.MessageBus;
 using SlidingApps.TaskRunner.Foundation.Web;
-using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model;
-using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Intents;
+using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Mails;
+using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Mails.Intents;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;

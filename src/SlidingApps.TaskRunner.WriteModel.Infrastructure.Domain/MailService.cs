@@ -5,8 +5,8 @@ using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
 using SlidingApps.TaskRunner.Foundation.NHibernate;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
-using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model;
-using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Intents;
+using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Mails;
+using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Mails.Intents;
 using System.Linq;
 
 namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain

@@ -2,7 +2,7 @@
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
 
-namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model
+namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Mails
 {
     public class MailCommand<TIntent>
         : Command<EmptyKey, TIntent> where TIntent : IIntent
