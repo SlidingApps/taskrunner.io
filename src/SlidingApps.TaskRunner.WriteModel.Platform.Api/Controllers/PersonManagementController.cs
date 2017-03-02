@@ -1,9 +1,9 @@
 ﻿
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Intents;
 using SlidingApps.TaskRunner.Foundation.MessageBus;
 using SlidingApps.TaskRunner.Foundation.Web;
 using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Persons;
 using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Persons.Intents;
-using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;

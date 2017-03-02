@@ -2,7 +2,7 @@
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using System;
 
-namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Persons.Intents
+namespace SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Intents
 {
     public class ChangePersonUserPeriod
         : IIntent

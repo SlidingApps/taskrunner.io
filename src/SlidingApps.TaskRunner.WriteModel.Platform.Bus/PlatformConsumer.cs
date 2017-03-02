@@ -1,6 +1,7 @@
 ﻿
 using MassTransit;
 using MediatR;
+using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Intents;
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Transaction;
 using SlidingApps.TaskRunner.Foundation.MassTransit;
