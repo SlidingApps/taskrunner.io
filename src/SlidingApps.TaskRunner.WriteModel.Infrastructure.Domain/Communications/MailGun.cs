@@ -5,7 +5,7 @@ using SlidingApps.TaskRunner.Foundation.Configuration;
 using System;
 using System.Linq;
 
-namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
+namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Communications
 {
     internal class MailGun
     {

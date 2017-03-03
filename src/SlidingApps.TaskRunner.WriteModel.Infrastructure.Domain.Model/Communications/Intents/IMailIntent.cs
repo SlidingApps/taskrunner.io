@@ -1,7 +1,7 @@
 ﻿
 using SlidingApps.TaskRunner.Foundation.Cqrs;
 
-namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Mails.Intents
+namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Communications.Intents
 {
     public interface IMailIntent
         : IIntent

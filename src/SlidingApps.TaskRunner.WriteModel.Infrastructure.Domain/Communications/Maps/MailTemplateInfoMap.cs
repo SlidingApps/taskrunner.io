@@ -1,11 +1,12 @@
 ﻿
 using SlidingApps.TaskRunner.Foundation.NHibernate;
 using System;
+using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Communications.Entities;
 
-namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain.Maps
+namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Communications.Maps
 {
     public class MailTemplateInfoMap
-        : AuditableDataEntityMap<Entities.MailTemplateInfo, Guid>
+        : AuditableDataEntityMap<MailTemplateInfo, Guid>
     {
         private const string TABLE_NAME = "Mail_Template_Info_S";
 

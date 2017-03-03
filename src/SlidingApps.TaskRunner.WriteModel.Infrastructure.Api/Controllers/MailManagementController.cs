@@ -1,13 +1,12 @@
-﻿
-using SlidingApps.TaskRunner.Foundation.MessageBus;
-using SlidingApps.TaskRunner.Foundation.Web;
-using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Mails;
-using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Mails.Intents;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using SlidingApps.TaskRunner.Foundation.MessageBus;
+using SlidingApps.TaskRunner.Foundation.Web;
+using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Communications;
+using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Communications.Intents;
 
-namespace SlidingApps.TaskRunner.WriteModel.Communication.Api.Controllers
+namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Api.Controllers
 {
     [RoutePrefix("command/mail"), ApiExceptionFilter]
     public class MailManagementController

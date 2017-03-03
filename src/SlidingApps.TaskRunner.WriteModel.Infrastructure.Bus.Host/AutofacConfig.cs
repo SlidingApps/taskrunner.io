@@ -1,6 +1,7 @@
-﻿using Autofac;
+﻿
+using Autofac;
 
-namespace SlidingApps.TaskRunner.WriteModel.Communication.Bus.Host
+namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Bus.Host
 {
     public class AutofacConfig
     {
@@ -9,7 +10,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Bus.Host
             ContainerBuilder builder = new ContainerBuilder();
 
             builder.RegisterModule<AutofacModule>();
-            builder.RegisterAssemblyModules(typeof(WriteModel.Communication.Domain.AutofacModule).Assembly);
+            builder.RegisterAssemblyModules(typeof(Domain.AutofacModule).Assembly);
 
             return builder.Build();
         }

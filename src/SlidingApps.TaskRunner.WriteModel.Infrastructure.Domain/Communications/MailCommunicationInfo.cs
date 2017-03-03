@@ -1,10 +1,11 @@
 ﻿
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
-using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Mails;
-using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Mails.Intents;
+using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Communications;
+using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Communications.Intents;
 using System;
+using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Communications.Entities;
 
-namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
+namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Communications
 {
     public sealed class MailCommunicationInfo
         : Communication<MailCommunicationInfo>.ConmmunicationInfo
@@ -51,7 +52,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
 
             if (this.Parent.GetDataEntity().Mail == null)
             {
-                this.Parent.GetDataEntity().Mail = new Entities.MailCommunication(Guid.NewGuid());
+                this.Parent.GetDataEntity().Mail = new MailCommunication(Guid.NewGuid());
                 this.Parent.GetDataEntity().Mail.Communication = this.Parent.GetDataEntity();
             }
         }

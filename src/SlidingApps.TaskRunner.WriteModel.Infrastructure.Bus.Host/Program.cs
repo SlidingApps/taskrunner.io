@@ -1,17 +1,14 @@
 ﻿
 using Autofac;
+using log4net.Config;
+using MassTransit;
 using SlidingApps.TaskRunner.Foundation.Infrastructure;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Logging;
-using log4net.Config;
-using MassTransit;
 using System;
-using System.Linq;
 using System.Threading;
-using SlidingApps.TaskRunner.Foundation.Configuration;
-using SlidingApps.TaskRunner.WriteModel.Communication.Bus;
 
-namespace SlidingApps.TaskRunner.WriteModel.Communication.Bus.Host
+namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Bus.Host
 {
     internal class Program
     {

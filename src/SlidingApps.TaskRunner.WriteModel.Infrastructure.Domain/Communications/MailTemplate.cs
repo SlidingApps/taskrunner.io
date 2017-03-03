@@ -4,11 +4,12 @@ using FluentValidation.Results;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
 using System;
+using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Communications.Entities;
 
-namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
+namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Communications
 {
     public class MailTemplate
-        : DomainEntity<Guid, Entities.MailTemplate>, IWithValidator<MailTemplate>
+        : DomainEntity<Guid, Infrastructure.Domain.Communications.Entities.MailTemplate>, IWithValidator<MailTemplate>
     {
         private readonly IValidator<MailTemplate> validator;
 
@@ -20,7 +21,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
             this.validator = validator;
         }
 
-        public MailTemplate(Entities.MailTemplate entity, IValidator<MailTemplate> validator)
+        public MailTemplate(Infrastructure.Domain.Communications.Entities.MailTemplate entity, IValidator<MailTemplate> validator)
             : this(validator)
         {
             Argument.InstanceIsRequired(entity, "entity");
@@ -28,7 +29,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
             this.entity = entity;
             if (this.entity.Info == null)
             {
-                this.entity.Info = new Entities.MailTemplateInfo(Guid.NewGuid());
+                this.entity.Info = new MailTemplateInfo(Guid.NewGuid());
                 this.entity.Info.MailTemplate = this.entity;
             };
         }

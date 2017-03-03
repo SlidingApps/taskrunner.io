@@ -1,15 +1,14 @@
 ﻿
+using log4net.Config;
+using Microsoft.Owin.Hosting;
 using SlidingApps.TaskRunner.Foundation.Configuration;
 using SlidingApps.TaskRunner.Foundation.Infrastructure;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Logging;
-using log4net.Config;
-using Microsoft.Owin.Hosting;
 using System;
-using System.Linq;
 using System.Threading;
 
-namespace SlidingApps.TaskRunner.WriteModel.Communication.Api.Host
+namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Api.Host
 {
     internal class Program
 	{

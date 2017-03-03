@@ -1,5 +1,5 @@
 ﻿
-namespace SlidingApps.TaskRunner.WriteModel.Communication.Bus
+namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Bus
 {
     public interface IAssemblyMarker { }
 }

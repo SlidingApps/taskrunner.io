@@ -2,7 +2,7 @@
 using SlidingApps.TaskRunner.Foundation.WriteModel;
 using System;
 
-namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain.Entities
+namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Communications.Entities
 {
     public class Communication
         : AuditableDataEntity<Guid>

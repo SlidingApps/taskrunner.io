@@ -5,11 +5,11 @@ using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
 using SlidingApps.TaskRunner.Foundation.NHibernate;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
-using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Mails;
-using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Mails.Intents;
+using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Communications;
+using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Communications.Intents;
 using System.Linq;
 
-namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
+namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Communications
 {
     public class MailService :
         ICommandHandler<MailCommand<SendTenantConfirmationLink>>,
@@ -56,14 +56,14 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain
         private void SendMail<TMailIntent>(string templateCode, MailCommand<TMailIntent> command)
             where TMailIntent : IMailIntent
         {
-            var existing = this.queryProvider.CreateQuery<Entities.MailTemplate>().Single(x => x.Code == templateCode);
+            var existing = this.queryProvider.CreateQuery<Infrastructure.Domain.Communications.Entities.MailTemplate>().Single(x => x.Code == templateCode);
             var entity = new MailTemplate(existing, this.validator.CreateFor<MailTemplate>());
 
             command.Intent.Subject = entity.Subject;
             command.Intent.TextContentTemplate = entity.TextTemplate;
             command.Intent.HtmlContentTemplate = entity.HtmlTemplate;
 
-            var communication = new Communication<MailCommunicationInfo>(new Entities.Communication(), this.validator.CreateFor<Communication<MailCommunicationInfo>>());
+            var communication = new Communication<MailCommunicationInfo>(new Infrastructure.Domain.Communications.Entities.Communication(), this.validator.CreateFor<Communication<MailCommunicationInfo>>());
             communication.Info.Apply(command);
 
             this.queryProvider.Session.Save(communication.GetDataEntity());

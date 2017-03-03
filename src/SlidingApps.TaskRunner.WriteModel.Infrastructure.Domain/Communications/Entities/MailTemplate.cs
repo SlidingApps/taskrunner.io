@@ -1,9 +1,8 @@
 ﻿
 using SlidingApps.TaskRunner.Foundation.WriteModel;
 using System;
-using System.Collections.Generic;
 
-namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain.Entities
+namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Communications.Entities
 {
     public class MailTemplate
         : AuditableDataEntity<Guid>

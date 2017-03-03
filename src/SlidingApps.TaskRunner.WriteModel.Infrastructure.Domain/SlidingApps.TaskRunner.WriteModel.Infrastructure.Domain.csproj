@@ -115,25 +115,25 @@
       <Link>Properties\AssemblyVersionInfo.cs</Link>
     </Compile>
     <Compile Include="AutofacModule.cs" />
-    <Compile Include="Communication.CommunicationInfo.cs" />
-    <Compile Include="Communication.cs" />
-    <Compile Include="Entities\Communication.cs" />
-    <Compile Include="Entities\MailCommunication.cs" />
-    <Compile Include="Entities\MailTemplate.cs" />
-    <Compile Include="Entities\MailTemplateInfo.cs" />
-    <Compile Include="MailCommunicationInfo.cs" />
-    <Compile Include="MailGun.cs" />
-    <Compile Include="MailParameters.cs" />
-    <Compile Include="MailService.cs" />
-    <Compile Include="MailTemplate.cs" />
-    <Compile Include="Maps\CommunicationMap.cs" />
-    <Compile Include="Maps\MailCommunicationMap.cs" />
-    <Compile Include="Maps\MailTemplateInfoMap.cs" />
-    <Compile Include="Maps\MailTemplateMap.cs" />
+    <Compile Include="Communications\Communication.CommunicationInfo.cs" />
+    <Compile Include="Communications\Communication.cs" />
+    <Compile Include="Communications\Entities\Communication.cs" />
+    <Compile Include="Communications\Entities\MailCommunication.cs" />
+    <Compile Include="Communications\Entities\MailTemplate.cs" />
+    <Compile Include="Communications\Entities\MailTemplateInfo.cs" />
+    <Compile Include="Communications\MailCommunicationInfo.cs" />
+    <Compile Include="Communications\MailGun.cs" />
+    <Compile Include="Communications\MailParameters.cs" />
+    <Compile Include="Communications\MailService.cs" />
+    <Compile Include="Communications\MailTemplate.cs" />
+    <Compile Include="Communications\Maps\CommunicationMap.cs" />
+    <Compile Include="Communications\Maps\MailCommunicationMap.cs" />
+    <Compile Include="Communications\Maps\MailTemplateInfoMap.cs" />
+    <Compile Include="Communications\Maps\MailTemplateMap.cs" />
     <Compile Include="Metadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Validations\CommunicationValidator.cs" />
-    <Compile Include="Validations\MailTemplateValidator.cs" />
+    <Compile Include="Communications\Validations\CommunicationValidator.cs" />
+    <Compile Include="Communications\Validations\MailTemplateValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

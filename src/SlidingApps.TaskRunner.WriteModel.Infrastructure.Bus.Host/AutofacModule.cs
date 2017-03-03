@@ -12,7 +12,7 @@ using SlidingApps.TaskRunner.Foundation.MessageBus;
 using System.Collections.Generic;
 using Module = Autofac.Module;
 
-namespace SlidingApps.TaskRunner.WriteModel.Communication.Bus.Host
+namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Bus.Host
 {
     public class AutofacModule : Module
     {
@@ -43,13 +43,13 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Bus.Host
 
                 var host = config.Host(rabbitMQSettings.VirtualHostUri, h =>
                 {
-                    h.Username(ApplicationConfiguration.Store[Foundation.Configuration.AppSetting.RABBITMQ_USER]);
-                    h.Password(ApplicationConfiguration.Store[Foundation.Configuration.AppSetting.RABBITMQ_PASSWORD]);
+                    h.Username(ApplicationConfiguration.Store[AppSetting.RABBITMQ_USER]);
+                    h.Password(ApplicationConfiguration.Store[AppSetting.RABBITMQ_PASSWORD]);
                 });
 
-                var durable = ApplicationConfiguration.Store[Foundation.Configuration.AppSetting.RABBITMQ_DURABLE_QUEUE];
+                var durable = ApplicationConfiguration.Store[AppSetting.RABBITMQ_DURABLE_QUEUE];
                 config.Durable = bool.Parse(durable);
-                config.ReceiveEndpoint(host, ApplicationConfiguration.Store[Foundation.Configuration.AppSetting.RABBITMQ_QUEUE_COMMAND], 
+                config.ReceiveEndpoint(host, ApplicationConfiguration.Store[AppSetting.RABBITMQ_QUEUE_COMMAND], 
                     epc => {
                         epc.Durable = bool.Parse(durable);
                         epc.LoadFrom(context);

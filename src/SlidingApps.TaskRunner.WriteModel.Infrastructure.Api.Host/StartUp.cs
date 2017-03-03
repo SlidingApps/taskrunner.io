@@ -9,19 +9,20 @@ using SlidingApps.TaskRunner.Foundation.Configuration;
 using SlidingApps.TaskRunner.Foundation.Infrastructure;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Logging;
 using SlidingApps.TaskRunner.Foundation.Web;
+using SlidingApps.TaskRunner.WriteModel.Infrastructure.Api.Controllers;
 using System;
 using System.Linq;
 using System.Net.Http.Formatting;
 using System.Web.Http;
 using WebApiProxy.Server;
 
-namespace SlidingApps.TaskRunner.WriteModel.Communication.Api.Host
+namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Api.Host
 {
     internal sealed class Startup
 	{
 	    internal readonly Type[] SERVICES = {
             typeof(ServiceManagementController),
-			typeof (TaskRunner.WriteModel.Communication.Api.Controllers.MailManagementController),
+			typeof (MailManagementController),
         };
 
 	    public void Configuration(IAppBuilder app)

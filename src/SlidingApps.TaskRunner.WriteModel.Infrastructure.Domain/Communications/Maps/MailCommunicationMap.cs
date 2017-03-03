@@ -1,13 +1,14 @@
 ﻿
 using FluentNHibernate.Mapping;
 using SlidingApps.TaskRunner.Foundation.NHibernate;
-using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Mails;
+using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Communications;
 using System;
+using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Communications.Entities;
 
-namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain.Maps
+namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Communications.Maps
 {
     public class MailCommunicationMap
-        : AuditableDataEntityMap<Entities.MailCommunication, Guid>
+        : AuditableDataEntityMap<MailCommunication, Guid>
     {
         private const string TABLE_NAME = "Communication_Mail_S";
 

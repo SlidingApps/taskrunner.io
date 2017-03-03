@@ -1,9 +1,9 @@
 ﻿
 using SlidingApps.TaskRunner.Foundation.WriteModel;
-using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Mails;
+using SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Model.Communications;
 using System;
 
-namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain.Entities
+namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Communications.Entities
 {
     public class MailCommunication
         : AuditableDataEntity<Guid>
@@ -26,7 +26,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain.Entities
 
         public virtual MailStatus Status { get; set; }
 
-        public virtual Communication Communication { get; set; }
+        public virtual Infrastructure.Domain.Communications.Entities.Communication Communication { get; set; }
 
     }
 }

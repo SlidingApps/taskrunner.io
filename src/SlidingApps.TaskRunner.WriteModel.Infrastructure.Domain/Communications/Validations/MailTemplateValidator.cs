@@ -1,7 +1,7 @@
 ﻿
 using FluentValidation;
 
-namespace SlidingApps.TaskRunner.WriteModel.Communication.Domain.Validations
+namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Communications.Validations
 {
     public class MailTemplateValidator
         : AbstractValidator<MailTemplate>
