@@ -4,25 +4,25 @@ using System;
 
 namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants.Maps
 {
-    public class TenantAccountRoleSetMap
-        : AuditableDataEntityMap<Entities.TenantAccountRoleSet, Guid>
+    public class TenantPersonRoleSetMap
+        : AuditableDataEntityMap<Entities.TenantPersonRoleSet, Guid>
     {
         /// <summary>
         /// The <see cref="TenantAccountRoleSet"/> database table name.
         /// </summary>
-        public const string TABLE_NAME = "Tenant_Account_RoleSet_S";
+        public const string TABLE_NAME = "Tenant_Person_RoleSet_S";
 
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public TenantAccountRoleSetMap()
-            : base(Metadata.SCHEMA_NAME, TenantAccountRoleSetMap.TABLE_NAME)
+        public TenantPersonRoleSetMap()
+            : base(Metadata.SCHEMA_NAME, TenantPersonRoleSetMap.TABLE_NAME)
         {
             this.Map(x => x.IsOwner);
             this.Map(x => x.IsMember);
             this.Map(x => x.IsFollower);
 
-            this.References(x => x.TenantAccount).Unique().Column("TenantAccountId");
+            this.References(x => x.TenantPerson).Unique().Column("TenantPersonId");
         }
     }
 }

@@ -11,7 +11,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants.Entities
         public Tenant()
             : base()
         {
-            this.Accounts = new List<TenantAccount>();
+            this.Persons = new List<TenantPerson>();
             this.Domains = new List<TenantDomain>();
         }
 
@@ -19,7 +19,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants.Entities
 
         public virtual TenantInfo Info { get; set; }
 
-        public virtual IList<TenantAccount> Accounts { get; set; }
+        public virtual IList<TenantPerson> Persons { get; set; }
 
         public virtual IList<TenantDomain> Domains { get; set; }
     }

@@ -33,7 +33,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Api.Host
                 config.ConfigureSend(send =>
                     send.UseSendExecute(se =>
                     {
-                        se.Headers.Set("type", ((Type)((dynamic)se).Message.Command.GetType()).ToFriendlyName());
+                        se.Headers.Set("type", ((Type)((dynamic)se).Message.GetType()).ToFriendlyName());
                     }));
 
                 config.UseLog4Net();

@@ -1,2 +1,2 @@
-WebApiProxy.CommandLine\bin\Debug\webapiproxy-cli -e http://localhost:8091/$metadata -c WriteModelProxy -n SlidingApps.TaskRunner.WriteModel.Mail.Api -o .\SlidingApps.TaskRunner.WriteModel.Mail.Proxy\WriteModelProxy.cs
+WebApiProxy.CommandLine\bin\Debug\webapiproxy-cli -e http://localhost:8091/$metadata -c WriteModelProxy -n SlidingApps.TaskRunner.WriteModel.Infrastructure.Api -o .\SlidingApps.TaskRunner.WriteModel.Infrastructure.Proxy\WriteModelProxy.cs
 REM WebApiProxy.CommandLine\bin\Debug\webapiproxy-cli -e http://localhost:8082/$metadata -c ReadModelProxy -n SlidingApps.TaskRunner.ReadModel.Mail.Api -o .\SlidingApps.TaskRunner.WriteModel.Mail.Proxy\ReadModelProxy.cs

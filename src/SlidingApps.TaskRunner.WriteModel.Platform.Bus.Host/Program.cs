@@ -1,14 +1,13 @@
 ﻿
 using Autofac;
+using log4net.Config;
+using MassTransit;
+using SlidingApps.TaskRunner.Foundation.Configuration;
 using SlidingApps.TaskRunner.Foundation.Infrastructure;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Extension;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Logging;
-using log4net.Config;
-using MassTransit;
 using System;
-using System.Linq;
 using System.Threading;
-using SlidingApps.TaskRunner.Foundation.Configuration;
 
 namespace SlidingApps.TaskRunner.WriteModel.Platform.Bus.Host
 {
@@ -98,8 +97,8 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Bus.Host
 
         private static void ConfigureServiceUrl()
         {
-            Mail.Api.Configuration.WriteModelProxyBaseAddress = ApplicationConfiguration.Store[string.Format(AppSetting.SERVICE_URL_TEMPLATE, "mail")];
-            Program.WriteMessage(string.Format("Mail service URL configuration DONE ({0})", Mail.Api.Configuration.WriteModelProxyBaseAddress));
+            Infrastructure.Api.Configuration.WriteModelProxyBaseAddress = ApplicationConfiguration.Store[string.Format(AppSetting.SERVICE_URL_TEMPLATE, "mail")];
+            Program.WriteMessage(string.Format("Mail service URL configuration DONE ({0})", Infrastructure.Api.Configuration.WriteModelProxyBaseAddress));
         }
 
         private static ConnectHandle ConfigureConsumers(IBusControl bus )

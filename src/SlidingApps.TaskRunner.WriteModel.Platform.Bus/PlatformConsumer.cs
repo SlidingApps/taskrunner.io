@@ -2,7 +2,6 @@
 using MassTransit;
 using MediatR;
 using SlidingApps.TaskRunner.Domain.WriteModel.Platform.Persons.Intents;
-using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.Transaction;
 using SlidingApps.TaskRunner.Foundation.MassTransit;
 using SlidingApps.TaskRunner.Foundation.MessageBus;
@@ -17,50 +16,50 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Bus
     public class PlatformConsumer 
         : CommandMessageConsumer,
 
-        IConsumer<CommandMessage<TenantCommand<CreateTenant>>>,
-        IConsumer<CommandMessage<TenantCommand<ChangeTenantInfo>>>,
-        IConsumer<CommandMessage<PersonCommand<CreatePerson>>>,
-        IConsumer<CommandMessage<PersonCommand<ChangePersonIdentityName>>>,
-        IConsumer<CommandMessage<PersonCommand<ChangePersonUserPeriod>>>,
-        IConsumer<CommandMessage<PersonCommand<SendConfirmationLink>>>,
-        IConsumer<CommandMessage<PersonCommand<SendResetPasswordLink>>>
+        IConsumer<TenantCommand<CreateTenant>>,
+        IConsumer<TenantCommand<ChangeTenantInfo>>,
+        IConsumer<PersonCommand<CreatePerson>>,
+        IConsumer<PersonCommand<ChangePersonIdentityName>>,
+        IConsumer<PersonCommand<ChangePersonUserPeriod>>,
+        IConsumer<PersonCommand<SendConfirmationLink>>,
+        IConsumer<PersonCommand<SendResetPasswordLink>>
     {
         public PlatformConsumer() { }
 
         public PlatformConsumer(IUnitOfWork unitOfWork, IMediator mediator, IBusConnector connector)
             : base(unitOfWork, mediator, connector) { }
 
-        public Task Consume(ConsumeContext<CommandMessage<TenantCommand<CreateTenant>>> context)
+        public Task Consume(ConsumeContext<TenantCommand<CreateTenant>> context)
         {
             return this.ConsumeCommand(context);
         }
 
-        public Task Consume(ConsumeContext<CommandMessage<TenantCommand<ChangeTenantInfo>>> context)
+        public Task Consume(ConsumeContext<TenantCommand<ChangeTenantInfo>> context)
         {
             return this.ConsumeCommand(context);
         }
 
-        public Task Consume(ConsumeContext<CommandMessage<PersonCommand<CreatePerson>>> context)
+        public Task Consume(ConsumeContext<PersonCommand<CreatePerson>> context)
         {
             return this.ConsumeCommand(context);
         }
 
-        public Task Consume(ConsumeContext<CommandMessage<PersonCommand<ChangePersonIdentityName>>> context)
+        public Task Consume(ConsumeContext<PersonCommand<ChangePersonIdentityName>> context)
         {
             return this.ConsumeCommand(context);
         }
 
-        public Task Consume(ConsumeContext<CommandMessage<PersonCommand<ChangePersonUserPeriod>>> context)
+        public Task Consume(ConsumeContext<PersonCommand<ChangePersonUserPeriod>> context)
         {
             return this.ConsumeCommand(context);
         }
 
-        public Task Consume(ConsumeContext<CommandMessage<PersonCommand<SendConfirmationLink>>> context)
+        public Task Consume(ConsumeContext<PersonCommand<SendConfirmationLink>> context)
         {
             return this.ConsumeCommand(context);
         }
 
-        public Task Consume(ConsumeContext<CommandMessage<PersonCommand<SendResetPasswordLink>>> context)
+        public Task Consume(ConsumeContext<PersonCommand<SendResetPasswordLink>> context)
         {
             return this.ConsumeCommand(context);
         }        

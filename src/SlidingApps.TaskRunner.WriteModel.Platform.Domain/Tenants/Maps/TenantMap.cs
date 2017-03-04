@@ -22,7 +22,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants.Maps
             this.Map(x => x.Code);
 
             this.HasOne(x => x.Info) .Cascade.All().PropertyRef(x => x.Tenant).LazyLoad(Laziness.Proxy);
-            this.HasMany(x => x.Accounts).KeyColumn("TenantId").Cascade.SaveUpdate();
+            this.HasMany(x => x.Persons).KeyColumn("TenantId").Cascade.SaveUpdate();
             this.HasMany(x => x.Domains).KeyColumn("TenantId").Cascade.SaveUpdate();
         }
     }

@@ -11,10 +11,10 @@ using System.Net.Http.Formatting;
 using System.Linq;
 using System.Net;
 using System.Web;
-using SlidingApps.TaskRunner.WriteModel.Mail.Api.Models;
+using SlidingApps.TaskRunner.WriteModel.Infrastructure.Api.Models;
 
 #region Proxies
-namespace SlidingApps.TaskRunner.WriteModel.Mail.Api
+namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Api
 {
 	/// <summary>
 	/// Client configuration.
@@ -31,7 +31,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api
 #endregion
 
 #region Models
-namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Models
+namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Api.Models
 {
 	public class WebApiProxyResponseException : Exception
 	{
@@ -49,7 +49,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Models
 	/// <summary>
 	/// 
 	/// </summary>
-	public partial class SendAccountConfirmationLink
+	public partial class SendPersonConfirmationLink
 	{
 		#region Constants
 		#endregion
@@ -58,23 +58,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Models
 		/// <summary>
 		/// 
 		/// </summary>
-		public virtual String Recipient { get; set; }
-		/// <summary>
-		/// 
-		/// </summary>
-		public virtual String Subject { get; set; }
-		/// <summary>
-		/// 
-		/// </summary>
 		public virtual String ConfirmationUrl { get; set; }
-		/// <summary>
-		/// 
-		/// </summary>
-		public virtual String TextContentTemplate { get; set; }
-		/// <summary>
-		/// 
-		/// </summary>
-		public virtual String HtmlContentTemplate { get; set; }
 		/// <summary>
 		/// 
 		/// </summary>
@@ -82,7 +66,23 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Models
 		/// <summary>
 		/// 
 		/// </summary>
+		public virtual String HtmlContentTemplate { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual String Recipient { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
 		public virtual MailStatus Status { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual String Subject { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual String TextContentTemplate { get; set; }
 		#endregion
 	}	
 	
@@ -98,23 +98,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Models
 		/// <summary>
 		/// 
 		/// </summary>
-		public virtual String Recipient { get; set; }
-		/// <summary>
-		/// 
-		/// </summary>
-		public virtual String Subject { get; set; }
-		/// <summary>
-		/// 
-		/// </summary>
 		public virtual String ResetPasswordUrl { get; set; }
-		/// <summary>
-		/// 
-		/// </summary>
-		public virtual String TextContentTemplate { get; set; }
-		/// <summary>
-		/// 
-		/// </summary>
-		public virtual String HtmlContentTemplate { get; set; }
 		/// <summary>
 		/// 
 		/// </summary>
@@ -122,7 +106,23 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Models
 		/// <summary>
 		/// 
 		/// </summary>
+		public virtual String HtmlContentTemplate { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual String Recipient { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
 		public virtual MailStatus Status { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual String Subject { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual String TextContentTemplate { get; set; }
 		#endregion
 	}	
 	
@@ -138,23 +138,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Models
 		/// <summary>
 		/// 
 		/// </summary>
-		public virtual String Recipient { get; set; }
-		/// <summary>
-		/// 
-		/// </summary>
-		public virtual String Subject { get; set; }
-		/// <summary>
-		/// 
-		/// </summary>
 		public virtual String ConfirmationUrl { get; set; }
-		/// <summary>
-		/// 
-		/// </summary>
-		public virtual String TextContentTemplate { get; set; }
-		/// <summary>
-		/// 
-		/// </summary>
-		public virtual String HtmlContentTemplate { get; set; }
 		/// <summary>
 		/// 
 		/// </summary>
@@ -162,7 +146,23 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Models
 		/// <summary>
 		/// 
 		/// </summary>
+		public virtual String HtmlContentTemplate { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual String Recipient { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
 		public virtual MailStatus Status { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual String Subject { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual String TextContentTemplate { get; set; }
 		#endregion
 	}	
 
@@ -204,7 +204,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Models
 #endregion
 
 #region Interfaces
-namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Interfaces
+namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Api.Interfaces
 {
 	public interface IClientBase : IDisposable
 	{
@@ -222,10 +222,10 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Interfaces
 		HttpResponseMessage PostSendTenantConfirmationLink(SendTenantConfirmationLink intent);
 
 		/// <returns></returns>
-		Task<HttpResponseMessage> PostSendAccountConfirmationLinkAsync(SendAccountConfirmationLink intent);
+		Task<HttpResponseMessage> PostSendAccountConfirmationLinkAsync(SendPersonConfirmationLink intent);
 
 		/// <returns></returns>
-		HttpResponseMessage PostSendAccountConfirmationLink(SendAccountConfirmationLink intent);
+		HttpResponseMessage PostSendAccountConfirmationLink(SendPersonConfirmationLink intent);
 
 		/// <returns></returns>
 		Task<HttpResponseMessage> PostSendResetPasswordLinkAsync(SendResetPasswordLink intent);
@@ -261,7 +261,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Interfaces
 #endregion
 
 #region Clients
-namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Clients
+namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Api.Clients
 {
 	/// <summary>
 	/// Client base class.
@@ -361,15 +361,15 @@ namespace SlidingApps.TaskRunner.WriteModel.Mail.Api.Clients
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		public virtual async Task<HttpResponseMessage> PostSendAccountConfirmationLinkAsync(SendAccountConfirmationLink intent)
+		public virtual async Task<HttpResponseMessage> PostSendAccountConfirmationLinkAsync(SendPersonConfirmationLink intent)
 		{
-			return await HttpClient.PostAsJsonAsync<SendAccountConfirmationLink>("command/mail/accountconfirmation", intent);
+			return await HttpClient.PostAsJsonAsync<SendPersonConfirmationLink>("command/mail/accountconfirmation", intent);
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public virtual HttpResponseMessage PostSendAccountConfirmationLink(SendAccountConfirmationLink intent)
+		public virtual HttpResponseMessage PostSendAccountConfirmationLink(SendPersonConfirmationLink intent)
 		{
 						 var result = Task.Run(() => PostSendAccountConfirmationLinkAsync(intent)).Result;		 
 			 

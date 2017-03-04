@@ -8,7 +8,7 @@ using SlidingApps.TaskRunner.Foundation.Extension;
 using SlidingApps.TaskRunner.Foundation.Infrastructure.ExceptionManagement;
 using SlidingApps.TaskRunner.Foundation.NHibernate;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
-using SlidingApps.TaskRunner.WriteModel.Mail.Api.Clients;
+using SlidingApps.TaskRunner.WriteModel.Infrastructure.Api.Clients;
 using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Persons;
 using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Persons.Intents;
 using System.Linq;
@@ -103,7 +103,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Persons
             using (MailManagementClient mail = new MailManagementClient())
             {
                 var url = string.Format("{0}/account/{1}/confirmation/{2}", SiteConfiguration.ApplicationBaseUrl, command.Intent.Name, link);
-                mail.PostSendAccountConfirmationLink(new Mail.Api.Models.SendAccountConfirmationLink { ConfirmationUrl = url, Recipient = entity.EmailAddress, UserName = command.Intent.Name });
+                mail.PostSendAccountConfirmationLink(new Infrastructure.Api.Models.SendPersonConfirmationLink { ConfirmationUrl = url, Recipient = entity.EmailAddress, UserName = command.Intent.Name });
             }
 
             return new CommandResult(command.Id, result);
@@ -120,7 +120,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Persons
             using (MailManagementClient mail = new MailManagementClient())
             {
                 var url = string.Format("{0}/account/{1}/resetpassword/{2}", SiteConfiguration.ApplicationBaseUrl, command.Intent.Name, link);
-                mail.PostSendResetPasswordLink(new Mail.Api.Models.SendResetPasswordLink { ResetPasswordUrl = url, UserName = command.Intent.Name, Recipient = entity.EmailAddress });
+                mail.PostSendResetPasswordLink(new Infrastructure.Api.Models.SendResetPasswordLink { ResetPasswordUrl = url, UserName = command.Intent.Name, Recipient = entity.EmailAddress });
             }
 
             return new CommandResult(command.Id, result);

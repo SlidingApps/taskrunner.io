@@ -27,7 +27,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Communications
         }
 
         public const string TENANT_CONFIRMATION_LINK_TEMPLATE = "TENANT_CONFIRMATION_LINK";
-        public const string ACCOUNT_CONFIRMATION_LINK_TEMPLATE = "ACCOUNT_CONFIRMATION_LINK";
+        public const string PERSON_CONFIRMATION_LINK_TEMPLATE = "PERSON_CONFIRMATION_LINK";
         public const string RESET_PASSWORD_LINK_TEMPLATE = "RESET_PASSWORD_LINK";
 
         public ICommandResult Handle(MailCommand<SendTenantConfirmationLink> command)
@@ -39,7 +39,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Domain.Communications
 
         public ICommandResult Handle(MailCommand<SendPersonConfirmationLink> command)
         {
-            this.SendMail(MailService.ACCOUNT_CONFIRMATION_LINK_TEMPLATE, command);
+            this.SendMail(MailService.PERSON_CONFIRMATION_LINK_TEMPLATE, command);
 
             return new CommandResult(command.Id);
         }

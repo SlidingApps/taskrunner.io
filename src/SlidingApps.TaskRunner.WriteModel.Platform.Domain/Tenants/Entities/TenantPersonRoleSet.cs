@@ -4,13 +4,13 @@ using System;
 
 namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants.Entities
 {
-    public class TenantAccountRoleSet
+    public class TenantPersonRoleSet
         : AuditableDataEntity<Guid>
     {
-        public TenantAccountRoleSet()
+        public TenantPersonRoleSet()
         : base() { }
 
-        public TenantAccountRoleSet(Guid id)
+        public TenantPersonRoleSet(Guid id)
         : base(id) { }
 
         public virtual bool IsOwner { get; set; }
@@ -19,6 +19,6 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants.Entities
 
         public virtual bool IsFollower { get; set; }
 
-        public virtual TenantAccount TenantAccount { get; set; }
+        public virtual TenantPerson TenantPerson { get; set; }
     }
 }

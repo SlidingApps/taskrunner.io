@@ -88,31 +88,31 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants
             private set { this.entity.Info.Link = value; }
         }
 
-        private List<TenantAccount> accounts;
-        public List<TenantAccount> Accounts
+        private List<TenantPerson> persons;
+        public List<TenantPerson> Persons
         {
             get
             {
-                var accounts = new List<TenantAccount>();
-                if (this.accounts == null)
+                var accounts = new List<TenantPerson>();
+                if (this.persons == null)
                 {
-                    accounts = this.entity.Accounts.ToList().Select(x => new TenantAccount(x)).ToList();
+                    accounts = this.entity.Persons.ToList().Select(x => new TenantPerson(x)).ToList();
                 }
 
-                return this.accounts = accounts;
+                return this.persons = accounts;
             }
-            private set { this.accounts = value; }
+            private set { this.persons = value; }
         }
 
-        public TenantAccount AddAccount(Guid accountId)
+        public TenantPerson AddPerson(Guid personId)
         {
-            var account = new Entities.TenantAccount(Guid.NewGuid());
-            account.Tenant = this.entity;
-            account.AccountId = accountId;
-            this.entity.Accounts.Add(account);
+            var person = new Entities.TenantPerson(Guid.NewGuid());
+            person.Tenant = this.entity;
+            person.PersonId = personId;
+            this.entity.Persons.Add(person);
 
-            var _account = new TenantAccount(account);
-            this.Accounts.Add(_account);
+            var _account = new TenantPerson(person);
+            this.Persons.Add(_account);
 
             return _account;
         }
@@ -123,7 +123,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants
             get
             {
                 var domains = new List<TenantDomain>();
-                if (this.accounts == null)
+                if (this.persons == null)
                 {
                     domains = this.entity.Domains.ToList().Select(x => new TenantDomain(x)).ToList();
                 }

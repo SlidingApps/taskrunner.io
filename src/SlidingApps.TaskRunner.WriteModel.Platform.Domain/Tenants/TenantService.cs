@@ -6,7 +6,7 @@ using SlidingApps.TaskRunner.Foundation.Cqrs;
 using SlidingApps.TaskRunner.Foundation.Extension;
 using SlidingApps.TaskRunner.Foundation.NHibernate;
 using SlidingApps.TaskRunner.Foundation.WriteModel;
-using SlidingApps.TaskRunner.WriteModel.Mail.Api.Clients;
+using SlidingApps.TaskRunner.WriteModel.Infrastructure.Api.Clients;
 using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Persons;
 using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Persons.Intents;
 using SlidingApps.TaskRunner.WriteModel.Platform.Domain.Model.Tenants;
@@ -40,7 +40,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants
             tenant.AddDefaultDomain();
             TenantEvent<CreateTenant> tenantEvent = tenant.Apply(command);
 
-            // Create ACCOUNT.
+            // Create PERSON.
             ICommandResult accountResult = this.mediator.Send(new PersonCommand<CreatePerson>(command.Intent.UserName, new CreatePerson { EmailAddress = command.Intent.UserName }));
             PersonEvent<CreatePerson> accountEvent = accountResult.OfType<PersonEvent<CreatePerson>>().Single();
 
@@ -55,7 +55,7 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants
             PersonEvent<ChangePersonUser> userEvent = userResult.OfType<PersonEvent<ChangePersonUser>>().Single();
 
             // Associate the ACCOUNT with the TENANT.
-            TenantAccount tenantAccount = tenant.AddAccount(accountEvent.Identifiers.EntityId);
+            TenantPerson tenantAccount = tenant.AddPerson(accountEvent.Identifiers.EntityId);
 
             // Set the new ACCOUNT as TENANT OWNER.
             TenantEvent<SetTenantOwner> roleEvent = tenantAccount.Apply(new TenantCommand<SetTenantOwner>(command.Key, new SetTenantOwner(command.Intent.UserName)));
@@ -71,10 +71,10 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants
             {
                 var link = MailUtils.GetLink(command.Intent.Code, tenant.Link);
                 var url = string.Format("{0}/tenant/{1}/confirmation/{2}", SiteConfiguration.ApplicationBaseUrl, command.Intent.Code, link);
-                mail.PostSendTenantConfirmationLink(new Mail.Api.Models.SendTenantConfirmationLink { Recipient = command.Intent.UserName, Code = command.Intent.Code, ConfirmationUrl = url });
+                mail.PostSendTenantConfirmationLink(new Infrastructure.Api.Models.SendTenantConfirmationLink { Recipient = command.Intent.UserName, Code = command.Intent.Code, ConfirmationUrl = url });
             }
 
-            // Delegate to the ACCOUNT MANAGEMENT SERVICE to send an e-mail.
+            // Delegate to the PERSON MANAGEMENT SERVICE to send an e-mail.
             this.mediator.Send(new PersonCommand<SendConfirmationLink>(new SendConfirmationLink { Name = command.Intent.UserName }));
 
             return new CommandResult(command.Id,

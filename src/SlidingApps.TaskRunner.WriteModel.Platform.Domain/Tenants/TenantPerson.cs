@@ -7,13 +7,13 @@ using System;
 
 namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants
 {
-    public class TenantAccount
-        : DomainEntity<Guid, Entities.TenantAccount>
+    public class TenantPerson
+        : DomainEntity<Guid, Entities.TenantPerson>
     {
-        public TenantAccount()
+        public TenantPerson()
             : base() { }
 
-        public TenantAccount(Entities.TenantAccount entity)
+        public TenantPerson(Entities.TenantPerson entity)
             : this()
         {
             Argument.InstanceIsRequired(entity, "entity");
@@ -22,15 +22,15 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Tenants
 
             if (this.entity.RoleSet == null)
             {
-                this.entity.RoleSet = new Entities.TenantAccountRoleSet(Guid.NewGuid());
-                this.entity.RoleSet.TenantAccount = this.entity;
+                this.entity.RoleSet = new Entities.TenantPersonRoleSet(Guid.NewGuid());
+                this.entity.RoleSet.TenantPerson = this.entity;
             };
         }
 
         public Guid AccountId
         {
-            get { return this.entity.AccountId; }
-            private set { this.entity.AccountId = value; }
+            get { return this.entity.PersonId; }
+            private set { this.entity.PersonId = value; }
         }
 
         public virtual bool IsOwner

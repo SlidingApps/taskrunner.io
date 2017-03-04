@@ -10,11 +10,6 @@ using System.Threading.Tasks;
 
 namespace SlidingApps.TaskRunner.WriteModel.Infrastructure.Bus
 {
-    public class Placeholder
-    {
-        
-    }
-
     public class MailCommandMessageConsumer
         : CommandMessageConsumer,
 
