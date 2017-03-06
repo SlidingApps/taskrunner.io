@@ -14,8 +14,6 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Authorization.Represe
             this.templates.Add(new SelfLinkTemplate(CredentialsValidity.SELF_LINK_TEMPLATE));
         }
 
-        public Guid Id { get; set; }
-
         public string EmailAddress { get; set; }
 
         public string Username { get; set; }

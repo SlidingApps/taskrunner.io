@@ -12,7 +12,6 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Persons
     public class PersonService : 
         IQueryHandler<PersonCollectionQuery, PersonCollection>,
         IQueryHandler<PersonQuery, Person>,
-        IQueryHandler<UserCredentialsQuery, Person>,
         IQueryHandler<LinkDecryptionQuery, DecryptedLink>
     {
         private readonly IQueryProvider queryProvider;
@@ -46,18 +45,6 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Persons
                 this.queryProvider.From<Person>()
                     .By(x => x.TenantId).EqualTo(query.TenantId)
                     .By(x => x.Id).EqualTo(query.PersonId)
-                    .SingleOrDefault();
-
-            return person;
-        }
-
-        public Person Handle(UserCredentialsQuery query)
-        {
-            var person =
-                this.queryProvider.From<Person>()
-                    .By(x => x.TenantId).EqualTo(query.TenantId)
-                    .By(x => x.UserName).EqualTo(query.Name)
-                    .By(x => x.UserName).EqualTo(query.Password)
                     .SingleOrDefault();
 
             return person;

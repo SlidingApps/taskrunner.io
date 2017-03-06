@@ -40,7 +40,6 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Authorization
                 validity.IsValid = account.Password == password;
                 if (validity.IsValid)
                 {
-                    validity.Id = account.Id;
                     validity.EmailAddress = account.EmailAddress;
                     validity.Username = account.Username;
                 }

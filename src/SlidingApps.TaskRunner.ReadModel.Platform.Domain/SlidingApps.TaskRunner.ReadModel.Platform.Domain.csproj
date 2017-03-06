@@ -72,7 +72,6 @@
     <Compile Include="Persons\UnconfirmedAccountException.cs" />
     <Compile Include="Persons\Queries\PersonCollectionQuery.cs" />
     <Compile Include="Persons\Queries\PersonQuery.cs" />
-    <Compile Include="Persons\Queries\UserCredentialsQuery.cs" />
     <Compile Include="Persons\Representations\Person.cs" />
     <Compile Include="Persons\Representations\PersonCollection.cs" />
     <Compile Include="Persons\Representations\IPersonFormatValues.cs" />
