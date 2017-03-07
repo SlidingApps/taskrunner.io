@@ -16,6 +16,7 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Persons.Representatio
             this.templates.Add(new SelfLinkTemplate(Person.SELF_LINK_TEMPLATE));
         }
 
+        [JsonIgnore]
         public Guid Id { get; set; }
 
         public string Name { get; set; }

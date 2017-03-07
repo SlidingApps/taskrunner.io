@@ -10,11 +10,8 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Persons.Validations
     {
         public PersonQueryValidator()
         {
-            RuleFor(c => c.TenantId).NotEmpty();
-            RuleFor(c => c.TenantId).Must(this.BeAuthorizedForTenant);
-
-            RuleFor(c => c.PersonId).NotEmpty();
-            RuleFor(c => c.PersonId).Must(this.BeAuthorizedForAccount);
+            RuleFor(c => c.Username).NotEmpty();
+            RuleFor(c => c.Username).Must(this.BeAuthorizedForAccount);
         }
 
         private bool BeAuthorizedForTenant(Guid tenantId)
@@ -22,7 +19,7 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Persons.Validations
             return true;
         }
 
-        private bool BeAuthorizedForAccount(Guid accountId)
+        private bool BeAuthorizedForAccount(string username)
         {
             return true;
         }

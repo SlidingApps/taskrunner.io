@@ -76,6 +76,16 @@ namespace SlidingApps.TaskRunner.Foundation.Dapper.Filter
             return this;
         }
 
+        public TEntity SingleOrDefault<TEntity>() where TEntity : class
+        {
+            return this.provider.SingleOrDefault<TEntity>();
+        }
+
+        public IList<TEntity> ToList<TEntity>() where TEntity : class
+        {
+            return this.provider.ToList<TEntity>();
+        }
+
         public override string ToString()
         {
             string criteria = string.Join(" AND ", this.Restrictions.Select(x => x.ToString()).ToArray());

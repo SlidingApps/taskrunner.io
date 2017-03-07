@@ -18,6 +18,10 @@ namespace SlidingApps.TaskRunner.Foundation.Dapper.Filter
         ICriteria And(params ICriteria[] andCriteria);
 
         ICriteria Or(params ICriteria[] orCriteria);
+
+        TEntity SingleOrDefault<TEntity>() where TEntity : class;
+
+        IList<TEntity> ToList<TEntity>() where TEntity : class;
     }
 
     public interface ICriteria<TEntity>

@@ -41,11 +41,13 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Persons
 
         public Person Handle(PersonQuery query)
         {
+            var personCriteria = this.queryProvider.From<Person>().By(x => x.EmailAddress).EqualTo(query.Username);
+            var userCriteria = this.queryProvider.From<Person>().By(x => x.UserName).EqualTo(query.Username);
+
             var person =
                 this.queryProvider.From<Person>()
-                    .By(x => x.TenantId).EqualTo(query.TenantId)
-                    .By(x => x.Id).EqualTo(query.PersonId)
-                    .SingleOrDefault();
+                    .Or(personCriteria, userCriteria)
+                    .SingleOrDefault<Person>();
 
             return person;
         }

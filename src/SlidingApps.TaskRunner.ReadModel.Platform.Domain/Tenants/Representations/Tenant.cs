@@ -1,4 +1,5 @@
 ﻿
+using Newtonsoft.Json;
 using SlidingApps.TaskRunner.Foundation.ReadModel;
 using System;
 
@@ -14,6 +15,7 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Tenants.Representatio
             this.templates.Add(new SelfLinkTemplate(Tenant.SELF_LINK_TEMPLATE));
         }
 
+        [JsonIgnore]
         public Guid Id { get; set; }
 
         public string Code { get; set; }

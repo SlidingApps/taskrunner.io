@@ -8,14 +8,11 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Persons.Queries
     public class PersonQuery
         : IQuery<Person>
     {
-        public PersonQuery(Guid tenantId, Guid personId)
+        public PersonQuery(string username)
         {
-            this.TenantId = tenantId;
-            this.PersonId = personId;
+            this.Username = username;
         }
 
-        public Guid TenantId { get; set; }
-
-        public Guid PersonId { get; set; }
+        public string Username { get; set; }
     }
 }
