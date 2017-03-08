@@ -23,7 +23,7 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Persons
 
         public PersonCollection Handle(PersonCollectionQuery query)
         {
-            var _query = this.queryProvider.From<Person>().By(x => x.TenantId).EqualTo(query.TenantId);
+            var _query = this.queryProvider.From<Person>();
 
             // Add 'like' criterium.
             if (!string.IsNullOrEmpty(query.Name))

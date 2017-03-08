@@ -22,9 +22,9 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Api.Controllers
         }
 
         [HttpGet, Route("")]
-        public PersonCollection GetPersonCollection(Guid tenantId, [FromUri] string name = null, [FromUri] int page = 1, [FromUri] int pageSize = 50)
+        public PersonCollection GetPersonCollection([FromUri] string name = null, [FromUri] int page = 1, [FromUri] int pageSize = 50)
         {
-            PersonCollectionQuery query = new PersonCollectionQuery(tenantId, name, page, pageSize);
+            PersonCollectionQuery query = new PersonCollectionQuery(name, page, pageSize);
             var representation = this.mediator.Send(query).FormatHalJsonLinks(query);
 
             return representation;

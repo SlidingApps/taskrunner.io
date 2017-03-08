@@ -10,8 +10,6 @@ namespace SlidingApps.TaskRunner.ReadModel.Platform.Domain.Persons.Validations
     {
         public PersonCollectionQueryValidator()
         {
-            RuleFor(c => c.TenantId).NotEmpty();
-            RuleFor(c => c.TenantId).Must(this.BeAuthorizedForTenant);
         }
 
         private bool BeAuthorizedForTenant(Guid tenantId)
