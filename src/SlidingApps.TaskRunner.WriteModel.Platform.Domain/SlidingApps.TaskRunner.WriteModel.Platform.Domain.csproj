@@ -111,6 +111,10 @@
     <Compile Include="..\AssemblyVersionInfo.cs">
       <Link>Properties\AssemblyVersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Persons\Entities\Role.cs" />
+    <Compile Include="Persons\Entities\UserRole.cs" />
+    <Compile Include="Persons\Maps\RoleMap.cs" />
+    <Compile Include="Persons\Maps\UserRoleMap.cs" />
     <Compile Include="Persons\Person.cs" />
     <Compile Include="Persons\PersonService.cs" />
     <Compile Include="Persons\PersonUser.cs" />

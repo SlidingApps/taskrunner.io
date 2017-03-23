@@ -17,6 +17,11 @@ namespace SlidingApps.TaskRunner.WriteModel.Platform.Domain.Persons.Maps
 
             this.HasOne(x => x.Profile).Cascade.All().PropertyRef(x => x.Account).LazyLoad(Laziness.Proxy);
             this.HasOne(x => x.User).Cascade.All().PropertyRef(x => x.Account).LazyLoad(Laziness.Proxy);
+
+            this.HasMany(x => x.Roles)
+                .KeyColumn("PersonID")
+                .Not.LazyLoad()
+                .Fetch.Join();
         }
     }
 }
